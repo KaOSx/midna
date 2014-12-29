@@ -1,4 +1,11 @@
-midna
-=====
+Midna Theme
+==========
 
-KaOS Plasma 5 Look &amp; Feel theme files
+Midna Look & Feel package.
+
+## Contents
+
+* wallpaper
+* color scheme
+
+
