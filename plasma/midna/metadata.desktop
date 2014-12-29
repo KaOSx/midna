@@ -17,7 +17,7 @@ X-KDE-PluginInfo-EnabledByDefault=true
 UseNativeWidgetStyle=false
 
 [Wallpaper]
-defaultWallpaperTheme=Midna
+defaultWallpaperTheme=midna
 defaultFileSuffix=.png
 defaultWidth=2546
 defaultHeight=1591
