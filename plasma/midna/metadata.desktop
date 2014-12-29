@@ -1,15 +1,20 @@
 [Desktop Entry]
 Name=Midna
-
-X-KDE-PluginInfo-Author=Anke Boersma
-X-KDE-PluginInfo-Email=demm@kaosx.us
-X-KDE-PluginInfo-Name=midna
-X-KDE-PluginInfo-Version=0.1.0
-X-KDE-PluginInfo-Website=http://kaosx.us
-X-KDE-PluginInfo-Category=
-X-KDE-PluginInfo-Depends=
-X-KDE-PluginInfo-License=LGPL
+Name[es]=Midna
+comment=Solid and clear theme for plasma
+Comment[es]= Tema claro solido para plasma
+X-KDE-PluginInfo-Author=David Linares (Mcder3)
+X-KDE-PluginInfo-Email=mcder3@gmail.com
+X-KDE-PluginInfo-Name=Midna
+X-KDE-PluginInfo-Version=1.9.80
+X-KDE-PluginInfo-Website=https://plus.google.com/u/0/115920115946572175775/
+X-KDE-PluginInfo-Category=Plasma Theme
+X-KDE-PluginInfo-Depends=plasma-desktop
+X-KDE-PluginInfo-License=CC BY
 X-KDE-PluginInfo-EnabledByDefault=true
+
+[Settings]
+UseNativeWidgetStyle=false
 
 [Wallpaper]
 defaultWallpaperTheme=Midna
@@ -17,8 +22,3 @@ defaultFileSuffix=.png
 defaultWidth=2546
 defaultHeight=1591
 
-[ContrastEffect]
-enabled=true
-contrast=0.5
-intensity=2.0
-saturation=1.7

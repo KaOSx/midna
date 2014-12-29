@@ -1,6 +1,6 @@
 project(MidnaTheme)
 
-cmake_minimum_required(VERSION 2.8.12 FATAL_ERROR)
+cmake_minimum_required(VERSION 3.0.0 FATAL_ERROR)
 
 # Macro to print feature summary
 include(FeatureSummary)
@@ -9,7 +9,7 @@ include(FeatureSummary)
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
 # Find ECM
-find_package(ECM 0.0.11 REQUIRED NO_MODULE)
+find_package(ECM 1.5.0 REQUIRED NO_MODULE)
 set(CMAKE_MODULE_PATH ${ECM_MODULE_PATH} ${ECM_KDE_MODULE_DIR})
 
 # Set version
@@ -39,13 +39,14 @@ include(CPack)
 add_custom_target(dist COMMAND ${CMAKE_MAKE_PROGRAM} package_source)
 
 # Minimum version requirements
-set(QT_MIN_VERSION "5.3.0")
-set(KF5_MIN_VERSION "5.0.0")
+set(QT_MIN_VERSION "5.4.0")
+set(KF5_MIN_VERSION "5.5.0")
 
 # Find KF5
-#find_package(KF5 ${KF5_MIN_VERSION} REQUIRED COMPONENTS Plasma)
+find_package(KF5 ${KF5_MIN_VERSION} REQUIRED COMPONENTS Plasma)
 
 # Subdirectories
+add_subdirectory(colors)
 add_subdirectory(plasma)
 add_subdirectory(wallpapers)
 
