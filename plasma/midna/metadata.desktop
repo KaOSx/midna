@@ -6,11 +6,11 @@ Comment[es]= Tema claro solido para plasma
 X-KDE-PluginInfo-Author=David Linares (Mcder3)
 X-KDE-PluginInfo-Email=mcder3@gmail.com
 X-KDE-PluginInfo-Name=Midna
-X-KDE-PluginInfo-Version=1.9.80
+X-KDE-PluginInfo-Version=2.0.3
 X-KDE-PluginInfo-Website=https://plus.google.com/u/0/115920115946572175775/
 X-KDE-PluginInfo-Category=Plasma Theme
 X-KDE-PluginInfo-Depends=plasma-desktop
-X-KDE-PluginInfo-License=CC BY
+X-KDE-PluginInfo-License=CC BY-ND
 X-KDE-PluginInfo-EnabledByDefault=true
 
 [Settings]

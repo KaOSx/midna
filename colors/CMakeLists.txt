@@ -1,1 +1,1 @@
-install(DIRECTORY midna DESTINATION ${PREFIX}/share/color-schemes)
+install(FILES Midna.colors DESTINATION ${PREFIX}/share/color-schemes/)
