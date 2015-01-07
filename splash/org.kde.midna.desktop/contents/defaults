@@ -1,0 +1,14 @@
+[kdeglobals][KDE]
+widgetStyle=breeze
+
+[kdeglobals][General]
+ColorScheme=Midna
+
+[kdeglobals][Icons]
+Theme=breeze
+
+[plasmarc][Theme]
+name=midna
+
+[kcminputrc][Mouse]
+cursorTheme=breeze
