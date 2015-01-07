@@ -36,7 +36,7 @@ PlasmaCore.ColorScope {
 
     Rectangle {
         color: PlasmaCore.ColorScope.backgroundColor
-        opacity: 0.8
+        opacity: 1.0
         anchors {
             fill: parent
         }
