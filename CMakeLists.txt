@@ -49,6 +49,7 @@ find_package(KF5 ${KF5_MIN_VERSION} REQUIRED COMPONENTS Plasma)
 add_subdirectory(colors)
 add_subdirectory(icons)
 add_subdirectory(plasma)
+add_subdirectory(splash)
 add_subdirectory(wallpapers)
 
 # Display featute summary
