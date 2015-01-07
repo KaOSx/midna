@@ -36,7 +36,7 @@ Image {
         width: parent.width
         height: (root.height / 3) - bottomRect.height - 1
         y: root.height
-        color: "#99ffffff"
+        color: "#fff2f2f2"
         Image {
             source: "images/kde.svgz"
             anchors.centerIn: parent
@@ -50,11 +50,11 @@ Image {
         width: parent.width
         y: -height
         height: 50
-        color: "#99ffffff"
+        color: "#fff2f2f2"
 
         Rectangle {
             radius: 3
-            color: "#31363b"
+            color: "#b6baba"
             anchors.centerIn: parent
             height: 8
             width: height*32
