@@ -9,6 +9,6 @@ Midna Look & Feel package.
 * icons
 * ksplash
 * lockscreen
-* plasma theme
+* light (default) & dark plasma theme
 * wallpaper
 
