@@ -1,0 +1,21 @@
+[Desktop Entry]
+Name=Midna Dark
+Name[es]=Midna Dark
+comment=opaque version of midna
+Comment[es]=version oscura de midna
+X-KDE-PluginInfo-Author=David Linares (Mcder3)
+X-KDE-PluginInfo-Email=mcder3@gmail.com
+X-KDE-PluginInfo-Name=Midna Dark
+X-KDE-PluginInfo-Version=1.0.0
+X-KDE-PluginInfo-Website=https://plus.google.com/u/0/115920115946572175775/
+X-KDE-PluginInfo-Category=Plasma Theme
+X-KDE-PluginInfo-Depends=plasma-desktop
+X-KDE-PluginInfo-License=CC BY-ND
+X-KDE-PluginInfo-EnabledByDefault=true
+X-Plasma-API=5.0
+
+[Wallpaper]
+defaultWallpaperTheme=midna
+defaultFileSuffix=.jpg
+defaultWidth=2546
+defaultHeight=1591
