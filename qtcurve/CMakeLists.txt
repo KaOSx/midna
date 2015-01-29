@@ -1,1 +1,1 @@
-install(FILES midna.qtcurve DESTINATION ${CMAKE_INSTALL_PREFIX}/share/QtCurve/)
+install(FILES Midna.qtcurve DESTINATION ${CMAKE_INSTALL_PREFIX}/share/QtCurve/)
