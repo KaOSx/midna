@@ -10,5 +10,6 @@ Midna Look & Feel package.
 * ksplash
 * lockscreen
 * light (default) & dark plasma theme
+* QtCurve theme
 * wallpaper
 
