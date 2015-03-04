@@ -52,6 +52,7 @@ add_subdirectory(look-and-feel)
 add_subdirectory(plasma)
 add_subdirectory(qtcurve)
 add_subdirectory(wallpapers)
+add_subdirectory(yakuake)
 
 # Display featute summary
 feature_summary(WHAT ALL FATAL_ON_MISSING_REQUIRED_PACKAGES)
