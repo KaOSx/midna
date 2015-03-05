@@ -12,4 +12,5 @@ Midna Look & Feel package.
 * light (default) & dark plasma theme
 * QtCurve theme
 * wallpaper
+* Yakuake skin
 
