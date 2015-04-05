@@ -16,6 +16,6 @@ X-Plasma-API=5.0
 
 [Wallpaper]
 defaultWallpaperTheme=midna
-defaultFileSuffix=.jpg
-defaultWidth=2546
-defaultHeight=1591
+defaultFileSuffix=.png
+defaultWidth=3648
+defaultHeight=2736
