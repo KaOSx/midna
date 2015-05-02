@@ -1,0 +1,13 @@
+[SddmGreeterTheme]
+Name=Midna
+Description=SDDM Login theme Midna
+Website=http://kaosx.us
+Screenshot=screenshot.png
+License=CC-BY-SA
+Type=sddm-theme
+Version=0.1
+MainScript=Main.qml
+ConfigFile=theme.conf
+TranslationsDirectory=translations
+Theme-Id=midna
+Theme-API=2.0

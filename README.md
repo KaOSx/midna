@@ -11,6 +11,7 @@ Midna Look & Feel package.
 * lockscreen
 * light (default) & dark plasma theme
 * QtCurve theme
+* sddm login theme
 * wallpaper
 * Yakuake skin
 

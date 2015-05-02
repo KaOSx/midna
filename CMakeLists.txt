@@ -51,6 +51,7 @@ add_subdirectory(icons)
 add_subdirectory(look-and-feel)
 add_subdirectory(plasma)
 add_subdirectory(qtcurve)
+add_subdirectory(sddm)
 add_subdirectory(wallpapers)
 add_subdirectory(yakuake)
 
