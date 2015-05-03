@@ -67,7 +67,7 @@ Rectangle {
             Column {
                 id: mainColumn
                 height: 116
-                width: 300
+                width: 450
                 spacing: 4
                 anchors.centerIn: parent
                 anchors.verticalCenterOffset: 9
@@ -148,7 +148,7 @@ Rectangle {
             Column {
                 id: contrColumn
                 height: 30
-                width: 300
+                width: 450
                 anchors.centerIn: parent
                 anchors.verticalCenterOffset: 100
                 anchors.horizontalCenterOffset: 0

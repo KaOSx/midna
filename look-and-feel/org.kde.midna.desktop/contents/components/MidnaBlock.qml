@@ -36,7 +36,7 @@ PlasmaCore.ColorScope {
 
     Rectangle {
         color: PlasmaCore.ColorScope.backgroundColor
-        opacity: 0.9
+        opacity: 1
         anchors {
             fill: parent
         }
@@ -57,7 +57,7 @@ PlasmaCore.ColorScope {
     Rectangle {
         id: separator
         height: 1
-        color: PlasmaCore.ColorScope.textColor
+        color: "#31A3DD"
         width: parent.width
         opacity: 0.4
         anchors {
