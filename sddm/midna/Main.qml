@@ -67,7 +67,7 @@ Rectangle {
             Column {
                 id: mainColumn
                 height: 116
-                width: 450
+                width: 300
                 spacing: 4
                 anchors.centerIn: parent
                 anchors.verticalCenterOffset: 9
@@ -83,7 +83,7 @@ Rectangle {
                         text: textConstants.userName
                         verticalAlignment: Text.AlignVCenter
                         font.bold: true
-                        font.pixelSize: 16
+                        font.pixelSize: 12
                     }
 
                     TextBox {
@@ -113,7 +113,7 @@ Rectangle {
                         text: textConstants.password
                         verticalAlignment: Text.AlignVCenter
                         font.bold: true
-                        font.pixelSize: 16
+                        font.pixelSize: 12
                     }
 
                     PasswordBox {
@@ -140,6 +140,7 @@ Rectangle {
                         anchors.horizontalCenter: parent.horizontalCenter
                         text: textConstants.prompt
                         color: "#31A3DD"
+                        font.bold: true
                         font.pixelSize: 16
                     }
                 }
@@ -148,7 +149,7 @@ Rectangle {
             Column {
                 id: contrColumn
                 height: 30
-                width: 450
+                width: 300
                 anchors.centerIn: parent
                 anchors.verticalCenterOffset: 100
                 anchors.horizontalCenterOffset: 0
@@ -167,7 +168,7 @@ Rectangle {
                         horizontalAlignment: Text.AlignLeft
                         anchors.verticalCenter: parent.verticalCenter
                         font.bold: true
-                        font.pixelSize: 16
+                        font.pixelSize: 12
                     }
 
                     ComboBox {
@@ -190,7 +191,7 @@ Rectangle {
 
                         text: textConstants.layout
                         font.bold: true
-                        font.pixelSize: 16
+                        font.pixelSize: 12
                         verticalAlignment: Text.AlignVCenter
                         horizontalAlignment: Text.AlignRight
                         anchors.verticalCenter: parent.verticalCenter
@@ -213,7 +214,7 @@ Rectangle {
                 spacing: 4
                 property int btnWidth: Math.max(loginButton.implicitWidth,
                                                 shutdownButton.implicitWidth,
-                                                rebootButton.implicitWidth, 150) + 8
+                                                rebootButton.implicitWidth, 100) + 8
                 anchors.centerIn: parent
                 anchors.verticalCenterOffset: 0
                 anchors.horizontalCenterOffset: parent.width / 2.8 - btnWidth
