@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   version="1.1"
+   width="48"
+   height="48"
+   id="svg2276"
+   inkscape:version="0.48.4 r9939"
+   sodipodi:docname="qtractor.svg">
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="832"
+     inkscape:window-height="730"
+     id="namedview54"
+     showgrid="false"
+     inkscape:zoom="5.9"
+     inkscape:cx="35.542735"
+     inkscape:cy="21.670822"
+     inkscape:window-x="1010"
+     inkscape:window-y="167"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="svg2276" />
+  <defs
+     id="defs2278" />
+  <g
+     transform="matrix(0.17375457,0,0,0.17375457,-57.328327,-59.707603)"
+     id="g2385" />
+  <rect
+     width="1.1635927"
+     height="3.6269045"
+     rx="0.023337612"
+     ry="1.8134522"
+     x="14.797669"
+     y="29.891415"
+     id="rect2317"
+     style="fill:#2c3e50;fill-opacity:1;fill-rule:evenodd;stroke-width:50pt" />
+  <path
+     d="m 7.7596465,27.723996 -0.265304,1.061222 c -0.127295,0.509173 0.448645,1.210855 0.972785,1.238082 l 6.8094795,0.353741 c 0.645636,0.03355 1.432904,-0.680261 1.414956,-1.326519 l -0.08844,-3.183651 c -0.01003,-0.359692 0.259662,-0.902323 0.619044,-0.884349 l 5.306088,0.265304 -2.033999,-5.836702 -4.156437,3.625828 c -0.75527,0.65886 -1.446265,1.65127 -1.414955,2.653045 l 0.08844,2.829917 c 0.0085,0.271641 -0.258862,0.614654 -0.530608,0.619044 l -5.4829545,0.08843 c -0.278063,0.0046 -0.79542,-0.178348 -0.707474,-0.44217 l 0.353733,-1.061222 -0.884348,0 z"
+     id="path2295"
+     style="fill:#e67e22;fill-opacity:1;fill-rule:evenodd;stroke-width:2.25"
+     inkscape:connector-curvature="0" />
+  <path
+     d="M 25.800347,2.8738215 C 33.051998,0.27973319 39.419301,7.6493026 42.072345,14.016606 44.725389,20.560782 44.371648,30.347559 37.827472,33.649128 30.929562,36.950698 23.32417,30.465477 20.494259,22.860085 17.664341,15.431561 18.725563,5.2910432 25.800347,2.8738215 z"
+     id="path2280"
+     style="fill:#e67e22;fill-opacity:1;fill-rule:evenodd;stroke:#e67e22;stroke-width:0.17375457pt"
+     inkscape:connector-curvature="0" />
+  <path
+     d="M 26.301814,4.8212589 C 32.841102,2.4820026 38.58292,9.1276236 40.975338,14.869434 43.367764,20.770747 43.048774,29.596128 37.14746,32.573367 30.927163,35.550611 24.068884,29.702467 21.516963,22.844182 18.965049,16.145399 19.922015,7.0010259 26.301814,4.8212589 z"
+     id="path2281"
+     style="fill:#d35400;fill-opacity:1;fill-rule:evenodd;stroke-width:0.90176554pt"
+     inkscape:connector-curvature="0" />
+  <path
+     d="m 7.8565235,32.642865 1.750918,0.875456 17.9469235,0.06252 -4.87756,-1.063056 -14.8202815,0.125066 z"
+     id="path2315"
+     style="fill:#2c3e50;fill-opacity:1;fill-rule:evenodd;stroke-width:1pt"
+     inkscape:connector-curvature="0" />
+  <path
+     d="m 9.4823805,33.330727 6.8160785,0.125068 0.562796,-3.064116 0.750395,3.001582 10.067781,0.1876 -0.875455,2.06358 0.12506,7.316346 3.001575,2.063579 0.187601,1.188124 -22.3242215,0.125067 -1.4382515,-3.37677 0.1875942,-1.188129 2.2511863,-1.313184 0.250127,-5.940623 -1.31319,-1.875986 1.750924,0.687862 z"
+     id="path2307"
+     style="fill:#2c3e50;fill-opacity:1;fill-rule:evenodd;stroke-width:1pt"
+     inkscape:connector-curvature="0" />
+  <path
+     d="m 10.105494,26.400708 c 0,0.472097 -0.8843015,1.539459 -1.7790425,1.539459 -0.894741,0 -1.462765,-1.067362 -1.462765,-1.539459 0,-0.472097 0.568024,-0.171055 1.462765,-0.171055 0.894741,0 1.7790425,-0.301042 1.7790425,0.171055 z"
+     id="path2459"
+     style="fill:#2c3e50;fill-opacity:1;fill-rule:evenodd;stroke-width:1pt"
+     inkscape:connector-curvature="0" />
+  <path
+     d="m 23.943541,14.275435 c -1.677552,1.239432 -2.226048,5.035732 -0.713457,9.143527 1.505202,4.048754 7.14661,4.09174 8.664281,2.812369 1.525062,-1.220337 3.803639,-4.393845 0.574826,-9.425966 -3.214031,-4.914046 -6.797259,-3.775731 -8.52565,-2.52993 z"
+     id="path2534"
+     style="fill:#e67e22;fill-opacity:1;fill-rule:evenodd;stroke-width:1pt"
+     inkscape:connector-curvature="0" />
+  <metadata
+     id="metadata58">
+    <rdf:RDF>
+      <cc:Work>
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <cc:license
+           rdf:resource="http://creativecommons.org/licenses/publicdomain/" />
+        <dc:publisher>
+          <cc:Agent
+             rdf:about="http://openclipart.org/">
+            <dc:title>Open Clip Art Library</dc:title>
+          </cc:Agent>
+        </dc:publisher>
+        <dc:title />
+        <dc:date>2009-05-01T00:45:54</dc:date>
+        <dc:description>A Gramophone icon by Andrew Fitzsimon. Etiquette Icon set. From 0.18 OCAL database.</dc:description>
+        <dc:source>http://openclipart.org/detail/25563/gramophone-by-anonymous-25563</dc:source>
+        <dc:creator>
+          <cc:Agent>
+            <dc:title>Anonymous</dc:title>
+          </cc:Agent>
+        </dc:creator>
+        <dc:subject>
+          <rdf:Bag>
+            <rdf:li>clip art</rdf:li>
+            <rdf:li>clipart</rdf:li>
+            <rdf:li>etiquette</rdf:li>
+            <rdf:li>etiquette</rdf:li>
+            <rdf:li>gramophone</rdf:li>
+            <rdf:li>gramophone</rdf:li>
+            <rdf:li>icon</rdf:li>
+            <rdf:li>icon</rdf:li>
+            <rdf:li>image</rdf:li>
+            <rdf:li>media</rdf:li>
+            <rdf:li>music</rdf:li>
+            <rdf:li>music</rdf:li>
+            <rdf:li>png</rdf:li>
+            <rdf:li>public domain</rdf:li>
+            <rdf:li>sound</rdf:li>
+            <rdf:li>sound</rdf:li>
+            <rdf:li>svg</rdf:li>
+          </rdf:Bag>
+        </dc:subject>
+      </cc:Work>
+      <cc:License
+         rdf:about="http://creativecommons.org/licenses/publicdomain/">
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#Reproduction" />
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#Distribution" />
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#DerivativeWorks" />
+      </cc:License>
+    </rdf:RDF>
+  </metadata>
+</svg>
