@@ -14,8 +14,8 @@
    height="48"
    id="svg5453"
    version="1.1"
-   inkscape:version="0.48.4 r9939"
-   sodipodi:docname="xfce-filemanager.svg">
+   inkscape:version="0.91 r13725"
+   sodipodi:docname="system-file-manager.svg">
   <defs
      id="defs5455">
     <linearGradient
@@ -196,8 +196,8 @@
      inkscape:pageopacity="0"
      inkscape:pageshadow="2"
      inkscape:zoom="11.313708"
-     inkscape:cx="32.569836"
-     inkscape:cy="25.028088"
+     inkscape:cx="17.146069"
+     inkscape:cy="25.116476"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="true"
@@ -323,13 +323,13 @@
        d="m 430.68684,542.79784 0,0 c -22.3076,-0.76923 -22.3076,-0.76923 -44.6152,0 z"
        style="opacity:0.35;fill:#000000;fill-opacity:1;stroke:none" />
     <rect
-       style="opacity:0.15;fill:#000000;fill-opacity:1;stroke:none"
+       style="opacity:0.5;fill:#000000;fill-opacity:1;stroke:none"
        id="rect3032"
-       width="14.615326"
-       height="1.5384554"
+       width="23.896103"
+       height="3.1294458"
        x="389.14856"
        y="512.79797"
-       rx="0.71005666"
-       ry="0.76922768" />
+       rx="1.1609448"
+       ry="1.5647229" />
   </g>
 </svg>
