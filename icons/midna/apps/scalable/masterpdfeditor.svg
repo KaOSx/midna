@@ -14,7 +14,7 @@
    width="48"
    height="48"
    id="svg2408"
-   inkscape:version="0.48.4 r9939"
+   inkscape:version="0.91 r13725"
    sodipodi:docname="masterpdfeditor.svg"
    inkscape:export-filename="/home/tobias/Desktop/Faenza-Fresh/apps/pdfmod.png"
    inkscape:export-xdpi="45"
@@ -32,8 +32,8 @@
      inkscape:window-height="689"
      id="namedview63"
      showgrid="false"
-     inkscape:zoom="4.9710652"
-     inkscape:cx="57.86482"
+     inkscape:zoom="9.9421304"
+     inkscape:cx="22.76168"
      inkscape:cy="6.4939574"
      inkscape:window-x="977"
      inkscape:window-y="63"
@@ -3492,4 +3492,16 @@
       </g>
     </g>
   </g>
+  <path
+     sodipodi:nodetypes="cccc"
+     inkscape:connector-curvature="0"
+     id="path4027"
+     d="m 2.027472,1.5584142 0,0 c 21.860767,1 21.860767,1 43.721536,0 z"
+     style="opacity:1;fill:#bdc3c7;fill-opacity:1;stroke:none" />
+  <path
+     style="opacity:1;fill:#2c3e50;fill-opacity:1;stroke:none"
+     d="m 2.0274717,45.860448 0,0 c 21.8607683,-1 21.8607683,-1 43.7215363,0 z"
+     id="path3257"
+     inkscape:connector-curvature="0"
+     sodipodi:nodetypes="cccc" />
 </svg>

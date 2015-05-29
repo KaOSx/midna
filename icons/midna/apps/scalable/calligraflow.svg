@@ -14,7 +14,7 @@
    height="38.4pt"
    id="svg2"
    version="1.1"
-   inkscape:version="0.48.5 r10040"
+   inkscape:version="0.91 r13725"
    sodipodi:docname="calligraflow.svg">
   <metadata
      id="metadata17">
@@ -44,7 +44,7 @@
      inkscape:showpageshadow="false"
      borderlayer="true"
      inkscape:zoom="13.906433"
-     inkscape:cx="15.055136"
+     inkscape:cx="22.775559"
      inkscape:cy="25.32726"
      inkscape:window-x="0"
      inkscape:window-y="27"
@@ -214,19 +214,9 @@
          offset="1"
          id="stop876" />
     </linearGradient>
-    <linearGradient
-       y2="-1027.9774"
-       x2="-8.8804626"
-       y1="-1027.9774"
-       x1="-56.880463"
-       gradientTransform="matrix(0.83333406,0,0,0.83333406,51.400414,837.64859)"
-       gradientUnits="userSpaceOnUse"
-       id="linearGradient3061"
-       xlink:href="#linearGradient872"
-       inkscape:collect="always" />
   </defs>
   <rect
-     style="fill:url(#linearGradient3061);fill-opacity:1;stroke:none"
+     style="fill:#f1c40f;fill-opacity:1;stroke:none"
      id="rect2991-1"
      width="40.000034"
      height="40.000034"

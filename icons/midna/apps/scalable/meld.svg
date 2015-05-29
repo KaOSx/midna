@@ -13,7 +13,7 @@
    height="48"
    id="svg2"
    version="1.1"
-   inkscape:version="0.48+devel r12923"
+   inkscape:version="0.91 r13725"
    sodipodi:docname="meld.svg">
   <defs
      id="defs4" />
@@ -25,8 +25,8 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="5.7010484"
-     inkscape:cx="-0.9549768"
-     inkscape:cy="21.254318"
+     inkscape:cx="-9.3315036"
+     inkscape:cy="21.429724"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -198,5 +198,17 @@
        height="38"
        x="23"
        y="1010.3622" />
+    <path
+       sodipodi:nodetypes="cccc"
+       inkscape:connector-curvature="0"
+       id="path4027"
+       d="m 3.8552615,1008.311 0,0 c 19.9999995,1 19.9999995,1 39.9999995,0 z"
+       style="opacity:1;fill:#bdc3c7;fill-opacity:1;stroke:none" />
+    <path
+       style="opacity:0.5;fill:#2c3e50;fill-opacity:1;stroke:none"
+       d="m 3.8552614,1048.1766 0,0 c 20.0000006,-1 20.0000006,-1 40.0000006,0 z"
+       id="path3257"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cccc" />
   </g>
 </svg>

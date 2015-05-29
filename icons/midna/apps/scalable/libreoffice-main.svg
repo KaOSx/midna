@@ -11,7 +11,7 @@
    viewBox="0 0 48 48"
    id="svg2"
    version="1.1"
-   inkscape:version="0.48.5 r10040"
+   inkscape:version="0.91 r13725"
    sodipodi:docname="libreoffice-main.svg"
    width="48"
    height="48">
@@ -42,7 +42,7 @@
      showgrid="true"
      inkscape:showpageshadow="false"
      inkscape:zoom="5.6568543"
-     inkscape:cx="27.771953"
+     inkscape:cx="-3.0755801"
      inkscape:cy="31.068976"
      inkscape:window-x="65"
      inkscape:window-y="24"
@@ -199,25 +199,15 @@
          offset="1"
          id="stop4005" />
     </linearGradient>
-    <linearGradient
-       y2="1027.3123"
-       x2="45.000134"
-       y1="1027.3123"
-       x1="3.0000002"
-       gradientTransform="matrix(0.95237789,0,0,0.95237799,1.1501776,-955.38017)"
-       gradientUnits="userSpaceOnUse"
-       id="linearGradient3966"
-       xlink:href="#linearGradient4001"
-       inkscape:collect="always" />
   </defs>
   <path
-     style="fill:url(#linearGradient3966);fill-opacity:1;stroke:none"
+     style="fill:#2980b9;fill-opacity:1;stroke:none"
      d="m 5.6266296,4.0094326 c -0.897728,0 -1.619318,0.7215 -1.619318,1.6192 l 0,36.7614994 c 0,0.8977 0.72159,1.619301 1.619318,1.619301 l 36.7613634,0 c 0.897728,0 1.619319,-0.721601 1.619319,-1.619301 l 0,-36.7613994 c 0,-0.8978 -0.721591,-1.6193 -1.619319,-1.6193 z"
      id="rect839"
      inkscape:connector-curvature="0"
      sodipodi:nodetypes="sssssssss" />
   <path
-     style="opacity:0.5;fill:#000000;fill-opacity:1;stroke:none"
+     style="opacity:1;fill:#2c3e50;fill-opacity:1;stroke:none"
      d="m 6.0073116,44.009433 0,0 c 18.0000004,-1 18.0000004,-1 36.0000004,0 z"
      id="path3257"
      inkscape:connector-curvature="0"
@@ -227,7 +217,7 @@
      inkscape:connector-curvature="0"
      id="path4027"
      d="m 6.0073116,4.0094326 0,0 c 18.0000004,1 18.0000004,1 36.0000004,0 z"
-     style="opacity:0.9;fill:#ffffff;fill-opacity:1;stroke:none" />
+     style="opacity:1;fill:#bdc3c7;fill-opacity:1;stroke:none" />
   <path
      style="fill:none;stroke:none"
      d="M -7,5 -19,9 -19,22.544922 -15,21 -15,10 -7,8.285156 -7,24.333984 -19,23 -7,27 -1,25 -1,7 -7,5 z"

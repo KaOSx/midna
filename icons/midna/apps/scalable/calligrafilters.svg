@@ -14,8 +14,8 @@
    height="48px"
    id="svg2985"
    version="1.1"
-   inkscape:version="0.48.5 r10040"
-   sodipodi:docname="calligra-extras.svg">
+   inkscape:version="0.91 r13725"
+   sodipodi:docname="calligrafilters.svg">
   <defs
      id="defs2987">
     <linearGradient
@@ -75,15 +75,6 @@
     </linearGradient>
     <linearGradient
        inkscape:collect="always"
-       xlink:href="#linearGradient3782"
-       id="linearGradient3788"
-       x1="4"
-       y1="24"
-       x2="44"
-       y2="24"
-       gradientUnits="userSpaceOnUse" />
-    <linearGradient
-       inkscape:collect="always"
        xlink:href="#linearGradient3832"
        id="linearGradient3838"
        x1="24.913139"
@@ -118,8 +109,8 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="4.9497475"
-     inkscape:cx="-4.9599498"
-     inkscape:cy="37.446366"
+     inkscape:cx="-4.9373058"
+     inkscape:cy="29.567176"
      inkscape:current-layer="layer1"
      showgrid="true"
      inkscape:grid-bbox="true"
@@ -159,7 +150,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -168,7 +159,7 @@
      inkscape:label="Layer 1"
      inkscape:groupmode="layer">
     <rect
-       style="fill:url(#linearGradient3788);fill-opacity:1;stroke:none"
+       style="fill:#95a5a6;fill-opacity:1;stroke:none"
        id="rect3003"
        width="40"
        height="40"
@@ -185,8 +176,8 @@
        sodipodi:nodetypes="cccc"
        inkscape:connector-curvature="0"
        id="path4027"
-       d="M 4,4 4,4 C 24,5 24,5 44,4 z"
-       style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:none" />
+       d="M 4,4 4,4 C 24,5 24,5 44,4 Z"
+       style="opacity:1;fill:#bdc3c7;fill-opacity:1;stroke:none" />
     <g
        transform="matrix(0.84407418,0,0,0.84407418,-303.98312,-418.11826)"
        id="g2994"

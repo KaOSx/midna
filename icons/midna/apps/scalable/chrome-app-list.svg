@@ -7,15 +7,14 @@
    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
    xmlns:svg="http://www.w3.org/2000/svg"
    xmlns="http://www.w3.org/2000/svg"
-   xmlns:xlink="http://www.w3.org/1999/xlink"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    width="48"
    height="48"
    id="svg2"
    version="1.1"
-   inkscape:version="0.48.5 r10040"
-   sodipodi:docname="app-launcher.svg"
+   inkscape:version="0.91 r13725"
+   sodipodi:docname="chrome-app-list.svg"
    inkscape:export-filename="/home/uri/Iconos/NITRUX/apps/16/display.im6.png"
    inkscape:export-xdpi="30"
    inkscape:export-ydpi="30">
@@ -39,16 +38,6 @@
     .fil0 {fill:#3777E3}
     .fil1 {fill:#FFCF63}
    </style>
-    <linearGradient
-       inkscape:collect="always"
-       xlink:href="#linearGradient3778"
-       id="linearGradient3784"
-       x1="-1.871521e-06"
-       y1="-1028.3622"
-       x2="47.999998"
-       y2="-1028.3622"
-       gradientUnits="userSpaceOnUse"
-       gradientTransform="matrix(0.83333406,0,0,0.83333406,3.9999823,-171.39295)" />
   </defs>
   <sodipodi:namedview
      id="base"
@@ -58,8 +47,8 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="5.6568542"
-     inkscape:cx="10.651413"
-     inkscape:cy="37.450527"
+     inkscape:cx="-20.196121"
+     inkscape:cy="37.627304"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="true"
@@ -107,7 +96,7 @@
      id="layer1"
      transform="translate(0,-1004.3622)">
     <rect
-       style="fill:url(#linearGradient3784);fill-opacity:1;stroke:none"
+       style="fill:#bdc3c7;fill-opacity:1;stroke:none"
        id="rect2991-1"
        width="40.000034"
        height="40.000034"
