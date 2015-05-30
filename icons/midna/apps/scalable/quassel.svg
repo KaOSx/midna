@@ -37,8 +37,8 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="16"
-     inkscape:cx="15.582241"
-     inkscape:cy="19.629517"
+     inkscape:cx="15.903336"
+     inkscape:cy="19.754517"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="true"
@@ -90,7 +90,7 @@
        d="m 4.0390625,1008.37 0,0 c 19.9999995,1 19.9999995,1 39.9999995,0 z"
        style="opacity:1;fill:#bdc3c7;fill-opacity:1;stroke:none" />
     <g
-       transform="matrix(0.80579752,0,0,0.80150979,-359.73726,165.23706)"
+       transform="matrix(0.73544899,0,0,0.73852383,-325.82299,233.38967)"
        id="layer1-9"
        inkscape:label="Camada 1">
       <g
@@ -121,7 +121,7 @@
          transform="matrix(0.44990096,0,0,0.44990096,242.4386,573.74302)"
          id="g12962">
         <circle
-           style="fill:#16a085;fill-opacity:1;stroke:none"
+           style="fill:#3498db;fill-opacity:1;stroke:none"
            id="path2285"
            transform="matrix(0.2264337,0,0,0.2264337,497.0898,1095.8911)"
            cx="138.80981"
@@ -129,5 +129,12 @@
            r="92.351021" />
       </g>
     </g>
+    <ellipse
+       ry="6.0730705"
+       rx="5.9816418"
+       style="fill:#34495e;fill-opacity:1;stroke:none"
+       id="path2285-6"
+       cx="27.479847"
+       cy="1032.7299" />
   </g>
 </svg>
