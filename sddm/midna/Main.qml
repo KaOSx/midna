@@ -60,7 +60,7 @@ Rectangle {
             anchors.horizontalCenterOffset: 100 - parent.width / 3
 
             color: "#31A3DD"
-            timeFont.family: "URW Chancery L"
+            timeFont.family: "Chancery URW"
             dateFont.family: "Droid Sans"
             }
 
