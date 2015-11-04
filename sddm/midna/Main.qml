@@ -7,6 +7,9 @@ import SddmComponents 2.0
 Rectangle {
     width: 640
     height: 480
+    
+    LayoutMirroring.enabled: Qt.locale().textDirection == Qt.RightToLeft
+    LayoutMirroring.childrenInherit: true
 
     TextConstants { id: textConstants }
 
