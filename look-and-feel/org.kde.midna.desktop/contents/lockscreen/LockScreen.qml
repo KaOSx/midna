@@ -25,6 +25,7 @@ import org.kde.plasma.core 2.0 as PlasmaCore
 import org.kde.kscreenlocker 1.0
 import org.kde.plasma.workspace.keyboardlayout 1.0
 import "../components"
+import "../osd"
 
 Image {
     id: root
@@ -33,13 +34,19 @@ Image {
     property UserSelect userSelect: null
     signal clearPassword()
 
-    source: "../components/artwork/background.png"
+    source: backgroundPath || "../components/artwork/background.png"
+    fillMode: Image.PreserveAspectCrop
+
+    onStatusChanged: {
+        if (status == Image.Error) {
+            source = "../components/artwork/background.png";
+        }
+    }
 
     Connections {
         target: authenticator
         onFailed: {
             root.notification = i18nd("plasma_lookandfeel_org.kde.lookandfeel","Unlocking failed");
-            root.clearPassword()
         }
         onGraceLockedChanged: {
             if (!authenticator.graceLocked) {
@@ -47,15 +54,21 @@ Image {
                 root.clearPassword();
             }
         }
-        onMessage: function(text) {
-            root.notification = text;
+        onMessage: {
+            root.notification = msg;
         }
-        onError: function(text) {
-            root.notification = text;
+        onError: {
+            root.notification = err;
         }
     }
     Sessions {
         id: sessions
+    }
+
+    PlasmaCore.DataSource {
+        id: keystateSource
+        engine: "keystate"
+        connectedSources: "Caps Lock"
     }
 
     StackView {
@@ -79,33 +92,41 @@ Image {
                 }
                 Component.onCompleted: root.userSelect = usersSelection
 
-                notification: root.notification
+                notification: {
+                    var text = ""
+                    if (keystateSource.data["Caps Lock"]["Locked"]) {
+                        text += i18nd("plasma_lookandfeel_org.kde.lookandfeel","Caps Lock is on")
+                        if (root.notification) {
+                            text += " • "
+                        }
+                    }
+                    text += root.notification
+                    return text
+                }
 
                 model: ListModel {
                     id: users
 
                     Component.onCompleted: {
-                        users.append({  "name": kscreenlocker_userName,
-                                        "realName": kscreenlocker_userName,
-                                        "icon": kscreenlocker_userImage,
-                                        "showPassword": true,
-                                        "ButtonLabel": i18nd("plasma_lookandfeel_org.kde.lookandfeel", "Unlock"),
-                                        "ButtonAction": "unlock"
+                        users.append({name: kscreenlocker_userName,
+                                      realName: kscreenlocker_userName,
+                                      icon: kscreenlocker_userImage,
+                                      showPassword: true,
+                                      ButtonLabel: i18nd("plasma_lookandfeel_org.kde.lookandfeel", "Unlock"),
+                                      ButtonAction: "unlock"
                         })
                         if(sessions.startNewSessionSupported) {
-                            users.append({  "realName": i18nd("plasma_lookandfeel_org.kde.lookandfeel", "New Session"),
-                                            "icon": "system-log-out", //TODO Need an icon for new session
-                                            "showPassword": false,
-                                            "ButtonLabel": i18nd("plasma_lookandfeel_org.kde.lookandfeel", "Create Session"),
-                                            "ButtonAction": "newSession"
+                            users.append({realName: i18nd("plasma_lookandfeel_org.kde.lookandfeel", "New Session"),
+                                          icon: "system-log-out", //TODO Need an icon for new session
+                                          ButtonLabel: i18nd("plasma_lookandfeel_org.kde.lookandfeel", "Create Session"),
+                                          ButtonAction: "newSession"
                             })
                         }
                         if(sessions.switchUserSupported) {
-                            users.append({  "realName": i18nd("plasma_lookandfeel_org.kde.lookandfeel", "Change Session"),
-                                            "icon": "system-switch-user",
-                                            "showPassword": false,
-                                            "ButtonLabel": i18nd("plasma_lookandfeel_org.kde.lookandfeel", "Change Session..."),
-                                            "ButtonAction": "changeSession"
+                            users.append({realName: i18nd("plasma_lookandfeel_org.kde.lookandfeel", "Change Session"),
+                                          icon: "system-switch-user",
+                                          ButtonLabel: i18nd("plasma_lookandfeel_org.kde.lookandfeel", "Change Session..."),
+                                          ButtonAction: "changeSession"
                             })
                         }
                     }
@@ -131,9 +152,30 @@ Image {
                             placeholderText: i18nd("plasma_lookandfeel_org.kde.lookandfeel","Password")
                             echoMode: TextInput.Password
                             enabled: !authenticator.graceLocked
-                            onAccepted: unlockFunction()
+                            onAccepted: actionButton.clicked(null)
                             focus: true
-                            visible: block.mainItem.model.get(block.mainItem.selectedIndex)["showPassword"]
+                            //HACK: Similar hack is needed in sddm loginscreen
+                            //TODO: investigate
+                            Timer {
+                                interval: 200
+                                running: true
+                                repeat: false
+                                onTriggered: passwordInput.forceActiveFocus()
+                            }
+                            visible: block.mainItem.model.count > 0 ? !!block.mainItem.model.get(block.mainItem.selectedIndex).showPassword : false
+                            onVisibleChanged: {
+                                if (visible) {
+                                    forceActiveFocus();
+                                }
+                                text = "";
+                            }
+                            onTextChanged: {
+                                if (text == "") {
+                                    clearTimer.stop();
+                                } else {
+                                    clearTimer.restart();
+                                }
+                            }
 
                             Keys.onLeftPressed: {
                                 if (text == "") {
@@ -149,18 +191,27 @@ Image {
                                     event.accepted = false;
                                 }
                             }
+                            Timer {
+                                id: clearTimer
+                                interval: 30000
+                                repeat: false
+                                onTriggered: {
+                                    passwordInput.text = "";
+                                }
+                            }
                         }
 
                         PlasmaComponents.Button {
+                            id: actionButton
                             Layout.minimumWidth: passwordInput.width
-                            text: block.mainItem.model.get(block.mainItem.selectedIndex)["ButtonLabel"]
+                            text: block.mainItem.model.count > 0 ? block.mainItem.model.get(block.mainItem.selectedIndex).ButtonLabel : ""
                             enabled: !authenticator.graceLocked
                             onClicked: switch(block.mainItem.model.get(block.mainItem.selectedIndex)["ButtonAction"]) {
                                 case "unlock":
                                     unlockFunction();
                                     break;
                                 case "newSession":
-                                    sessions.createNewSession();
+                                    sessions.startNewSession();
                                     break;
                                 case "changeSession":
                                     stackView.push(changeSessionComponent)
@@ -180,21 +231,6 @@ Image {
                         }
                         Keys.onRightPressed: {
                             root.userSelect.incrementCurrentIndex();
-                        }
-                    }
-
-                    MidnaLabel {
-                        id: capsLockWarning
-                        text: i18nd("plasma_lookandfeel_org.kde.lookandfeel","Caps Lock is on")
-                        visible: keystateSource.data["Caps Lock"]["Locked"]
-
-                        anchors.horizontalCenter: parent.horizontalCenter
-                        font.weight: Font.Bold
-
-                        PlasmaCore.DataSource {
-                            id: keystateSource
-                            engine: "keystate"
-                            connectedSources: "Caps Lock"
                         }
                     }
                 }
@@ -238,12 +274,63 @@ Image {
                                 }
                                 PlasmaComponents.Button {
                                     text: i18nd("plasma_lookandfeel_org.kde.lookandfeel","Change Session")
-                                    onClicked: sessions.activateSession(selectSessionBlock.mainItem.selectedIndex)
+                                    onClicked: {
+                                        sessions.activateSession(selectSessionBlock.mainItem.selectedIndex)
+                                        stackView.pop()
+                                        userSelect.selectedIndex = 0;
+                                    }
                                 }
                             }
                         }
                     }
                 }
+            }
+        }
+    }
+    PlasmaCore.FrameSvgItem {
+        id: osd
+
+        // OSD Timeout in msecs - how long it will stay on the screen
+        property int timeout: 1800
+        // This is either a text or a number, if showingProgress is set to true,
+        // the number will be used as a value for the progress bar
+        property var osdValue
+        // Icon name to display
+        property string icon
+        // Set to true if the value is meant for progress bar,
+        // false for displaying the value as normal text
+        property bool showingProgress: false
+
+        anchors {
+            horizontalCenter: parent.horizontalCenter
+            bottom: parent.bottom
+        }
+
+        objectName: "onScreenDisplay"
+        visible: false
+        width: osdItem.width + margins.left + margins.right
+        height: osdItem.height + margins.top + margins.bottom
+        imagePath: "widgets/background"
+
+        function show() {
+            osd.visible = true;
+            hideTimer.restart();
+        }
+
+        OsdItem {
+            id: osdItem
+            rootItem: osd
+
+            anchors.centerIn: parent
+        }
+
+        Timer {
+            id: hideTimer
+            interval: osd.timeout
+            onTriggered: {
+                osd.visible = false;
+                osd.icon = "";
+                osd.osdValue = 0;
             }
         }
     }

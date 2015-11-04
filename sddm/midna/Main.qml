@@ -121,6 +121,13 @@ Rectangle {
                         width: parent.width * 0.7; height: 30
                         font.pixelSize: 14
                         tooltipBG: "grey"
+                        
+                        focus: true
+                        Timer {
+                            interval: 200
+                            running: true
+                            onTriggered: password.forceActiveFocus()
+                        }
 
                         KeyNavigation.backtab: name; KeyNavigation.tab: session
 
