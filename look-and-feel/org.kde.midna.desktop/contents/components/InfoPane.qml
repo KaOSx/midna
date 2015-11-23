@@ -44,13 +44,13 @@ ColumnLayout {
 
     RowLayout {
         Layout.alignment: Qt.AlignRight
-        visible: pmSource.connectedSources != "" && pmSource.data["Battery"]["Has Battery"] && pmSource.data["Battery0"] != undefined && pmSource.data["Battery0"]["Is Power Supply"]
+        visible: pmSource.data["Battery"]["Has Cumulative"]
 
         PW.BatteryIcon {
             id: battery
             hasBattery: true
-            percent: pmSource.data["Battery0"] ? pmSource.data["Battery0"]["Percent"] : 0
-            pluggedIn: pmSource.data["Battery0"] ? pmSource.data["Battery0"]["State"] != "Discharging" : false
+            percent: pmSource.data["Battery"]["Percent"]
+            pluggedIn: pmSource.data["AC Adapter"] ? pmSource.data["AC Adapter"]["Plugged in"] : false
 
             height: batteryLabel.height
             width: batteryLabel.height
@@ -59,15 +59,14 @@ ColumnLayout {
         MidnaLabel {
             id: batteryLabel
             text: {
-                var state = pmSource.data["Battery0"] ? pmSource.data["Battery0"]["State"] : "";
+                var state = pmSource.data["Battery"] ? pmSource.data["Battery"]["State"] : "";
                 switch(state) {
-                case "NoCharge": //follow through
-                case "Discharging":
-                    return i18nd("plasma_lookandfeel_org.kde.lookandfeel","%1% battery remaining", battery.percent)
+                case "Charging":
+                    return i18nd("plasma_lookandfeel_org.kde.lookandfeel","%1%. Charging", battery.percent)
                 case "FullyCharged":
                     return i18nd("plasma_lookandfeel_org.kde.lookandfeel","Fully charged")
                 default:
-                    return i18nd("plasma_lookandfeel_org.kde.lookandfeel","%1%. Charging", battery.percent)
+                    return i18nd("plasma_lookandfeel_org.kde.lookandfeel","%1% battery remaining", battery.percent)
                 }
             }
             Layout.alignment: Qt.AlignRight
@@ -79,18 +78,7 @@ ColumnLayout {
     PlasmaCore.DataSource {
         id: pmSource
         engine: "powermanagement"
-        connectedSources: sources
-        onSourceAdded: {
-            if (source == "Battery0") {
-                disconnectSource(source);
-                connectSource(source);
-            }
-        }
-        onSourceRemoved: {
-            if (source == "Battery0") {
-                disconnectSource(source);
-            }
-        }
+        connectedSources: ["Battery", "AC Adapter"]
     }
 
     PlasmaCore.DataSource {
