@@ -12,3 +12,9 @@ name=midna
 
 [kcminputrc][Mouse]
 cursorTheme=breeze_cursors
+
+[kwinrc][WindowSwitcher]
+LayoutName=org.kde.midna.desktop
+
+[kwinrc][DesktopSwitcher]
+LayoutName=org.kde.midna.desktop
