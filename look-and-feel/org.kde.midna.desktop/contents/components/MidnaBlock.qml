@@ -40,6 +40,17 @@ PlasmaCore.ColorScope {
         anchors {
             fill: parent
         }
+        Rectangle {
+            width: parent.width
+            height: 3
+            color: "#646464"
+       }
+       Rectangle {
+            anchors.bottom: parent.bottom
+            width: parent.width
+            height: 3
+            color: "#646464"
+       }
     }
 
     Loader {
@@ -57,7 +68,7 @@ PlasmaCore.ColorScope {
     Rectangle {
         id: separator
         height: 1
-        color: "#31A3DD"
+        color: "#646464"
         width: parent.width
         opacity: 0.4
         anchors {

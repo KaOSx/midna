@@ -34,7 +34,7 @@ Image {
     Rectangle {
         id: topRect
         width: parent.width
-        height: (root.height / 3) - bottomRect.height - 1
+        height: (root.height / 3) - bottomRect.height - 2
         y: root.height
         color: "#fff2f2f2"
         Image {
@@ -43,6 +43,11 @@ Image {
             sourceSize.height: 128
             sourceSize.width: 128
         }
+        Rectangle {
+            width: parent.width
+            height: 3
+            color: "#646464"
+       }
     }
 
     Rectangle {
@@ -51,6 +56,13 @@ Image {
         y: -height
         height: 50
         color: "#fff2f2f2"
+        
+        Rectangle {
+            anchors.bottom: parent.bottom
+            width: parent.width
+            height: 3
+            color: "#646464"
+       }
 
         Rectangle {
             radius: 3
@@ -66,7 +78,7 @@ Image {
                     bottom: parent.bottom
                 }
                 width: (parent.width / 6) * (stage - 1)
-                color: "#31A3DD"
+                color: "#646464"
                 Behavior on width { 
                     PropertyAnimation {
                         duration: 250

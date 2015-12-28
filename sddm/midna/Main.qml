@@ -56,6 +56,19 @@ Rectangle {
             anchors.verticalCenterOffset: 0
             color: "#FFFFFFFF"
             
+            Rectangle {
+            anchors.bottom: parent.bottom
+            width: parent.width
+            height: 2
+            color: "#646464"
+            }
+            
+            Rectangle {
+            width: parent.width
+            height: 2
+            color: "#646464"
+            }
+            
             Clock {
             id: clock
             anchors.centerIn: parent
