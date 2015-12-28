@@ -47,7 +47,7 @@ Image {
             width: parent.width
             height: 3
             color: "#646464"
-       }
+        }
     }
 
     Rectangle {
@@ -62,7 +62,7 @@ Image {
             width: parent.width
             height: 3
             color: "#646464"
-       }
+        }
 
         Rectangle {
             radius: 3

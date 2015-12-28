@@ -44,8 +44,8 @@ PlasmaCore.ColorScope {
             width: parent.width
             height: 3
             color: "#646464"
-       }
-       Rectangle {
+        }
+        Rectangle {
             anchors.bottom: parent.bottom
             width: parent.width
             height: 3
