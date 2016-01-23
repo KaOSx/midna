@@ -46,6 +46,7 @@ set(KF5_MIN_VERSION "5.5.0")
 find_package(KF5 ${KF5_MIN_VERSION} REQUIRED COMPONENTS Plasma)
 
 # Subdirectories
+add_subdirectory(aurorae)
 add_subdirectory(colors)
 add_subdirectory(icons)
 add_subdirectory(look-and-feel)

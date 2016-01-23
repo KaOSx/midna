@@ -13,4 +13,4 @@ Midna Look & Feel package.
 * QtCurve theme
 * sddm login theme
 * wallpaper
-
+* window decoration
