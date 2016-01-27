@@ -1,1 +1,1 @@
-install(DIRECTORY FlatSquare-BlueFlat DESTINATION ${CMAKE_INSTALL_PREFIX}/share/aurorae/themes)
+install(DIRECTORY MidnaFlatNarrow DESTINATION ${CMAKE_INSTALL_PREFIX}/share/aurorae/themes)
