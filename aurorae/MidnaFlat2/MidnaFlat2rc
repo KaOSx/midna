@@ -11,7 +11,8 @@ Animation=0
 [Layout]
 BorderLeft=4
 BorderRight=4
-BorderBottom=3
+BorderBottom=4
+BorderTop=4
 TitleEdgeTop=0
 TitleEdgeBottom=2
 TitleEdgeLeft=0
