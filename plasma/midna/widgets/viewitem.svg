@@ -1,469 +1,126 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<svg
-   xmlns:dc="http://purl.org/dc/elements/1.1/"
-   xmlns:cc="http://creativecommons.org/ns#"
-   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-   xmlns:svg="http://www.w3.org/2000/svg"
-   xmlns="http://www.w3.org/2000/svg"
-   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
-   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   viewBox="0 0 257 161"
-   id="svg"
-   version="1.1"
-   inkscape:version="0.91 r"
-   width="100%"
-   height="100%"
-   sodipodi:docname="viewitem.svg">
-  <defs
-     id="defs81">
-    <style
-       id="current-color-scheme"
-       type="text/css">
-      .ColorScheme-Text {
-        color:#404040;
-      }
-      .ColorScheme-Background{
-        color:#f2f2f2;
-      }
-      .ColorScheme-Highlight{
-        color:#4386f6;
-      }
-      .ColorScheme-ViewText {
-        color:#404040;
-      }
-      .ColorScheme-ViewBackground{
-        color:#f2f2f2;
-      }
-      .ColorScheme-ViewHover {
-        color:#4386f6;
-      }
-      .ColorScheme-ViewFocus{
-        color:#4386f6;
-      }
-      .ColorScheme-ButtonText {
-        color:#404040;
-      }
-      .ColorScheme-ButtonBackground{
-        color:#ffffff;
-      }
-      .ColorScheme-ButtonHover {
-        color:#66ccdd;
-      }
-      .ColorScheme-ButtonFocus{
-        color:#66ccdd;
-      }
-</style>
-  </defs>
-  <metadata
-     id="metadata34">
-    <rdf:RDF>
-      <cc:Work
-         rdf:about="">
-        <dc:format>image/svg+xml</dc:format>
-        <dc:type
-           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
-      </cc:Work>
-    </rdf:RDF>
-  </metadata>
-  <sodipodi:namedview
-     pagecolor="#f2f2f2"
-     bordercolor="#666666"
-     borderopacity="1"
-     objecttolerance="10"
-     gridtolerance="10"
-     guidetolerance="10"
-     inkscape:pageopacity="1"
-     inkscape:pageshadow="2"
-     inkscape:window-width="1920"
-     inkscape:window-height="1021"
-     id="namedview32"
-     showgrid="true"
-     inkscape:zoom="11.313708"
-     inkscape:cx="18.219522"
-     inkscape:cy="19.068414"
-     inkscape:window-x="0"
-     inkscape:window-y="0"
-     inkscape:window-maximized="1"
-     inkscape:current-layer="svg"
-     borderlayer="true"
-     showguides="true"
-     inkscape:guide-bbox="true"
-     inkscape:object-nodes="true">
-    <inkscape:grid
-       type="xygrid"
-       id="grid3046"
-       empspacing="5"
-       visible="true"
-       enabled="true"
-       snapvisiblegridlinesonly="true" />
-  </sodipodi:namedview>
-  <rect
-     style="fill:#ff00a8;fill-opacity:1;stroke:none"
-     id="hint-tile-center"
-     width="10"
-     height="10"
-     x="5"
-     y="6"
-     ry="5" />
-  <g
-     id="normal-bottomleft">
-    <path
-       id="rect3124"
-       d="m 40,153 0,8 8,0 0,-8 -8,0 z"
-       style="opacity:0;fill:#ff00a8;fill-opacity:1;stroke:none"
-       inkscape:connector-curvature="0" />
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 20010904//EN" "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
+<!-- Created using Karbon, part of Calligra: http://www.calligra.org/karbon -->
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="205.6pt" height="128.8pt">
+<defs/>
+<g id="layer0">
+  <rect id="hint-tile-center" transform="translate(5, 6)" fill="#ff00a8" width="8.00000000000pt" height="8.00000000000pt" rx="4.00000000000pt" ry="4.00000000000pt"/>
+  <g id="normal-bottomleft" transform="translate(39.375, 152.375)" fill="none">
+   <path id="rect3124" transform="translate(0.625, 0.625)" fill="#ff00a8" opacity="0.00000000000" d="M0 0L0 8L8 8L8 0Z"/>
   </g>
-  <g
-     id="normal-left">
-    <path
-       inkscape:connector-curvature="0"
-       style="opacity:0;fill:#ff00a8;fill-opacity:1;stroke:none"
-       d="m 40,145 0,8 8,0 0,-8 -8,0 z"
-       id="path3143" />
+  <g id="normal-left" transform="translate(39.375, 144.375)" fill="none">
+   <path id="path3143" transform="translate(0.625, 0.625)" fill="#ff00a8" opacity="0.00000000000" d="M0 0L0 8L8 8L8 0Z"/>
   </g>
-  <g
-     id="normal-topleft">
-    <path
-       id="path3145"
-       d="m 40,137 0,8 8,0 0,-8 -8,0 z"
-       style="opacity:0;fill:#ff00a8;fill-opacity:1;stroke:none"
-       inkscape:connector-curvature="0" />
+  <g id="normal-topleft" transform="translate(39.375, 136.375)" fill="none">
+   <path id="path3145" transform="translate(0.625, 0.625)" fill="#ff00a8" opacity="0.00000000000" d="M0 0L0 8L8 8L8 0Z"/>
   </g>
-  <g
-     id="normal-top">
-    <path
-       inkscape:connector-curvature="0"
-       style="opacity:0;fill:#ff00a8;fill-opacity:1;stroke:none"
-       d="m 48,137 0,8 8,0 0,-8 -8,0 z"
-       id="path3147" />
+  <g id="normal-top" transform="translate(47.375, 136.375)" fill="none">
+   <path id="path3147" transform="translate(0.625, 0.625)" fill="#ff00a8" opacity="0.00000000000" d="M0 0L0 8L8 8L8 0Z"/>
   </g>
-  <g
-     id="normal-topright">
-    <path
-       id="path3149"
-       d="m 56,137 0,8 8,0 0,-8 -8,0 z"
-       style="opacity:0;fill:#ff00a8;fill-opacity:1;stroke:none"
-       inkscape:connector-curvature="0" />
+  <g id="normal-topright" transform="translate(55.375, 136.375)" fill="none">
+   <path id="path3149" transform="translate(0.625, 0.625)" fill="#ff00a8" opacity="0.00000000000" d="M0 0L0 8L8 8L8 0Z"/>
   </g>
-  <g
-     id="normal-right">
-    <path
-       inkscape:connector-curvature="0"
-       style="opacity:0;fill:#ff00a8;fill-opacity:1;stroke:none"
-       d="m 56,145 0,8 8,0 0,-8 -8,0 z"
-       id="path3151" />
+  <g id="normal-right" transform="translate(55.375, 144.375)" fill="none">
+   <path id="path3151" transform="translate(0.625, 0.625)" fill="#ff00a8" opacity="0.00000000000" d="M0 0L0 8L8 8L8 0Z"/>
   </g>
-  <g
-     id="normal-bottomright">
-    <path
-       id="path3153"
-       d="m 56,153 0,8 8,0 0,-8 -8,0 z"
-       style="opacity:0;fill:#ff00a8;fill-opacity:1;stroke:none"
-       inkscape:connector-curvature="0" />
+  <g id="normal-bottomright" transform="translate(55.375, 152.375)" fill="none">
+   <path id="path3153" transform="translate(0.625, 0.625)" fill="#ff00a8" opacity="0.00000000000" d="M0 0L0 8L8 8L8 0Z"/>
   </g>
-  <g
-     id="normal-bottom">
-    <path
-       inkscape:connector-curvature="0"
-       style="opacity:0;fill:#ff00a8;fill-opacity:1;stroke:none"
-       d="m 48,153 0,8 8,0 0,-8 -8,0 z"
-       id="path3155" />
+  <g id="normal-bottom" transform="translate(47.375, 152.375)" fill="none">
+   <path id="path3155" transform="translate(0.625, 0.625)" fill="#ff00a8" opacity="0.00000000000" d="M0 0L0 8L8 8L8 0Z"/>
   </g>
-  <g
-     id="normal-center">
-    <path
-       id="path3157"
-       d="m 48,145 0,8 8,0 0,-8 -8,0 z"
-       style="opacity:0;fill:#ff00a8;fill-opacity:1;stroke:none"
-       inkscape:connector-curvature="0" />
+  <g id="normal-center" transform="translate(47.375, 144.375)" fill="none">
+   <path id="path3157" transform="translate(0.625, 0.625)" fill="#ff00a8" opacity="0.00000000000" d="M0 0L0 8L8 8L8 0Z"/>
   </g>
-  <g
-     id="hover-bottomleft">
-    <path
-       inkscape:connector-curvature="0"
-       style="opacity:0.2;fill:#0bca9a;fill-opacity:1;stroke:none"
-       d="m 0,153 0,8 8,0 0,-8 -8,0 z"
-       id="path3977" />
-    <path
-       id="path4213"
-       d="m 0,158 0,3 8,0 0,-3 z"
-       style="opacity:1;fill:#0bca9a;fill-opacity:1;stroke:none"
-       inkscape:connector-curvature="0"
-       sodipodi:nodetypes="ccccc" />
+  <g id="hover-bottomleft" transform="translate(-0.625, 152.375)" fill="none">
+   <path id="path3977" transform="translate(0.625, 0.625)" fill="#0a7dca" fill-opacity="0.33333333333" opacity="0.20000000000" d="M0 0L0 8L8 8L8 0Z"/>
+   <path id="path4213" transform="translate(0.625, 5.625)" fill="#0a7dca" fill-opacity="0.47450980392" d="M0 0L0 3L8 3L8 0Z"/>
   </g>
-  <g
-     id="hover-left">
-    <path
-       id="path3981"
-       d="m 0,145 0,8 8,0 0,-8 -8,0 z"
-       style="opacity:0.2;fill:#0bca9a;fill-opacity:1;stroke:none"
-       inkscape:connector-curvature="0" />
+  <g id="hover-left" transform="translate(-0.625, 144.375)" fill="none">
+   <path id="path3981" transform="translate(0.625, 0.625)" fill="#0a73ca" fill-opacity="0.38823529412" opacity="0.20000000000" d="M0 0L0 8L8 8L8 0Z"/>
   </g>
-  <g
-     id="hover-topleft">
-    <path
-       inkscape:connector-curvature="0"
-       style="opacity:0.2;fill:#0bca9a;fill-opacity:1;stroke:none"
-       d="m 0,137 0,8 8,0 0,-8 -8,0 z"
-       id="path3985" />
+  <g id="hover-topleft" transform="translate(-0.625, 136.375)" fill="none">
+   <path id="path3985" transform="translate(0.625, 0.625)" fill="#0a73ca" fill-opacity="0.38823529412" opacity="0.20000000000" d="M0 0L0 8L8 8L8 0Z"/>
   </g>
-  <g
-     id="hover-top">
-    <path
-       id="path3989"
-       d="m 8,137 0,8 8,0 0,-8 -8,0 z"
-       style="opacity:0.2;fill:#0bca9a;fill-opacity:1;stroke:none"
-       inkscape:connector-curvature="0" />
+  <g id="hover-top" transform="translate(7.375, 136.375)" fill="none">
+   <path id="path3989" transform="translate(0.625, 0.625)" fill="#0a73ca" fill-opacity="0.38823529412" opacity="0.20000000000" d="M0 0L0 8L8 8L8 0Z"/>
   </g>
-  <g
-     id="hover-topright">
-    <path
-       inkscape:connector-curvature="0"
-       style="opacity:0.2;fill:#0bca9a;fill-opacity:1;stroke:none"
-       d="m 16,137 0,8 8,0 0,-8 -8,0 z"
-       id="path3993" />
+  <g id="hover-topright" transform="translate(15.375, 136.375)" fill="none">
+   <path id="path3993" transform="translate(0.625, 0.625)" fill="#0a73ca" fill-opacity="0.38823529412" opacity="0.20000000000" d="M0 0L0 8L8 8L8 0Z"/>
   </g>
-  <g
-     id="hover-right">
-    <path
-       id="path3997"
-       d="m 16,145 0,8 8,0 0,-8 -8,0 z"
-       style="opacity:0.2;fill:#0bca9a;fill-opacity:1;stroke:none"
-       inkscape:connector-curvature="0" />
+  <g id="hover-right" transform="translate(15.375, 144.375)" fill="none">
+   <path id="path3997" transform="translate(0.625, 0.625)" fill="#0a73ca" fill-opacity="0.38823529412" opacity="0.20000000000" d="M0 0L0 8L8 8L8 0Z"/>
   </g>
-  <g
-     id="hover-bottomright">
-    <path
-       inkscape:connector-curvature="0"
-       style="opacity:0.2;fill:#0bca9a;fill-opacity:1;stroke:none"
-       d="m 16,153 0,8 8,0 0,-8 -8,0 z"
-       id="path4001" />
-    <path
-       id="path4215"
-       d="m 16,158 0,3 8,0 0,-3 z"
-       style="opacity:1;fill:#0bca9a;fill-opacity:1;stroke:none"
-       inkscape:connector-curvature="0"
-       sodipodi:nodetypes="ccccc" />
+  <g id="hover-bottomright" transform="translate(15.375, 152.375)" fill="none">
+   <path id="path4001" transform="translate(0.625, 0.625)" fill="#0a7dca" fill-opacity="0.33333333333" opacity="0.20000000000" d="M0 0L0 8L8 8L8 0Z"/>
+   <path id="path4215" transform="translate(0.625, 5.625)" fill="#0a7dca" fill-opacity="0.47450980392" d="M0 0L0 3L8 3L8 0Z"/>
   </g>
-  <g
-     id="hover-bottom">
-    <path
-       id="path4005"
-       d="m 8,153 0,8 8,0 0,-8 -8,0 z"
-       style="opacity:0.2;fill:#0bca9a;fill-opacity:1;stroke:none"
-       inkscape:connector-curvature="0" />
-    <path
-       inkscape:connector-curvature="0"
-       style="opacity:1;fill:#0bca9a;fill-opacity:1;stroke:none"
-       d="m 8,158 0,3 8,0 0,-3 z"
-       id="path4217"
-       sodipodi:nodetypes="ccccc" />
+  <g id="hover-bottom" transform="translate(7.375, 152.375)" fill="none">
+   <path id="path4005" transform="translate(0.625, 0.625)" fill="#0a7dca" fill-opacity="0.33333333333" opacity="0.20000000000" d="M0 0L0 8L8 8L8 0Z"/>
+   <path id="path4217" transform="translate(0.625, 5.625)" fill="#0a7dca" fill-opacity="0.47450980392" d="M0 0L0 3L8 3L8 0Z"/>
   </g>
-  <g
-     id="hover-center">
-    <path
-       inkscape:connector-curvature="0"
-       style="opacity:0.2;fill:#0bca9a;fill-opacity:1;stroke:none"
-       d="m 8,145 0,8 8,0 0,-8 -8,0 z"
-       id="path4009" />
+  <g id="hover-center" transform="translate(7.375, 144.375)" fill="none">
+   <path id="path4009" transform="translate(0.625, 0.625)" fill="#0a73ca" fill-opacity="0.38823529412" opacity="0.20000000000" d="M0 0L0 8L8 8L8 0Z"/>
   </g>
-  <g
-     id="selected-bottomleft"
-     transform="translate(0,-40)">
-    <path
-       id="path4049"
-       d="m 0,153 0,8 8,0 0,-8 -8,0 z"
-       style="opacity:0.2;fill:#55acee;fill-opacity:1;stroke:none"
-       inkscape:connector-curvature="0" />
-    <path
-       inkscape:connector-curvature="0"
-       style="opacity:1;fill:#55acee;fill-opacity:1;stroke:none"
-       d="m 0,158 0,3 8,0 0,-3 z"
-       id="path4219"
-       sodipodi:nodetypes="ccccc" />
+  <g id="selected-bottomleft" transform="translate(-0.625, 112.375)" fill="none">
+   <path id="path4049" transform="translate(0.625, 0.625)" fill="#55acee" opacity="0.20000000000" d="M0 0L0 8L8 8L8 0Z"/>
+   <path id="path4219" transform="translate(0.625, 5.625)" fill="#55acee" d="M0 0L0 3L8 3L8 0Z"/>
   </g>
-  <g
-     id="selected-left"
-     transform="translate(0,-40)">
-    <path
-       inkscape:connector-curvature="0"
-       style="opacity:0.2;fill:#55acee;fill-opacity:1;stroke:none"
-       d="m 0,145 0,8 8,0 0,-8 -8,0 z"
-       id="path4053" />
+  <g id="selected-left" transform="translate(-0.625, 104.375)" fill="none">
+   <path id="path4053" transform="translate(0.625, 0.625)" fill="#55acee" opacity="0.20000000000" d="M0 0L0 8L8 8L8 0Z"/>
   </g>
-  <g
-     id="selected-topleft"
-     transform="translate(0,-40)">
-    <path
-       id="path4057"
-       d="m 0,137 0,8 8,0 0,-8 -8,0 z"
-       style="opacity:0.2;fill:#55acee;fill-opacity:1;stroke:none"
-       inkscape:connector-curvature="0" />
+  <g id="selected-topleft" transform="translate(-0.625, 96.375)" fill="none">
+   <path id="path4057" transform="translate(0.625, 0.625)" fill="#55acee" opacity="0.20000000000" d="M0 0L0 8L8 8L8 0Z"/>
   </g>
-  <g
-     id="selected-top"
-     transform="translate(0,-40)">
-    <path
-       inkscape:connector-curvature="0"
-       style="opacity:0.2;fill:#55acee;fill-opacity:1;stroke:none"
-       d="m 8,137 0,8 8,0 0,-8 -8,0 z"
-       id="path4061" />
+  <g id="selected-top" transform="translate(7.375, 96.375)" fill="none">
+   <path id="path4061" transform="translate(0.625, 0.625)" fill="#55acee" opacity="0.20000000000" d="M0 0L0 8L8 8L8 0Z"/>
   </g>
-  <g
-     id="selected-topright"
-     transform="translate(0,-40)">
-    <path
-       id="path4065"
-       d="m 16,137 0,8 8,0 0,-8 -8,0 z"
-       style="opacity:0.2;fill:#55acee;fill-opacity:1;stroke:none"
-       inkscape:connector-curvature="0" />
+  <g id="selected-topright" transform="translate(15.375, 96.375)" fill="none">
+   <path id="path4065" transform="translate(0.625, 0.625)" fill="#55acee" opacity="0.20000000000" d="M0 0L0 8L8 8L8 0Z"/>
   </g>
-  <g
-     id="selected-right"
-     transform="translate(0,-40)">
-    <path
-       inkscape:connector-curvature="0"
-       style="opacity:0.2;fill:#55acee;fill-opacity:1;stroke:none"
-       d="m 16,145 0,8 8,0 0,-8 -8,0 z"
-       id="path4069" />
+  <g id="selected-right" transform="translate(15.375, 104.375)" fill="none">
+   <path id="path4069" transform="translate(0.625, 0.625)" fill="#55acee" opacity="0.20000000000" d="M0 0L0 8L8 8L8 0Z"/>
   </g>
-  <g
-     id="selected-bottomright"
-     transform="translate(0,-40)">
-    <path
-       id="path4073"
-       d="m 16,153 0,8 8,0 0,-8 -8,0 z"
-       style="opacity:0.2;fill:#55acee;fill-opacity:1;stroke:none"
-       inkscape:connector-curvature="0" />
-    <path
-       inkscape:connector-curvature="0"
-       style="opacity:1;fill:#55acee;fill-opacity:1;stroke:none"
-       d="m 16,158 0,3 8,0 0,-3 z"
-       id="path4221"
-       sodipodi:nodetypes="ccccc" />
+  <g id="selected-bottomright" transform="translate(15.375, 112.375)" fill="none">
+   <path id="path4073" transform="translate(0.625, 0.625)" fill="#55acee" opacity="0.20000000000" d="M0 0L0 8L8 8L8 0Z"/>
+   <path id="path4221" transform="translate(0.625, 5.625)" fill="#55acee" d="M0 0L0 3L8 3L8 0Z"/>
   </g>
-  <g
-     id="selected-bottom"
-     transform="translate(0,-40)">
-    <path
-       inkscape:connector-curvature="0"
-       style="opacity:0.2;fill:#55acee;fill-opacity:1;stroke:none"
-       d="m 8,153 0,8 8,0 0,-8 -8,0 z"
-       id="path4077" />
-    <path
-       id="path4223"
-       d="m 8,158 0,3 8,0 0,-3 z"
-       style="opacity:1;fill:#55acee;fill-opacity:1;stroke:none"
-       inkscape:connector-curvature="0"
-       sodipodi:nodetypes="ccccc" />
+  <g id="selected-bottom" transform="translate(7.375, 112.375)" fill="none">
+   <path id="path4077" transform="translate(0.625, 0.625)" fill="#55acee" opacity="0.20000000000" d="M0 0L0 8L8 8L8 0Z"/>
+   <path id="path4223" transform="translate(0.625, 5.625)" fill="#55acee" d="M0 0L0 3L8 3L8 0Z"/>
   </g>
-  <g
-     id="selected-center"
-     transform="translate(0,-40)">
-    <path
-       id="path4081"
-       d="m 8,145 0,8 8,0 0,-8 -8,0 z"
-       style="opacity:0.2;fill:#55acee;fill-opacity:1;stroke:none"
-       inkscape:connector-curvature="0" />
+  <g id="selected-center" transform="translate(7.375, 104.375)" fill="none">
+   <path id="path4081" transform="translate(0.625, 0.625)" fill="#55acee" opacity="0.20000000000" d="M0 0L0 8L8 8L8 0Z"/>
   </g>
-  <g
-     transform="translate(40,-40)"
-     id="selected+hover-bottomleft">
-    <path
-       inkscape:connector-curvature="0"
-       style="opacity:0.2;fill:#55acee;fill-opacity:1;stroke:none"
-       d="m 0,153 0,8 8,0 0,-8 -8,0 z"
-       id="path4085" />
-    <path
-       id="path4207"
-       d="m 0,158 0,3 8,0 0,-3 z"
-       style="opacity:1;fill:#55acee;fill-opacity:1;stroke:none"
-       inkscape:connector-curvature="0"
-       sodipodi:nodetypes="ccccc" />
+  <g id="selected+hover-bottomleft" transform="translate(39.375, 112.375)" fill="none">
+   <path id="path4085" transform="translate(0.625, 0.625)" fill="#55acee" opacity="0.20000000000" d="M0 0L0 8L8 8L8 0Z"/>
+   <path id="path4207" transform="translate(0.625, 5.625)" fill="#55acee" d="M0 0L0 3L8 3L8 0Z"/>
   </g>
-  <g
-     transform="translate(40,-40)"
-     id="selected+hover-left">
-    <path
-       id="path4089"
-       d="m 0,145 0,8 8,0 0,-8 -8,0 z"
-       style="opacity:0.2;fill:#55acee;fill-opacity:1;stroke:none"
-       inkscape:connector-curvature="0" />
+  <g id="selected+hover-left" transform="translate(39.375, 104.375)" fill="none">
+   <path id="path4089" transform="translate(0.625, 0.625)" fill="#55acee" opacity="0.20000000000" d="M0 0L0 8L8 8L8 0Z"/>
   </g>
-  <g
-     transform="translate(40,-40)"
-     id="selected+hover-topleft">
-    <path
-       inkscape:connector-curvature="0"
-       style="opacity:0.2;fill:#55acee;fill-opacity:1;stroke:none"
-       d="m 0,137 0,8 8,0 0,-8 -8,0 z"
-       id="path4093" />
+  <g id="selected+hover-topleft" transform="translate(39.375, 96.375)" fill="none">
+   <path id="path4093" transform="translate(0.625, 0.625)" fill="#55acee" opacity="0.20000000000" d="M0 0L0 8L8 8L8 0Z"/>
   </g>
-  <g
-     transform="translate(40,-40)"
-     id="selected+hover-top">
-    <path
-       id="path4097"
-       d="m 8,137 0,8 8,0 0,-8 -8,0 z"
-       style="opacity:0.2;fill:#55acee;fill-opacity:1;stroke:none"
-       inkscape:connector-curvature="0" />
+  <g id="selected+hover-top" transform="translate(47.375, 96.375)" fill="none">
+   <path id="path4097" transform="translate(0.625, 0.625)" fill="#55acee" opacity="0.20000000000" d="M0 0L0 8L8 8L8 0Z"/>
   </g>
-  <g
-     transform="translate(40,-40)"
-     id="selected+hover-topright">
-    <path
-       inkscape:connector-curvature="0"
-       style="opacity:0.2;fill:#55acee;fill-opacity:1;stroke:none"
-       d="m 16,137 0,8 8,0 0,-8 -8,0 z"
-       id="path4101" />
+  <g id="selected+hover-topright" transform="translate(55.375, 96.375)" fill="none">
+   <path id="path4101" transform="translate(0.625, 0.625)" fill="#55acee" opacity="0.20000000000" d="M0 0L0 8L8 8L8 0Z"/>
   </g>
-  <g
-     transform="translate(40,-40)"
-     id="selected+hover-right">
-    <path
-       id="path4105"
-       d="m 16,145 0,8 8,0 0,-8 -8,0 z"
-       style="opacity:0.2;fill:#55acee;fill-opacity:1;stroke:none"
-       inkscape:connector-curvature="0" />
+  <g id="selected+hover-right" transform="translate(55.375, 104.375)" fill="none">
+   <path id="path4105" transform="translate(0.625, 0.625)" fill="#55acee" opacity="0.20000000000" d="M0 0L0 8L8 8L8 0Z"/>
   </g>
-  <g
-     transform="translate(40,-40)"
-     id="selected+hover-bottomright">
-    <path
-       inkscape:connector-curvature="0"
-       style="opacity:0.2;fill:#55acee;fill-opacity:1;stroke:none"
-       d="m 16,153 0,8 8,0 0,-8 -8,0 z"
-       id="path4109" />
-    <path
-       id="path4209"
-       d="m 16,158 0,3 8,0 0,-3 z"
-       style="opacity:1;fill:#55acee;fill-opacity:1;stroke:none"
-       inkscape:connector-curvature="0"
-       sodipodi:nodetypes="ccccc" />
+  <g id="selected+hover-bottomright" transform="translate(55.375, 112.375)" fill="none">
+   <path id="path4109" transform="translate(0.625, 0.625)" fill="#55acee" opacity="0.20000000000" d="M0 0L0 8L8 8L8 0Z"/>
+   <path id="path4209" transform="translate(0.625, 5.625)" fill="#55acee" d="M0 0L0 3L8 3L8 0Z"/>
   </g>
-  <g
-     transform="translate(40,-40)"
-     id="selected+hover-bottom">
-    <path
-       id="path4113"
-       d="m 8,153 0,8 8,0 0,-8 -8,0 z"
-       style="opacity:0.2;fill:#55acee;fill-opacity:1;stroke:none"
-       inkscape:connector-curvature="0" />
-    <path
-       inkscape:connector-curvature="0"
-       style="opacity:1;fill:#55acee;fill-opacity:1;stroke:none"
-       d="m 8,158 0,3 8,0 0,-3 z"
-       id="path4211"
-       sodipodi:nodetypes="ccccc" />
+  <g id="selected+hover-bottom" transform="translate(47.375, 112.375)" fill="none">
+   <path id="path4113" transform="translate(0.625, 0.625)" fill="#55acee" opacity="0.20000000000" d="M0 0L0 8L8 8L8 0Z"/>
+   <path id="path4211" transform="translate(0.625, 5.625)" fill="#55acee" d="M0 0L0 3L8 3L8 0Z"/>
   </g>
-  <g
-     transform="translate(40,-40)"
-     id="selected+hover-center">
-    <path
-       inkscape:connector-curvature="0"
-       style="opacity:0.2;fill:#55acee;fill-opacity:1;stroke:none"
-       d="m 8,145 0,8 8,0 0,-8 -8,0 z"
-       id="path4117" />
+  <g id="selected+hover-center" transform="translate(47.375, 104.375)" fill="none">
+   <path id="path4117" transform="translate(0.625, 0.625)" fill="#55acee" opacity="0.20000000000" d="M0 0L0 8L8 8L8 0Z"/>
   </g>
+ </g>
 </svg>
