@@ -35,7 +35,7 @@ PlasmaCore.ColorScope {
     property bool canReboot: false
 
     Rectangle {
-        color: PlasmaCore.ColorScope.backgroundColor
+        color: "#FFFFFFFF"
         opacity: 1
         anchors {
             fill: parent
