@@ -54,7 +54,7 @@ Rectangle {
             width: parent.width
             height: 300
             anchors.verticalCenterOffset: 0
-            color: "#FFFFFFFF"
+            color: "#FFF5F5F5"
             
             Rectangle {
             anchors.bottom: parent.bottom
