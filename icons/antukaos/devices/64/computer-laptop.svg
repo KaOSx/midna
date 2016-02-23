@@ -32,6 +32,18 @@
          style="stop-color:#e6e7e8;stop-opacity:1" />
     </linearGradient>
     <linearGradient
+       id="linearGradient4503"
+       inkscape:collect="always">
+      <stop
+         id="stop4505"
+         offset="0"
+         style="stop-color:#141414;stop-opacity:1" />
+      <stop
+         id="stop4507"
+         offset="1"
+         style="stop-color:#2d2d2f;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient
        inkscape:collect="always"
        id="linearGradient5002">
       <stop
@@ -87,7 +99,7 @@
     </linearGradient>
     <linearGradient
        inkscape:collect="always"
-       xlink:href="#linearGradient4634"
+       xlink:href="#linearGradient4503"
        id="linearGradient4501"
        x1="408.70813"
        y1="538.93011"
@@ -122,9 +134,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0"
      inkscape:pageshadow="2"
-     inkscape:zoom="5.7343749"
-     inkscape:cx="-26.025783"
-     inkscape:cy="16.043371"
+     inkscape:zoom="4.0548154"
+     inkscape:cx="1.6613687"
+     inkscape:cy="20.543529"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -185,7 +197,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -217,7 +229,7 @@
          transform="matrix(1.0737448,0,0,1.0737448,-30.130019,-36.795955)"
          id="g6476">
         <rect
-           style="opacity:1;fill:url(#linearGradient4501);fill-opacity:1.0;fill-rule:evenodd;stroke:#c3c5ca;stroke-width:0.39150056;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+           style="opacity:1;fill:url(#linearGradient4501);fill-opacity:1;fill-rule:evenodd;stroke:#c3c5ca;stroke-width:0.39150056;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
            id="rect4260"
            width="52"
            height="35.136311"
