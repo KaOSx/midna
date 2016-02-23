@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:sketch="http://www.bohemiancoding.com/sketch/ns"
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="16"
+   height="16"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.91 r13725"
+   viewBox="0 0 16 16"
+   sodipodi:docname="folder-dropbox.svg">
+  <defs
+     id="defs4" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#939393"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="19.50039"
+     inkscape:cx="-9.8082677"
+     inkscape:cy="13.435557"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1-00"
+     showgrid="true"
+     inkscape:showpageshadow="false"
+     borderlayer="true"
+     units="px"
+     inkscape:window-width="1366"
+     inkscape:window-height="630"
+     inkscape:window-x="0"
+     inkscape:window-y="36"
+     inkscape:window-maximized="1"
+     inkscape:snap-global="true"
+     inkscape:snap-bbox="true">
+    <inkscape:grid
+       type="xygrid"
+       id="grid4062" />
+    <sodipodi:guide
+       position="2,2.0000174"
+       orientation="0,12"
+       id="guide4068" />
+    <sodipodi:guide
+       position="12,8"
+       orientation="-12,0"
+       id="guide4070" />
+    <sodipodi:guide
+       position="14,14.000017"
+       orientation="0,-12"
+       id="guide4072" />
+  </sodipodi:namedview>
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Capa 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(0,-1036.3622)">
+    <g
+       transform="matrix(0.90537551,0,0,0.90537551,-365.91682,562.06022)"
+       id="layer1-0"
+       inkscape:label="Capa 1"
+       style="fill:none;fill-opacity:1;stroke:#4f96d1;stroke-opacity:1" />
+    <g
+       transform="translate(-401.01229,510.63371)"
+       id="layer1-00"
+       inkscape:label="Capa 1">
+      <g
+         transform="translate(5.05585,-5.251147)"
+         id="layer1-4"
+         inkscape:label="Capa 1"
+         style="fill:#ffffff;fill-opacity:1">
+        <g
+           transform="translate(-11.317,5.8824915)"
+           id="layer1-9"
+           inkscape:label="Capa 1"
+           style="stroke:#000000;stroke-opacity:0.8;fill:#ffffff;fill-opacity:1">
+          <g
+             transform="translate(1.8733025,-0.28410538)"
+             id="layer1-79"
+             inkscape:label="Capa 1"
+             style="fill:#ffffff;fill-opacity:1">
+            <g
+               transform="translate(-2.0518724,-0.97858527)"
+               id="layer1-2"
+               inkscape:label="Capa 1"
+               style="fill:#ffffff;fill-opacity:1">
+              <g
+                 transform="matrix(0.7863692,0,0,0.78394543,93.325829,112.35451)"
+                 id="g4187"
+                 style="fill:#ffffff;fill-opacity:1">
+                <path
+                   style="fill:#ffffff;fill-opacity:1;stroke:none"
+                   sketch:type="MSShapeGroup"
+                   id="Dropbox"
+                   d="m 406.46943,542.12137 3.24192,-2.72837 -4.68282,-2.9199 -3.20408,2.59442 4.64498,3.05385 z m 3.24192,-2.72861 3.25144,2.72849 4.63545,-3.05385 -3.20397,-2.5943 -4.68292,2.91966 z m 0,0.59373 -3.24192,2.71873 -1.39354,-0.91897 0,1.03377 4.63546,2.8051 4.66394,-2.8051 0,-1.03377 -1.39365,0.91897 -3.27029,-2.71873 z m -7.8869,-6.09817 3.20408,2.58478 4.68282,-2.91026 -3.24192,-2.72837 -4.64498,3.05385 z m 11.13834,-3.05385 -3.25144,2.72837 4.68292,2.91026 3.20397,-2.58478 -4.63545,-3.05385 z"
+                   inkscape:connector-curvature="0" />
+              </g>
+            </g>
+          </g>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>
