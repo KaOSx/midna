@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:sketch="http://www.bohemiancoding.com/sketch/ns"
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="16"
+   height="16"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.91 r13725"
+   viewBox="0 0 16 16"
+   sodipodi:docname="folder-camera.svg">
+  <defs
+     id="defs4" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#8a8a8a"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="18.195382"
+     inkscape:cx="-9.0343423"
+     inkscape:cy="9.4820325"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1-12"
+     showgrid="true"
+     inkscape:showpageshadow="false"
+     borderlayer="true"
+     units="px"
+     inkscape:window-width="1366"
+     inkscape:window-height="630"
+     inkscape:window-x="0"
+     inkscape:window-y="36"
+     inkscape:window-maximized="1"
+     inkscape:snap-global="true"
+     inkscape:snap-bbox="true">
+    <inkscape:grid
+       type="xygrid"
+       id="grid4062" />
+    <sodipodi:guide
+       position="2,2.0000174"
+       orientation="0,12"
+       id="guide4068" />
+    <sodipodi:guide
+       position="14,2.0000174"
+       orientation="-12,0"
+       id="guide4070" />
+    <sodipodi:guide
+       position="14,14.000017"
+       orientation="0,-12"
+       id="guide4072" />
+  </sodipodi:namedview>
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Capa 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(0,-1036.3622)">
+    <g
+       transform="matrix(0.90537551,0,0,0.90537551,-365.91682,562.06022)"
+       id="layer1-0"
+       inkscape:label="Capa 1"
+       style="fill:none;fill-opacity:1;stroke:#4f96d1;stroke-opacity:1" />
+    <g
+       transform="translate(-401.01229,510.63371)"
+       id="layer1-00"
+       inkscape:label="Capa 1">
+      <g
+         transform="translate(5.42985,-7.9865193)"
+         id="layer1-12"
+         inkscape:label="Capa 1">
+        <g
+           transform="matrix(0.7863692,0,0,0.78394543,93.325829,112.35451)"
+           id="g4187-3"
+           style="fill:#ffffff;fill-opacity:1">
+          <path
+             style="fill:#ffffff;fill-opacity:1"
+             sketch:type="MSShapeGroup"
+             id="Camera"
+             d="m 401.93651,543.63887 c -0.42228,-0.4126 -0.93162,-0.61895 -1.52845,-0.61895 l -1.89163,0 -0.43056,-1.12246 c -0.10697,-0.26957 -0.30255,-0.50207 -0.58698,-0.69748 -0.28431,-0.19533 -0.57567,-0.29308 -0.87408,-0.29308 l -4.32381,0 c -0.29841,0 -0.58978,0.0978 -0.8741,0.29308 -0.2843,0.19541 -0.4799,0.42791 -0.58687,0.69748 l -0.43067,1.12246 -1.89163,0 c -0.59683,0 -1.10627,0.20635 -1.52854,0.61895 -0.42217,0.41272 -0.63331,0.91063 -0.63331,1.49394 l 0,7.39521 c 0,0.58331 0.21114,1.08133 0.63331,1.49383 0.42227,0.41272 0.93171,0.61907 1.52854,0.61907 l 11.89024,0 c 0.59681,0 1.10616,-0.20635 1.52844,-0.61907 0.42216,-0.4125 0.63331,-0.91052 0.63331,-1.49383 l 0,-7.39521 c 7e-5,-0.58331 -0.21104,-1.08122 -0.63321,-1.49394 l 0,0 z m -4.80092,7.80387 c -0.74027,0.72362 -1.63116,1.08538 -2.67274,1.08538 -1.04159,0 -1.93237,-0.36176 -2.67275,-1.08538 -0.74039,-0.72352 -1.11051,-1.59431 -1.11051,-2.61222 0,-1.018 0.37023,-1.88862 1.11051,-2.61223 0.74027,-0.72362 1.63116,-1.08538 2.67275,-1.08538 1.04158,0 1.93237,0.36186 2.67274,1.08538 0.74038,0.72351 1.11053,1.59423 1.11053,2.61223 0,1.01791 -0.37025,1.8886 -1.11053,2.61222 z m -2.67274,-4.98933 c -0.67,0 -1.24278,0.23249 -1.71854,0.69749 -0.47576,0.46498 -0.71363,1.02478 -0.71363,1.67962 0,0.65482 0.23787,1.21463 0.71363,1.67961 0.47576,0.46489 1.04854,0.69739 1.71854,0.69739 0.66989,0 1.24278,-0.2325 1.71854,-0.69739 0.47575,-0.46498 0.71363,-1.02479 0.71363,-1.67961 0,-0.65484 -0.23788,-1.21464 -0.71363,-1.67962 -0.47576,-0.465 -1.04865,-0.69749 -1.71854,-0.69749 z"
+             inkscape:connector-curvature="0" />
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

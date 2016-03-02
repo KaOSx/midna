@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:sketch="http://www.bohemiancoding.com/sketch/ns"
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="48"
+   height="48"
+   id="svg5453"
+   version="1.1"
+   inkscape:version="0.91 r13725"
+   sodipodi:docname="anki.svg">
+  <defs
+     id="defs5455">
+    <linearGradient
+       gradientTransform="matrix(1.6347353,0,0,1.6347353,-262.25687,-357.55095)"
+       inkscape:collect="always"
+       xlink:href="#linearGradient4206"
+       id="linearGradient4149"
+       x1="400.57144"
+       y1="545.79797"
+       x2="400.57144"
+       y2="517.79797"
+       gradientUnits="userSpaceOnUse" />
+    <linearGradient
+       inkscape:collect="always"
+       id="linearGradient4206">
+      <stop
+         style="stop-color:#1584d8;stop-opacity:1"
+         offset="0"
+         id="stop4208" />
+      <stop
+         style="stop-color:#1cb2ff;stop-opacity:1"
+         offset="1"
+         id="stop4210" />
+    </linearGradient>
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="8"
+     inkscape:cx="-4.555342"
+     inkscape:cy="24.840072"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="true"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0"
+     inkscape:window-width="1366"
+     inkscape:window-height="687"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:object-nodes="true"
+     inkscape:snap-global="true">
+    <inkscape:grid
+       type="xygrid"
+       id="grid3737" />
+  </sodipodi:namedview>
+  <metadata
+     id="metadata5458">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Capa 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-384.57143,-499.798)">
+    <g
+       id="g4159"
+       transform="matrix(1.0486616,0,0,1.0486616,-3.1031461,-12.904908)">
+      <rect
+         ry="22.886303"
+         y="488.91168"
+         x="369.68512"
+         height="45.772633"
+         width="45.772606"
+         id="rect4130"
+         style="opacity:1;fill:url(#linearGradient4149);fill-opacity:1;stroke:none;stroke-width:1.31742239;stroke-miterlimit:4;stroke-dasharray:none" />
+      <path
+         inkscape:connector-curvature="0"
+         d="m 406.20202,508.87348 c 0,-0.40419 -0.30565,-0.65535 -0.91776,-0.75368 l -8.22387,-1.19587 -3.68614,-7.45431 c -0.20732,-0.44782 -0.47517,-0.67163 -0.80274,-0.67163 -0.32757,0 -0.59522,0.22381 -0.80274,0.67163 l -3.68633,7.45431 -8.22428,1.19587 c -0.6115,0.0983 -0.91736,0.34949 -0.91736,0.75368 0,0.22944 0.13654,0.49166 0.40962,0.78645 l 5.96345,5.79956 -1.40882,8.1915 c -0.0219,0.15303 -0.0328,0.26242 -0.0328,0.32777 0,0.22944 0.0573,0.42309 0.17193,0.58175 0.11462,0.15845 0.28655,0.23748 0.51599,0.23748 0.19666,0 0.41504,-0.0652 0.65534,-0.19646 l 7.35578,-3.86671 7.35638,3.86671 c 0.22964,0.13111 0.44802,0.19646 0.65514,0.19646 0.21899,0 0.38529,-0.0788 0.49991,-0.23748 0.11441,-0.15846 0.17172,-0.35231 0.17172,-0.58175 0,-0.14197 -0.005,-0.25116 -0.0165,-0.32777 l -1.40902,-8.1915 5.94696,-5.79956 c 0.28434,-0.28393 0.42611,-0.54615 0.42611,-0.78645 l 0,0 z"
+         id="path2034"
+         sketch:type="MSShapeGroup"
+         style="fill:#bae1f9;fill-opacity:1;stroke-width:1.31742239;stroke-miterlimit:4;stroke-dasharray:none" />
+    </g>
+  </g>
+</svg>
