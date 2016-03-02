@@ -1,104 +1,127 @@
-/*
- *   Copyright 2014 Marco Martin <mart@kde.org>
- *
- *   This program is free software; you can redistribute it and/or modify
- *   it under the terms of the GNU General Public License version 2,
- *   or (at your option) any later version, as published by the Free
- *   Software Foundation
- *
- *   This program is distributed in the hope that it will be useful,
- *   but WITHOUT ANY WARRANTY; without even the implied warranty of
- *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *   GNU General Public License for more details
- *
- *   You should have received a copy of the GNU General Public
- *   License along with this program; if not, write to the
- *   Free Software Foundation, Inc.,
- *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
- */
+//Caledonia KSplash theme in QML v1.9 was made by Malcer <malcer[at]gmx[dot]com> <caledonia.sourceforge.net> <malcer.deviantart.com>. 
+//
+//Some rights reserved. This work is licensed under a Creative Commons Attribution-ShareAlike 3.0 License. | 2015
+//
+//https://creativecommons.org/licenses/by-sa/3.0/
 
-import QtQuick 2.1
+import QtQuick 2.2
 
+Item {
+    id: main
 
-Image {
-    id: root
-    source: "images/background.png"
+    width: screenSize.width
+    height: screenSize.height
+    // width: 300
+    // height: 300
+
 
     property int stage
+    property int iconSize: (screenSize.width <= 1024) ? 32 : 64
 
+    
+    
+    //  SEQ
     onStageChanged: {
         if (stage == 1) {
-            introAnimation.running = true
+ 
+            background.opacity = 1
+ 
+	    spin.opacity = 1 
+ 
+        }
+        if (stage == 2) {
+ 
+
+	    spin.opacity = 1
+
+        }
+        if (stage == 3) {
+ 
+            
+	    spin.opacity = 1 
+
+        }
+        if (stage == 4) {
+ 
+	    spin.opacity = 1
+ 
+        }
+        if (stage == 5) {
+
+            
+	    spin.opacity = 1 
+ 
+        }
+        if (stage == 6) {
+ 
+	    spin.opacity = 1 
+ 
         }
     }
-    Rectangle {
-        id: topRect
-        width: parent.width
-        height: (root.height / 3) - bottomRect.height - 1
-        y: root.height
-        color: "#fff2f2f2"
+    
+    //  SEQ END
+
+
+// BACKGROUND
+
+    Image {
+        id: background
+	source: "images/background.jpg"
+	 anchors.fill: parent
+ 
+
+        anchors {
+            top: parent.top
+            left: parent.left
+            right: parent.right
+            bottom: parent.bottom
+        }
+
+        opacity: 0
+ 
+    }
+    
         Image {
-            source: "images/kde.svgz"
-            anchors.centerIn: parent
-            sourceSize.height: 128
-            sourceSize.width: 128
-        }
+      id: logo
+      
+      height: 150
+      width: 150
+      
+      x: (parent.width - width) /2
+      y: parent.height / 2 - height
+      
+      source: "images/logo.png"
     }
 
-    Rectangle {
-        id: bottomRect
-        width: parent.width
-        y: -height
-        height: 50
-        color: "#fff2f2f2"
+ 
+    Image {
+        id: spin
 
-        Rectangle {
-            radius: 3
-            color: "#b6baba"
-            anchors.centerIn: parent
-            height: 8
-            width: height*32
-            Rectangle {
-                radius: 3
-                anchors {
-                    left: parent.left
-                    top: parent.top
-                    bottom: parent.bottom
-                }
-                width: (parent.width / 6) * (stage - 1)
-                color: "#3498db"
-                Behavior on width { 
-                    PropertyAnimation {
-                        duration: 250
-                        easing.type: Easing.InOutQuad
-                    }
-                }
-            }
+        height: 48
+        width: 48
+        smooth: true
+
+        x: (background.width - width) / 2
+        y: (background.height - height) / 1.5
+
+        source: "images/spin.png"
+
+        opacity: 0
+        Behavior on opacity { NumberAnimation { duration: 1000; easing { type: Easing.InOutQuad } } }
+
+        NumberAnimation {
+            id: animateRotation
+            target: spin
+            properties: "rotation"
+            from: 0
+            to: 360
+            duration: 750
+
+            loops: Animation.Infinite
+            running: true
         }
+
     }
 
-    SequentialAnimation {
-        id: introAnimation
-        running: false
 
-        ParallelAnimation {
-            PropertyAnimation {
-                property: "y"
-                target: topRect
-                to: root.height / 3
-                duration: 1000
-                easing.type: Easing.InOutBack
-                easing.overshoot: 1.0
-            }
-
-            PropertyAnimation {
-                property: "y"
-                target: bottomRect
-                to: 2 * (root.height / 3) - bottomRect.height
-                duration: 1000
-                easing.type: Easing.InOutBack
-                easing.overshoot: 1.0
-            }
-        }
-    }
 }

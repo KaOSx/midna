@@ -1,0 +1,16 @@
+[SddmGreeterTheme]
+Name=Midna Dark
+Description=Midna Dark Theme
+Author=Fabián Alexis
+Copyright=2015, Mikkel Oscar Lyderik, 2016, adapted for KaOS by Fabián Alexis
+License=CC-BY-SA
+Type=sddm-theme
+Version=1.0
+Website=http://kaosx.us
+Screenshot=midna-dark.png
+MainScript=Main.qml
+ConfigFile=theme.conf
+TranslationsDirectory=translations
+Email=mikkeloscar@gmail.com
+Theme-Id=midnadark
+Theme-API=2.0

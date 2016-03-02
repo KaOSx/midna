@@ -1,21 +1,27 @@
 [Desktop Entry]
 Name=Midna Dark
-Name[es]=Midna Dark
-comment=opaque version of midna
-Comment[es]=version oscura de midna
-X-KDE-PluginInfo-Author=David Linares (Mcder3)
-X-KDE-PluginInfo-Email=mcder3@gmail.com
+
+Comment=An elegant dark theme for KaOS
+Comment[es]=Un tema oscuro elegante para el KaOS
+Comment[gl]=Un tema escuro elegante para KaOS
+Comment[ca]=Un tema fosc elegant per a l'KaOS
+Comment[it]=Un elegante tema scuro per KaOS
+Comment[de]=Ein elegantes dunkles Thema für KaOS
+Comment[fr]=Un thème sombre élégant pour KaOS
+comment[fi]=Tummat teema KaOS
+Comment[ru]=Элегантный темно-тема для KaOS
+Comment[ru_RU]=Элегантный темно-тема для KaOS
+Comment[pt_BR]=Um tema escuro elegante para KaOS
+Comment[zh_TW]=優雅的深色主題為KaOS
+Comment[zh_CN]=優雅的深色主題為KaOS
+Comment[x-test]=xxAn elegant dark theme for KaOSxx
+
+X-KDE-PluginInfo-Author=Fabián Alexis
+X-KDE-PluginInfo-Email=fabian.alexis@openmailbox.org
 X-KDE-PluginInfo-Name=Midna Dark
-X-KDE-PluginInfo-Version=1.1.0
-X-KDE-PluginInfo-Website=https://plus.google.com/u/0/115920115946572175775/
+X-KDE-PluginInfo-Version=2.0
+X-KDE-PluginInfo-Website=pinguinosyuncafe.wordpress.com || github.com/fabianalexisinostroza/Antu
 X-KDE-PluginInfo-Category=Plasma Theme
-X-KDE-PluginInfo-Depends=plasma-desktop
-X-KDE-PluginInfo-License=CC BY-ND
+X-KDE-PluginInfo-License=Creative Commons BY-NC-SA 3.0 || creativecommons.org/licenses/by-nc-sa/3.0/
 X-KDE-PluginInfo-EnabledByDefault=true
 X-Plasma-API=5.0
-
-[Wallpaper]
-defaultWallpaperTheme=midna
-defaultFileSuffix=.jpg
-defaultWidth=2546
-defaultHeight=1591
