@@ -1,163 +1,347 @@
 [Icon Theme]
 Name=Midna
-Comment=Plasma 5 KaOS icon theme with a modern flat design
-Inherits=breeze
+Name[ar]=Midna
+Name[ast]=Midna
+Name[bs]=Midna
+Name[ca]=Midna
+Name[cs]=Midna
+Name[da]=Midna
+Name[de]=Midna
+Name[el]=Midna
+Name[en_GB]=Midna
+Name[es]=Midna
+Name[fi]=Midna
+Name[fr]=Midna
+Name[gl]=Midna
+Name[hu]=Midna
+Name[ia]=Midna
+Name[it]=Midna
+Name[ko]=Midna
+Name[lt]=Midna
+Name[nb]=Midna
+Name[nds]=Midna
+Name[nl]=Midna
+Name[nn]=Midna
+Name[pl]=Midna
+Name[pt]=Midna
+Name[pt_BR]=Midna
+Name[ro]=Midna
+Name[ru]=Midna
+Name[sk]=Midna
+Name[sl]=Midna
+Name[sr]=Midna
+Name[sr@ijekavian]=Midna
+Name[sr@ijekavianlatin]=Midna
+Name[sr@latin]=Midna
+Name[sv]=Midna
+Name[tr]=Midna
+Name[uk]=Midna
+Name[x-test]=xxMidnaxx
+Name[zh_CN]=Midna
+Name[zh_TW]=Midna
 
-Directories=actions/small,actions/24,actions/48,actions/scalable,animations/scalable,apps/16,apps/22,apps/32,apps/scalable,categories/22,categories/32,categories/scalable,devices/symbolic,devices/scalable,devices/64,emblems/small,emblems/symbolic,emblems/medium,emotes/faces,emotes/food,mimetypes/small,mimetypes/scalable,places/16,places/48,places/scalable,status/symbolic,status/weather,status/dialogs
+Comment=A Simple and Fresh icon theme for Plasma Desktop adapted for KaOS
+Comment[ar]=A Simple and Fresh icon theme for Plasma Desktop adapted for KaOS
+Comment[ca]=A Simple and Fresh icon theme for Plasma Desktop adapted for KaOS
+Comment[cs]=A Simple and Fresh icon theme for Plasma Desktop adapted for KaOS
+Comment[da]=A Simple and Fresh icon theme for Plasma Desktop adapted for KaOS
+Comment[de]=A Simple and Fresh icon theme for Plasma Desktop adapted for KaOS
+Comment[el]=A Simple and Fresh icon theme for Plasma Desktop adapted for KaOS
+Comment[en_GB]=A Simple and Fresh icon theme for Plasma Desktop adapted for KaOS
+Comment[es]=A Simple and Fresh icon theme for Plasma Desktop adapted for KaOS
+Comment[fi]=A Simple and Fresh icon theme for Plasma Desktop adapted for KaOS
+Comment[fr]=A Simple and Fresh icon theme for Plasma Desktop adapted for KaOS
+Comment[gl]=A Simple and Fresh icon theme for Plasma Desktop adapted for KaOS
+Comment[hu]=A Simple and Fresh icon theme for Plasma Desktop adapted for KaOS
+Comment[it]=A Simple and Fresh icon theme for Plasma Desktop adapted for KaOS
+Comment[ko]=A Simple and Fresh icon theme for Plasma Desktop adapted for KaOS
+Comment[lt]=A Simple and Fresh icon theme for Plasma Desktop adapted for KaOS
+Comment[nb]=A Simple and Fresh icon theme for Plasma Desktop adapted for KaOS
+Comment[nl]=A Simple and Fresh icon theme for Plasma Desktop adapted for KaOS
+Comment[nn]=A Simple and Fresh icon theme for Plasma Desktop adapted for KaOS
+Comment[pl]=A Simple and Fresh icon theme for Plasma Desktop adapted for KaOS
+Comment[pt]=A Simple and Fresh icon theme for Plasma Desktop adapted for KaOS
+Comment[pt_BR]=A Simple and Fresh icon theme for Plasma Desktop adapted for KaOS
+Comment[ro]=A Simple and Fresh icon theme for Plasma Desktop adapted for KaOS
+Comment[ru]=A Simple and Fresh icon theme for Plasma Desktop adapted for KaOS
+Comment[sk]=A Simple and Fresh icon theme for Plasma Desktop adapted for KaOS
+Comment[sl]=A Simple and Fresh icon theme for Plasma Desktop adapted for KaOS
+Comment[sr]=A Simple and Fresh icon theme for Plasma Desktop adapted for KaOS
+Comment[sr@ijekavian]=A Simple and Fresh icon theme for Plasma Desktop adapted for KaOS
+Comment[sr@ijekavianlatin]=A Simple and Fresh icon theme for Plasma Desktop adapted for KaOS
+Comment[sr@latin]=A Simple and Fresh icon theme for Plasma Desktop adapted for KaOS
+Comment[sv]=A Simple and Fresh icon theme for Plasma Desktop adapted for KaOS
+Comment[tr]=A Simple and Fresh icon theme for Plasma Desktop adapted for KaOS
+Comment[uk]=A Simple and Fresh icon theme for Plasma Desktop adapted for KaOS
+Comment[x-test]=A Simple and Fresh icon theme for Plasma Desktop adapted for KaOS
+Comment[zh_CN]=A Simple and Fresh icon theme for Plasma Desktop adapted for KaOS
+Comment[zh_TW]=A Simple and Fresh icon theme for Plasma Desktop adapted for KaOS
 
-[actions/small]
+DisplayDepth=32
+
+Inherits=midnadark
+
+Example=folder
+
+DesktopDefault=48
+DesktopSizes=16,22,32,48,64,128,256
+ToolbarDefault=22
+ToolbarSizes=16,22,32,48
+MainToolbarDefault=22
+MainToolbarSizes=16,22,32,48
+SmallDefault=16
+SmallSizes=16,22,32,48
+PanelDefault=32
+PanelSizes=16,22,32,48,64,128,256
+DialogDefault=32
+DialogSizes=16,22,32,48,64,128,256
+
+########## Directories
+########## ordered by category and alphabetically
+
+Directories=actions/16,actions/22,actions/24,actions/32,actions/48,apps/16,apps/22,apps/32,apps/48,applets/256,categories/16,categories/22,categories/32,categories/48,devices/16,devices/22,devices/48,devices/64,emblems/8,emblems/16,emblems/22,emotes/22,mimetypes/16,mimetypes/22,mimetypes/32,mimetypes/64,places/16,places/22,places/32,places/64,status/16,status/22,status/64
+
+########## Actions
+########## ordered by size
+
+#16x16 - Fixed size - For use in sidebar(s) smaller toolbar(s) >!!!ONLY!!!<: e.g. Kate movable sidebar/toolbar (search and replace, current project, etc.) or Juk tree view - DO_NOT_USE_ANYWHERE_ELSE - Monochrome
+[actions/16]
 Size=16
 Context=Actions
 Type=Fixed
 
+#22x22 - Fixed size - For toolbar icons >!!!ONLY!!!< - DO_NOT_USE_ANYWHERE_ELSE - Monochrome
+[actions/22]
+Size=22
+Context=Actions
+Type=Fixed
+
+#24x24 - Fixed size - GTK icons >!!!ONLY!!!< - DO_NOT_USE_ANYWHERE_ELSE - Monochrome
 [actions/24]
 Size=24
 Context=Actions
 Type=Fixed
 
+#32x32 - Fixed size - For toolbar icons >!!!ONLY!!!< - DO_NOT_USE_ANYWHERE_ELSE - Monochrome
+[actions/32]
+Size=32
+Context=Actions
+Type=Fixed
+
+#48x48 - Fixed size - Icon(s) used in Kickoff on KDE 4 tabs section >!!!ONLY!!!< - DO_NOT_USE_ANYWHERE_ELSE - Color
 [actions/48]
 Size=48
 Context=Actions
 Type=Fixed
 
-[actions/scalable]
-Size=22
-Context=Actions
-Type=Scalable
+########## Apps
+########## ordered by size
 
-[animations/scalable]
-Size=22
-Context=Actions
-Type=Scalable
-
+#16x16 - Fixed size - Application icon(s) for Dolphin sidebar - OPTIONAL + DO_NOT_USE_ANYWHERE_ELSE - Monochrome
 [apps/16]
 Size=16
 Context=Applications
 Type=Fixed
 
+#22x22 - Fixed size - Workaround icon(s) for toolbar(s) button(s) e.g. Dolphin Open Terminal/About Dolphin/About KDE buttons - WRONG_ICON_USAGE_BY_APP - Monochrome
 [apps/22]
 Size=22
 Context=Applications
 Type=Fixed
 
+#32x32 - Fixed size - For System Settings icons >!!!ONLY!!!< - Scalable to the following sizes: 32x32 (default), 64x64, 128x128, 256x256 - DO_NOT_USE_ANYWHERE_ELSE - Color
 [apps/32]
 Size=32
 Context=Applications
 Type=Fixed
 
-[apps/scalable]
+#48x48 - Scalable - For application icons >!!!ONLY!!!< - Scalable to the following sizes: 48x48 (default), 96x96 and 24x24 (not recommended) - DO_NOT_USE_ANYWHERE_ELSE - Color
+[apps/48]
 Size=48
 Context=Applications
 Type=Scalable
 MinSize=48
 MaxSize=256
 
+#256x256 - Scalable - For applets / widgets icons >!!!ONLY!!! - DO_NOT_USE_ANYWHERE_ELSE - Color
+[applets/256]
+Size=256
+Context=Applications
+Type=Scalable
+MinSize=48
+MaxSize=256
+
+########## Categories
+########## ordered by size
+
+#16x16 - Fixed size - Category icon for symlinks - OPTIONAL + DO_NOT_USE_ANYWHERE_ELSE - Monochrome
+[categories/16]
+Size=16
+Context=Categories
+Type=Fixed
+
+#22x22 - Fixed size - Workaround icon(s) for toolbar(s) button(s) e.g. Dolphin Configure toolbar button -  WRONG_ICON_USAGE_BY_APP - Monochrome
 [categories/22]
 Size=22
 Context=Categories
-Type=Scalable
-MinSize=16
-MaxSize=22
+Type=Fixed
 
+#32x32 - Fixed size - For categories icons >!!!ONLY!!!< - Used in Kickoff (KDE 4.x.x) and Lancelot. Also used in MATE and Cinnamon (just FYI) - DO_NOT_USE_ANYWHERE_ELSE - Monochrome
 [categories/32]
 Size=32
 Context=Categories
 Type=Fixed
 
-[categories/scalable]
+#48x48 - Fixed size - Icon(s) used in Kickoff on KDE 4 tabs section >!!!ONLY!!!< - DO_NOT_USE_ANYWHERE_ELSE - Color
+[categories/48]
 Size=48
 Context=Categories
-Type=Scalable
-MinSize=48
-MaxSize=256
+Type=Fixed
 
-[devices/symbolic]
+########## Devices
+########## ordered by size
+
+#16x16 - Fixed size - For small device icons >!!!ONLY!!!< - DO_NOT_USE_ANYWHERE_ELSE - Monochrome
+[devices/16]
 Size=16
 Context=Devices
 Type=Fixed
 
-[devices/scalable]
-Size=48
-Context=Devices
-Type=Scalable
-
-[devices/64]
-Size=64
+#22x22 - Fixed size - For small device icons >!!!ONLY!!!< - DO_NOT_USE_ANYWHERE_ELSE - Monochrome
+[devices/22]
+Size=22
 Context=Devices
 Type=Fixed
 
-[emblems/small]
+#48x48 - Scalable - For device icons >!!!ONLY!!!< - DO_NOT_USE_ANYWHERE_ELSE - Color
+[devices/48]
+Size=48
+Context=Devices
+Type=Fixed
+
+#64x64 - Scalable - For device icons >!!!ONLY!!!< - Scalable to the following sizes: 64x64 (default), 32x32, 128x128, 256x256 - DO_NOT_USE_ANYWHERE_ELSE - Color
+[devices/64]
+Size=64
+Context=Devices
+Type=Scalable
+MinSize=64
+MaxSize=256
+
+########## Emblems
+########## ordered by size
+
+#8x8 - Fixed size - File system emblems - DO_NOT_USE_ANYWHERE_ELSE - Monochrome
+[emblems/8]
 Size=8
 Context=Emblems
 Type=Fixed
 
-[emblems/symbolic]
+#16x16 - Fixed size - File system emblems - DO_NOT_USE_ANYWHERE_ELSE - Monochrome
+[emblems/16]
 Size=16
 Context=Emblems
-Type=Scalable
+Type=Fixed
 
-[emblems/medium]
-Size=24
+#22x22 - Fixed size - File system emblems - DO_NOT_USE_ANYWHERE_ELSE - Monochrome
+[emblems/22]
+Size=22
 Context=Emblems
 Type=Fixed
 
-[emotes/faces]
+########## Emoticons
+########## ordered by size
+
+#22x22 - Fixed size - Emoticons - DO_NOT_USE_ANYWHERE_ELSE - Color/flat
+[emotes/22]
 Size=22
 Context=Emotes
 Type=Fixed
 
-[emotes/food]
-Size=22
-Context=Emotes
-Type=Fixed
+########## Mimetypes
+########## ordered by size
 
-[mimetypes/small]
+#16x16 - Fixed size - For small file type icons >!!!ONLY!!!< - DO_NOT_USE_ANYWHERE_ELSE - Monochrome
+[mimetypes/16]
 Size=16
 Context=MimeTypes
 Type=Fixed
+MinSize=16
 
-[mimetypes/scalable]
-Size=64
+#22x22 - Fixed size - For small file type icons >!!!ONLY!!!< - DO_NOT_USE_ANYWHERE_ELSE - Monochrome
+[mimetypes/22]
+Size=22
+Context=MimeTypes
+Type=Scalable
+MinSize=22
+MaxSize=24
+
+#32x32 - Scalable - For file type icons >!!!ONLY!!!< - Scalable to the following sizes: 64x64 (default), 32x32, 128x128, 256x256 - DO_NOT_USE_ANYWHERE_ELSE - Color
+[mimetypes/32]
+Size=32
 Context=MimeTypes
 Type=Scalable
 MinSize=32
+MaxSize=32
+
+#64x64 - Scalable - For file type icons >!!!ONLY!!!< - Scalable to the following sizes: 64x64 (default), 32x32, 128x128, 256x256 - DO_NOT_USE_ANYWHERE_ELSE - Color
+[mimetypes/64]
+Size=64
+Context=MimeTypes
+Type=Scalable
+MinSize=48
 MaxSize=256
 
+########## Places
+########## ordered by size
+
+#16x16 - Fixed size - For small folder icons >!!!ONLY!!!< - DO_NOT_USE_ANYWHERE_ELSE - Monochrome
 [places/16]
 Size=16
 Context=Places
-Type=Scalable
+Type=Fixed
+MinSize=16
+
+#22x22 - Fixed size - Workaround icon(s) for toolbar(s) button(s) e.g. KMail trash icon - WRONG_ICON_USAGE_BY_APP - Monochrome
+[places/22]
+Size=22
+Context=Places
 Type=Fixed
 
-[places/48]
-Size=48
+#32x32 - Scalable - For folder icons >!!!ONLY!!!< - Scalable to the following sizes: 64x64 (default), 32x32, 128x128, 256x256 - DO_NOT_USE_ANYWHERE_ELSE - Color
+[places/32]
+Size=32
 Context=Places
-Type=Scalable
-MinSize=22
-MaxSize=48
+Type=Fixed
+MinSize=32
+MaxSize=32
 
-[places/scalable]
+#64x64 - Scalable - For folder icons >!!!ONLY!!!< - Scalable to the following sizes: 64x64 (default), 32x32, 128x128, 256x256 - DO_NOT_USE_ANYWHERE_ELSE - Color
+[places/64]
 Size=64
 Context=Places
 Type=Scalable
-MinSize=32
+MinSize=48
 MaxSize=256
 
-[status/symbolic]
+########## Status
+########## ordered by size
+
+#16x16 - Fixed size - For IM status icons >!!!ONLY!!!< - DO_NOT_USE_ANYWHERE_ELSE - Monochrome
+[status/16]
+Size=16
+Context=Status
+Type=Fixed
+
+#22x22 - Fixed size - Icon(s) for Plasma theme/System Tray. Not particularly used on Plasma. - DO_NOT_USE_ANYWHERE_ELSE - Monochrome
+[status/22]
 Size=22
 Context=Status
-Type=Scalable
-MinSize=8
-MaxSize=48
+Type=Fixed
 
-[status/dialogs]
+#64x64 - Fixed size - For dialog icons >!!!ONLY!!!< - DO_NOT_USE_ANYWHERE_ELSE - Color
+[status/64]
 Size=64
 Context=Status
 Type=Fixed
 
-[status/weather]
-Size=16
-Context=Status
-Type=Scalable
-MinSize=8
-MaxSize=48
+########## EOF
