@@ -26,7 +26,7 @@ import org.kde.plasma.extras 2.0 as PlasmaExtras
 import org.kde.plasma.workspace.components 2.0 as PW
 
 ColumnLayout {
-   MidnaDarkLabel { //should be a heading but we want it _loads_ bigger
+   MidnaLabel { //should be a heading but we want it _loads_ bigger
         text: Qt.formatTime(timeSource.data["Local"]["DateTime"])
         //we fill the width then align the text so that we can make the text shrink to fit
         Layout.fillWidth: true
@@ -37,37 +37,36 @@ ColumnLayout {
         font.pointSize: 36
     }
 
-    MidnaDarkLabel {
+    MidnaLabel {
         text: Qt.formatDate(timeSource.data["Local"]["DateTime"], Qt.DefaultLocaleLongDate);
         Layout.alignment: Qt.AlignRight
     }
 
     RowLayout {
         Layout.alignment: Qt.AlignRight
-        visible: pmSource.connectedSources != "" && pmSource.data["Battery"]["Has Battery"] && pmSource.data["Battery0"]["Is Power Supply"]
+        visible: pmSource.data["Battery"]["Has Cumulative"]
 
         PW.BatteryIcon {
             id: battery
             hasBattery: true
-            percent: pmSource.data["Battery0"] ? pmSource.data["Battery0"]["Percent"] : 0
-            pluggedIn: pmSource.data["Battery0"] ? pmSource.data["Battery0"]["State"] != "Discharging" : false
+            percent: pmSource.data["Battery"]["Percent"]
+            pluggedIn: pmSource.data["AC Adapter"] ? pmSource.data["AC Adapter"]["Plugged in"] : false
 
             height: batteryLabel.height
             width: batteryLabel.height
         }
 
-        MidnaDarkLabel {
+        MidnaLabel {
             id: batteryLabel
             text: {
-                var state = pmSource.data["Battery0"] ? pmSource.data["Battery0"]["State"] : "";
+                var state = pmSource.data["Battery"] ? pmSource.data["Battery"]["State"] : "";
                 switch(state) {
-                case "NoCharge": //follow through
-                case "Discharging":
-                    return i18nd("plasma_lookandfeel_org.kde.lookandfeel","%1% battery remaining", battery.percent)
+                case "Charging":
+                    return i18nd("plasma_lookandfeel_org.kde.lookandfeel","%1%. Charging", battery.percent)
                 case "FullyCharged":
                     return i18nd("plasma_lookandfeel_org.kde.lookandfeel","Fully charged")
                 default:
-                    return i18nd("plasma_lookandfeel_org.kde.lookandfeel","%1%. Charging", battery.percent)
+                    return i18nd("plasma_lookandfeel_org.kde.lookandfeel","%1% battery remaining", battery.percent)
                 }
             }
             Layout.alignment: Qt.AlignRight
@@ -79,18 +78,7 @@ ColumnLayout {
     PlasmaCore.DataSource {
         id: pmSource
         engine: "powermanagement"
-        connectedSources: sources
-        onSourceAdded: {
-            if (source == "Battery0") {
-                disconnectSource(source);
-                connectSource(source);
-            }
-        }
-        onSourceRemoved: {
-            if (source == "Battery0") {
-                disconnectSource(source);
-            }
-        }
+        connectedSources: ["Battery", "AC Adapter"]
     }
 
     PlasmaCore.DataSource {

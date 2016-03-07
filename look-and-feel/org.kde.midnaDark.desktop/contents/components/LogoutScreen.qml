@@ -45,11 +45,6 @@ MidnaBlock {
         shortcut: "Escape"
     }
 
-    Controls.Action {
-        onTriggered: root.currentAction()
-        shortcut: "Return"
-    }
-
     onRemainingTimeChanged: {
         if(remainingTime<0)
             root.currentAction()
@@ -63,18 +58,20 @@ MidnaBlock {
 
     main: ColumnLayout {
         spacing: 0
-        MidnaDarkHeading {
+        MidnaHeading {
             id: actionLabel
             Layout.alignment: Qt.AlignHCenter
         }
 
         Item { height: units.largeSpacing }
 
-        Image {
-            id: actionIcon
+        PlasmaCore.IconItem {
+             id: actionIcon
             Layout.alignment: Qt.AlignHCenter
             Layout.fillHeight: true
-            fillMode: Image.PreserveAspectFit
+            Layout.minimumWidth: height
+            Layout.maximumWidth: height
+            colorGroup: PlasmaCore.ColorScope.colorGroup
             opacity: actionIconMouse.containsMouse ? 1 : 0.7
             MouseArea {
                 id: actionIconMouse
@@ -96,7 +93,7 @@ MidnaBlock {
             value: root.remainingTime
         }
 
-        MidnaDarkLabel {
+        MidnaLabel {
             anchors.right: progressBar.right
             text: i18nd("plasma_lookandfeel_org.kde.lookandfeel","In %1 seconds", root.remainingTime);
         }
@@ -107,19 +104,19 @@ MidnaBlock {
                 name: "shutdown"
                 PropertyChanges { target: root; currentAction: shutdownRequested }
                 PropertyChanges { target: actionLabel; text: i18nd("plasma_lookandfeel_org.kde.lookandfeel","Shutting down") }
-                PropertyChanges { target: actionIcon; source: "artwork/shutdown_primary.svgz" }
+                PropertyChanges { target: actionIcon; source: "system-shutdown" }
             },
             State {
                 name: "logout"
                 PropertyChanges { target: root; currentAction: logoutRequested }
                 PropertyChanges { target: actionLabel; text: i18nd("plasma_lookandfeel_org.kde.lookandfeel","Logging out") }
-                PropertyChanges { target: actionIcon; source: "artwork/logout_primary.svgz" }
+                PropertyChanges { target: actionIcon; source: "system-log-out" }
             },
             State {
                 name: "reboot"
                 PropertyChanges { target: root; currentAction: rebootRequested }
                 PropertyChanges { target: actionLabel; text: i18nd("plasma_lookandfeel_org.kde.lookandfeel","Rebooting") }
-                PropertyChanges { target: actionIcon; source: "artwork/restart_primary.svgz" }
+                PropertyChanges { target: actionIcon; source: "system-reboot" }
             }
         ]
     }
@@ -133,14 +130,32 @@ MidnaBlock {
             anchors.centerIn: parent
 
             PlasmaComponents.Button {
+                id: cancelButton
                 text: i18nd("plasma_lookandfeel_org.kde.lookandfeel","Cancel")
                 onClicked: root.cancel()
+                Layout.preferredWidth: Math.max(commitButton.implicitWidth, cancelButton.implicitWidth)
             }
 
             PlasmaComponents.Button {
                 id: commitButton
+                Layout.preferredWidth: Math.max(commitButton.implicitWidth, cancelButton.implicitWidth)
                 onClicked: root.currentAction()
                 focus: true
+
+                function trigger() {
+                    if (commitButton.activeFocus) {
+                        root.currentAction()
+                    }
+                }
+
+                Controls.Action {
+                    onTriggered: commitButton.trigger()
+                    shortcut: "Return"
+                }
+                Controls.Action {
+                    onTriggered: commitButton.trigger()
+                    shortcut: "Enter" // on numpad
+                }
             }
         }
 
