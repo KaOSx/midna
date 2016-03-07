@@ -100,7 +100,7 @@ Item {
         }
     }
 
-    MidnaDarkLabel {
+    MidnaLabel {
         id: loginText
         anchors {
             bottom: parent.bottom
