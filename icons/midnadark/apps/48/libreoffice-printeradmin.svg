@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   viewBox="0 0 48 48"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.91 r13725"
+   sodipodi:docname="libreoffice-printeradmin.svg">
+  <metadata
+     id="metadata46">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="806"
+     inkscape:window-height="480"
+     id="namedview44"
+     showgrid="false"
+     inkscape:zoom="4.9166667"
+     inkscape:cx="24"
+     inkscape:cy="24"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="svg2" />
+  <defs
+     id="defs4">
+    <linearGradient
+       xlink:href="#5"
+       id="6"
+       x1="81.26"
+       y1="14.551"
+       x2="81.41"
+       y2="2.154"
+       gradientUnits="userSpaceOnUse" />
+    <linearGradient
+       id="5">
+      <stop
+         stop-color="#1f1f1f"
+         id="stop8" />
+      <stop
+         offset="1"
+         stop-color="#444"
+         id="stop10" />
+    </linearGradient>
+    <linearGradient
+       id="7"
+       x1="81.4"
+       y1="11.641"
+       x2="81.51"
+       y2=".651"
+       gradientUnits="userSpaceOnUse">
+      <stop
+         stop-color="#cdced2"
+         id="stop13" />
+      <stop
+         offset="1"
+         stop-color="#f1f1f1"
+         id="stop15" />
+    </linearGradient>
+    <linearGradient
+       xlink:href="#5"
+       id="4"
+       x1="-847.06"
+       y1="191.09"
+       x2="-843.94"
+       y2="-181.89"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(.07412 0 0 .06784 145.54 26.06)" />
+    <linearGradient
+       id="3"
+       x1="82.46"
+       y1="30.487"
+       x2="82.74"
+       y2="24.587"
+       gradientUnits="userSpaceOnUse">
+      <stop
+         stop-color="#060606"
+         id="stop19" />
+      <stop
+         offset="1"
+         stop-color="#343434"
+         id="stop21" />
+    </linearGradient>
+    <linearGradient
+       xlink:href="#1"
+       id="0"
+       x1="98.65"
+       y1="19.362"
+       x2="98.44"
+       y2="16.254"
+       gradientUnits="userSpaceOnUse" />
+    <linearGradient
+       xlink:href="#1"
+       id="2"
+       y1="45.946"
+       x2="0"
+       y2="25.988"
+       gradientUnits="userSpaceOnUse" />
+    <linearGradient
+       id="1">
+      <stop
+         stop-color="#0a80fd"
+         id="stop26" />
+      <stop
+         offset="1"
+         stop-color="#56c5fa"
+         id="stop28" />
+    </linearGradient>
+  </defs>
+  <g
+     transform="matrix(.99999 0 0 .99999-58.37.582)"
+     enable-background="new"
+     id="g30">
+    <rect
+       y="6.357"
+       x="67.28"
+       height="10.47"
+       width="30.26"
+       fill="url(#6)"
+       rx=".654"
+       id="rect32" />
+    <rect
+       y=".741"
+       x="70.27"
+       height="13.09"
+       width="24.21"
+       fill="url(#7)"
+       rx=".685"
+       id="rect34" />
+    <rect
+       y="12.9"
+       x="58.37"
+       height="26.502"
+       width="48"
+       fill="url(#4)"
+       rx="1.559"
+       id="rect36" />
+    <path
+       d="m96.39585 16.4177a1.472334 1.472334 0 0 0 -1.472333 1.472334 1.472334 1.472334 0 0 0 1.472333 1.472334 1.472334 1.472334 0 0 0 1.472334 -1.472334 1.472334 1.472334 0 0 0 -1.472334 -1.472334m4.253411 0a1.472334 1.472334 0 0 0 -1.472336 1.472334 1.472334 1.472334 0 0 0 1.472336 1.472334 1.472334 1.472334 0 0 0 1.47233 -1.472334 1.472334 1.472334 0 0 0 -1.47233 -1.472334"
+       fill="url(#0)"
+       id="path38" />
+    <rect
+       y="27.46"
+       x="70.51"
+       height="18.65"
+       width="23.721"
+       fill="url(#2)"
+       rx=".965"
+       id="rect40" />
+    <path
+       d="m71.17 26.15h22.412c1.178 0 2.127.949 2.127 2.127v.164c0 1.178 0 2.127 0 2.127h-26.666c0 0 0-.949 0-2.127v-.164c0-1.178.949-2.127 2.127-2.127"
+       fill="url(#3)"
+       id="path42" />
+  </g>
+</svg>
