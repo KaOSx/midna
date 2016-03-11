@@ -1,1 +1,53 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48"><path d="m59.65-13.406c-.173.155-.428.163-.613.023l-6.103-4.644-2.891 17.297c-.011.066-.034.125-.068.18-.58 2.48-3.744 4.328-7.465 4.328-4.171 0-7.565-2.31-7.565-5.149 0-2.84 3.393-5.15 7.565-5.15 1.713 0 3.341.383 4.665 1.086l3.824-21.691c.034-.198.189-.356.39-.393.194-.034.397.055.5.23l7.855 13.276c.119.202.079.453-.095.608" transform="matrix(1.21388 0 0 1.21388-33.501 39.42)" fill="#4d4d4d" enable-background="new"/></svg>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   viewBox="0 0 48 48"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.91 r13725"
+   sodipodi:docname="clementine-panel.svg">
+  <metadata
+     id="metadata10">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs8" />
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1366"
+     inkscape:window-height="687"
+     id="namedview6"
+     showgrid="false"
+     inkscape:zoom="4.9166667"
+     inkscape:cx="24"
+     inkscape:cy="24"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg2" />
+  <path
+     inkscape:connector-curvature="0"
+     style="fill:#566060;enable-background:new;fill-opacity:1"
+     d="m 38.896025,22.140427 c -0.210001,0.188152 -0.51954,0.197863 -0.744108,0.02792 L 30.743607,16.531088 27.23428,37.52757 c -0.01335,0.08012 -0.04127,0.151735 -0.08254,0.218499 -0.70405,3.010422 -4.544766,5.253672 -9.061613,5.253672 -5.063098,0 -9.1830067,-2.804063 -9.1830067,-6.250268 0,-3.447419 4.1186947,-6.251482 9.1830027,-6.251482 2.079376,0 4.055572,0.464916 5.662749,1.318274 L 28.39475,5.4859927 c 0.04127,-0.240348 0.229423,-0.432141 0.473413,-0.477055 0.235492,-0.04127 0.48191,0.06676 0.60694,0.279193 L 39.01013,21.403602 c 0.144452,0.245204 0.0959,0.549888 -0.115318,0.738039"
+     id="path4-2" />
+</svg>
