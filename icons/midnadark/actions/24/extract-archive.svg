@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   viewBox="0 0 22 22"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.91 r13725"
+   sodipodi:docname="extract-archive.svg">
+  <metadata
+     id="metadata10">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs8" />
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="806"
+     inkscape:window-height="480"
+     id="namedview6"
+     showgrid="false"
+     inkscape:zoom="10.727273"
+     inkscape:cx="11"
+     inkscape:cy="11"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="svg2" />
+  <path
+     d="m4.6 3c-.443 0-.799.358-.799.801v14.398c0 .443.356.801.799.801h12.801c.443 0 .799-.358.799-.801v-14.398c0-.443-.356-.801-.799-.801h-12.801m6.4 4c.155-.001.311.042.43.16l2.57 2.838c.218.219.218.574 0 .793-.218.219-.572.219-.791 0l-2.209-2.439-2.207 2.439c-.219.219-.572.219-.791 0-.219-.219-.219-.574 0-.793l2.568-2.838c.118-.118.275-.17.43-.16m-.004 3.516c.509 0 .922.414.922.924 0 .51-.413.922-.922.922-.509 0-.92-.412-.92-.922 0-.51.411-.924.92-.924m0 2.637c.509 0 .922.414.922.924 0 .51-.413.922-.922.922-.509 0-.92-.412-.92-.922 0-.51.411-.924.92-.924"
+     transform="translate(0-.032)"
+     stroke-opacity=".55"
+     fill="#ffffff"
+     stroke-width="2.8"
+     stroke="none"
+     id="path4" />
+</svg>
