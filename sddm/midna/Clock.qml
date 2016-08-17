@@ -28,15 +28,15 @@ ColumnLayout {
         text: Qt.formatTime(timeSource.data["Local"]["DateTime"])
         font.pointSize: 32 //Mockup says this, I'm not sure what to do?
         Layout.alignment: Qt.AlignHCenter
-        color: "#31A3DD"
-        font.family: "Chancery URW"
+        color: "#646464"
+        font.family: "Noto Sans"
     }
     Label {
         text: Qt.formatDate(timeSource.data["Local"]["DateTime"], Qt.DefaultLocaleLongDate)
         font.pointSize: 18
         Layout.alignment: Qt.AlignHCenter
-        color: "#31A3DD"
-        font.family: "Chancery URW"
+        color: "#646464"
+        font.family: "Noto Sans"
     }
     DataSource {
         id: timeSource

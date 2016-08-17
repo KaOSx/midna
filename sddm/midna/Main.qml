@@ -58,7 +58,7 @@ PlasmaCore.ColorScope {
         Rectangle {
             anchors.centerIn: parent
             width: parent.width
-            height: parent.height * 0.4
+            height: parent.height * 0.55
             anchors.verticalCenterOffset: 0
             color: "#F0F5F5F5"
             //color: "#33000000"
