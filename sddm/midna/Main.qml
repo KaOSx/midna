@@ -58,26 +58,39 @@ PlasmaCore.ColorScope {
         Rectangle {
             anchors.centerIn: parent
             width: parent.width
-            height: parent.height * 0.5
+            height: parent.height * 0.4
             anchors.verticalCenterOffset: 0
             color: "#F0F5F5F5"
+            //color: "#33000000"
 
-            KeyboardButton {
+            Rectangle {
+                color: "#31A3DD"
+                width: 145
+                height: 25
                 anchors {
-                    bottom: parent.bottom
-                    bottomMargin: 20
-                    left: parent.left
-                    leftMargin: 200
+                        bottom: parent.bottom
+                        bottomMargin: 20
+                        left: parent.left
+                        leftMargin: 200
+                    }
+            
+                KeyboardButton {
                 }
             }
-
-            SessionButton {
-                id: sessionButton
+            
+            Rectangle {
+                color: "#31A3DD"
+                width: 165
+                height: 25
                 anchors {
                     bottom: parent.bottom
                     bottomMargin: 20
                     right: parent.right
                     rightMargin: 200
+                }
+
+                SessionButton {
+                    id: sessionButton
                 }
             }
             
@@ -98,8 +111,8 @@ PlasmaCore.ColorScope {
 
 
     Clock {
-        anchors.bottom: parent.verticalCenter
-        anchors.bottomMargin: units.gridUnit * 13
+        anchors.top: parent.top
+        anchors.topMargin: units.gridUnit * 3
         anchors.horizontalCenter: parent.horizontalCenter
     }
 
@@ -122,25 +135,25 @@ PlasmaCore.ColorScope {
 
             actionItems: [
                 ActionButton {
-                    iconSource: "system-suspend"
+                    iconSource: "/usr/share/icons/midna/actions/24/system-suspend.svg"
                     text: i18nd("plasma_lookandfeel_org.kde.lookandfeel","Suspend")
                     onClicked: sddm.suspend()
                     enabled: sddm.canSuspend
                 },
                 ActionButton {
-                    iconSource: "system-reboot"
+                    iconSource: "/usr/share/icons/midna/actions/24/system-reboot.svg"
                     text: i18nd("plasma_lookandfeel_org.kde.lookandfeel","Restart")
                     onClicked: sddm.reboot()
                     enabled: sddm.canReboot
                 },
                 ActionButton {
-                    iconSource: "system-shutdown"
+                    iconSource: "/usr/share/icons/midna/actions/24/system-shutdown.svg"
                     text: i18nd("plasma_lookandfeel_org.kde.lookandfeel","Shutdown")
                     onClicked: sddm.powerOff()
                     enabled: sddm.canPowerOff
                 },
                 ActionButton {
-                    iconSource: "system-search"
+                    iconSource: "/usr/share/icons/midna/actions/24/system-search.svg"
                     text: i18nd("plasma_lookandfeel_org.kde.lookandfeel","Different User")
                     onClicked: mainStack.push(userPrompt)
                     enabled: true
@@ -179,7 +192,7 @@ PlasmaCore.ColorScope {
 
             actionItems: [
                 ActionButton {
-                    iconSource: "system-suspend" //FIXME waiting on VDG to tell me icon name
+                    iconSource: "/usr/share/icons/midna/actions/24/go-previous-view.svg" 
                     text: i18nd("plasma_lookandfeel_org.kde.lookandfeel","Back")
                     onClicked: mainStack.pop()
                 }

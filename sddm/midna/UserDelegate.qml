@@ -93,7 +93,7 @@ Item {
                         float blend = 0.01;
                         float innerRadius = 0.47;
                         float outerRadius = innerRadius + 0.02;
-                        vec4 colorEmpty = vec4(0.0, 0.0, 0.0, 0.0);
+                        vec4 colorEmpty = vec4(0.5, 0.5, 0.5, 1.0);
 
                         void main() {
                             vec4 colorSource = texture2D(source, qt_TexCoord0.st);

@@ -52,6 +52,7 @@ Item {
         horizontalAlignment: Text.AlignHCenter
         verticalAlignment: Text.AlignTop
         wrapMode: Text.Wrap
+        color: "#646464"
     }
 
     MouseArea {
