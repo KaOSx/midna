@@ -29,7 +29,7 @@ Item {
 
     activeFocusOnTab: true
 
-    implicitWidth: units.gridUnit * 4
+    implicitWidth: units.gridUnit * 6
     implicitHeight: units.gridUnit * 3 + units.smallSpacing + label.implicitHeight
 
     PlasmaCore.IconItem {
@@ -39,6 +39,7 @@ Item {
             left: parent.left
             right: parent.right
         }
+        colorGroup: PlasmaCore.ColorScope.colorGroup
         active: mouseArea.containsMouse || root.activeFocus
     }
     PlasmaComponents.Label {

@@ -27,10 +27,11 @@ import QtQuick.Controls 1.3 as QQC
 PlasmaComponents.ToolButton {
     id: root
     property int currentIndex: -1
+    property color textColor: "#646464"
 
     implicitWidth: minimumWidth
 
-    iconSource: ""
+    visible: menu.items.length > 1
 
     text: i18nd("plasma_lookandfeel_org.kde.lookandfeel", "Desktop Session: %1", instantiator.objectAt(currentIndex).text || "")
 

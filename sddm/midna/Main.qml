@@ -62,35 +62,23 @@ PlasmaCore.ColorScope {
             anchors.verticalCenterOffset: 0
             color: "#F0F5F5F5"
             //color: "#33000000"
-
-            Rectangle {
-                color: "#31A3DD"
-                width: 145
-                height: 25
-                anchors {
-                        bottom: parent.bottom
-                        bottomMargin: 20
-                        left: parent.left
-                        leftMargin: 200
-                    }
             
-                KeyboardButton {
+            KeyboardButton {
+                anchors {
+                    bottom: parent.bottom
+                    bottomMargin: 20
+                    left: parent.left
+                    leftMargin: 200
                 }
             }
-            
-            Rectangle {
-                color: "#31A3DD"
-                width: 165
-                height: 25
+
+            SessionButton {
+                id: sessionButton
                 anchors {
                     bottom: parent.bottom
                     bottomMargin: 20
                     right: parent.right
                     rightMargin: 200
-                }
-
-                SessionButton {
-                    id: sessionButton
                 }
             }
             

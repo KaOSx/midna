@@ -4,14 +4,18 @@ import org.kde.plasma.core 2.0 as PlasmaCore
 import org.kde.plasma.components 2.0 as PlasmaComponents
 
 import QtQuick.Controls 1.3 as QQC
+import QtQuick.Controls.Styles 1.4
 
 PlasmaComponents.ToolButton {
     id: keyboardButton
 
     property int currentIndex: -1
+    property color textColor: "#646464"
 
     text: i18nd("plasma_lookandfeel_org.kde.lookandfeel", "Keyboard Layout: %1", instantiator.objectAt(currentIndex).shortName)
     implicitWidth: minimumWidth
+    
+    visible: menu.items.length > 1
 
     Component.onCompleted: currentIndex = Qt.binding(function() {return keyboard.currentLayout});
 
