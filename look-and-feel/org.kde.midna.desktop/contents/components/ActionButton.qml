@@ -29,16 +29,20 @@ Item {
 
     activeFocusOnTab: true
 
-    implicitWidth: units.gridUnit * 6
-    implicitHeight: units.gridUnit * 3 + units.smallSpacing + label.implicitHeight
+    property int iconSize: units.gridUnit * 3
+
+    implicitWidth: Math.max(iconSize + units.largeSpacing * 2, label.contentWidth)
+    implicitHeight: iconSize + units.smallSpacing + label.implicitHeight
 
     PlasmaCore.IconItem {
         id: icon
         anchors {
             top: parent.top
-            left: parent.left
-            right: parent.right
+            horizontalCenter: parent.horizontalCenter
         }
+        width: iconSize
+        height: iconSize
+
         colorGroup: PlasmaCore.ColorScope.colorGroup
         active: mouseArea.containsMouse || root.activeFocus
     }
@@ -52,7 +56,7 @@ Item {
         }
         horizontalAlignment: Text.AlignHCenter
         verticalAlignment: Text.AlignTop
-        wrapMode: Text.Wrap
+        //wrapMode: Text.WordWrap
         color: "#646464"
     }
 
