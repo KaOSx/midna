@@ -66,9 +66,9 @@ PlasmaCore.ColorScope {
             KeyboardButton {
                 anchors {
                     bottom: parent.bottom
-                    bottomMargin: 20
+                    bottomMargin: units.gridUnit * 1
                     left: parent.left
-                    leftMargin: 200
+                    leftMargin: units.gridUnit * 1
                 }
             }
 
@@ -76,9 +76,9 @@ PlasmaCore.ColorScope {
                 id: sessionButton
                 anchors {
                     bottom: parent.bottom
-                    bottomMargin: 20
+                    bottomMargin: units.gridUnit * 1
                     right: parent.right
-                    rightMargin: 200
+                    rightMargin: units.gridUnit * 1
                 }
             }
             
