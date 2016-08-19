@@ -23,15 +23,16 @@ import org.kde.plasma.core 2.0 as PlasmaCore
 import org.kde.plasma.components 2.0 as PlasmaComponents
 
 import QtQuick.Controls 1.3 as QQC
+import QtQuick.Controls 1.4
 
-PlasmaComponents.ToolButton {
+Button {
     id: root
     property int currentIndex: -1
     property color textColor: "#646464"
 
-    implicitWidth: minimumWidth
+    implicitWidth: 195
 
-    visible: menu.items.length > 1
+    //visible: menu.items.length > 1
 
     text: i18nd("plasma_lookandfeel_org.kde.lookandfeel", "Desktop Session: %1", instantiator.objectAt(currentIndex).text || "")
 
