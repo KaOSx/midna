@@ -30,7 +30,7 @@ Button {
     property int currentIndex: -1
     property color textColor: "#646464"
 
-    implicitWidth: 195
+    //implicitWidth: 195
 
     //visible: menu.items.length > 1
 

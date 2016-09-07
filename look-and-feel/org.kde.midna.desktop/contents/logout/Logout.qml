@@ -22,8 +22,10 @@ import "../components"
 
 Item {
     id: root
-    height: units.largeSpacing*14
+    //height: units.largeSpacing*14
+    height: parent.height * 0.25
     width: screenGeometry.width
+    anchors.centerIn: parent
 
     signal logoutRequested()
     signal haltRequested()
