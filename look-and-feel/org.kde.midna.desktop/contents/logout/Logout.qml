@@ -23,7 +23,7 @@ import "../components"
 Item {
     id: root
     //height: units.largeSpacing*14
-    height: parent.height * 0.25
+    height: parent.height * 0.35
     width: screenGeometry.width
     anchors.centerIn: parent
 
