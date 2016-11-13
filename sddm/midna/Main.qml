@@ -163,6 +163,14 @@ Rectangle {
             }
             width: parent.width / 3
             height: parent.height / 5
+            
+            KeyboardButton {
+                 anchors {
+                     horizontalCenter: parent.horizontalCenter
+                     topMargin: 25
+                     bottomMargin: 5
+                 }
+            }
 
             Text {
                 id: timeText
