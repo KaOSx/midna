@@ -1,6 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2014 by Aleix Pol Gonzalez <aleixpol@blue-systems.com>  *
- *   Copyright (C) 2014 by Marco Martin <mart@kde.org>                     *
+ *   Copyright (C) 2016 Marco Martin <mart@kde.org>                        *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -18,10 +17,22 @@
  *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA .        *
  ***************************************************************************/
 
-import QtQuick 2.1
-import org.kde.plasma.core 2.0 as PlasmaCore
-import org.kde.plasma.components 2.0 as PlasmaComponents
+import QtQuick 2.2
+import QtQuick.Layouts 1.2
 
-PlasmaComponents.Label {
-    color: "#646464"
+import org.kde.plasma.core 2.0 as PlasmaCore
+
+import "../components"
+
+ActionButton {
+    property var action
+    onClicked: action()
+    iconSize: units.iconSizes.huge
+    opacity: activeFocus || containsMouse ? 1 : 0.6
+    Behavior on opacity {
+        OpacityAnimator {
+            duration: units.longDuration
+            easing.type: Easing.InOutQuad
+        }
+    }
 }

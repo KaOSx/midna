@@ -28,13 +28,15 @@ Item {
 
     property bool isCurrent: true
 
+    readonly property var m: model
     property string name
     property string userName
+    property string avatarPath
     property string iconSource
     signal clicked()
 
     property real faceSize: Math.min(width, height - usernameDelegate.height - units.largeSpacing)
-    
+
     opacity: isCurrent ? 1.0 : 0.5
 
     Behavior on opacity {
@@ -48,22 +50,22 @@ Item {
         width: faceSize
         height: faceSize
 
-        //we sometimes have a path to an image sometimes an icon
-        //IconItem tries to load a full path as an icon which is rubbish
-        //we try loading it as a normal image, if that fails we fall back to IconItem
+        //Image takes priority, taking a full path to a file, if that doesn't exist we show an icon
         Image {
             id: face
-            source: wrapper.iconSource
+            source: wrapper.avatarPath
+            sourceSize: Qt.size(faceSize, faceSize)
             fillMode: Image.PreserveAspectCrop
             anchors.fill: parent
         }
 
         PlasmaCore.IconItem {
             id: faceIcon
-            source: visible ? "user-identity" : undefined
+            source: iconSource
             visible: (face.status == Image.Error || face.status == Image.Null)
             anchors.fill: parent
             anchors.margins: units.gridUnit * 0.5 // because mockup says so...
+            colorGroup: PlasmaCore.ColorScope.colorGroup
         }
     }
 
@@ -101,7 +103,7 @@ Item {
                         float blend = 0.01;
                         float innerRadius = 0.47;
                         float outerRadius = innerRadius + 0.02;
-                        vec4 colorEmpty = vec4(0.5, 0.5, 0.5, 1.0);
+                        vec4 colorEmpty = vec4(0.0, 0.0, 0.0, 0.0);
 
                         void main() {
                             vec4 colorSource = texture2D(source, qt_TexCoord0.st);
@@ -136,7 +138,6 @@ Item {
         }
         height: implicitHeight // work around stupid bug in Plasma Components that sets the height
         text: wrapper.name
-        color: "#31A3DD"
         elide: Text.ElideRight
         horizontalAlignment: Text.AlignHCenter
         //make an indication that this has active focus, this only happens when reached with keyboard navigation

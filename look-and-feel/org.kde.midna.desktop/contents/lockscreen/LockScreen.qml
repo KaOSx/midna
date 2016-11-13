@@ -17,99 +17,49 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 *********************************************************************/
 
-import QtQuick 2.0
+import QtQuick 2.5
 import QtQuick.Controls 1.1
 import org.kde.plasma.core 2.0 as PlasmaCore
 import org.kde.plasma.private.sessions 2.0
 import "../components"
 
-Image {
+Item {
     id: root
     property bool viewVisible: false
     property bool debug: false
     property string notification
-    property UserSelect userSelect: null
     property int interfaceVersion: org_kde_plasma_screenlocker_greeter_interfaceVersion ? org_kde_plasma_screenlocker_greeter_interfaceVersion : 0
     signal clearPassword()
-
-    source: backgroundPath || "../components/artwork/background.png"
-    fillMode: Image.PreserveAspectCrop
-    asynchronous: true
-
-    onStatusChanged: {
-        if (status == Image.Error) {
-            source = "../components/artwork/background.png";
-        }
-    }
 
     LayoutMirroring.enabled: Qt.application.layoutDirection === Qt.RightToLeft
     LayoutMirroring.childrenInherit: true
 
-    Connections {
-        target: authenticator
-        onFailed: {
-            root.notification = i18nd("plasma_lookandfeel_org.kde.lookandfeel","Unlocking failed");
-        }
-        onGraceLockedChanged: {
-            if (!authenticator.graceLocked) {
-                root.notification = "";
-                root.clearPassword();
+    Loader {
+        id: mainLoader
+        anchors.fill: parent
+        opacity: 0
+        onItemChanged: opacity = 1
+
+        focus: true
+
+        Behavior on opacity {
+            OpacityAnimator {
+                duration: units.longDuration
+                easing.type: Easing.InCubic
             }
         }
-        onMessage: {
-            root.notification = msg;
-        }
-        onError: {
-            root.notification = err;
-        }
     }
-
-    SessionsModel {
-        id: sessionsModel
-    }
-
-    PlasmaCore.DataSource {
-        id: keystateSource
-        engine: "keystate"
-        connectedSources: "Caps Lock"
-    }
-
-    Loader {
-        id: changeSessionComponent
-        active: false
-        source: "ChangeSession.qml"
-        visible: false
-    }
-
-    StackView {
-        id: stackView
-        height: units.largeSpacing * 14
-        anchors {
-            verticalCenter: parent.verticalCenter
-            left: parent.left
-            right: parent.right
-        }
-
-        initialItem: Loader {
-            active: root.viewVisible
-            source: "MainBlock.qml"
+    Connections {
+        id:loaderConnection
+        target: org_kde_plasma_screenlocker_greeter_view
+        onFrameSwapped: {
+            mainLoader.source = "LockScreenUi.qml";
+            loaderConnection.target = null;
         }
     }
-
-    Loader {
-        active: root.viewVisible
-        source: "LockOsd.qml"
-        anchors {
-            horizontalCenter: parent.horizontalCenter
-            bottom: parent.bottom
-        }
-    }
-
     Component.onCompleted: {
-        // version support checks
-        if (root.interfaceVersion < 1) {
-            // ksmserver of 5.4, with greeter of 5.5
-            root.viewVisible = true;
+        if (root.interfaceVersion < 2) {
+            mainLoader.source = "LockScreenUi.qml";
         }
     }
 }

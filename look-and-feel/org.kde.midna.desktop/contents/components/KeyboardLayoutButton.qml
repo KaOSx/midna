@@ -18,35 +18,29 @@
  ***************************************************************************/
 
 import QtQuick 2.1
+import QtQuick.Controls 1.1 as QQC
 
 import org.kde.plasma.components 2.0 as PlasmaComponents
 
 import org.kde.plasma.workspace.keyboardlayout 1.0
 
-PlasmaComponents.Button {
+PlasmaComponents.ToolButton {
     id: kbLayoutButton
-//     flat: false
-//     checkable: false
-    activeFocusOnTab: true
+
     implicitWidth: minimumWidth
-    text: layout.currentLayout
+    text: layout.currentLayoutDisplayName
 
     Accessible.name: i18ndc("plasma_lookandfeel_org.kde.lookandfeel", "Button to change keyboard layout", "Switch layout")
 
-    onClicked: {
-        layout.nextLayout();
-    }
-
     visible: layout.layouts.length > 1
 
+    onClicked: layout.nextLayout()
 
     KeyboardLayout {
           id: layout
-
-          function nextLayout() {
+              function nextLayout() {
               var layouts = layout.layouts;
               var index = (layouts.indexOf(layout.currentLayout)+1) % layouts.length;
-
               layout.currentLayout = layouts[index];
           }
     }
