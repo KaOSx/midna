@@ -1,259 +1,320 @@
-/*
- *   Copyright 2016 David Edmundson <davidedmundson@kde.org>
- *
- *   This program is free software; you can redistribute it and/or modify
- *   it under the terms of the GNU Library General Public License as
- *   published by the Free Software Foundation; either version 2 or
- *   (at your option) any later version.
- *
- *   This program is distributed in the hope that it will be useful,
- *   but WITHOUT ANY WARRANTY; without even the implied warranty of
- *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *   GNU General Public License for more details
- *
- *   You should have received a copy of the GNU Library General Public
- *   License along with this program; if not, write to the
- *   Free Software Foundation, Inc.,
- *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
- */
+/***********************************************************************/
 
-import QtQuick 2.2
-
-import QtQuick.Layouts 1.1
-import QtQuick.Controls 1.1
+import QtQuick 2.0
+import QtGraphicalEffects 1.0
+import SddmComponents 2.0
 
 import org.kde.plasma.core 2.0 as PlasmaCore
 import org.kde.plasma.components 2.0 as PlasmaComponents
-import org.kde.plasma.extras 2.0 as PlasmaExtras
 
-import "components"
 
-PlasmaCore.ColorScope {
+Rectangle {
     id: root
-    colorGroup: PlasmaCore.Theme.ComplementaryColorGroup
+    width: 640
+    height: 480
+    state: "stateLogin"
 
-    width: 1600
-    height: 900
+    readonly property int hMargin: 100
+    readonly property int vMargin: 75
+    readonly property int m_powerButtonSize: 40
+    readonly property color textColor: "#414546"
 
-    property string notificationMessage
+    TextConstants { id: textConstants }
 
-    LayoutMirroring.enabled: Qt.application.layoutDirection === Qt.RightToLeft
-    LayoutMirroring.childrenInherit: true
+    states: [
+        State {
+            name: "statePower"
+            PropertyChanges { target: loginFrame; opacity: 0}
+            PropertyChanges { target: powerFrame; opacity: 1}
+            PropertyChanges { target: sessionFrame; opacity: 0}
+            PropertyChanges { target: userFrame; opacity: 0}
+            PropertyChanges { target: bgBlur; radius: 30}
+        },
+        State {
+            name: "stateSession"
+            PropertyChanges { target: loginFrame; opacity: 0}
+            PropertyChanges { target: powerFrame; opacity: 0}
+            PropertyChanges { target: sessionFrame; opacity: 1}
+            PropertyChanges { target: userFrame; opacity: 0}
+            PropertyChanges { target: bgBlur; radius: 30}
+        },
+        State {
+            name: "stateUser"
+            PropertyChanges { target: loginFrame; opacity: 0}
+            PropertyChanges { target: powerFrame; opacity: 0}
+            PropertyChanges { target: sessionFrame; opacity: 0}
+            PropertyChanges { target: userFrame; opacity: 1}
+            PropertyChanges { target: bgBlur; radius: 30}
+        },
+        State {
+            name: "stateLogin"
+            PropertyChanges { target: loginFrame; opacity: 1}
+            PropertyChanges { target: powerFrame; opacity: 0}
+            PropertyChanges { target: sessionFrame; opacity: 0}
+            PropertyChanges { target: userFrame; opacity: 0}
+            PropertyChanges { target: bgBlur; radius: 0}
+        }
+
+    ]
+    transitions: Transition {
+        PropertyAnimation { duration: 100; properties: "opacity";  }
+        PropertyAnimation { duration: 300; properties: "radius"; }
+    }
 
     Repeater {
         model: screenModel
-
         Background {
             x: geometry.x; y: geometry.y; width: geometry.width; height:geometry.height
             source: config.background
-            fillMode: Image.PreserveAspectCrop
+            fillMode: Image.Tile
+            onStatusChanged: {
+                if (status == Image.Error && source !== config.defaultBackground) {
+                    source = config.defaultBackground
+                }
+            }
         }
     }
-    
-    Rectangle {
+
+    Item {
+        id: mainFrame
         property variant geometry: screenModel.geometry(screenModel.primary)
         x: geometry.x; y: geometry.y; width: geometry.width; height: geometry.height
-        property real scale: geometry.width / 1600
-        color: "transparent"
-        transformOrigin: Item.Top
 
-        Rectangle {
-            anchors.centerIn: parent
+        Image {
+            id: mainFrameBackground
+            anchors.fill: parent
+            source: "background.png"
+        }
+
+        FastBlur {
+            id: bgBlur
+            anchors.fill: mainFrameBackground
+            source: mainFrameBackground
+            radius: 0
+        }
+
+        Item {
+            id: centerArea
             width: parent.width
-            height: parent.height * 0.55
-            anchors.verticalCenterOffset: 0
-            color: "#F0F5F5F5"
-            //color: "#33000000"
-            
-            KeyboardButton {
+            height: parent.height / 3
+            anchors.top: parent.top
+            anchors.topMargin: parent.height / 5
+
+            PowerFrame {
+                id: powerFrame
+                anchors.fill: parent
+                enabled: root.state == "statePower"
+                onNeedClose: {
+                    root.state = "stateLogin"
+                    loginFrame.input.forceActiveFocus()
+                }
+                onNeedShutdown: sddm.powerOff()
+                onNeedRestart: sddm.reboot()
+                onNeedSuspend: sddm.suspend()
+            }
+
+            SessionFrame {
+                id: sessionFrame
+                anchors.fill: parent
+                enabled: root.state == "stateSession"
+                onSelected: {
+                    console.log("Selected session:", index)
+                    root.state = "stateLogin"
+                    loginFrame.sessionIndex = index
+                    loginFrame.input.forceActiveFocus()
+                }
+                onNeedClose: {
+                    root.state = "stateLogin"
+                    loginFrame.input.forceActiveFocus()
+                }
+            }
+
+            UserFrame {
+                id: userFrame
+                anchors.fill: parent
+                enabled: root.state == "stateUser"
+                onSelected: {
+                    console.log("Select user:", userName)
+                    root.state = "stateLogin"
+                    loginFrame.userName = userName
+                    loginFrame.input.forceActiveFocus()
+                }
+                onNeedClose: {
+                    root.state = "stateLogin"
+                    loginFrame.input.forceActiveFocus()
+                }
+            }
+
+            LoginFrame {
+                id: loginFrame
+                anchors.fill: parent
+                enabled: root.state == "stateLogin"
+                opacity: 0
+                transformOrigin: Item.Top
+            }
+        }
+
+        Item {
+            id: timeArea
+            visible: ! loginFrame.isProcessing
+            anchors {
+                top: parent.top
+                horizontalCenter: parent.horizontalCenter
+            }
+            width: parent.width / 3
+            height: parent.height / 5
+
+            Text {
+                id: timeText
                 anchors {
-                    bottom: parent.bottom
-                    bottomMargin: units.gridUnit * 1
-                    left: parent.left
-                    leftMargin: units.gridUnit * 1
+                    horizontalCenter: parent.horizontalCenter
+                    bottom: dateText.top
+                    bottomMargin: 5
+                }
+
+                font.pointSize: 50
+                color: textColor
+                font.family: "Raleway"
+
+                function updateTime() {
+                    text = new Date().toLocaleString(Qt.locale("en_US"), "hh:mm")
                 }
             }
 
-            SessionButton {
-                id: sessionButton
+            Text {
+                id: dateText
                 anchors {
+                    horizontalCenter: parent.horizontalCenter
                     bottom: parent.bottom
-                    bottomMargin: units.gridUnit * 1
-                    right: parent.right
-                    rightMargin: units.gridUnit * 1
+                    bottomMargin: vMargin
+                }
+
+                font.pointSize: 18
+                color: textColor
+                font.family: "Raleway"
+
+                function updateDate() {
+                    text = new Date().toLocaleString(Qt.locale("en_US"), "yyyy-MM-dd dddd")
                 }
             }
-            
-            Rectangle {
-            anchors.bottom: parent.bottom
-            width: parent.width
-            height: 2
-            color: "#646464"
-            }
-            
-            Rectangle {
-            width: parent.width
-            height: 2
-            color: "#646464"
-            }
-        }
-    }
 
-
-    Clock {
-        anchors.top: parent.top
-        anchors.topMargin: units.gridUnit * 3
-        anchors.horizontalCenter: parent.horizontalCenter
-    }
-
-
-    StackView {
-        id: mainStack
-        anchors {
-            top: parent.top
-            bottom: footer.top
-            left: parent.left
-            right: parent.right
-            topMargin: footer.height // effectively centre align within the view
-        }
-        focus: true //StackView is an implicit focus scope, so we need to give this focus so the item inside will have it
-
-        Timer {
-            //SDDM has a bug in 0.13 where even though we set the focus on the right item within the window, the window doesn't have focus
-            //it is fixed in 6d5b36b28907b16280ff78995fef764bb0c573db which will be 0.14
-            //we need to call "window->activate()" *After* it's been shown. We can't control that in QML so we use a shoddy timer
-            //it's been this way for all Plasma 5.x without a huge problem
-            running: true
-            repeat: false
-            interval: 200
-            onTriggered: mainStack.forceActiveFocus()
-        }
-
-        initialItem: Login {
-            userListModel: userModel
-            userListCurrentIndex: userModel.lastIndex >= 0 ? userModel.lastIndex : 0
-
-            notificationMessage: root.notificationMessage
-
-            actionItems: [
-                ActionButton {
-                    iconSource: "/usr/share/icons/midna/actions/24/system-suspend.svg"
-                    text: i18nd("plasma_lookandfeel_org.kde.lookandfeel","Suspend")
-                    onClicked: sddm.suspend()
-                    enabled: sddm.canSuspend
-                },
-                ActionButton {
-                    iconSource: "/usr/share/icons/midna/actions/24/system-reboot.svg"
-                    text: i18nd("plasma_lookandfeel_org.kde.lookandfeel","Restart")
-                    onClicked: sddm.reboot()
-                    enabled: sddm.canReboot
-                },
-                ActionButton {
-                    iconSource: "/usr/share/icons/midna/actions/24/system-shutdown.svg"
-                    text: i18nd("plasma_lookandfeel_org.kde.lookandfeel","Shutdown")
-                    onClicked: sddm.powerOff()
-                    enabled: sddm.canPowerOff
-                },
-                ActionButton {
-                    iconSource: "/usr/share/icons/midna/actions/24/system-search.svg"
-                    text: i18nd("plasma_lookandfeel_org.kde.lookandfeel","Different User")
-                    onClicked: mainStack.push(userPrompt)
-                    enabled: true
+            Timer {
+                interval: 1000
+                repeat: true
+                running: true
+                onTriggered: {
+                    timeText.updateTime()
+                    dateText.updateDate()
                 }
-            ]
+            }
 
-            onLoginRequest: {
-                root.notificationMessage = ""
-                sddm.login(username, password, sessionButton.currentIndex)
+            Component.onCompleted: {
+                timeText.updateTime()
+                dateText.updateDate()
             }
         }
 
-        Behavior on opacity {
-            OpacityAnimator {
-                duration: units.longDuration
+        Item {
+            id: powerArea
+            visible: ! loginFrame.isProcessing
+            anchors {
+                bottom: parent.bottom
+                horizontalCenter: parent.horizontalCenter
             }
-        }
+            width: parent.width / 3
+            height: parent.height / 7
 
-    }
+            Row {
+                spacing: 50
+                anchors.horizontalCenter: parent.horizontalCenter
+                anchors.verticalCenter: parent.verticalCenter
 
-    Component {
-        id: userPrompt
-        Login {
-            showUsernamePrompt: true
-            notificationMessage: root.notificationMessage
+                ImgButton {
+                    id: sessionButton
+                    width: m_powerButtonSize
+                    height: m_powerButtonSize
+                    visible: sessionFrame.isMultipleSessions()
+                    normalImg: sessionFrame.getCurrentSessionIconIndicator()
+                    onClicked: {
+                        root.state = "stateSession"
+                        sessionFrame.focus = true
+                    }
+                    onEnterPressed: sessionFrame.currentItem.forceActiveFocus()
 
-            userListModel: QtObject {
-                property string name: i18nd("plasma_lookandfeel_org", "Login as different user")
-                property string iconSource: ""
-            }
-
-            onLoginRequest: {
-                root.notificationMessage = ""
-                sddm.login(username, password, sessionButton.currentIndex)
-            }
-
-            actionItems: [
-                ActionButton {
-                    iconSource: "/usr/share/icons/midna/actions/24/go-previous-view.svg" 
-                    text: i18nd("plasma_lookandfeel_org.kde.lookandfeel","Back")
-                    onClicked: mainStack.pop()
+                    KeyNavigation.tab: loginFrame.input
+                    KeyNavigation.backtab: {
+                        if (userButton.visible) {
+                            return userButton
+                        }
+                        else {
+                            return shutdownButton
+                        }
+                    }
                 }
-            ]
-        }
-    }
 
-    //Footer
-    RowLayout {
-        id: footer
-        anchors {
-            bottom: parent.bottom
-            left: parent.left
-            right: parent.right
-            margins: units.smallSpacing
-        }
+                ImgButton {
+                    id: userButton
+                    width: m_powerButtonSize
+                    height: m_powerButtonSize
+                    visible: userFrame.isMultipleUsers()
 
-        Behavior on opacity {
-            OpacityAnimator {
-                duration: units.longDuration
+                    normalImg: "icons/switchframe/userswitch_normal_g.png"
+                    hoverImg: "icons/switchframe/userswitch_hover.png"
+                    pressImg: "icons/switchframe/userswitch_press.png"
+                    onClicked: {
+                        console.log("Switch User...")
+                        root.state = "stateUser"
+                        userFrame.focus = true
+                    }
+                    onEnterPressed: userFrame.currentItem.forceActiveFocus()
+                    KeyNavigation.backtab: shutdownButton
+                    KeyNavigation.tab: {
+                        if (sessionButton.visible) {
+                            return sessionButton
+                        }
+                        else {
+                            return loginFrame.input
+                        }
+                    }
+                }
+
+                ImgButton {
+                    id: shutdownButton
+                    width: m_powerButtonSize
+                    height: m_powerButtonSize
+                    visible: true//sddm.canPowerOff
+
+                    normalImg: "icons/switchframe/shutdown_normal_g.png"
+                    hoverImg: "icons/switchframe/shutdown_hover.png"
+                    onClicked: {
+                        console.log("Show shutdown menu")
+                        root.state = "statePower"
+                        powerFrame.focus = true
+                    }
+                    onEnterPressed: powerFrame.shutdown.focus = true
+                    KeyNavigation.backtab: loginFrame.button
+                    KeyNavigation.tab: {
+                        if (userButton.visible) {
+                            return userButton
+                        }
+                        else if (sessionButton.visible) {
+                            return sessionButton
+                        }
+                        else {
+                            return loginFrame.input
+                        }
+                    }
+                }
             }
         }
 
-      //  KeyboardButton {
-      //  }
-
-      //  SessionButton {
-      //      id: sessionButton
-      //  }
-
-      //  Item {
-      //      Layout.fillWidth: true
-      //  }
-    }
-
-    Connections {
-        target: sddm
-        onLoginFailed: {
-            notificationMessage = i18nd("plasma_lookandfeel_org.kde.lookandfeel", "Login Failed")
-        }
-        onLoginSucceeded: {
-            //note SDDM will kill the greeter at some random point after this
-            //there is no certainty any transition will finish, it depends on the time it
-            //takes to complete the init
-            mainStack.opacity = 0
-            footer.opacity = 0
+        MouseArea {
+            z: -1
+            anchors.fill: parent
+            onClicked: {
+                root.state = "stateLogin"
+                loginFrame.input.forceActiveFocus()
+            }
         }
     }
-
-    onNotificationMessageChanged: {
-        if (notificationMessage) {
-            notificationResetTimer.start();
-        }
-    }
-
-    Timer {
-        id: notificationResetTimer
-        interval: 3000
-        onTriggered: notificationMessage = ""
-    }
-
 }
