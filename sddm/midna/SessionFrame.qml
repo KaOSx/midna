@@ -8,7 +8,7 @@ Item {
 
     readonly property int m_viewMaxWidth: frame.width - prevSession.width - nextSession.width - 230;
     property bool shouldShowBG: false
-    property var sessionTypeList: ["plasma", "plasma_wayland"]
+    property var sessionTypeList: ["plasma", "plasmawayland"]
     property alias currentItem: sessionList.currentItem
 
     function getIconName(sessionName) {

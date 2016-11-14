@@ -3,7 +3,7 @@ import QtQuick 2.2
 Canvas {
     id: avatar
     property string source: ""
-    property color m_strokeStyle: "#fff"
+    property color m_strokeStyle: "#414546"
 
     signal clicked()
 
@@ -27,7 +27,7 @@ Canvas {
             avatar.requestPaint()
         }
         onExited: {
-            m_strokeStyle = "#ffffffff"
+            m_strokeStyle = "#ff414546"
             avatar.requestPaint()
         }
         onClicked: avatar.clicked()

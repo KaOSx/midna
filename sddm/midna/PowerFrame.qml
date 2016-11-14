@@ -25,7 +25,7 @@ Item {
                 height: 75
                 anchors.horizontalCenter: parent.horizontalCenter
                 anchors.top: parent.top
-                normalImg: "icons/powerframe/shutdown_normal_g.png"
+                normalImg: "icons/powerframe/shutdown_normal.png"
                 hoverImg: "icons/powerframe/shutdown_hover.png"
                 pressImg: "icons/powerframe/shutdown_press.png"
                 onClicked: needShutdown()
@@ -55,7 +55,7 @@ Item {
                 height: 75
                 anchors.horizontalCenter: parent.horizontalCenter
                 anchors.top: parent.top
-                normalImg: "icons/powerframe/restart_normal_g.png"
+                normalImg: "icons/powerframe/restart_normal.png"
                 hoverImg: "icons/powerframe/restart_hover.png"
                 pressImg: "icons/powerframe/restart_press.png"
                 onClicked: needRestart()
@@ -85,7 +85,7 @@ Item {
                 height: 75
                 anchors.horizontalCenter: parent.horizontalCenter
                 anchors.top: parent.top
-                normalImg: "icons/powerframe/suspend_normal_g.png"
+                normalImg: "icons/powerframe/suspend_normal.png"
                 hoverImg: "icons/powerframe/suspend_hover.png"
                 pressImg: "icons/powerframe/suspend_press.png"
                 onClicked: needSuspend()

@@ -16,7 +16,7 @@ Rectangle {
 
     readonly property int hMargin: 100
     readonly property int vMargin: 75
-    readonly property int m_powerButtonSize: 40
+    readonly property int m_powerButtonSize: 64
     readonly property color textColor: "#414546"
 
     TextConstants { id: textConstants }
@@ -164,12 +164,20 @@ Rectangle {
             width: parent.width / 3
             height: parent.height / 5
             
-            KeyboardButton {
-                 anchors {
-                     horizontalCenter: parent.horizontalCenter
-                     topMargin: 25
-                     bottomMargin: 5
-                 }
+            Row {
+                spacing: 50
+                anchors {
+                    top: parent.top
+                    horizontalCenter: parent.horizontalCenter
+                }
+
+                KeyboardButton {
+                }
+
+                SessionButton {
+                }
+
+                Battery { }
             }
 
             Text {
@@ -241,7 +249,7 @@ Rectangle {
                     id: sessionButton
                     width: m_powerButtonSize
                     height: m_powerButtonSize
-                    visible: sessionFrame.isMultipleSessions()
+                    visible: ! sessionFrame.isMultipleSessions()
                     normalImg: sessionFrame.getCurrentSessionIconIndicator()
                     onClicked: {
                         root.state = "stateSession"
@@ -266,7 +274,7 @@ Rectangle {
                     height: m_powerButtonSize
                     visible: userFrame.isMultipleUsers()
 
-                    normalImg: "icons/switchframe/userswitch_normal_g.png"
+                    normalImg: "icons/switchframe/userswitch_normal.png"
                     hoverImg: "icons/switchframe/userswitch_hover.png"
                     pressImg: "icons/switchframe/userswitch_press.png"
                     onClicked: {
@@ -292,7 +300,7 @@ Rectangle {
                     height: m_powerButtonSize
                     visible: true//sddm.canPowerOff
 
-                    normalImg: "icons/switchframe/shutdown_normal_g.png"
+                    normalImg: "icons/switchframe/shutdown_normal.png"
                     hoverImg: "icons/switchframe/shutdown_hover.png"
                     onClicked: {
                         console.log("Show shutdown menu")
