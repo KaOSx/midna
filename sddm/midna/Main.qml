@@ -15,7 +15,7 @@ Rectangle {
     state: "stateLogin"
 
     readonly property int hMargin: 100
-    readonly property int vMargin: 75
+    readonly property int vMargin: 25
     readonly property int m_powerButtonSize: 64
     readonly property color textColor: "#414546"
 
@@ -238,7 +238,7 @@ Rectangle {
                 horizontalCenter: parent.horizontalCenter
             }
             width: parent.width / 3
-            height: parent.height / 7
+            height: parent.height / 5
 
             Row {
                 spacing: 50
@@ -272,7 +272,8 @@ Rectangle {
                     id: userButton
                     width: m_powerButtonSize
                     height: m_powerButtonSize
-                    visible: userFrame.isMultipleUsers()
+                    //visible: userFrame.isMultipleUsers()
+                    visible: true
 
                     normalImg: "icons/switchframe/userswitch_normal.png"
                     hoverImg: "icons/switchframe/userswitch_hover.png"
