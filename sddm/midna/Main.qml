@@ -61,16 +61,13 @@ Rectangle {
         PropertyAnimation { duration: 300; properties: "radius"; }
     }
 
-    Repeater {
-        model: screenModel
-        Background {
-            x: geometry.x; y: geometry.y; width: geometry.width; height:geometry.height
-            source: config.background
-            fillMode: Image.Tile
-            onStatusChanged: {
-                if (status == Image.Error && source !== config.defaultBackground) {
-                    source = config.defaultBackground
-                }
+    Background {
+        anchors.fill: parent
+        source: config.background
+        fillMode: Image.PreserveAspectCrop
+        onStatusChanged: {
+            if (status == Image.Error && source !== config.defaultBackground) {
+                source = config.defaultBackground
             }
         }
     }
@@ -174,8 +171,8 @@ Rectangle {
                 KeyboardButton {
                 }
 
-                SessionButton {
-                }
+                //SessionButton {
+                //}
 
                 Battery { }
             }
@@ -210,7 +207,7 @@ Rectangle {
                 font.family: "Raleway"
 
                 function updateDate() {
-                    text = new Date().toLocaleString(Qt.locale("en_US"), "yyyy-MM-dd dddd")
+                    text = new Date().toLocaleString(Qt.locale("en_US"), "dddd MMMM dd, yyyy")
                 }
             }
 
@@ -249,9 +246,10 @@ Rectangle {
                     id: sessionButton
                     width: m_powerButtonSize
                     height: m_powerButtonSize
-                    visible: ! sessionFrame.isMultipleSessions()
+                    visible: sessionFrame.isMultipleSessions()
                     normalImg: sessionFrame.getCurrentSessionIconIndicator()
                     onClicked: {
+                        console.log("Show session")
                         root.state = "stateSession"
                         sessionFrame.focus = true
                     }
