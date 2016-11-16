@@ -15,7 +15,7 @@ Rectangle {
     state: "stateLogin"
 
     readonly property int hMargin: 100
-    readonly property int vMargin: 25
+    readonly property int vMargin: 5
     readonly property int m_powerButtonSize: 64
     readonly property color textColor: "#414546"
 
@@ -93,9 +93,9 @@ Rectangle {
         Item {
             id: centerArea
             width: parent.width
-            height: parent.height / 3
+            height: parent.height / 4
             anchors.top: parent.top
-            anchors.topMargin: parent.height / 5
+            anchors.topMargin: parent.height / 4
 
             PowerFrame {
                 id: powerFrame
@@ -235,7 +235,7 @@ Rectangle {
                 horizontalCenter: parent.horizontalCenter
             }
             width: parent.width / 3
-            height: parent.height / 5
+            height: parent.height / 3.5
 
             Row {
                 spacing: 50
