@@ -168,7 +168,13 @@ Rectangle {
                     horizontalCenter: parent.horizontalCenter
                 }
 
-                KeyboardButton {
+                LayoutBox {
+                    id: layoutBox
+                    width: 90
+                    anchors.verticalCenter: parent.verticalCenter
+                    font.pixelSize: 14
+
+                    arrowIcon: "icons/angle-down.png"
                 }
 
                 //SessionButton {
