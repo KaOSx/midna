@@ -173,14 +173,17 @@ Rectangle {
                     width: 90
                     anchors.verticalCenter: parent.verticalCenter
                     font.pixelSize: 14
+                    color: "#D4DCDF"
+                    borderColor: "#D4DCDF"
+                    focusColor: "#D4DCDF"
+                    hoverColor: "#D4DCDF"
+                    textColor: "#414546"
 
                     arrowIcon: "icons/angle-down.png"
+                    arrowColor: "#D4DCDF"
                 }
 
-                //SessionButton {
-                //}
-
-                Battery { }
+                //Battery { anchors.topMargin: 9 }
             }
 
             Text {
