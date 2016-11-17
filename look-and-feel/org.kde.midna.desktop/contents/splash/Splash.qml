@@ -97,7 +97,7 @@ Image {
             PropertyAnimation {
                 property: "y"
                 target: topRect
-                to: root.height / 4
+                to: root.height / 3.7
                 duration: 1000
                 easing.type: Easing.InOutBack
                 easing.overshoot: 2.0
@@ -106,7 +106,7 @@ Image {
             PropertyAnimation {
                 property: "y"
                 target: bottomRect
-                to: 2 * (root.height / 4) - bottomRect.height
+                to: 2 * (root.height / 3.7) - bottomRect.height
                 duration: 1000
                 easing.type: Easing.InOutBack
                 easing.overshoot: 1.0
