@@ -14,3 +14,7 @@ Midna Look & Feel package.
 * sddm login theme
 * wallpaper
 * window decoration
+
+## Contributors
+
+* brasero and k9copy icons provided by the Numix Project under the GPL
