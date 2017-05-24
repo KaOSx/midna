@@ -1,6 +1,10 @@
 import QtQuick 2.0
+import QtQuick.Layouts 1.2
 import QtGraphicalEffects 1.0
 import SddmComponents 2.0
+
+import org.kde.plasma.core 2.0 as PlasmaCore
+import org.kde.plasma.components 2.0 as PlasmaComponents
 
 Item {
     id: frame
@@ -91,26 +95,15 @@ Item {
             radius: 3
             color: "#55ffffff"
 
-            TextInput {
+            PlasmaComponents.TextField {
                 id: passwdInput
-                anchors.fill: parent
-                anchors.leftMargin: 8
-                anchors.rightMargin: 8 + 36
-                clip: true
-                focus: true
-                color: textColor
-                font.pointSize: 15
-                selectByMouse: true
-                selectionColor: "#a8d6ec"
+                Layout.fillWidth: true
+                width: 260
+
+                placeholderText: i18nd("plasma_lookandfeel_org.kde.lookandfeel", "Password")
                 echoMode: TextInput.Password
-                verticalAlignment: TextInput.AlignVCenter
-                onFocusChanged: {
-                    if (focus) {
-                        color = textColor
-                        echoMode = TextInput.Password
-                        text = ""
-                    }
-                }
+                revealPasswordButtonShown: true
+
                 onAccepted: {
                     glowAnimation.running = true
                     sddm.login(userNameText.text, passwdInput.text, sessionIndex)
