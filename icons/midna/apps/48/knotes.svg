@@ -1,1 +1,153 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48"><defs><linearGradient id="0" x1="860" y1="525.97" x2="842.73" y2="507.21" gradientUnits="userSpaceOnUse"><stop stop-color="#ffee97"/><stop offset="1" stop-color="#ffe76b"/></linearGradient><linearGradient id="1" x1="858.81" y1="529.48" x2="860.02" y2="517.32" gradientUnits="userSpaceOnUse"><stop stop-color="#fed45b"/><stop offset="1" stop-color="#ffcc54"/></linearGradient><linearGradient id="2" x1="859.24" y1="526.27" x2="864.14" y2="531.15" gradientUnits="userSpaceOnUse"><stop stop-color="#f0a23a"/><stop offset="1" stop-color="#fde46a"/></linearGradient></defs><g transform="matrix(1.30461 0 0 1.30461-1084.09-649.99)"><rect width="35.04" height="34.793" x="831.91" y="499.13" fill="url(#2)" rx="1.5"/><g fill-rule="evenodd"><path d="m831.8 501.31v30.909c0 0 .292 1.723 2.045 1.723h13c11.65-2.057 18.553-8.41 20.08-19.625v-13.376c.084-1.866-1.563-1.952-1.563-1.952l-31.397.11c-2.337-.161-2.167 2.21-2.167 2.21" fill="url(#0)"/><path d="m846.07 534.25c6.656-1.385 10.159-5.085 12.416-9.509 5.994-1.741 7.526-6.272 8.402-11.214.128 12.622-9.624 18.834-20.819 20.723" opacity=".9" fill="url(#1)"/></g><path d="m462.5 96.19l-21.726-21.726c-8.951-8.95-23.562-8.95-32.59 0l-227.82 227.89-119.34-119.34c-8.95-8.951-23.562-8.951-32.589 0l-21.727 21.726c-8.95 8.951-8.95 23.562 0 32.589l157.29 157.28c4.514 4.514 10.327 6.809 16.218 6.809 5.891 0 11.781-2.295 16.219-6.809l265.84-265.84c9.18-9.103 9.18-23.638.23-32.59z" stroke-width="4.248" transform="matrix(.04152.00414-.00414.04152 840.45 505.54)" opacity=".7" fill="#e8923a" stroke="#cb8034"/></g></svg>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="48"
+   height="48"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.49 r12742"
+   sodipodi:docname="basket.svg">
+  <defs
+     id="defs4" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="11.716856"
+     inkscape:cx="24.621843"
+     inkscape:cy="25.738771"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     borderlayer="true"
+     inkscape:showpageshadow="false"
+     inkscape:window-width="1366"
+     inkscape:window-height="718"
+     inkscape:window-x="-2"
+     inkscape:window-y="23"
+     inkscape:window-maximized="1"
+     showguides="true">
+    <sodipodi:guide
+       position="9,39.000017"
+       orientation="30,0"
+       id="guide3279" />
+    <sodipodi:guide
+       position="9,9.0000174"
+       orientation="0,30"
+       id="guide3281" />
+    <sodipodi:guide
+       position="39,9.0000174"
+       orientation="-30,0"
+       id="guide3283" />
+    <sodipodi:guide
+       position="39,39.000017"
+       orientation="0,-30"
+       id="guide3285" />
+    <sodipodi:guide
+       position="7,44.000017"
+       orientation="40,0"
+       id="guide3292" />
+    <sodipodi:guide
+       position="7,4.0000174"
+       orientation="0,34"
+       id="guide3294" />
+    <sodipodi:guide
+       position="41,4.0000174"
+       orientation="-40,0"
+       id="guide3296" />
+    <sodipodi:guide
+       position="41,44.000017"
+       orientation="0,-34"
+       id="guide3298" />
+    <sodipodi:guide
+       position="9,42.000017"
+       orientation="36,0"
+       id="guide3300" />
+    <sodipodi:guide
+       position="9,6.0000174"
+       orientation="0,30"
+       id="guide3302" />
+    <sodipodi:guide
+       position="39,6.0000174"
+       orientation="-36,0"
+       id="guide3304" />
+    <sodipodi:guide
+       position="39,42.000017"
+       orientation="0,-30"
+       id="guide3306" />
+  </sodipodi:namedview>
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Capa 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(0,-1004.3622)">
+    <rect
+       style="fill:#ae8566;fill-opacity:1;stroke:none"
+       id="rect4043"
+       width="34"
+       height="40"
+       x="7"
+       y="1008.3622" />
+    <rect
+       y="1010.3622"
+       x="9"
+       height="35.999973"
+       width="29.999998"
+       id="rect4047"
+       style="fill:#fdf4a9;fill-opacity:1;stroke:none" />
+    <rect
+       y="-39"
+       x="1017.3622"
+       height="30"
+       width="2"
+       id="rect4051"
+       style="fill:#fbef82;fill-opacity:1;stroke:none"
+       transform="matrix(0,1,-1,0,0,0)" />
+    <rect
+       transform="matrix(0,1,-1,0,0,0)"
+       style="fill:#fbef82;fill-opacity:1;stroke:none"
+       id="rect3287"
+       width="2"
+       height="30"
+       x="1037.3622"
+       y="-39" />
+    <rect
+       y="-39"
+       x="1027.3622"
+       height="30"
+       width="2"
+       id="rect3289"
+       style="fill:#fbef82;fill-opacity:1;stroke:none"
+       transform="matrix(0,1,-1,0,0,0)" />
+    <rect
+       style="fill:#ed8484;fill-opacity:1;stroke:none"
+       id="rect4049"
+       width="0.49999991"
+       height="36"
+       x="13"
+       y="1010.3622" />
+  </g>
+</svg>

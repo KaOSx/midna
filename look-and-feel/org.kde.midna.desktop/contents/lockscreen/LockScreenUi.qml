@@ -28,7 +28,6 @@ import org.kde.plasma.private.sessions 2.0
 import "../components"
 
 PlasmaCore.ColorScope {
-    id: lockScreenRoot
 
     colorGroup: PlasmaCore.Theme.ComplementaryColorGroup
 
@@ -69,120 +68,312 @@ PlasmaCore.ColorScope {
         visible: false
     }
 
-    Clock {
-        anchors.bottom: parent.verticalCenter
-        anchors.bottomMargin: units.gridUnit * 13
-        anchors.horizontalCenter: parent.horizontalCenter
-    }
+    Item {
+        id: lockScreenRoot
 
-    ListModel {
-        id: users
+        x: parent.x
+        y: parent.y
+        width: parent.width
+        height: parent.height
 
-        Component.onCompleted: {
-            users.append({name: kscreenlocker_userName,
-                            realName: kscreenlocker_userName,
-                            icon: kscreenlocker_userImage,
+        Component.onCompleted: PropertyAnimation { id: launchAnimation; target: lockScreenRoot; property: "opacity"; from: 0; to: 1; duration: 1000 }
 
-            })
-            if (sessionsModel.canStartNewSession) {
-                users.append({realName: i18nd("plasma_lookandfeel_org.kde.lookandfeel", "New Session"),
-                                name: "__new_session",
-                                iconName: "list-add"
+        states: [
+            State {
+                name: "onOtherSession"
+                // for slide out animation
+                PropertyChanges { target: lockScreenRoot; y: lockScreenRoot.height }
+                // we also change the opacity just to be sure it's not visible even on unexpected screen dimension changes with possible race conditions
+                PropertyChanges { target: lockScreenRoot; opacity: 0 }
+            }
+        ]
+
+        transitions:
+            Transition {
+            // we only animate switchting to another session, because kscreenlocker doesn't get notified when
+            // coming from another session back and so we wouldn't know when to trigger the animation exactly
+                from: ""
+                to: "onOtherSession"
+
+                PropertyAnimation { id: stateChangeAnimation; properties: "y"; duration: 300; easing: Easing.InQuad}
+                PropertyAnimation { properties: "opacity"; duration: 300}
+
+                onRunningChanged: {
+                    // after the animation has finished switch session: since we only animate the transition TO state "onOtherSession"
+                    // and not the other way around, we don't have to check the state we transitioned into
+                    if (/* lockScreenRoot.state == "onOtherSession" && */ !running) {
+                        mainStack.currentItem.switchSession()
+                    }
+                }
+            }
+
+        Clock {
+            id: clock
+            anchors.horizontalCenter: parent.horizontalCenter
+            y: (mainBlock.userList.y + mainStack.y)/2 - height/2
+            visible: y > 0
+            Layout.alignment: Qt.AlignBaseline
+        }
+
+        ListModel {
+            id: users
+
+            Component.onCompleted: {
+                users.append({name: kscreenlocker_userName,
+                                realName: kscreenlocker_userName,
+                                icon: kscreenlocker_userImage,
+
                 })
             }
         }
-    }
 
-    StackView {
-        id: mainStack
-        anchors.fill: parent
-        focus: true //StackView is an implicit focus scope, so we need to give this focus so the item inside will have it
-        initialItem: MainBlock {
-            userListModel: users
-            notificationMessage: {
-                var text = ""
-                if (keystateSource.data["Caps Lock"]["Locked"]) {
-                    text += i18nd("plasma_lookandfeel_org.kde.lookandfeel","Caps Lock is on")
-                    if (root.notification) {
-                        text += " • "
+
+        StackView {
+            id: mainStack
+            anchors {
+                left: parent.left
+                right: parent.right
+            }
+            height: lockScreenRoot.height
+            focus: true //StackView is an implicit focus scope, so we need to give this focus so the item inside will have it
+
+            initialItem: MainBlock {
+                id: mainBlock
+
+                showUserList: userList.y + mainStack.y > 0
+
+                Stack.onStatusChanged: {
+                    // prepare for presenting again to the user
+                    if (Stack.status == Stack.Activating) {
+                        mainPasswordBox.remove(0, mainPasswordBox.length)
+                        mainPasswordBox.focus = true
                     }
                 }
-                text += root.notification
-                return text
-            }
+                userListModel: users
+                notificationMessage: {
+                    var text = ""
+                    if (keystateSource.data["Caps Lock"]["Locked"]) {
+                        text += i18nd("plasma_lookandfeel_org.kde.lookandfeel","Caps Lock is on")
+                        if (root.notification) {
+                            text += " • "
+                        }
+                    }
+                    text += root.notification
+                    return text
+                }
 
-            onNewSession: {
-                sessionsModel.startNewSession(false);
-            }
+                onLoginRequest: {
+                    root.notification = ""
+                    authenticator.tryUnlock(password)
+                }
 
-            onLoginRequest: {
-                root.notification = ""
-                authenticator.tryUnlock(password)
-            }
+                actionItems: [
+                    ActionButton {
+                        text: i18nd("plasma_lookandfeel_org.kde.lookandfeel", "Switch User")
+                        iconSource: "system-switch-user"
+                        onClicked: mainStack.push(switchSessionPage)
+                        // the current session isn't listed in the model, hence a check for greater than zero, not one
+                        visible: (sessionsModel.count > 0 || sessionsModel.canStartNewSession) && sessionsModel.canSwitchUser
+                    }
+                ]
 
-            actionItems: [
-                ActionButton {
-                    text: i18nd("plasma_lookandfeel_org.kde.lookandfeel", "Switch User")
-                    iconSource: "system-switch-user"
-                    onClicked: mainStack.push(switchSessionPage)
-                    visible: sessionsModel.count > 1 && sessionsModel.canSwitchUser
+                Loader {
+                    Layout.fillWidth: true
+                    Layout.preferredHeight: item ? item.implicitHeight : 0
+                    active: true // TODO configurable
+                    source: "MediaControls.qml"
+                }
+            }
+        }
+
+        Loader {
+            id: inputPanel
+            state: "hidden"
+            readonly property bool keyboardActive: item ? item.active : false
+            anchors {
+                left: parent.left
+                right: parent.right
+            }
+            function showHide() {
+                state = state == "hidden" ? "visible" : "hidden";
+            }
+            Component.onCompleted: inputPanel.source = "../components/VirtualKeyboard.qml"
+            
+            states: [
+                State {
+                    name: "visible"
+                    PropertyChanges {
+                        target: mainStack
+                        y: Math.min(0, lockScreenRoot.height - inputPanel.height - mainBlock.visibleBoundary)
+                    }
+                    PropertyChanges {
+                        target: inputPanel
+                        y: lockScreenRoot.height - inputPanel.height
+                        opacity: 1
+                    }
+                },
+                State {
+                    name: "hidden"
+                    PropertyChanges {
+                        target: mainStack
+                        y: 0
+                    }
+                    PropertyChanges {
+                        target: inputPanel
+                        y: lockScreenRoot.height - lockScreenRoot.height/4
+                        opacity: 0
+                    }
+                }
+            ]
+            transitions: [
+                Transition {
+                    from: "hidden"
+                    to: "visible"
+                    SequentialAnimation {
+                        ScriptAction {
+                            script: {
+                                inputPanel.item.activated = true;
+                                Qt.inputMethod.show();
+                            }
+                        }
+                        ParallelAnimation {
+                            NumberAnimation {
+                                target: mainStack
+                                property: "y"
+                                duration: units.longDuration
+                                easing.type: Easing.InOutQuad
+                            }
+                            NumberAnimation {
+                                target: inputPanel
+                                property: "y"
+                                duration: units.longDuration
+                                easing.type: Easing.OutQuad
+                            }
+                            OpacityAnimator {
+                                target: inputPanel
+                                duration: units.longDuration
+                                easing.type: Easing.OutQuad
+                            }
+                        }
+                    }
+                },
+                Transition {
+                    from: "visible"
+                    to: "hidden"
+                    SequentialAnimation {
+                        ParallelAnimation {
+                            NumberAnimation {
+                                target: mainStack
+                                property: "y"
+                                duration: units.longDuration
+                                easing.type: Easing.InOutQuad
+                            }
+                            NumberAnimation {
+                                target: inputPanel
+                                property: "y"
+                                duration: units.longDuration
+                                easing.type: Easing.InQuad
+                            }
+                            OpacityAnimator {
+                                target: inputPanel
+                                duration: units.longDuration
+                                easing.type: Easing.InQuad
+                            }
+                        }
+                        ScriptAction {
+                            script: {
+                                Qt.inputMethod.hide();
+                            }
+                        }
+                    }
                 }
             ]
         }
-    }
 
-    Component {
-        id: switchSessionPage
-        SessionManagementScreen {
-            userListModel: sessionsModel
+        Component {
+            id: switchSessionPage
+            SessionManagementScreen {
+                property var switchSession: finalSwitchSession
 
-            PlasmaComponents.Button {
-                Layout.fillWidth: true
-                text: i18nd("plasma_lookandfeel_org.kde.lookandfeel", "Switch Session")
-                onClicked: {
+                Stack.onStatusChanged: {
+                    if (Stack.status == Stack.Activating) {
+                        focus = true
+                    }
+                }
+
+                userListModel: sessionsModel
+
+                // initiating animation of lockscreen for session switch
+                function initSwitchSession() {
+                    lockScreenRoot.state = 'onOtherSession'
+                }
+
+                // initiating session switch and preparing lockscreen for possible return of user
+                function finalSwitchSession() {
+                    mainStack.pop({immediate:true})
                     sessionsModel.switchUser(userListCurrentModelData.vtNumber)
-                    mainStack.pop()
+                    lockScreenRoot.state = ''
                 }
+
+                Keys.onLeftPressed: userList.decrementCurrentIndex()
+                Keys.onRightPressed: userList.incrementCurrentIndex()
+                Keys.onEnterPressed: initSwitchSession()
+                Keys.onReturnPressed: initSwitchSession()
+                Keys.onEscapePressed: mainStack.pop()
+
+                PlasmaComponents.Button {
+                    Layout.fillWidth: true
+                    // the magic "-1" vtNumber indicates the "New Session" entry
+                    text: userListCurrentModelData.vtNumber === -1 ? i18nd("plasma_lookandfeel_org.kde.lookandfeel", "Start New Session") : i18nd("plasma_lookandfeel_org.kde.lookandfeel", "Switch Session")
+                    onClicked: initSwitchSession()
+                }
+
+                actionItems: [
+                    ActionButton {
+                        iconSource: "go-previous"
+                        text: i18nd("plasma_lookandfeel_org.kde.lookandfeel","Back")
+                        onClicked: mainStack.pop()
+                    }
+                ]
+            }
+        }
+
+        Loader {
+            active: root.viewVisible
+            source: "LockOsd.qml"
+            anchors {
+                horizontalCenter: parent.horizontalCenter
+                bottom: parent.bottom
+            }
+        }
+
+        RowLayout {
+            id: footer
+            anchors {
+                bottom: parent.bottom
+                left: parent.left
+                right: parent.right
+                margins: units.smallSpacing
             }
 
-            actionItems: [
-                ActionButton {
-                    iconSource: "go-previous"
-                    text: i18nd("plasma_lookandfeel_org.kde.lookandfeel","Back")
-                    onClicked: mainStack.pop()
-                }
-            ]
+            PlasmaComponents.ToolButton {
+                text: i18ndc("plasma_lookandfeel_org.kde.lookandfeel", "Button to show/hide virtual keyboard", "Virtual Keyboard")
+                iconName: inputPanel.keyboardActive ? "input-keyboard-virtual-on" : "input-keyboard-virtual-off"
+                onClicked: inputPanel.showHide()
+
+                visible: inputPanel.status == Loader.Ready
+            }
+
+            KeyboardLayoutButton {
+            }
+
+            Item {
+                Layout.fillWidth: true
+            }
+
+            Battery {}
         }
     }
-
-    Loader {
-        active: root.viewVisible
-        source: "LockOsd.qml"
-        anchors {
-            horizontalCenter: parent.horizontalCenter
-            bottom: parent.bottom
-        }
-    }
-
-    RowLayout {
-        id: footer
-        anchors {
-            bottom: parent.bottom
-            left: parent.left
-            right: parent.right
-            margins: units.smallSpacing
-        }
-
-        KeyboardLayoutButton {
-        }
-
-        Item {
-            Layout.fillWidth: true
-        }
-
-        Battery {}
-    }
-
 
     Component.onCompleted: {
         // version support checks
