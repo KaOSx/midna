@@ -99,6 +99,7 @@ Item {
                 id: passwdInput
                 Layout.fillWidth: true
                 width: 260
+                height: 35
 
                 placeholderText: i18nd("plasma_lookandfeel_org.kde.lookandfeel", "Password")
                 echoMode: TextInput.Password
