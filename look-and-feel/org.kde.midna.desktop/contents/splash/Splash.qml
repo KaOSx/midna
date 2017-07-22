@@ -1,24 +1,24 @@
-/*
- *   Copyright 2014 Marco Martin <mart@kde.org>
- *
- *   This program is free software; you can redistribute it and/or modify
- *   it under the terms of the GNU General Public License version 2,
- *   or (at your option) any later version, as published by the Free
- *   Software Foundation
- *
- *   This program is distributed in the hope that it will be useful,
- *   but WITHOUT ANY WARRANTY; without even the implied warranty of
- *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *   GNU General Public License for more details
- *
- *   You should have received a copy of the GNU General Public
- *   License along with this program; if not, write to the
- *   Free Software Foundation, Inc.,
- *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
- */
+/***************************************************************************
+ *   Copyright (C) 2017 Anke Boersma <demm@kaosx.us>       *
+ *                                                                         *
+ *   This program is free software; you can redistribute it and/or modify  *
+ *   it under the terms of the GNU General Public License as published by  *
+ *   the Free Software Foundation; either version 2 of the License, or     *
+ *   (at your option) any later version.                                   *
+ *                                                                         *
+ *   This program is distributed in the hope that it will be useful,       *
+ *   but WITHOUT ANY WARRANTY; without even the implied warranty of        *
+ *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the         *
+ *   GNU General Public License for more details.                          *
+ *                                                                         *
+ *   You should have received a copy of the GNU General Public License     *
+ *   along with this program; if not, write to the                         *
+ *   Free Software Foundation, Inc.,                                       *
+ *   51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.          *
+ ***************************************************************************/
 
-import QtQuick 2.1
-
+import QtQuick 2.7
+import QtGraphicalEffects 1.0
 
 Image {
     id: root
@@ -26,90 +26,203 @@ Image {
 
     property int stage
 
-    onStageChanged: {
-        if (stage == 1) {
-            introAnimation.running = true
-        }
-    }
-    Rectangle {
-        id: topRect
-        width: parent.width
-        height: (root.height / 3) - bottomRect.height - 2
-        y: root.height
-        color: "transparent"
+
+    Item {
+        clip: true
+
+        anchors.horizontalCenter: parent.horizontalCenter
+        anchors.bottom: parent.verticalCenter
+        anchors.bottomMargin: logo.size / 8
+        width: 300
+        height: 100
+
         Image {
-            source: "images/kde.svgz"
-            anchors.centerIn: parent
-            sourceSize.height: 128
-            sourceSize.width: 128
-        }
-        Rectangle {
-            width: parent.width
-            height: 0
-            color: "#646464"
-        }
-    }
+            id: plasma
+            property real size: units.gridUnit * 2
 
-    Rectangle {
-        id: bottomRect
-        width: parent.width
-        y: -height
-        height: 50
-        color: "transparent"
-        
-        Rectangle {
+            anchors.horizontalCenter: parent.horizontalCenter
             anchors.bottom: parent.bottom
-            width: parent.width
-            height: 0
-            color: "#646464"
-        }
+            anchors.bottomMargin: -20
 
-        Rectangle {
-            radius: 3
-            color: "#AFB8BA"
-            anchors.centerIn: parent
-            height: 8
-            width: height*32
-            Rectangle {
-                radius: 3
-                anchors {
-                    left: parent.left
-                    top: parent.top
-                    bottom: parent.bottom
-                }
-                width: (parent.width / 6) * (stage - 1)
-                color: "#414546"
-                Behavior on width { 
-                    PropertyAnimation {
-                        duration: 250
-                        easing.type: Easing.InOutQuad
+            source: "images/plasma.svgz"
+
+            sourceSize.width: 50
+            sourceSize.height: 50
+
+            states: [
+                State {
+                    name: "1"
+                    when: root.stage >= 1 && root.stage < 6
+                    PropertyChanges {
+                        target: plasma
+                        anchors.bottomMargin: 30
+                    }
+                },
+                State {
+                    name: "4"
+                    when: root.stage >= 6
+                    PropertyChanges {
+                        target: plasma
+                        anchors.bottomMargin: 120
                     }
                 }
+            ]
+
+            transitions: Transition {
+                NumberAnimation {
+                    properties: "anchors.bottomMargin"
+                    easing.type: Easing.InOutQuad
+                    duration: 1000
+                }
             }
         }
     }
 
-    SequentialAnimation {
-        id: introAnimation
-        running: false
+    Item {
+        id: logoBox
+        clip: true
+        width: 200
+        height: 140
 
-        ParallelAnimation {
-            PropertyAnimation {
-                property: "y"
-                target: topRect
-                to: root.height / 3.7
-                duration: 1000
-                easing.type: Easing.InOutBack
-                easing.overshoot: 2.0
+        anchors.horizontalCenter: parent.horizontalCenter
+        anchors.top: parent.verticalCenter
+        anchors.topMargin: -15
+
+        Image {
+            id: logo
+            property real size: units.gridUnit * 8
+
+            anchors.horizontalCenter: parent.horizontalCenter
+            anchors.top: parent.top
+
+            source: "images/kde.svgz"
+
+            sourceSize.width: 100
+            sourceSize.height: 100
+
+            states: [
+                State {
+                    when: root.stage >= 1 && root.stage < 5
+                    PropertyChanges {
+                        target: logo
+                        anchors.topMargin: 15
+                    }
+                },
+                State {
+                    when: root.stage >= 5
+                    PropertyChanges {
+                        target: logo
+                        anchors.topMargin: (logo.size + 200) * -1;
+                    }
+                }
+            ]
+
+            transitions: Transition {
+                NumberAnimation {
+                    properties: "anchors.topMargin"
+                    easing.type: Easing.InOutQuad
+                    duration: 1000
+                }
             }
+        }
 
-            PropertyAnimation {
-                property: "y"
-                target: bottomRect
-                to: 2 * (root.height / 3.7) - bottomRect.height
+        states: [
+            State {
+                name: "1"
+                when: root.stage >= 1
+                PropertyChanges {
+                    target: logoBox
+                    anchors.topMargin: 15
+                }
+            }
+        ]
+
+        transitions: Transition {
+            NumberAnimation {
+                properties: "anchors.topMargin"
+                easing.type: Easing.InOutQuad
                 duration: 1000
-                easing.type: Easing.InOutBack
-                easing.overshoot: 1.0
+            }
+        }
+    }
+
+
+    Rectangle {
+        id: glowingBar
+        anchors.centerIn: root
+
+        width: 300
+        height: 5
+
+        radius: 6
+        opacity: 0
+
+
+        gradient: Gradient {
+            GradientStop { position: 0.0; color: "#2196F3" }
+            GradientStop { position: 1.0; color: "#2980b9" }
+        }
+
+        states: [
+            State {
+                name: "3"
+                when: root.stage >= 3
+                PropertyChanges {
+                    target: glowingBar
+                    opacity: 1
+                }
+            }
+        ]
+
+        transitions: Transition {
+            NumberAnimation {
+                properties: "opacity"
+                easing.type: Easing.InOutQuad
+                duration: 1000
+            }
+        }
+
+    }
+
+    Item {
+        id: messageBox
+
+        width: 300;
+        height: message.height
+
+        anchors.horizontalCenter: parent.horizontalCenter
+        anchors.bottom: glowingBar.top
+
+        clip: true
+
+        Text {
+            id: message
+            text: i18n("Plasma for KaOS")
+            color: "#2196F3"
+            font.pointSize: 18
+            font.weight: Font.Light
+
+            anchors.horizontalCenter: parent.horizontalCenter
+            anchors.top: parent.top
+            anchors.topMargin: message.height
+
+            states: [
+                State {
+                    name: "visible"
+                    when: root.stage >= 6
+                    PropertyChanges {
+                        target: message
+                        anchors.topMargin: - 5
+                    }
+                }
+            ]
+
+            transitions: Transition {
+                NumberAnimation {
+                    properties: "anchors.topMargin"
+                    easing.type: Easing.InOutQuad
+                    duration: 1000
+                }
             }
         }
     }
