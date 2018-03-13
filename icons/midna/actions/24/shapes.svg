@@ -1,1 +1,14 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 22"><defs><clipPath><rect y="507.8" x="392.57" height="32" width="32" fill="none" rx="16"/></clipPath><clipPath><rect width="32" height="32" x="392.57" y="507.8" fill="none" rx="16"/></clipPath><clipPath><rect width="32" height="32" x="392.57" y="507.8" fill="none" rx="16"/></clipPath><clipPath><rect width="32" height="32" x="8" y="8" fill="none" rx="16"/></clipPath><clipPath><rect width="32" height="32" x="392.57" y="507.8" fill="none" rx="16"/></clipPath><clipPath><rect width="32" height="32" x="392.57" y="507.8" fill="none" rx="16"/></clipPath><clipPath><rect y="507.8" x="392.57" height="32" width="32" fill="none" rx="16"/></clipPath><clipPath><rect y="8" x="8" height="32" width="32" fill="none" rx="16"/></clipPath><clipPath><rect y="507.8" x="392.57" height="32" width="32" fill="none" rx="16"/></clipPath><clipPath><rect width="32" height="32" x="392.57" y="507.8" fill="none" rx="16"/></clipPath><clipPath><rect width="32" height="32" x="392.57" y="507.8" fill="none" rx="16"/></clipPath><clipPath><path d="m0 706.47h1490.93v-706.47h-1490.93v706.47"/></clipPath><clipPath><path fill="#f2f2f2" d="m7 1023.36h1v1h-1z"/></clipPath><clipPath><path fill="#f2f2f2" d="m7 1023.36h1v1h-1z"/></clipPath><clipPath><path d="m22.2 686.12h1447.73v-667.19h-1447.73v667.19"/></clipPath><clipPath><rect width="32" height="32" x="8" y="8" fill="none" rx="16"/></clipPath><clipPath><rect width="32" height="32" x="8" y="8" fill="none" rx="16"/></clipPath><clipPath><rect width="32" height="32" x="392.57" y="507.8" fill="none" rx="16"/></clipPath><clipPath><rect width="32" height="32" x="392.57" y="507.8" fill="none" rx="16"/></clipPath><clipPath><rect width="32" height="32" x="392.57" y="507.8" fill="none" rx="16"/></clipPath></defs><g transform="matrix(1.33333 0 0 1.33333-729.76-994.24)" fill="#566060"><g fill-rule="evenodd" color="#000"><circle cx="552.07" cy="750.43" r="2.5"/><rect y="747.93" x="556.57" height="5" width="5" rx=".5"/><rect y="754.93" x="550.57" height="5" width="3" rx=".5"/></g><path d="m556.57 759.93l2.5-5 2.5 5z"/></g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 22">
+  <defs id="defs3051">
+    <style type="text/css" id="current-color-scheme">
+      .ColorScheme-Text {
+        color:#4d4d4d;
+      }
+      </style>
+  </defs>
+ <path 
+     style="fill:currentColor;fill-opacity:1;stroke:none" 
+     d="M 6.5 3 C 4.5609917 3 3 4.5609917 3 6.5 C 3 8.4390083 4.5609917 10 6.5 10 C 8.4390083 10 10 8.4390083 10 6.5 C 10 4.5609917 8.4390083 3 6.5 3 z M 12 3 L 12 10 L 19 10 L 19 3 L 12 3 z M 4 12 L 4 19 L 9 19 L 9 12 L 4 12 z M 15 12 L 11 18 L 19 18 L 15 12 z "
+	 class="ColorScheme-Text"
+     />
+</svg>

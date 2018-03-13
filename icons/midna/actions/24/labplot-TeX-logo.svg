@@ -1,1 +1,14 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 22"><g transform="translate(-544.57-742.93)" color="#566060"><path d="m547.57 749.43h6v1h-6z"/><path transform="matrix(0 1-1 0 0 0)" d="m749.93-551.07h6.5v1h-6.5z"/><path d="m552.57 751.43v1 1.5 1 2.5 1h5v-1h-4v-2h4v-1h-4v-2h4v-1z"/><g color-rendering="auto" shape-rendering="auto" color-interpolation-filters="linearRGB" image-rendering="auto" color-interpolation="sRGB"><path d="m558.97 749.63l-.791.609 5 6.5.791-.609-5-6.5" mix-blend-mode="normal" isolation="auto" white-space="normal" solid-opacity="1" solid-color="#000000"/><path d="m563.18 749.63l-5 6.5.791.609 5-6.5-.791-.609" mix-blend-mode="normal" isolation="auto" white-space="normal" solid-opacity="1" solid-color="#000000"/></g></g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 22">
+  <defs id="defs3051">
+    <style type="text/css" id="current-color-scheme">
+      .ColorScheme-Text {
+        color:#4d4d4d;
+      }
+      </style>
+  </defs>
+ <path 
+     style="fill:currentColor;fill-opacity:1;stroke:none" 
+     d="M 3 6.5 L 3 7.5 L 5.5 7.5 L 5.5 13.5 L 6.5 13.5 L 6.5 7.5 L 9 7.5 L 9 6.5 L 3 6.5 z M 14.394531 6.6953125 L 13.603516 7.3046875 L 15.869141 10.25 L 13.603516 13.195312 L 14.394531 13.804688 L 16.5 11.068359 L 18.603516 13.804688 L 19.394531 13.195312 L 17.128906 10.25 L 19.394531 7.3046875 L 18.603516 6.6953125 L 16.5 9.4316406 L 14.394531 6.6953125 z M 8 8.5 L 8 9.5 L 8 11 L 8 12 L 8 14.5 L 8 15.5 L 13 15.5 L 13 14.5 L 9 14.5 L 9 12.5 L 13 12.5 L 13 11.5 L 9 11.5 L 9 9.5 L 13 9.5 L 13 8.5 L 8 8.5 z "
+     class="ColorScheme-Text"
+     />
+</svg>

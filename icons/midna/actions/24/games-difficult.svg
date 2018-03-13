@@ -1,1 +1,14 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 22"><defs><clipPath><path fill="#00f" fill-opacity=".514" d="m-7 1024.36h34v34h-34z"/></clipPath><clipPath><path fill="#aade87" fill-opacity=".472" d="m-6 1028.36h32v32h-32z"/></clipPath></defs><g transform="matrix(-.00121-1.47577 2.02671-.00088-2068.99 8.08)" fill="#566060" stroke="none"><path transform="matrix(1-.00077-.00034 1 0 0)" d="m-7.662 1021.96h5.212v2.23h-5.212z"/><path transform="matrix(1-.00029-.0002 1 0 0)" d="m-7.788 1025.11h8.03v2.23h-8.03z"/><path transform="matrix(1-.00006-.00005 1 0 0)" d="m-7.957 1028.37h10.841v2.23h-10.841z"/></g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 22">
+  <defs id="defs3051">
+    <style type="text/css" id="current-color-scheme">
+      .ColorScheme-Text {
+        color:#4d4d4d;
+      }
+      </style>
+  </defs>
+ <path 
+    style="fill:currentColor;fill-opacity:1;stroke:none" 
+    d="M 15 3 L 15 19 L 19 19 L 19 3 L 15 3 z M 16 4 L 18 4 L 18 18 L 16 18 L 16 4 z M 9 8 L 9 19 L 13 19 L 13 8 L 9 8 z M 10 9 L 12 9 L 12 18 L 10 18 L 10 9 z M 3 14 L 3 19 L 7 19 L 7 14 L 3 14 z M 4 15 L 6 15 L 6 18 L 4 18 L 4 15 z "
+    class="ColorScheme-Text"
+    />  
+</svg>

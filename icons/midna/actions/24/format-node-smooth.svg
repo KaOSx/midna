@@ -1,1 +1,22 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 22"><g transform="translate(0-1030.36)"><g color="#566060"><path d="m3 1039.36v3h3v-3h-3m1 1h1v1h-1v-1"/><path d="m16 1039.36v3h3v-3h-3m1 1h1v1h-1v-1"/></g><path d="m11 1038.36v4h-4v-4zm-1 1h-2v2h2z" fill="#1d99f3"/><g color="#566060" transform="scale(-1 1)"><path d="m-16 1040.36h5v1h-5z"/><path d="m-7 1040.36h1v1h-1z"/></g></g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 22">
+  <defs id="defs3051">
+    <style type="text/css" id="current-color-scheme">
+      .ColorScheme-Text {
+        color:#4d4d4d;
+      }
+      .ColorScheme-Highlight {
+        color:#3daee9;
+      }
+      </style>
+  </defs>
+ <path 
+     style="fill:currentColor;fill-opacity:1;stroke:none" 
+     d="M 3 9 L 3 12 L 6 12 L 6 11 L 7 11 L 7 10 L 6 10 L 6 9 L 3 9 z M 16 9 L 16 10 L 11 10 L 11 11 L 16 11 L 16 12 L 19 12 L 19 9 L 16 9 z M 4 10 L 5 10 L 5 11 L 4 11 L 4 10 z M 17 10 L 18 10 L 18 11 L 17 11 L 17 10 z "
+     class="ColorScheme-Text"
+     />
+ <path 
+     style="fill:currentColor;fill-opacity:1;stroke:none" 
+     d="M 7 8 L 7 12 L 11 12 L 11 8 L 7 8 z M 8 9 L 10 9 L 10 11 L 8 11 L 8 9 z "
+     class="ColorScheme-Highlight"
+     />
+</svg>

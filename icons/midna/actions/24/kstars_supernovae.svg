@@ -1,1 +1,78 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 22"><defs><clipPath><path d="m.09-.09h64v64h-64z"/></clipPath><clipPath><path d="m.09-.09h64v64h-64z"/></clipPath><clipPath><path d="m.09-.09h64v64h-64z"/></clipPath><clipPath><path d="m.09-.09h64v64h-64z"/></clipPath><clipPath><path d="m.09-.09h64v64h-64z"/></clipPath><clipPath><path d="m.09-.09h64v64h-64z"/></clipPath></defs><g transform="translate(0-1030.36)"><ellipse cy="1032.56" cx="-116.1" transform="matrix(.98989-.14184.12202.99253 0 0)" rx="5.01" ry="5.398" fill="#566060"/><path d="m17.895 1033.92c-.881.365-2.468 1.11-4.344 2.444.129.081.254.171.377.265 1.79-1.174 3.035-1.602 3.424-1.137.656.785-1.897 3.581-5.496 6.852-3.6 3.271-6.648 5.445-7.304 4.66-.4-.478.271-1.689 1.71-3.446-.071-.136-.113-.303-.172-.444-2.182 2.488-4.548 5.437-4.01 6.077.776.928 6.403-1.935 10.662-5.806 4.26-3.871 7.933-9.05 7.157-9.978-.145-.174-1.55.268-2 .514" fill="#bdc3c7"/></g></svg>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   viewBox="0 0 22 22"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.91 r13725"
+   sodipodi:docname="kstars_supernovae.svg">
+  <metadata
+     id="metadata12">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1360"
+     inkscape:window-height="708"
+     id="namedview10"
+     showgrid="true"
+     inkscape:zoom="21.454545"
+     inkscape:cx="7.6795112"
+     inkscape:cy="12.007271"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg2">
+    <inkscape:grid
+       type="xygrid"
+       id="grid4134" />
+  </sodipodi:namedview>
+  <defs
+     id="defs3051">
+    <style
+       type="text/css"
+       id="current-color-scheme">
+      .ColorScheme-Text {
+        color:#4d4d4d;
+      }
+      .ColorScheme-Highlight {
+        color:#3daee9;
+      }
+      </style>
+  </defs>
+  <path
+     sodipodi:type="star"
+     style="opacity:1;fill:#4d4d4d;fill-opacity:1;stroke:none;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+     id="path4136"
+     sodipodi:sides="4"
+     sodipodi:cx="11"
+     sodipodi:cy="11"
+     sodipodi:r1="9"
+     sodipodi:r2="2.8284271"
+     sodipodi:arg1="0"
+     sodipodi:arg2="0.78539816"
+     inkscape:flatsided="false"
+     inkscape:rounded="0"
+     inkscape:randomized="0"
+     d="M 20,11 13,13 11,20 9,13 2,11 9,9 11,2 13,9 Z" />
+</svg>

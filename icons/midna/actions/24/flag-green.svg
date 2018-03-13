@@ -1,1 +1,15 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 22"><path d="m432.14 155.42c-62.34 22.953-109.84 39.3-151.63 90.98-37.23 46.05-90.98 62.01-151.63 31.657v165.46h-30.33v-409.4c-.0001-8.382 6.781-15.16 15.16-15.16 8.38 0 15.166 6.781 15.166 15.16 33.67 48.953 92.19 59.795 151.63 60.65 90.98 1.33 151.63 60.65 151.63 60.65" transform="matrix(.03769 0 0 .03769 1 2.288)" fill="#43be80"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 22">
+  <defs id="defs3051">
+    <style type="text/css" id="current-color-scheme">
+      .ColorScheme-Text {
+        color:#4d4d4d;
+      }
+      </style>
+  </defs>
+ <path 
+    style="fill:currentColor;fill-opacity:1;stroke:none" 
+	d="m3 3v16h1v-7-9h-1"
+    class="ColorScheme-Text"
+    />  
+ <path d="m4 3v9l5-1 1-.199219v2l9-1.800781-2-1 2-1-9-2.400391v-2l-1-.265625-5-1.333984" style="fill:#43be80"/>
+</svg>

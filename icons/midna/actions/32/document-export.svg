@@ -1,1 +1,18 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 22"><g transform="matrix(0-1.37672 1.37248 0-778.2 566.79)" stroke-opacity=".8" stroke="none" fill="#566060"><path d="m409.22 572.96c-.401-.404-1.052-.404-1.453 0l-4.057 4.497-4.057-4.497c-.402-.404-1.052-.404-1.453 0-.402.404-.402 1.058 0 1.461l4.719 5.231c.217.218.507.314.791.296.284.018.574-.078.791-.296l4.719-5.231c.401-.404.401-1.058 0-1.461"/><path d="m403.71 573.47c.935 0 1.693-.761 1.693-1.7 0-.939-.758-1.7-1.693-1.7-.935 0-1.693.761-1.693 1.7 0 .939.758 1.7 1.693 1.7"/></g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <defs
+     id="defs3051">
+    <style
+       type="text/css"
+       id="current-color-scheme">
+      .ColorScheme-Text {
+        color:#4d4d4d;
+      }
+      </style>
+  </defs>
+  <path
+     style="fill:currentColor;fill-opacity:1;stroke:none" 
+     d="M 6 4 L 6 22.5 L 5.9960938 22.5 L 5.9960938 23.5 L 14.085938 23.5 L 10.292969 27.292969 L 11 28 L 16 23 L 15 22 L 11 18 L 10.292969 18.707031 L 14.085938 22.5 L 7 22.5 L 7 5 L 25 5 L 25 27 L 16 27 L 16 28 L 26 28 L 26 4 L 6 4 z "
+     id="path36" 
+     class="ColorScheme-Text"
+     />
+</svg>

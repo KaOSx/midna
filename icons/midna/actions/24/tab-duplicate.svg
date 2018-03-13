@@ -1,1 +1,14 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 22"><defs><clipPath><path d="m0 706.47h1490.93v-706.47h-1490.93v706.47"/></clipPath><clipPath><path d="m22.2 686.12h1447.73v-667.19h-1447.73v667.19"/></clipPath></defs><path d="m27.535 4h-9.04l-2.628 3.504-2.337-3.504h-9.07l-4.465 6.697v17.303h32v-18" transform="matrix(.61045 0 0 .61045 1 1.368)" fill="#566060"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 22">
+  <defs id="defs3051">
+    <style type="text/css" id="current-color-scheme">
+      .ColorScheme-Text {
+        color:#4d4d4d;
+      }
+      </style>
+  </defs>
+ <path 
+     style="fill:currentColor;fill-opacity:1;stroke:none" 
+     d="m3 3v1 14 1h16v-1-12h-1v-2h-2-5-1v1 1h-1v-1-2h-1-4-1m1 1h4v3h3 4 1 2v11h-14v-14"
+	 class="ColorScheme-Text"
+     />
+</svg>

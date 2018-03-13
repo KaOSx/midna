@@ -1,1 +1,14 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 22"><g transform="matrix(0-.66625-.66625 0 365.35 277.88)" fill="#566060" fill-rule="evenodd"><g stroke="#566060" stroke-linejoin="round" stroke-linecap="round"><rect y="520.4" x="389.07" height="10.971" width="8.971" stroke-width="1.029" rx="1.026"/><rect y="520.4" x="403.01" height="9.06" width="9.06" stroke-width=".94" rx=".848"/><rect y="538.2" x="402.9" height="5.274" width="9.274" stroke-width=".726" rx=".493"/></g><rect y="533.8" x="388.57" height="2.274" width="24" rx=".3"/></g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <defs id="defs3051">
+    <style type="text/css" id="current-color-scheme">
+      .ColorScheme-Text {
+        color:#4d4d4d;
+      }
+      </style>
+  </defs>
+ <path 
+     style="fill:currentColor;fill-opacity:1;stroke:none" 
+     d="m4 4v10h6v-10zm8 0v24h2v-24zm6 0v10h10v-10zm1 1h8v8h-8zm-3 13v10h12v-10zm1 1h10v8h-10z"
+     class="ColorScheme-Text"
+     />
+</svg>

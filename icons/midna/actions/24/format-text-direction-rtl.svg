@@ -1,1 +1,14 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g transform="matrix(-1 0 0 1 349.85-531.62)" fill="#566060" stroke="#566060" stroke-linejoin="round" stroke-linecap="round"><rect y="1037.22" x="-10.62" height=".88" width="7.516" transform="matrix(-1.29273 0 0 1.29273 332.18-804.5)" stroke-width=".28" rx=".44"/><g transform="scale(-1 1)"><g stroke-width=".362"><rect y="539.64" x="-345.9" height="1.138" width="9.716" rx=".569"/><rect y="543.47" x="-339.85" height="1.138" width="9.716" rx=".569"/></g><rect y="546.81" x="-335.53" height="1.22" width="5.434" stroke-width=".28" rx=".61"/><rect y="549.97" x="-339.85" height="1.138" width="9.716" stroke-width=".362" rx=".569"/></g><circle r="2.5" cy="538.75" cx="332.43" stroke-width=".6"/></g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 22">
+  <defs id="defs3051">
+    <style type="text/css" id="current-color-scheme">
+      .ColorScheme-Text {
+        color:#4d4d4d;
+      }
+      </style>
+  </defs>
+ <path 
+    style="fill:currentColor;fill-opacity:1;stroke:none" 
+    d="M 3 3 L 3 4 L 13 4 L 13 3 L 3 3 z M 14 3 L 14 8 L 19 8 L 19 3 L 14 3 z M 10 5 L 10 6 L 13 6 L 13 5 L 10 5 z M 9 9 L 9 10 L 19 10 L 19 9 L 9 9 z M 15 11 L 15 12 L 19 12 L 19 11 L 15 11 z M 9 15 L 9 16 L 19 16 L 19 15 L 9 15 z M 12 17 L 12 18 L 19 18 L 19 17 L 12 17 z M 9 18 L 9 19 L 11 19 L 11 18 L 9 18 z "
+    class="ColorScheme-Text"
+    />  
+</svg>

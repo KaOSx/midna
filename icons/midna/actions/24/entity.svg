@@ -1,1 +1,14 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 22"><g transform="translate(-551.29-607.65)" color="#566060"><path d="m4 4v16h16v-16h-16m1 1h14v14h-14v-14" transform="translate(550.29 606.65)"/><path mix-blend-mode="normal" solid-color="#000000" color-interpolation-filters="linearRGB" image-rendering="auto" color-rendering="auto" isolation="auto" color-interpolation="sRGB" solid-opacity="1" fill="#566060" shape-rendering="auto" d="m555.29 615.65h14v1h-14z"/></g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 22">
+  <defs id="defs3051">
+    <style type="text/css" id="current-color-scheme">
+      .ColorScheme-Text {
+        color:#4d4d4d;
+      }
+      </style>
+  </defs>
+ <path 
+    style="fill:currentColor;fill-opacity:1;stroke:none" 
+    d="M 3 3 L 3 19 L 19 19 L 19 3 L 3 3 z M 4 4 L 18 4 L 18 8 L 4 8 L 4 4 z M 4 9 L 18 9 L 18 18 L 4 18 L 4 9 z "
+    class="ColorScheme-Text"
+    />  
+</svg>

@@ -1,1 +1,14 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 22"><defs><clipPath><path fill="#f2f2f2" d="m7 1023.36h1v1h-1z"/></clipPath><clipPath><path fill="#f2f2f2" d="m7 1023.36h1v1h-1z"/></clipPath></defs><path d="m329.24 537.36c-.575 0-1.038.421-1.038.943v14.11c0 .522.463.943 1.038.943h15.525c.575 0 1.038-.421 1.038-.943v-14.11c0-.522-.463-.943-1.038-.943zm.738 1.892h14.05v9.307h-2.8v1.31h-1.55v1.599h-5.3v-1.599h-1.65v-1.31h-2.75zm1.416 1.406v3.681h2v-3.681zm3.14 0v3.681h2v-3.681zm3.041 0v3.681h2v-3.681zm3.041 0v3.681h2v-3.681z" transform="translate(-326-534.36)" fill="#566060"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+  <defs id="defs3051">
+    <style type="text/css" id="current-color-scheme">
+      .ColorScheme-Text {
+        color:#4d4d4d;
+      }
+      </style>
+  </defs>
+    <path 
+        style="fill:currentColor;fill-opacity:1;stroke:none" 
+          d="M 7 2 L 7 3 L 13 3 L 13 10 L 7 10 L 7 12 L 7 13 L 6 13 C 5.4459904 13 5 12.55401 5 12 L 5 10 L 5 8 L 5 7 L 6 7 L 6 3 L 3 3 L 3 7 L 4 7 L 4 8 L 4 10 L 4 12 C 4 13.108 4.892 14 6 14 L 7 14 L 9 14 L 11 14 L 11 13 L 9 13 L 9 12 L 14 12 L 14 11 L 14 10 L 14 2 L 7 2 z M 4 5 L 5 5 L 5 6 L 4 6 L 4 5 z M 2 8 L 2 12 L 3 12 L 3 10 L 3 8 L 2 8 z " 
+          class="ColorScheme-Text"
+        />
+</svg>

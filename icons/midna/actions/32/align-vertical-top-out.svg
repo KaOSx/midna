@@ -1,1 +1,18 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 22"><g transform="matrix(.66798 0 0-.66798-256.57 366.24)" fill="#566060" fill-rule="evenodd"><g stroke="#566060" stroke-linejoin="round" stroke-linecap="round"><rect y="520.4" x="389.07" height="10.971" width="8.971" stroke-width="1.029" rx="1.026"/><rect y="520.4" x="403.01" height="9.06" width="9.06" stroke-width=".94" rx=".848"/><rect y="538.2" x="402.9" height="5.274" width="9.274" stroke-width=".726" rx=".493"/></g><rect y="533.8" x="388.57" height="2.274" width="24" rx=".3"/></g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <defs
+     id="defs3051">
+    <style
+       type="text/css"
+       id="current-color-scheme">
+      .ColorScheme-Text {
+        color:#4d4d4d;
+      }
+      </style>
+  </defs>
+  <path
+     style="fill:currentColor;fill-opacity:1;stroke:none" 
+     d="M 18 4 L 18 10 L 28 10 L 28 4 L 18 4 z M 4 12 L 4 14 L 28 14 L 28 12 L 4 12 z M 4 16 L 4 28 L 14 28 L 14 16 L 4 16 z M 5 17 L 13 17 L 13 27 L 5 27 L 5 17 z M 18 18 L 18 28 L 28 28 L 28 18 L 18 18 z M 19 19 L 27 19 L 27 27 L 19 27 L 19 19 z "
+     id="path8" 
+     class="ColorScheme-Text"
+     />
+</svg>

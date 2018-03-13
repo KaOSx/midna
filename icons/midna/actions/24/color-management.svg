@@ -1,1 +1,59 @@
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 22 22"><defs><linearGradient y2="516.78" x2="400.4" y1="546.68" x1="400.36" gradientUnits="userSpaceOnUse"><stop stop-color="#d8d8d8"/><stop offset="1" stop-color="#fff"/></linearGradient><linearGradient id="1" x1="384.66" y1="531.64" x2="415.94" y2="531.46" gradientUnits="userSpaceOnUse"><stop stop-color="#ac92ec"/><stop offset=".137" stop-color="#64a9ff"/><stop offset=".268" stop-color="#4cdbb7"/><stop offset=".494" stop-color="#aee672"/><stop offset=".741" stop-color="#ffce53"/><stop offset=".93" stop-color="#fb6e51"/><stop offset="1" stop-color="#ed5565"/></linearGradient><linearGradient id="0" gradientUnits="userSpaceOnUse" x1="-53.41" x2="40.658"><stop stop-color="#161719"/><stop offset="1" stop-color="#424649"/></linearGradient><linearGradient x1="383.54" y1="531.66" x2="416.8" y2="531.4" gradientUnits="userSpaceOnUse"><stop stop-color="#ac92ec"/><stop offset=".202" stop-color="#64a9ff"/><stop offset=".323" stop-color="#4cdbb7"/><stop offset=".534" stop-color="#aee672"/><stop offset=".763" stop-color="#ffce53"/><stop offset=".899" stop-color="#fb6e51"/><stop offset="1" stop-color="#ed5565"/></linearGradient></defs><g transform="matrix(-.1683.03133-.03133-.1683 4.91-11.152)"><flowRoot font-family="sans-serif" word-spacing="0" line-height="125%" letter-spacing="0" font-size="12.5"><flowRegion stroke="url(#0)"><path stroke="none" d="m-427.82-178.14h100.15v116.76h-100.15z" id="2"/></flowRegion><flowPara stroke="none"/></flowRoot><g transform="translate(-.084.359)"><flowRoot font-family="sans-serif" word-spacing="0" line-height="125%" letter-spacing="0" font-size="12.5"><flowRegion stroke="url(#0)"><use xlink:href="#2"/></flowRegion><flowPara stroke="none"/></flowRoot><g transform="matrix(.94417 0 0 .94417-.39-7.643)"><circle r="14.875" cy="531.73" cx="400.62" transform="matrix(-3.0885-.57493.57493-3.0885 920.16 1738.75)" fill="none" stroke="url(#1)" stroke-linejoin="round" stroke-linecap="round" stroke-width="1.759"/><path d="m405.68 6.232l-232.65 405.74c-48.889 85.78-52.665 194.85 0 286.7 79.17 138.07 255.28 185.82 393.35 106.65 138.07-79.17 185.82-255.28 106.65-393.35l-232.65-405.74c-7.685-13.403-27.01-13.403-34.699 0m753.30994 386.50018a729.09532 729.09532 0 0 1 -729.09519 729.09512 729.09532 729.09532 0 0 1 -729.09513 -729.09519 729.09532 729.09532 0 0 1 729.0952 -729.09514 729.09532 729.09532 0 0 1 729.09512 729.09521" fill="#566060" transform="matrix(-.05978-.01113.01113-.05978 9.887-105.56)" opacity=".9"/></g></g></g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 22" xmlns:xlink="http://www.w3.org/1999/xlink">
+ <defs>
+  <path fill="url(#0)" id="H" d="m24 8c-8.863992 0-16 7.136008-16 16h16v-16"/>
+  <path fill="url(#3)" id="I" d="m408.57143 539.798c8.86399 0 16-7.13601 16-16h-16v16"/>
+  <path fill="url(#1)" id="J" d="m408.57143 539.798c-8.86399 0-16-7.13601-16-16h16v16"/>
+  <linearGradient id="3" y1="523.8" y2="539.8" x1="424.57" x2="408.57" gradientUnits="userSpaceOnUse">
+   <stop stop-color="#c1cc00"/>
+   <stop offset="0.312" stop-color="#dfcd00"/>
+   <stop offset="0.562" stop-color="#f0cc00"/>
+   <stop offset="0.75" stop-color="#fd8c08"/>
+   <stop offset="1" stop-color="#f25c13"/>
+  </linearGradient>
+  <linearGradient id="0" y1="24" y2="8" x1="8" x2="24" gradientUnits="userSpaceOnUse">
+   <stop stop-color="#e81877"/>
+   <stop offset="0.312" stop-color="#dd1d8c"/>
+   <stop offset="0.562" stop-color="#6d57b1"/>
+   <stop offset="0.75" stop-color="#2a78c1"/>
+   <stop offset="1" stop-color="#018dcb"/>
+  </linearGradient>
+  <linearGradient id="2" y1="523.8" y2="507.8" x1="424.57" x2="408.57" gradientUnits="userSpaceOnUse">
+   <stop stop-color="#bec900"/>
+   <stop offset="0.312" stop-color="#9ec80a"/>
+   <stop offset="0.562" stop-color="#71b93d"/>
+   <stop offset="0.75" stop-color="#35a48f"/>
+   <stop offset="1" stop-color="#018fca"/>
+  </linearGradient>
+  <linearGradient id="1" y1="523.8" y2="539.8" x1="392.57" x2="408.57" gradientUnits="userSpaceOnUse">
+   <stop stop-color="#e51561"/>
+   <stop offset="0.312" stop-color="#e4156c"/>
+   <stop offset="0.562" stop-color="#e71e2c"/>
+   <stop offset="0.75" stop-color="#e8301e"/>
+   <stop offset="1" stop-color="#e6320e"/>
+  </linearGradient>
+ </defs>
+ <g transform="matrix(1.24886 0 0 1.24887 -2.738 -1289.52)">
+  <g transform="matrix(0.38637 0.10353 -0.10353 0.38637 -92.63 796.68)">
+   <use xlink:href="#H" clip-path="url(#5)" transform="matrix(1 0 0 1 384.57 499.8)"/>
+   <use xlink:href="#J" clip-path="url(#6)"/>
+   <path fill="url(#2)" d="m408.57143 507.798c8.86399 0 16 7.13601 16 16h-16v-16" clip-path="url(#7)"/>
+   <use xlink:href="#I" clip-path="url(#8)"/>
+  </g>
+  <g opacity="0.7" transform="matrix(0.4 0 0 0.4 -152.43 831.84)">
+   <use filter="url(#4)" xlink:href="#H" clip-path="url(#9)" transform="matrix(1 0 0 1 384.57 499.8)"/>
+   <use filter="url(#4)" xlink:href="#J" clip-path="url(#A)"/>
+   <use filter="url(#4)" xlink:href="#I" clip-path="url(#B)"/>
+   <path fill="url(#2)" filter="url(#4)" d="m408.57143 507.798c8.86399 0 16 7.13601 16 16h-16v-16" clip-path="url(#C)"/>
+  </g>
+  <use opacity="0.35" xlink:href="#H" clip-path="url(#9)" transform="matrix(0.28284 0.28284 -0.28284 0.28284 11 1027.79)"/>
+  <path opacity="0.35" fill="url(#1)" d="m408.57143 539.798c-8.86399 0-16-7.13601-16-16h16v16" clip-path="url(#A)" transform="matrix(0.28284 0.28284 -0.28284 0.28284 43.591 777.65)"/>
+  <use opacity="0.35" xlink:href="#I" clip-path="url(#B)" transform="matrix(0.28284 0.28284 -0.28284 0.28284 43.591 777.65)"/>
+  <path opacity="0.35" fill="url(#2)" d="m408.57143 507.798c8.86399 0 16 7.13601 16 16h-16v-16" clip-path="url(#C)" transform="matrix(0.28284 0.28284 -0.28284 0.28284 43.591 777.65)"/>
+  <g transform="matrix(0.10353 0.38637 -0.38637 0.10353 171.08 829.27)">
+   <use opacity="0.3" xlink:href="#H" clip-path="url(#D)" transform="matrix(1 0 0 1 384.57 499.8)"/>
+   <use opacity="0.3" xlink:href="#J" clip-path="url(#E)"/>
+   <use opacity="0.3" xlink:href="#I" clip-path="url(#F)"/>
+   <path opacity="0.3" fill="url(#2)" d="m408.57143 507.798c8.86399 0 16 7.13601 16 16h-16v-16" clip-path="url(#G)"/>
+  </g>
+ </g>
+</svg>
