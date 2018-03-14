@@ -1,10 +1,26 @@
-<svg 
-    height="22" 
-    viewBox="0 0 22 22"
-    width="22" 
-    xmlns="http://www.w3.org/2000/svg">
-    <path 
-        d="m3.125 294.17916c-.621 0-1.125.51167-1.125 1.14259v13.71485c0 .63149.504 1.14255 1.125 1.14255h15.75c.621 0 1.125-.51167 1.125-1.14255v-11.69923c0-.63153-.504-1.15821-1.125-1.15821h-8.875l-2-2-2-.00002z"
-        fill="#e62449" 
-        transform="translate(0 -291.17915)"/>
+<svg
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="22"
+   height="22"
+   id="svg2"
+   version="1.1"
+   viewBox="0 0 16 16"
+   sodipodi:docname="folder-red.svg">
+  <g
+     inkscape:label="Capa 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(0,-1036.3622)">
+    <g
+       id="layer1-5"
+       inkscape:label="Capa 1"
+       style="fill:#e62449;fill-opacity:1">
+      <path
+         id="rect4139"
+         transform="translate(0,1036.3622)"
+         d="m 1,2 0,12 6,0 8,0 L 15,5 15,4 15,3 14,3 7.6660156,3 7,2 1,2 Z M 8.3339844,4 14,4 14,5 9,5 8.3339844,4 Z"
+         style="opacity:1;fill:#e62449;fill-opacity:1;stroke:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         inkscape:connector-curvature="0" />
+    </g>
+  </g>
 </svg>
