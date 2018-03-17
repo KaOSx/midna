@@ -33,6 +33,7 @@ Item {
     property string userName
     property string avatarPath
     property string iconSource
+    property bool constrainText: true
     signal clicked()
 
     property real faceSize: Math.min(width, height - usernameDelegate.height - units.largeSpacing)
@@ -99,17 +100,17 @@ Item {
                         uniform highp float qt_Opacity;
                         uniform lowp sampler2D source;
 
-                        uniform vec4 colorBorder;
-                        float blend = 0.01;
-                        float innerRadius = 0.47;
-                        float outerRadius = innerRadius + 0.02;
-                        vec4 colorEmpty = vec4(0.0, 0.0, 0.0, 0.0);
+                        uniform lowp vec4 colorBorder;
+                        highp float blend = 0.01;
+                        highp float innerRadius = 0.47;
+                        highp float outerRadius = 0.49;
+                        lowp vec4 colorEmpty = vec4(0.0, 0.0, 0.0, 0.0);
 
                         void main() {
-                            vec4 colorSource = texture2D(source, qt_TexCoord0.st);
+                            lowp vec4 colorSource = texture2D(source, qt_TexCoord0.st);
 
-                            vec2 m = qt_TexCoord0 - vec2(0.5, 0.5);
-                            float dist = sqrt(m.x * m.x + m.y * m.y);
+                            highp vec2 m = qt_TexCoord0 - vec2(0.5, 0.5);
+                            highp float dist = sqrt(m.x * m.x + m.y * m.y);
 
                             if (dist < innerRadius)
                                 gl_FragColor = colorSource;
@@ -133,10 +134,10 @@ Item {
         id: usernameDelegate
         anchors {
             bottom: parent.bottom
-            left: parent.left
-            right: parent.right
+            horizontalCenter: parent.horizontalCenter
         }
         height: implicitHeight // work around stupid bug in Plasma Components that sets the height
+        width: constrainText ? parent.width : implicitWidth
         text: wrapper.name
         elide: Text.ElideRight
         horizontalAlignment: Text.AlignHCenter

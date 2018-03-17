@@ -95,7 +95,7 @@ PlasmaCore.ColorScope {
                 from: ""
                 to: "onOtherSession"
 
-                PropertyAnimation { id: stateChangeAnimation; properties: "y"; duration: 300; easing: Easing.InQuad}
+                PropertyAnimation { id: stateChangeAnimation; properties: "y"; duration: 300; easing.type: Easing.InQuad}
                 PropertyAnimation { properties: "opacity"; duration: 300}
 
                 onRunningChanged: {
@@ -180,7 +180,7 @@ PlasmaCore.ColorScope {
                 Loader {
                     Layout.fillWidth: true
                     Layout.preferredHeight: item ? item.implicitHeight : 0
-                    active: true // TODO configurable
+                    active: config.showMediaControls
                     source: "MediaControls.qml"
                 }
             }
@@ -198,6 +198,14 @@ PlasmaCore.ColorScope {
                 state = state == "hidden" ? "visible" : "hidden";
             }
             Component.onCompleted: inputPanel.source = "../components/VirtualKeyboard.qml"
+
+            onKeyboardActiveChanged: {
+                if (keyboardActive) {
+                    state = "visible";
+                } else {
+                    state = "hidden";
+                }
+            }
             
             states: [
                 State {

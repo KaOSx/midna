@@ -26,6 +26,7 @@ Item {
     property alias text: label.text
     property alias iconSource: icon.source
     property alias containsMouse: mouseArea.containsMouse
+    property alias font: label.font
     signal clicked
 
     activeFocusOnTab: true
@@ -57,8 +58,8 @@ Item {
         }
         horizontalAlignment: Text.AlignHCenter
         verticalAlignment: Text.AlignTop
-        //wrapMode: Text.WordWrap
-        color: "#646464"
+        wrapMode: Text.WordWrap
+        font.underline: root.activeFocus
     }
 
     MouseArea {
