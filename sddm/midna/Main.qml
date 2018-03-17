@@ -1,11 +1,9 @@
 /***********************************************************************/
 
-import QtQuick 2.0
+import QtQuick 2.7
 import QtGraphicalEffects 1.0
 import SddmComponents 2.0
-
-import org.kde.plasma.core 2.0 as PlasmaCore
-import org.kde.plasma.components 2.0 as PlasmaComponents
+import QtQuick.Controls 2.0
 
 
 Rectangle {
@@ -15,9 +13,8 @@ Rectangle {
     state: "stateLogin"
 
     readonly property int hMargin: 100
-    readonly property int vMargin: 5
-    readonly property int m_powerButtonSize: 64
-    readonly property color textColor: "#414546"
+    readonly property int vMargin: 30
+    readonly property int buttonSize: 40
 
     TextConstants { id: textConstants }
 
@@ -28,6 +25,7 @@ Rectangle {
             PropertyChanges { target: powerFrame; opacity: 1}
             PropertyChanges { target: sessionFrame; opacity: 0}
             PropertyChanges { target: userFrame; opacity: 0}
+            PropertyChanges { target: usageFrame; opacity: 0}
             PropertyChanges { target: bgBlur; radius: 30}
         },
         State {
@@ -36,6 +34,7 @@ Rectangle {
             PropertyChanges { target: powerFrame; opacity: 0}
             PropertyChanges { target: sessionFrame; opacity: 1}
             PropertyChanges { target: userFrame; opacity: 0}
+            PropertyChanges { target: usageFrame; opacity: 0}
             PropertyChanges { target: bgBlur; radius: 30}
         },
         State {
@@ -44,6 +43,7 @@ Rectangle {
             PropertyChanges { target: powerFrame; opacity: 0}
             PropertyChanges { target: sessionFrame; opacity: 0}
             PropertyChanges { target: userFrame; opacity: 1}
+            PropertyChanges { target: usageFrame; opacity: 0}
             PropertyChanges { target: bgBlur; radius: 30}
         },
         State {
@@ -52,7 +52,17 @@ Rectangle {
             PropertyChanges { target: powerFrame; opacity: 0}
             PropertyChanges { target: sessionFrame; opacity: 0}
             PropertyChanges { target: userFrame; opacity: 0}
+            PropertyChanges { target: usageFrame; opacity: 0}
             PropertyChanges { target: bgBlur; radius: 0}
+        },
+        State {
+            name: "stateUsage"
+            PropertyChanges { target: loginFrame; opacity: 0}
+            PropertyChanges { target: powerFrame; opacity: 0}
+            PropertyChanges { target: sessionFrame; opacity: 0}
+            PropertyChanges { target: userFrame; opacity: 0}
+            PropertyChanges { target: usageFrame; opacity: 1}
+            PropertyChanges { target: bgBlur; radius: 30}
         }
 
     ]
@@ -61,13 +71,16 @@ Rectangle {
         PropertyAnimation { duration: 300; properties: "radius"; }
     }
 
-    Background {
-        anchors.fill: parent
-        source: config.background
-        fillMode: Image.PreserveAspectCrop
-        onStatusChanged: {
-            if (status == Image.Error && source !== config.defaultBackground) {
-                source = config.defaultBackground
+    Repeater {
+        model: screenModel
+        Background {
+            x: geometry.x; y: geometry.y; width: geometry.width; height:geometry.height
+            source: config.default_background
+            fillMode: Image.Tile
+            onStatusChanged: {
+                if (status == Image.Error && source !== config.default_background) {
+                    source = config.default_background
+                }
             }
         }
     }
@@ -80,7 +93,8 @@ Rectangle {
         Image {
             id: mainFrameBackground
             anchors.fill: parent
-            source: "background.png"
+            fillMode: Image.PreserveAspectCrop
+            source: config.default_background
         }
 
         FastBlur {
@@ -93,9 +107,11 @@ Rectangle {
         Item {
             id: centerArea
             width: parent.width
-            height: parent.height / 4
-            anchors.top: parent.top
-            anchors.topMargin: parent.height / 4
+            height: 430
+            visible: config.primary_screen_only == "true" ? primaryScreen : true
+            anchors {
+                centerIn: parent
+            }
 
             PowerFrame {
                 id: powerFrame
@@ -115,14 +131,13 @@ Rectangle {
                 anchors.fill: parent
                 enabled: root.state == "stateSession"
                 onSelected: {
-                    console.log("Selected session:", index)
                     root.state = "stateLogin"
                     loginFrame.sessionIndex = index
-                    loginFrame.input.forceActiveFocus()
+                    loginFrame.passwdInput.forceActiveFocus()
                 }
                 onNeedClose: {
                     root.state = "stateLogin"
-                    loginFrame.input.forceActiveFocus()
+                    loginFrame.passwdInput.forceActiveFocus()
                 }
             }
 
@@ -131,7 +146,6 @@ Rectangle {
                 anchors.fill: parent
                 enabled: root.state == "stateUser"
                 onSelected: {
-                    console.log("Select user:", userName)
                     root.state = "stateLogin"
                     loginFrame.userName = userName
                     loginFrame.input.forceActiveFocus()
@@ -149,187 +163,218 @@ Rectangle {
                 opacity: 0
                 transformOrigin: Item.Top
             }
+
+            UsageFrame {
+                id: usageFrame
+                anchors.fill: parent
+                enabled: root.state == "usageFrame"
+                opacity: 0
+                transformOrigin: Item.Top
+            }
         }
 
-        Item {
-            id: timeArea
-            visible: ! loginFrame.isProcessing
+        Rectangle {
+            id: topArea
             anchors {
                 top: parent.top
-                horizontalCenter: parent.horizontalCenter
+                left: parent.left
             }
-            width: parent.width / 3
-            height: parent.height / 5
+            width: parent.width
+            height: 64
+            color: "#A4BBDA"
+
+            /*Label {
+                id: hostnameText
+                anchors {
+                    left: parent.left
+                    verticalCenter: parent.verticalCenter
+                    leftMargin: hMargin
+                }
+
+                font.family: raleway
+                font.pointSize: 16
+
+                color: "#000000"
+
+                text: sddm.hostName ? sddm.hostName : "Welcome to KaOS"
+            } */
             
-            Row {
-                spacing: 50
+            LayoutBox {
+                    id: layoutBox
+                    width: 90
+                    anchors {
+                        left: parent.left
+                        verticalCenter: parent.verticalCenter
+                        leftMargin: hMargin
+                    }
+                    font.pixelSize: 14
+                    color: "#A4BBDA"
+                    borderColor: "#A4BBDA"
+                    focusColor: "#A4BBDA"
+                    hoverColor: "#A4BBDA"
+                    textColor: "#000000"
+
+                    arrowIcon: "icons/angle-down.png"
+                    arrowColor: "#A4BBDA"
+                }
+
+            Item {
+                id: timeArea
                 anchors {
                     top: parent.top
                     horizontalCenter: parent.horizontalCenter
                 }
+                width: parent.width / 3
+                height: parent.height
 
-                LayoutBox {
-                    id: layoutBox
-                    width: 90
-                    anchors.verticalCenter: parent.verticalCenter
-                    font.pixelSize: 14
-                    color: "#D4DCDF"
-                    borderColor: "#D4DCDF"
-                    focusColor: "#D4DCDF"
-                    hoverColor: "#D4DCDF"
-                    textColor: "#414546"
+                Label {
+                    id: timeText
+                    anchors {
+                        centerIn: parent
+                    }
 
-                    arrowIcon: "icons/angle-down.png"
-                    arrowColor: "#D4DCDF"
+                    font.family: raleway
+                    font.pointSize: 16
+
+                    color: "#000000"
+
+                    function updateTime() {
+                        text = new Date().toLocaleString(Qt.locale("en_US"), "dddd MMMM d hh:mm")
+                    }
                 }
 
-                //Battery { anchors.topMargin: 9 }
-            }
-
-            Text {
-                id: timeText
-                anchors {
-                    horizontalCenter: parent.horizontalCenter
-                    bottom: dateText.top
-                    bottomMargin: 5
+                Timer {
+                    interval: 1000
+                    repeat: true
+                    running: true
+                    onTriggered: {
+                        timeText.updateTime()
+                    }
                 }
 
-                font.pointSize: 50
-                color: textColor
-                font.family: "Raleway"
-
-                function updateTime() {
-                    text = new Date().toLocaleString(Qt.locale("en_US"), "hh:mm")
-                }
-            }
-
-            Text {
-                id: dateText
-                anchors {
-                    horizontalCenter: parent.horizontalCenter
-                    bottom: parent.bottom
-                    bottomMargin: vMargin
-                }
-
-                font.pointSize: 18
-                color: textColor
-                font.family: "Raleway"
-
-                function updateDate() {
-                    text = new Date().toLocaleString(Qt.locale("en_US"), "dddd MMMM dd, yyyy")
-                }
-            }
-
-            Timer {
-                interval: 1000
-                repeat: true
-                running: true
-                onTriggered: {
+                Component.onCompleted: {
                     timeText.updateTime()
-                    dateText.updateDate()
                 }
             }
 
-            Component.onCompleted: {
-                timeText.updateTime()
-                dateText.updateDate()
+            Item {
+                id: powerArea
+                anchors {
+                    bottom: parent.bottom
+                    right: parent.right
+                }
+                width: parent.width / 3
+                height: parent.height
+
+                Row {
+                    spacing: 20
+                    anchors.right: parent.right
+                    anchors.rightMargin: hMargin
+                    anchors.verticalCenter: parent.verticalCenter
+
+                    state: config.user_name
+
+                    states: [
+                        State {
+                            name: "fill"
+                            PropertyChanges { target: userButton; width: 0}
+                        },
+                        State {
+                            name: "select"
+                            PropertyChanges { target: userButton; opacity: 1}
+                        }
+                    ]
+
+
+                    ImgButton {
+                        id: sessionButton
+                        width: buttonSize
+                        height: buttonSize
+                        visible: sessionFrame.isMultipleSessions()
+                        normalImg: "icons/switchframe/session.png"
+                        pressImg: "icons/switchframe/session_focus.png"
+                        normalColor: "#000000"
+                        onClicked: {
+                            root.state = "stateSession"
+                            sessionFrame.focus = true
+                        }
+                        onEnterPressed: sessionFrame.currentItem.forceActiveFocus()
+
+                        KeyNavigation.tab: loginFrame.input
+                        KeyNavigation.backtab: {
+                            if (userButton.visible) {
+                                return userButton
+                            }
+                            else {
+                                return shutdownButton
+                            }
+                        }
+                    }
+
+                    ImgButton {
+                        id: userButton
+                        width: buttonSize
+                        height: buttonSize
+                        visible: userFrame.isMultipleUsers()
+
+                        normalImg: "icons/switchframe/user.png"
+                        pressImg: "icons/switchframe/user_focus.png"
+                        normalColor: "#000000"
+                        onClicked: {
+                            root.state = "stateUser"
+                            userFrame.focus = true
+                        }
+                        onEnterPressed: userFrame.currentItem.forceActiveFocus()
+                        KeyNavigation.backtab: shutdownButton
+                        KeyNavigation.tab: {
+                            if (sessionButton.visible) {
+                                return sessionButton
+                            }
+                            else {
+                                return loginFrame.input
+                            }
+                        }
+                    }
+
+                    ImgButton {
+                        id: shutdownButton
+                        width: buttonSize
+                        height: buttonSize
+                        visible: sddm.canPowerOff ? sddm.canPowerOff : "true"
+
+                        normalImg: "icons/switchframe/powermenu.png"
+                        pressImg: "icons/switchframe/powermenu_focus.png"
+                        normalColor: "#000000"
+                        onClicked: {
+                            root.state = "statePower"
+                            powerFrame.focus = true
+                        }
+                        onEnterPressed: powerFrame.shutdown.focus = true
+                        KeyNavigation.backtab: loginFrame.button
+                        KeyNavigation.tab: {
+                            if (userButton.visible) {
+                                return userButton
+                            }
+                            else if (sessionButton.visible) {
+                                return sessionButton
+                            }
+                            else {
+                                return loginFrame.input
+                            }
+                        }
+                    }
+                }
             }
+
         }
-
-        Item {
-            id: powerArea
-            visible: ! loginFrame.isProcessing
-            anchors {
-                bottom: parent.bottom
-                horizontalCenter: parent.horizontalCenter
-            }
-            width: parent.width / 3
-            height: parent.height / 3.5
-
-            Row {
-                spacing: 50
-                anchors.horizontalCenter: parent.horizontalCenter
-                anchors.verticalCenter: parent.verticalCenter
-
-                ImgButton {
-                    id: sessionButton
-                    width: m_powerButtonSize
-                    height: m_powerButtonSize
-                    visible: sessionFrame.isMultipleSessions()
-                    normalImg: sessionFrame.getCurrentSessionIconIndicator()
-                    onClicked: {
-                        console.log("Show session")
-                        root.state = "stateSession"
-                        sessionFrame.focus = true
-                    }
-                    onEnterPressed: sessionFrame.currentItem.forceActiveFocus()
-
-                    KeyNavigation.tab: loginFrame.input
-                    KeyNavigation.backtab: {
-                        if (userButton.visible) {
-                            return userButton
-                        }
-                        else {
-                            return shutdownButton
-                        }
-                    }
-                }
-
-                ImgButton {
-                    id: userButton
-                    width: m_powerButtonSize
-                    height: m_powerButtonSize
-                    //visible: userFrame.isMultipleUsers()
-                    visible: true
-
-                    normalImg: "icons/switchframe/userswitch_normal.png"
-                    hoverImg: "icons/switchframe/userswitch_hover.png"
-                    pressImg: "icons/switchframe/userswitch_press.png"
-                    onClicked: {
-                        console.log("Switch User...")
-                        root.state = "stateUser"
-                        userFrame.focus = true
-                    }
-                    onEnterPressed: userFrame.currentItem.forceActiveFocus()
-                    KeyNavigation.backtab: shutdownButton
-                    KeyNavigation.tab: {
-                        if (sessionButton.visible) {
-                            return sessionButton
-                        }
-                        else {
-                            return loginFrame.input
-                        }
-                    }
-                }
-
-                ImgButton {
-                    id: shutdownButton
-                    width: m_powerButtonSize
-                    height: m_powerButtonSize
-                    visible: true//sddm.canPowerOff
-
-                    normalImg: "icons/switchframe/shutdown_normal.png"
-                    hoverImg: "icons/switchframe/shutdown_hover.png"
-                    onClicked: {
-                        console.log("Show shutdown menu")
-                        root.state = "statePower"
-                        powerFrame.focus = true
-                    }
-                    onEnterPressed: powerFrame.shutdown.focus = true
-                    KeyNavigation.backtab: loginFrame.button
-                    KeyNavigation.tab: {
-                        if (userButton.visible) {
-                            return userButton
-                        }
-                        else if (sessionButton.visible) {
-                            return sessionButton
-                        }
-                        else {
-                            return loginFrame.input
-                        }
-                    }
-                }
-            }
+        DropShadow {
+            anchors.fill: topArea
+            horizontalOffset: 0
+            verticalOffset: 0
+            radius: 8.0
+            samples: 17
+            color: "#80000000"
+            source: topArea
         }
 
         MouseArea {
@@ -339,6 +384,54 @@ Rectangle {
                 root.state = "stateLogin"
                 loginFrame.input.forceActiveFocus()
             }
+        }
+
+        Button {
+            id: aupButton
+            width: 200
+            text: qsTr("Acceptable Use Policy")
+            highlighted: true
+            background: Rectangle {
+                id: aupButtonBack
+                color: "#7D9DB2"
+                implicitHeight: 4
+            }
+
+            font.family: raleway
+
+            anchors {
+                bottom: parent.bottom
+                bottomMargin: 40
+                horizontalCenter: parent.horizontalCenter
+            }
+            onClicked: {
+                root.state = "stateUsage"
+            }
+
+            onFocusChanged: {
+                if (focus) {
+                    aupButtonBack.color = "#687180"
+                } else {
+                    aupButtonBack.color = "#7D9DB2"
+                }
+            }
+
+            Component.onCompleted: {
+                if (!config.aup) {
+                    height = 0
+                }
+            }
+        }
+
+        DropShadow {
+            id: aupButtonShadow
+            anchors.fill: aupButton
+            horizontalOffset: 0
+            verticalOffset: 1
+            radius: 8.0
+            samples: 17
+            color: "#80000000"
+            source: aupButton
         }
     }
 }

@@ -36,8 +36,9 @@ Item {
 
             Text {
                 text: qsTr("Shutdown")
+                font.family: raleway
                 font.pointSize: 15
-                color: "#fff"
+                color: "white"
                 horizontalAlignment: Text.AlignHCenter
                 verticalAlignment: Text.AlignVCenter
                 anchors.horizontalCenter: parent.horizontalCenter
@@ -66,8 +67,9 @@ Item {
 
             Text {
                 text: qsTr("Reboot")
+                font.family: raleway
                 font.pointSize: 15
-                color: "#fff"
+                color: "white"
                 horizontalAlignment: Text.AlignHCenter
                 verticalAlignment: Text.AlignVCenter
                 anchors.horizontalCenter: parent.horizontalCenter
@@ -96,8 +98,9 @@ Item {
 
             Text {
                 text: qsTr("Suspend")
+                font.family: raleway
                 font.pointSize: 15
-                color: "#fff"
+                color: "white"
                 horizontalAlignment: Text.AlignHCenter
                 verticalAlignment: Text.AlignVCenter
                 anchors.horizontalCenter: parent.horizontalCenter

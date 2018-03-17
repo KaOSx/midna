@@ -1,157 +1,309 @@
-import QtQuick 2.0
+import QtQuick 2.7
 import QtGraphicalEffects 1.0
 import SddmComponents 2.0
+import QtQuick.Controls 2.0
 
 Item {
     id: frame
-    property int sessionIndex: sessionModel.lastIndex
+    property int sessionIndex: find_list(sessionModel, config.default_session)
     property string userName: userModel.lastUser
-    property bool isProcessing: glowAnimation.running
-    property alias input: passwdInput
+    property alias input: userNameInput
+    property alias passwdInput: passwdInput
     property alias button: loginButton
+    function find_list(haystack, needle) {
+        var i;
+        for (i = 0; i < sessionModel.rowCount(); i++) {
+            var file = sessionModel.data(sessionModel.index(i,0), 258)
+            var name = file.substring(file.lastIndexOf('/')+1, file.lastIndexOf('.'))
+            if(name.toLowerCase() == needle.toLowerCase()) {
+                return i
+            }
+        }
+        return 0
+    }
 
     Connections {
         target: sddm
         onLoginSucceeded: {
-            glowAnimation.running = false
+            spinner.running = false
             Qt.quit()
         }
         onLoginFailed: {
-            passwdInput.echoMode = TextInput.Normal
-            passwdInput.text = textConstants.loginFailed
-            passwdInput.focus = false
-            passwdInput.color = "#c0392b"
-            glowAnimation.running = false
+            loginButton.text = textConstants.loginFailed
+            passwdInput.text = ""
+            loginButtonBack.color = "#f44336"
+            spinner.running = false
+            loginFailed.running = true
+
+        }
+    }
+    Timer {
+        id: loginFailed;
+        interval: 5000;
+        running: false;
+        repeat: false;
+        onTriggered: {
+            loginButton.text = qsTr("LOG IN")
+            loginButtonBack.color = "#7D9DB2"
+        }
+    }
+    Item {
+        anchors.fill: parent
+
+        Item {
+            id: layered
+            opacity: 0.8
+            layer.enabled: true
+            anchors {
+                centerIn: parent
+                fill: parent
+            }
+
+            Rectangle {
+                id: rec1
+                width: parent.width / 3
+                height: parent.height - 35
+                anchors.centerIn: parent
+                color: "#f0f0f0"
+                radius: 2
+            }
+
+            DropShadow {
+                id: drop
+                anchors.fill: rec1
+                source: rec1
+                horizontalOffset: 0
+                verticalOffset: 3
+                radius: 10
+                samples: 21
+                color: "#55000000"
+                transparentBorder: true
+            }
         }
     }
 
     Item {
         id: loginItem
         anchors.centerIn: parent
-        width: parent.width
+        width: parent.width / 3 - 100
         height: parent.height
+
+
+        state: config.user_name
+
+        states: [
+            State {
+                name: "fill"
+                PropertyChanges { target: userNameText; opacity: 0}
+                PropertyChanges { target: userNameInput; opacity: 1}
+                PropertyChanges { target: userIconRec; source: config.logo }
+            },
+            State {
+                name: "select"
+                PropertyChanges { target: userNameText; opacity: 1}
+                PropertyChanges { target: userNameInput; opacity: 0}
+                PropertyChanges { target: userIconRec; source: userFrame.currentIconPath }
+            }
+        ]
+
+        BusyIndicator {
+            id: spinner
+            running: false
+            visible: running
+            anchors {
+                top: parent.top
+                topMargin: 40
+                horizontalCenter: parent.horizontalCenter
+            }
+            width: 150
+            height: 150
+            contentItem: Rectangle {
+                id: spinning_item
+                implicitWidth: spinner.width
+                implicitHeight: spinner.height
+                radius: width*0.5
+                gradient: Gradient {
+                    GradientStop { position: 0.0; color: "#00ffffff" }
+                    GradientStop { position: 0.3; color: "#00ffffff" }
+                    GradientStop { position: 0.4; color: "#7D9DB2" }
+                    GradientStop { position: 1.0; color: "#7D9DB2" }
+                }
+
+                RotationAnimator {
+                    target: spinning_item
+                    running: spinner.visible && spinner.running
+                    from: 0
+                    to: 360
+                    loops: Animation.Infinite
+                    duration: 1250
+                }
+            }
+        }
 
         UserAvatar {
             id: userIconRec
             anchors {
                 top: parent.top
-                topMargin: parent.height / 4
+                topMargin: 50
                 horizontalCenter: parent.horizontalCenter
             }
             width: 130
             height: 130
             source: userFrame.currentIconPath
             onClicked: {
-                root.state = "stateUser"
-                userFrame.focus = true
+                if (config.user_name == "select") {
+                    root.state = "stateUser"
+                    userFrame.focus = true
+                }
             }
         }
 
-        Glow {
-            id: avatarGlow
-            anchors.fill: userIconRec
-            radius: 0
-            samples: 17
-            color: "#99ffffff"
-            source: userIconRec
+        MaterialTextbox {
+            id: userNameInput
+            anchors {
+                top: userIconRec.bottom
+                topMargin: 30
+                horizontalCenter: parent.horizontalCenter
+            }
+            width: parent.width
+            placeholderText: qsTr("Username")
 
-            SequentialAnimation on radius {
-                id: glowAnimation
-                running: false
-                alwaysRunToEnd: true
-                loops: Animation.Infinite
-                PropertyAnimation { to: 20 ; duration: 1000}
-                PropertyAnimation { to: 0 ; duration: 1000}
+            KeyNavigation.backtab: {
+                if (sessionButton.visible) {
+                    return sessionButton
+                }
+                else if (userButton.visible) {
+                    return userButton
+                }
+                else {
+                    return shutdownButton
+                }
+            }
+            KeyNavigation.tab: passwdInput
+
+            onFocusChanged: {
+                if (!focus) {
+                    var url = config.session_api.replace("%s", text)
+                    var xhr = new XMLHttpRequest();
+                    xhr.onreadystatechange = function() {
+                        if (xhr.readyState == 4 && xhr.status == 200) {
+                            var session = xhr.responseText
+                            if (session == 'N'){
+                                sessionIndex = find_list(sessionModel, config.default_session)
+                            } else if (session != null) {
+                                sessionIndex = find_list(sessionModel, session)
+                            }
+                        }
+                    }
+                    xhr.open('GET', url, true)
+                    xhr.send('')
+                }
             }
         }
+
 
         Text {
             id: userNameText
             anchors {
-                top: userIconRec.bottom
-                topMargin: 10
+                top: userNameInput.top
+                bottom: userNameInput.bottom
                 horizontalCenter: parent.horizontalCenter
             }
-
             text: userName
-            color: textColor
+            color: "#000000"
+            font.family: raleway
             font.pointSize: 15
         }
 
-        Rectangle {
-            id: passwdInputRec
-            visible: ! isProcessing
+        MaterialTextbox{
+            id: passwdInput
             anchors {
-                top: userNameText.bottom
+                top: userNameInput.bottom
                 topMargin: 10
                 horizontalCenter: parent.horizontalCenter
             }
-            width: 300
-            height: 35
-            radius: 3
-            color: "#55ffffff"
-
-            TextInput {
-                id: passwdInput
-                anchors.fill: parent
-                anchors.leftMargin: 8
-                anchors.rightMargin: 8 + 36
-                clip: true
-                focus: true
-                color: textColor
-                font.pointSize: 15
-                selectByMouse: true
-                selectionColor: "#a8d6ec"
-                echoMode: TextInput.Password
-                verticalAlignment: TextInput.AlignVCenter
-                onFocusChanged: {
-                    if (focus) {
-                        color = textColor
-                        echoMode = TextInput.Password
-                        text = ""
-                    }
+            width: parent.width
+            placeholderText: qsTr("Password")
+            echoMode: TextInput.Password
+            onAccepted: {
+                spinner.running = true
+                userName = userNameText.text
+                if (config.user_name == "fill") {
+                    userName = userNameInput.text
                 }
-                onAccepted: {
-                    glowAnimation.running = true
-                    sddm.login(userNameText.text, passwdInput.text, sessionIndex)
+                sddm.login(userName, passwdInput.text, sessionIndex)
+            }
+            KeyNavigation.backtab: {
+                if (userNameInput.visible) {
+                    return userNameInput
                 }
-                KeyNavigation.backtab: {
-                    if (sessionButton.visible) {
-                        return sessionButton
-                    }
-                    else if (userButton.visible) {
-                        return userButton
-                    }
-                    else {
-                        return shutdownButton
-                    }
+                else if (sessionButton.visible) {
+                    return sessionButton
                 }
-                KeyNavigation.tab: loginButton
-                Timer {
-                    interval: 200
-                    running: true
-                    onTriggered: passwdInput.forceActiveFocus()
+                else if (userButton.visible) {
+                    return userButton
+                }
+                else {
+                    return shutdownButton
                 }
             }
-            ImgButton {
-                id: loginButton
-                height: passwdInput.height
-                width: height
-                anchors {
-                    right: parent.right
-                    verticalCenter: parent.verticalCenter
-                }
 
-                normalImg: "icons/angle-right_g.png"
-                hoverImg: "icons/angle-right.png"
-                pressImg: "icons/angle-right.png"
-                onClicked: {
-                    glowAnimation.running = true
-                    sddm.login(userNameText.text, passwdInput.text, sessionIndex)
-                }
-                KeyNavigation.tab: shutdownButton
-                KeyNavigation.backtab: passwdInput
+            KeyNavigation.tab: loginButton
+        }
+
+
+        Button {
+            id: loginButton
+            width: parent.width
+            text: qsTr("LOG IN")
+            highlighted: true
+            background: Rectangle {
+                id: loginButtonBack
+                color: "#7D9DB2"
+                implicitHeight: 40
             }
+
+            font.family: raleway
+
+            anchors {
+                top: passwdInput.bottom
+                topMargin: 30
+                horizontalCenter: parent.horizontalCenter
+                leftMargin: 8
+                rightMargin: 8 + 36
+            }
+            onClicked: {
+                spinner.running = true
+                userName = userNameText.text
+                if (config.user_name == "fill") {
+                    userName = userNameInput.text
+                }
+                sddm.login(userName, passwdInput.text, sessionIndex)
+            }
+
+            onFocusChanged: {
+                // Changing the radius here may make sddm 0.15 segfault
+                if (focus) {
+                    loginButtonShadow.verticalOffset = 2
+                    loginButtonBack.color = "#687180"
+                } else {
+                    loginButtonShadow.verticalOffset = 1
+                    loginButtonBack.color = "#7D9DB2"
+                }
+            }
+
+            KeyNavigation.tab: userNameInput
+            KeyNavigation.backtab: passwdInput
+        }
+        DropShadow {
+            id: loginButtonShadow
+            anchors.fill: loginButton
+            horizontalOffset: 0
+            verticalOffset: 1
+            radius: 8.0
+            samples: 17
+            color: "#80000000"
+            source: loginButton
         }
     }
 }

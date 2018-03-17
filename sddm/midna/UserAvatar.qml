@@ -3,13 +3,14 @@ import QtQuick 2.2
 Canvas {
     id: avatar
     property string source: ""
-    property color m_strokeStyle: "#414546"
+    property color m_strokeStyle: "#ffffff"
 
     signal clicked()
 
     onSourceChanged: delayPaintTimer.running = true
     onPaint: {
         var ctx = getContext("2d");
+        ctx.clearRect(0, 0, width, height);
         ctx.beginPath()
         ctx.ellipse(0, 0, width, height)
         ctx.clip()
@@ -23,11 +24,11 @@ Canvas {
         anchors.fill: parent
         hoverEnabled: true
         onEntered: {
-            m_strokeStyle = "#77566060"
+            m_strokeStyle = "#77ffffff"
             avatar.requestPaint()
         }
         onExited: {
-            m_strokeStyle = "#ff414546"
+            m_strokeStyle = "#ffffffff"
             avatar.requestPaint()
         }
         onClicked: avatar.clicked()
