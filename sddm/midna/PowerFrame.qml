@@ -69,7 +69,7 @@ Item {
                 text: qsTr("Reboot")
                 font.family: raleway
                 font.pointSize: 15
-                color: "white"
+                color: "#fff"
                 horizontalAlignment: Text.AlignHCenter
                 verticalAlignment: Text.AlignVCenter
                 anchors.horizontalCenter: parent.horizontalCenter
@@ -100,7 +100,7 @@ Item {
                 text: qsTr("Suspend")
                 font.family: raleway
                 font.pointSize: 15
-                color: "white"
+                color: "#fff"
                 horizontalAlignment: Text.AlignHCenter
                 verticalAlignment: Text.AlignVCenter
                 anchors.horizontalCenter: parent.horizontalCenter

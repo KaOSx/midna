@@ -132,6 +132,7 @@ PlasmaCore.ColorScope {
             horizontalCenter: parent.horizontalCenter
             bottom: parent.verticalCenter
         }
+        constrainText: false
         avatarPath: kuser.faceIconUrl
         iconSource: "user-identity"
         isCurrent: true
@@ -168,6 +169,7 @@ PlasmaCore.ColorScope {
                 KeyNavigation.left: suspendButton
                 KeyNavigation.right: shutdownButton
                 focus: sdtype == ShutdownType.ShutdownTypeReboot
+                visible: maysd
             }
             LogoutButton {
                 id: shutdownButton
@@ -177,6 +179,7 @@ PlasmaCore.ColorScope {
                 KeyNavigation.left: rebootButton
                 KeyNavigation.right: logoutButton
                 focus: sdtype == ShutdownType.ShutdownTypeHalt
+                visible: maysd
             }
             LogoutButton {
                 id: logoutButton
@@ -186,6 +189,7 @@ PlasmaCore.ColorScope {
                 KeyNavigation.left: shutdownButton
                 KeyNavigation.right: suspendButton
                 focus: sdtype == ShutdownType.ShutdownTypeNone
+                visible: canLogout
             }
         }
 

@@ -88,7 +88,7 @@ Item {
                 anchors.horizontalCenter: parent.horizontalCenter
                 horizontalAlignment: Text.AlignHCenter
                 text: name
-                font.family: config.font
+                font.family: raleway
                 font.pointSize: 15
                 color: "#fff"
                 wrapMode: Text.WordWrap

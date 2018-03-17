@@ -13,7 +13,6 @@ RowLayout {
         Layout.minimumWidth: formAlignment - units.largeSpacing //to match wallpaper config...
         horizontalAlignment: Text.AlignRight
         text: i18nd("plasma_lookandfeel_org.kde.lookandfeel", "Show media controls:")
-        color: "#ffffff"
     }
     CheckBox {
         id: showMediaControls
