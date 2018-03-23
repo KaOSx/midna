@@ -54,7 +54,7 @@ Item {
             font {
                 pointSize: 18
                 bold: true
-                family: raleway
+                family: "raleway"
             }
             wrapMode: Text.Wrap
         }
@@ -66,9 +66,9 @@ Item {
                 topMargin: 50
                 horizontalCenter: parent.horizontalCenter
             }
-            text: config.aup
+            text: config.aup != null ? config.aup : "No Acceptable Use Policy Defined"
             color: "#000000"
-            font.family: raleway
+            font.family: "raleway"
             font.pointSize: 15
             wrapMode: Text.Wrap
         }

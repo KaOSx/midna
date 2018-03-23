@@ -67,7 +67,7 @@ Item {
         font {
             pointSize: 18
             bold: true
-            family: raleway
+            family: "raleway"
         }
         wrapMode: Text.Wrap
     }
@@ -101,7 +101,7 @@ Item {
                 horizontalAlignment: Text.AlignHCenter
                 verticalAlignment: Text.AlignVCenter
                 text: name
-                font.family: raleway
+                font.family: "raleway"
                 font.pointSize: 15
                 color: "black"
                 wrapMode: Text.WordWrap

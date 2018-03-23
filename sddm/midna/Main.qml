@@ -21,47 +21,47 @@ Rectangle {
     states: [
         State {
             name: "statePower"
-            PropertyChanges { target: loginFrame; opacity: 0}
-            PropertyChanges { target: powerFrame; opacity: 1}
-            PropertyChanges { target: sessionFrame; opacity: 0}
-            PropertyChanges { target: userFrame; opacity: 0}
-            PropertyChanges { target: usageFrame; opacity: 0}
+            PropertyChanges { target: loginFrame; visible: false}
+            PropertyChanges { target: powerFrame; visible: true}
+            PropertyChanges { target: sessionFrame; visible: false}
+            PropertyChanges { target: userFrame; visible: false}
+            PropertyChanges { target: usageFrame; visible: false}
             PropertyChanges { target: bgBlur; radius: 30}
         },
         State {
             name: "stateSession"
-            PropertyChanges { target: loginFrame; opacity: 0}
-            PropertyChanges { target: powerFrame; opacity: 0}
-            PropertyChanges { target: sessionFrame; opacity: 1}
-            PropertyChanges { target: userFrame; opacity: 0}
-            PropertyChanges { target: usageFrame; opacity: 0}
+            PropertyChanges { target: loginFrame; visible: false}
+            PropertyChanges { target: powerFrame; visible: false}
+            PropertyChanges { target: sessionFrame; visible: true}
+            PropertyChanges { target: userFrame; visible: false}
+            PropertyChanges { target: usageFrame; visible: false}
             PropertyChanges { target: bgBlur; radius: 30}
         },
         State {
             name: "stateUser"
-            PropertyChanges { target: loginFrame; opacity: 0}
-            PropertyChanges { target: powerFrame; opacity: 0}
-            PropertyChanges { target: sessionFrame; opacity: 0}
-            PropertyChanges { target: userFrame; opacity: 1}
-            PropertyChanges { target: usageFrame; opacity: 0}
+            PropertyChanges { target: loginFrame; visible: false}
+            PropertyChanges { target: powerFrame; visible: false}
+            PropertyChanges { target: sessionFrame; visible: false}
+            PropertyChanges { target: userFrame; visible: true}
+            PropertyChanges { target: usageFrame; visible: false}
             PropertyChanges { target: bgBlur; radius: 30}
         },
         State {
             name: "stateLogin"
-            PropertyChanges { target: loginFrame; opacity: 1}
-            PropertyChanges { target: powerFrame; opacity: 0}
-            PropertyChanges { target: sessionFrame; opacity: 0}
-            PropertyChanges { target: userFrame; opacity: 0}
-            PropertyChanges { target: usageFrame; opacity: 0}
+            PropertyChanges { target: loginFrame; visible: true}
+            PropertyChanges { target: powerFrame; visible: false}
+            PropertyChanges { target: sessionFrame; visible: false}
+            PropertyChanges { target: userFrame; visible: false}
+            PropertyChanges { target: usageFrame; visible: false}
             PropertyChanges { target: bgBlur; radius: 0}
         },
         State {
             name: "stateUsage"
-            PropertyChanges { target: loginFrame; opacity: 0}
-            PropertyChanges { target: powerFrame; opacity: 0}
-            PropertyChanges { target: sessionFrame; opacity: 0}
-            PropertyChanges { target: userFrame; opacity: 0}
-            PropertyChanges { target: usageFrame; opacity: 1}
+            PropertyChanges { target: loginFrame; visible: false}
+            PropertyChanges { target: powerFrame; visible: false}
+            PropertyChanges { target: sessionFrame; visible: false}
+            PropertyChanges { target: userFrame; visible: false}
+            PropertyChanges { target: usageFrame; visible: true}
             PropertyChanges { target: bgBlur; radius: 30}
         }
 
@@ -119,7 +119,11 @@ Rectangle {
                 enabled: root.state == "statePower"
                 onNeedClose: {
                     root.state = "stateLogin"
-                    loginFrame.input.forceActiveFocus()
+                    if (config.user_name == "select") {
+                        loginFrame.passwdInput.forceActiveFocus()
+                    } else {
+                        loginFrame.input.forceActiveFocus()
+                    }
                 }
                 onNeedShutdown: sddm.powerOff()
                 onNeedRestart: sddm.reboot()
@@ -148,11 +152,11 @@ Rectangle {
                 onSelected: {
                     root.state = "stateLogin"
                     loginFrame.userName = userName
-                    loginFrame.input.forceActiveFocus()
+                    loginFrame.passwdInput.forceActiveFocus()
                 }
                 onNeedClose: {
                     root.state = "stateLogin"
-                    loginFrame.input.forceActiveFocus()
+                    loginFrame.passwdInput.forceActiveFocus()
                 }
             }
 
@@ -160,7 +164,7 @@ Rectangle {
                 id: loginFrame
                 anchors.fill: parent
                 enabled: root.state == "stateLogin"
-                opacity: 0
+                visible: false
                 transformOrigin: Item.Top
             }
 
@@ -168,7 +172,7 @@ Rectangle {
                 id: usageFrame
                 anchors.fill: parent
                 enabled: root.state == "usageFrame"
-                opacity: 0
+                visible: false
                 transformOrigin: Item.Top
             }
         }
@@ -183,40 +187,24 @@ Rectangle {
             height: 64
             color: "#A4BBDA"
 
-            /*Label {
-                id: hostnameText
+            LayoutBox {
+                id: layoutBox
+                width: 90
                 anchors {
                     left: parent.left
                     verticalCenter: parent.verticalCenter
                     leftMargin: hMargin
                 }
+                font.pixelSize: 14
+                color: "#A4BBDA"
+                borderColor: "#A4BBDA"
+                focusColor: "#A4BBDA"
+                hoverColor: "#A4BBDA"
+                textColor: "#000000"
 
-                font.family: raleway
-                font.pointSize: 16
-
-                color: "#000000"
-
-                text: sddm.hostName ? sddm.hostName : "Welcome to KaOS"
-            } */
-            
-            LayoutBox {
-                    id: layoutBox
-                    width: 90
-                    anchors {
-                        left: parent.left
-                        verticalCenter: parent.verticalCenter
-                        leftMargin: hMargin
-                    }
-                    font.pixelSize: 14
-                    color: "#A4BBDA"
-                    borderColor: "#A4BBDA"
-                    focusColor: "#A4BBDA"
-                    hoverColor: "#A4BBDA"
-                    textColor: "#000000"
-
-                    arrowIcon: "icons/angle-down.png"
-                    arrowColor: "#A4BBDA"
-                }
+                arrowIcon: "icons/angle-down.png"
+                arrowColor: "#A4BBDA"
+            }
 
             Item {
                 id: timeArea
@@ -233,13 +221,16 @@ Rectangle {
                         centerIn: parent
                     }
 
-                    font.family: raleway
+                    font.family: "raleway"
                     font.pointSize: 16
 
                     color: "#000000"
 
+                    property bool clock: config.am_pm_clock == "false"
+
                     function updateTime() {
-                        text = new Date().toLocaleString(Qt.locale("en_US"), "dddd MMMM d hh:mm")
+                        text = new Date().toLocaleString(Qt.locale("en_US"),
+                            clock ? "h:mm:ss A" : "dddd MMMMM d hh:mm")
                     }
                 }
 
@@ -277,11 +268,11 @@ Rectangle {
                     states: [
                         State {
                             name: "fill"
-                            PropertyChanges { target: userButton; width: 0}
+                            PropertyChanges { target: userButton; visible: false}
                         },
                         State {
                             name: "select"
-                            PropertyChanges { target: userButton; opacity: 1}
+                            PropertyChanges { target: userButton; visible: true}
                         }
                     ]
 
@@ -300,7 +291,7 @@ Rectangle {
                         }
                         onEnterPressed: sessionFrame.currentItem.forceActiveFocus()
 
-                        KeyNavigation.tab: loginFrame.input
+                        KeyNavigation.tab: (config.user_name == "select" ? loginFrame.passwdInput : loginFrame.input)
                         KeyNavigation.backtab: {
                             if (userButton.visible) {
                                 return userButton
@@ -331,7 +322,7 @@ Rectangle {
                                 return sessionButton
                             }
                             else {
-                                return loginFrame.input
+                                return (config.user_name == "select" ? loginFrame.passwdInput : loginFrame.input)
                             }
                         }
                     }
@@ -359,7 +350,7 @@ Rectangle {
                                 return sessionButton
                             }
                             else {
-                                return loginFrame.input
+                                return (config.user_name == "select" ? loginFrame.passwdInput : loginFrame.input)
                             }
                         }
                     }
@@ -382,7 +373,11 @@ Rectangle {
             anchors.fill: parent
             onClicked: {
                 root.state = "stateLogin"
-                loginFrame.input.forceActiveFocus()
+                if (config.user_name == "select") {
+                    loginFrame.passwdInput.forceActiveFocus()
+                } else {
+                    loginFrame.input.forceActiveFocus()
+                }
             }
         }
 
@@ -394,10 +389,10 @@ Rectangle {
             background: Rectangle {
                 id: aupButtonBack
                 color: "#7D9DB2"
-                implicitHeight: 4
+                implicitHeight: 40
             }
 
-            font.family: raleway
+            font.family: "raleway"
 
             anchors {
                 bottom: parent.bottom

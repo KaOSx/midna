@@ -19,7 +19,13 @@ Item {
                 return i
             }
         }
-        return 0
+
+        if (sessionModel.lastIndex >= 0 && sessionModel.lastIndex < sessionModel.rowCount() ) {
+            return sessionModel.lastIndex
+        }
+        else {
+            return 0
+        }
     }
 
     Connections {
@@ -94,14 +100,14 @@ Item {
         states: [
             State {
                 name: "fill"
-                PropertyChanges { target: userNameText; opacity: 0}
-                PropertyChanges { target: userNameInput; opacity: 1}
+                PropertyChanges { target: userNameText; visible: false}
+                PropertyChanges { target: userNameInput; visible: true}
                 PropertyChanges { target: userIconRec; source: config.logo }
             },
             State {
                 name: "select"
-                PropertyChanges { target: userNameText; opacity: 1}
-                PropertyChanges { target: userNameInput; opacity: 0}
+                PropertyChanges { target: userNameText; visible: true}
+                PropertyChanges { target: userNameInput; visible: false}
                 PropertyChanges { target: userIconRec; source: userFrame.currentIconPath }
             }
         ]
@@ -117,16 +123,22 @@ Item {
             }
             width: 150
             height: 150
-            contentItem: Rectangle {
+            contentItem: Item {
                 id: spinning_item
                 implicitWidth: spinner.width
                 implicitHeight: spinner.height
-                radius: width*0.5
-                gradient: Gradient {
-                    GradientStop { position: 0.0; color: "#00ffffff" }
-                    GradientStop { position: 0.3; color: "#00ffffff" }
-                    GradientStop { position: 0.4; color: "#7D9DB2" }
-                    GradientStop { position: 1.0; color: "#7D9DB2" }
+                ConicalGradient {
+                    id: borderFill
+                    anchors.fill: parent
+                    property double start: 0.1
+                    property double end: 0.9
+                    gradient: Gradient {
+                        GradientStop { position: borderFill.start; color: "#00ffffff" }
+                        GradientStop { position: borderFill.start + 0.1; color: "#7D9DB2" }
+                        GradientStop { position: borderFill.end - 0.1; color: "#7D9DB2" }
+                        GradientStop { position: borderFill.end; color: "#00ffffff" }
+                    }
+                    visible: false
                 }
 
                 RotationAnimator {
@@ -136,6 +148,20 @@ Item {
                     to: 360
                     loops: Animation.Infinite
                     duration: 1250
+                }
+                Rectangle {
+                    id: mask
+                    radius: 150/2
+                    border.width: 5
+                    anchors.fill: parent
+                    color: 'transparent'
+                    visible: false
+                }
+                OpacityMask {
+                    id: opm
+                    anchors.fill: parent
+                    source: borderFill
+                    maskSource: mask
                 }
             }
         }
@@ -167,6 +193,7 @@ Item {
             }
             width: parent.width
             placeholderText: qsTr("Username")
+            focus: config.user_name == "fill"
 
             KeyNavigation.backtab: {
                 if (sessionButton.visible) {
@@ -183,20 +210,22 @@ Item {
 
             onFocusChanged: {
                 if (!focus) {
-                    var url = config.session_api.replace("%s", text)
-                    var xhr = new XMLHttpRequest();
-                    xhr.onreadystatechange = function() {
-                        if (xhr.readyState == 4 && xhr.status == 200) {
-                            var session = xhr.responseText
-                            if (session == 'N'){
-                                sessionIndex = find_list(sessionModel, config.default_session)
-                            } else if (session != null) {
-                                sessionIndex = find_list(sessionModel, session)
+                    if (config.session_api != null) {
+                        var url = config.session_api.replace("%s", text)
+                        var xhr = new XMLHttpRequest();
+                        xhr.onreadystatechange = function() {
+                            if (xhr.readyState == 4 && xhr.status == 200) {
+                                var session = xhr.responseText
+                                if (session == 'N'){
+                                    sessionIndex = find_list(sessionModel, config.default_session)
+                                } else if (session != null) {
+                                    sessionIndex = find_list(sessionModel, session)
+                                }
                             }
                         }
+                        xhr.open('GET', url, true)
+                        xhr.send('')
                     }
-                    xhr.open('GET', url, true)
-                    xhr.send('')
                 }
             }
         }
@@ -211,7 +240,7 @@ Item {
             }
             text: userName
             color: "#000000"
-            font.family: raleway
+            font.family: "raleway"
             font.pointSize: 15
         }
 
@@ -222,6 +251,7 @@ Item {
                 topMargin: 10
                 horizontalCenter: parent.horizontalCenter
             }
+            focus: config.user_name == "select"
             width: parent.width
             placeholderText: qsTr("Password")
             echoMode: TextInput.Password
@@ -263,7 +293,7 @@ Item {
                 implicitHeight: 40
             }
 
-            font.family: raleway
+            font.family: "raleway"
 
             anchors {
                 top: passwdInput.bottom
@@ -273,6 +303,15 @@ Item {
                 rightMargin: 8 + 36
             }
             onClicked: {
+                spinner.running = true
+                userName = userNameText.text
+                if (config.user_name == "fill") {
+                    userName = userNameInput.text
+                }
+                sddm.login(userName, passwdInput.text, sessionIndex)
+            }
+
+            Keys.onPressed: if (event.key === Qt.Key_Return) {
                 spinner.running = true
                 userName = userNameText.text
                 if (config.user_name == "fill") {

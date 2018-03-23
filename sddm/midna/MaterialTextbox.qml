@@ -6,7 +6,7 @@ import QtQuick.Controls 2.0
 TextField {
     clip: true
     color: "#7D9DB2"
-    font.family: raleway
+    font.family: "raleway"
     font.pointSize: 15
     selectByMouse: true
     selectionColor: "#a8d6ec"
