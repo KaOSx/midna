@@ -230,7 +230,7 @@ Rectangle {
 
                     function updateTime() {
                         text = new Date().toLocaleString(Qt.locale("en_US"),
-                            clock ? "h:mm:ss A" : "dddd MMMMM d hh:mm")
+                            clock ? "h:mm:ss A" : "dddd MMMM d hh:mm")
                     }
                 }
 
