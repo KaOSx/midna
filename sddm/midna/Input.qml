@@ -16,7 +16,7 @@ Column {
 
         TextField {
             id: username
-            text: config.ForceLastUser == "true" ? userModel.lastUser : ""
+            text: userModel.lastUser
             anchors.centerIn: parent
             height: root.font.pointSize * 3
             width: parent.width
@@ -82,19 +82,19 @@ Column {
             anchors.centerIn: parent
             height: root.font.pointSize * 3
             width: parent.width
-            focus: config.ForcePasswordFocus == "true" ? true : false
+            focus: true 
             selectByMouse: true
             echoMode: revealSecret.checked ? TextInput.Normal : TextInput.Password
             placeholderText: config.TranslatePasswordPlaceholder || textConstants.password
             horizontalAlignment: TextInput.AlignHCenter
             passwordCharacter: "•"
-            passwordMaskDelay: config.ForceHideCompletePassword == "true" ? undefined : 1000
+            passwordMaskDelay: 1000
             renderType: Text.QtRendering
             background: Rectangle {
                 color: "transparent"
                 border.color: root.palette.text
                 border.width: parent.activeFocus ? 2 : 1
-                radius: config.RoundCorners || 0
+                radius: 5
             }
             Keys.onReturnPressed: loginButton.clicked()
             KeyNavigation.down: revealSecret

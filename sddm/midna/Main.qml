@@ -14,9 +14,9 @@ Pane{
 
     height: config.ScreenHeight
     width: config.ScreenWidth
-    padding: config.ScreenPadding || root.padding
+    padding: 0
 
-    LayoutMirroring.enabled: config.ForceRightToLeft == "true" ? true : Qt.application.layoutDirection === Qt.RightToLeft
+    LayoutMirroring.enabled: true 
     LayoutMirroring.childrenInherit: true
 
     palette.button: "transparent"
@@ -127,7 +127,7 @@ Pane{
                 anchors.fill: parent
                 asynchronous: true
                 cache: true
-                fillMode: config.ScaleImageCropped == "true" ? Image.PreserveAspectCrop : Image.PreserveAspectFit
+                fillMode: Image.PreserveAspectCrop
                 clip: true
                 mipmap: true
             }
