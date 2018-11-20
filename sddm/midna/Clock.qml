@@ -13,7 +13,7 @@ Column {
         color: root.palette.text
         renderType: Text.QtRendering
         function updateTime() {
-            text = new Date().toLocaleTimeString(Qt.locale(), config.HourFormat == "long" ? Locale.LongFormat : config.HourFormat !== "" ? config.HourFormat : Locale.ShortFormat)
+            text = new Date().toLocaleTimeString(Qt.locale(config.Locale), config.HourFormat == "long" ? Locale.LongFormat : config.HourFormat !== "" ? config.HourFormat : Locale.ShortFormat)
         }
     }
 
