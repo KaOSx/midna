@@ -28,7 +28,7 @@ Column {
                 color: "transparent"
                 border.color: root.palette.text
                 border.width: parent.activeFocus ? 2 : 1
-                radius: config.RoundCorners || 0
+                radius: 5
             }
             Keys.onReturnPressed: loginButton.clicked()
             KeyNavigation.down: password
@@ -287,7 +287,7 @@ Column {
             background: Rectangle {
                 id: buttonBackground
                 color: root.palette.text
-                radius: config.RoundCorners || 0
+                radius: 5
             }
 
             states: [

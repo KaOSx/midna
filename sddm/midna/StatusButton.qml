@@ -1,9 +1,10 @@
 import QtQuick 2.0
+import QtQuick.Layouts 1.11
 
 Rectangle {
     id: button
     color: "transparent"
-    width: 100
+    Layout.fillWidth: true
     height: buttonText.height + 10
 
     property alias text: buttonText.text
