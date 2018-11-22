@@ -23,6 +23,18 @@ ColumnLayout {
         Layout.alignment: Qt.AlignTop
         Layout.preferredHeight: root.height / 10
     }
+    
+    CapsLock {
+        id: buttonCapsLock
+        Layout.alignment: Qt.AlignHCenter | Qt.AlignTop
+        
+    }
+    
+    NumLock {
+        id: buttonNumLock
+        Layout.alignment: Qt.AlignHCenter | Qt.AlignTop
+        
+    }
 
     SystemButtons {
         id: systemButtons

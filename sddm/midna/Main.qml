@@ -52,92 +52,43 @@ Pane{
         anchors.fill: parent
         spacing: 0
             
-        RowLayout {
-            id: rowLayout
-            Layout.alignment: Qt.AlignVCenter | Qt.AlignTop
-            Layout.maximumWidth: parent.width / 5
+        ComboBox {
+            id: combo
+            Layout.alignment: Qt.AlignLeft | Qt.AlignTop
+            width: 100
+            color: "transparent"
+            borderColor: "transparent"
+            focusColor: "transparent"
+            hoverColor: "#A4BBDA"
             
-                StatusButton {
-                    id: buttonNumLock
-                    Layout.alignment: Qt.AlignVCenter | Qt.AlignBottom
-                    
-                    PlasmaCore.DataSource {
-                        id: keystateNum
-                        engine: "keystate"
-                        connectedSources: "Num Lock"
-                    }
-                    
-                    text: {
-                        var text = "Num Lock"
-                        if (keystateNum.data["Num Lock"]["Locked"]) {
-                            text += " is ON!"
-                        }
-                        return text
-                    }
+            arrowIcon: "icons/keyboard.svg"
+            arrowColor: "transparent"
 
-                    onClicked: keyboard.numLock = !keyboard.numLock
-                }
-                
-                StatusButton {
-                    id: buttonCapsLock
-                    Layout.alignment: Qt.AlignVCenter | Qt.AlignBottom
-                    
-                    PlasmaCore.DataSource {
-                        id: keystateCaps
-                        engine: "keystate"
-                        connectedSources: "Caps Lock"
-                    }
-                    
-                    text: {
-                        var text = "Caps Lock"
-                        if (keystateCaps.data["Caps Lock"]["Locked"]) {
-                            text += " is ON!"
-                        }
-                        return text
-                    }
+            model: keyboard.layouts
+            index: keyboard.currentLayout
 
-                    onClicked: keyboard.capsLock = !keyboard.capsLock
-                }
-            
-                ComboBox {
-                    id: combo
-                    Layout.alignment: Qt.AlignLeft | Qt.AlignTop
-                    width: 100
-                    color: "transparent"
-                    borderColor: "transparent"
-                    focusColor: "transparent"
-                    hoverColor: "#A4BBDA"
-                    
-                    arrowIcon: "icons/keyboard.svg"
-                    arrowColor: "transparent"
+            onValueChanged: keyboard.currentLayout = id
 
-                    model: keyboard.layouts
-                    index: keyboard.currentLayout
+            Connections {
+                target: keyboard
 
-                    onValueChanged: keyboard.currentLayout = id
+                onCurrentLayoutChanged: combo.index = keyboard.currentLayout
+            }
 
-                    Connections {
-                        target: keyboard
+            rowDelegate: Rectangle {
+                color: "transparent"
 
-                        onCurrentLayoutChanged: combo.index = keyboard.currentLayout
-                    }
+                Text {
+                    anchors.centerIn: parent
 
-                    rowDelegate: Rectangle {
-                        color: "transparent"
+                    verticalAlignment: Text.AlignVCenter
 
-                        Text {
-                            anchors.centerIn: parent
-
-                            verticalAlignment: Text.AlignVCenter
-
-                            text: modelItem ? modelItem.modelData.shortName : "zz"
-                            font.pixelSize: 14
-                            color: "#dbe3f0"
-                        }
-                    }
+                    text: modelItem ? modelItem.modelData.shortName : "zz"
+                    font.pixelSize: 14
+                    color: "#dbe3f0"
                 }
             }
-                
+        }
                 
         LoginForm {
             Layout.minimumHeight: parent.height
