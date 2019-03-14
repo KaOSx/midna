@@ -17,9 +17,10 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 *********************************************************************/
 
-import QtQuick 2.5
+import QtQuick 2.6
 import QtQuick.Controls 1.1
 import QtQuick.Layouts 1.1
+import QtGraphicalEffects 1.0
 
 import org.kde.plasma.core 2.0 as PlasmaCore
 import org.kde.plasma.components 2.0 as PlasmaComponents
@@ -68,13 +69,57 @@ PlasmaCore.ColorScope {
         visible: false
     }
 
-    Item {
+    MouseArea {
         id: lockScreenRoot
+
+        property bool uiVisible: false
+        property bool blockUI: mainStack.depth > 1 || mainBlock.mainPasswordBox.text.length > 0 || inputPanel.keyboardActive
 
         x: parent.x
         y: parent.y
         width: parent.width
         height: parent.height
+        hoverEnabled: true
+        drag.filterChildren: true
+        onPressed: uiVisible = true;
+        onPositionChanged: uiVisible = true;
+        onUiVisibleChanged: {
+            if (blockUI) {
+                fadeoutTimer.running = false;
+            } else if (uiVisible) {
+                fadeoutTimer.restart();
+            }
+        }
+        onBlockUIChanged: {
+            if (blockUI) {
+                fadeoutTimer.running = false;
+                uiVisible = true;
+            } else {
+                fadeoutTimer.restart();
+            }
+        }
+        Keys.onEscapePressed: {
+            uiVisible = !uiVisible;
+            if (inputPanel.keyboardActive) {
+                inputPanel.showHide();
+            }
+            if (!uiVisible) {
+                mainBlock.mainPasswordBox.text = "";
+            }
+        }
+        Keys.onPressed: {
+            uiVisible = true;
+            event.accepted = false;
+        }
+        Timer {
+            id: fadeoutTimer
+            interval: 10000
+            onTriggered: {
+                if (!lockScreenRoot.blockUI) {
+                    lockScreenRoot.uiVisible = false;
+                }
+            }
+        }
 
         Component.onCompleted: PropertyAnimation { id: launchAnimation; target: lockScreenRoot; property: "opacity"; from: 0; to: 1; duration: 1000 }
 
@@ -92,23 +137,33 @@ PlasmaCore.ColorScope {
             Transition {
             // we only animate switchting to another session, because kscreenlocker doesn't get notified when
             // coming from another session back and so we wouldn't know when to trigger the animation exactly
-                from: ""
-                to: "onOtherSession"
+            from: ""
+            to: "onOtherSession"
 
-                PropertyAnimation { id: stateChangeAnimation; properties: "y"; duration: 300; easing.type: Easing.InQuad}
-                PropertyAnimation { properties: "opacity"; duration: 300}
+            PropertyAnimation { id: stateChangeAnimation; properties: "y"; duration: 300; easing.type: Easing.InQuad}
+            PropertyAnimation { properties: "opacity"; duration: 300}
 
-                onRunningChanged: {
-                    // after the animation has finished switch session: since we only animate the transition TO state "onOtherSession"
-                    // and not the other way around, we don't have to check the state we transitioned into
-                    if (/* lockScreenRoot.state == "onOtherSession" && */ !running) {
-                        mainStack.currentItem.switchSession()
-                    }
+            onRunningChanged: {
+                // after the animation has finished switch session: since we only animate the transition TO state "onOtherSession"
+                // and not the other way around, we don't have to check the state we transitioned into
+                if (/* lockScreenRoot.state == "onOtherSession" && */ !running) {
+                    mainStack.currentItem.switchSession()
                 }
             }
+        }
+
+        WallpaperFader {
+            anchors.fill: parent
+            state: lockScreenRoot.uiVisible ? "on" : "off"
+            source: wallpaper
+            mainStack: mainStack
+            footer: footer
+            clock: clock
+        }
 
         Clock {
             id: clock
+            property Item shadow: clockShadow
             anchors.horizontalCenter: parent.horizontalCenter
             y: (mainBlock.userList.y + mainStack.y)/2 - height/2
             visible: y > 0
@@ -127,7 +182,6 @@ PlasmaCore.ColorScope {
             }
         }
 
-
         StackView {
             id: mainStack
             anchors {
@@ -139,6 +193,7 @@ PlasmaCore.ColorScope {
 
             initialItem: MainBlock {
                 id: mainBlock
+                lockScreenUiVisible: lockScreenRoot.uiVisible
 
                 showUserList: userList.y + mainStack.y > 0
 
@@ -182,6 +237,14 @@ PlasmaCore.ColorScope {
                     Layout.preferredHeight: item ? item.implicitHeight : 0
                     active: config.showMediaControls
                     source: "MediaControls.qml"
+                }
+            }
+
+            Component.onCompleted: {
+                if (defaultToSwitchUser) { //context property
+                    mainStack.push({
+                        item: switchSessionPage,
+                        immediate: true});
                 }
             }
         }
@@ -352,6 +415,7 @@ PlasmaCore.ColorScope {
             anchors {
                 horizontalCenter: parent.horizontalCenter
                 bottom: parent.bottom
+                bottomMargin: units.largeSpacing
             }
         }
 

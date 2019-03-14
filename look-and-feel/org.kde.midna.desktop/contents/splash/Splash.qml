@@ -159,8 +159,8 @@ Image {
 
 
         gradient: Gradient {
-            GradientStop { position: 0.0; color: "#A4BBDA" }
-            GradientStop { position: 1.0; color: "#2980b9" }
+            GradientStop { position: 0.0; color: "#3498db" }
+            GradientStop { position: 1.0; color: "#124364" }
         }
 
         states: [
@@ -198,7 +198,7 @@ Image {
         Text {
             id: message
             text: i18n("Plasma for KaOS")
-            color: "#A4BBDA"
+            color: "#3498db"
             font.pointSize: 18
             font.weight: Font.Light
 

@@ -59,7 +59,7 @@ Pane{
             color: "transparent"
             borderColor: "transparent"
             focusColor: "transparent"
-            hoverColor: "#A4BBDA"
+            hoverColor: "#4a4a4a"
             
             arrowIcon: "icons/keyboard.svg"
             arrowColor: "transparent"

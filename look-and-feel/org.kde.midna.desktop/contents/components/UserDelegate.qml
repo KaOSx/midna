@@ -18,13 +18,18 @@
  *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-import QtQuick 2.4
+import QtQuick 2.8
+import QtGraphicalEffects 1.0
 
 import org.kde.plasma.core 2.0 as PlasmaCore
 import org.kde.plasma.components 2.0 as PlasmaComponents
 
 Item {
     id: wrapper
+
+    // If we're using software rendering, draw outlines instead of shadows
+    // See https://bugs.kde.org/show_bug.cgi?id=398317
+    readonly property bool softwareRendering: GraphicsInfo.api === GraphicsInfo.Software
 
     property bool isCurrent: true
 
@@ -46,8 +51,21 @@ Item {
         }
     }
 
+    // Draw a translucent background circle under the user picture
+    Rectangle {
+        anchors.centerIn: imageSource
+
+        width: imageSource.width + 2
+        height: width
+        radius: width / 2
+
+        color: PlasmaCore.ColorScope.backgroundColor
+        opacity: 0.9
+    }
+
     Item {
         id: imageSource
+        anchors.horizontalCenter: parent.horizontalCenter
         width: faceSize
         height: faceSize
 
@@ -81,7 +99,8 @@ Item {
 
         property var source: ShaderEffectSource {
             sourceItem: imageSource
-            hideSource: true
+            // software rendering is just a fallback so we can accept not having a rounded avatar here
+            hideSource: wrapper.GraphicsInfo.api !== GraphicsInfo.Software
             live: false
         }
 
@@ -128,10 +147,10 @@ Item {
         "
     }
 
-
-
     PlasmaComponents.Label {
         id: usernameDelegate
+        font.pointSize: 12
+        font.family: "Raleway"
         anchors {
             bottom: parent.bottom
             horizontalCenter: parent.horizontalCenter
@@ -139,10 +158,22 @@ Item {
         height: implicitHeight // work around stupid bug in Plasma Components that sets the height
         width: constrainText ? parent.width : implicitWidth
         text: wrapper.name
+        style: softwareRendering ? Text.Outline : undefined
+        styleColor: softwareRendering ? ColorScope.backgroundColor : undefined
         elide: Text.ElideRight
         horizontalAlignment: Text.AlignHCenter
         //make an indication that this has active focus, this only happens when reached with keyboard navigation
         font.underline: wrapper.activeFocus
+
+        layer.enabled: !softwareRendering
+        layer.effect: DropShadow {
+            horizontalOffset: 0
+            verticalOffset: 0
+            radius: 0
+            samples: 0
+            spread: 0
+            color: ColorScope.backgroundColor
+        }
     }
 
     MouseArea {

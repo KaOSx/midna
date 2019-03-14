@@ -23,7 +23,7 @@ Rectangle {
             name: "Hovering"
             PropertyChanges {
                 target: button
-                color: "#A4BBDA"
+                color: "#303030"
             }
         },
         State {

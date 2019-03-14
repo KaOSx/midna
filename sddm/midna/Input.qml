@@ -299,7 +299,7 @@ Column {
                     when: !loginButton.enabled
                     PropertyChanges {
                         target: buttonBackground
-                        color: "#8594A7"
+                        color: "#303030"
                     }
                 },
                 State {
