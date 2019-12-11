@@ -1,1 +1,1 @@
-install(FILES index.theme DESTINATION ${CMAKE_INSTALL_PREFIX}/share/Kvantum/KvMidnaDark)
+install(FILES Midna.kvconfig Midna.svg DESTINATION ${CMAKE_INSTALL_PREFIX}/share/Kvantum/KvMidnaDark)
