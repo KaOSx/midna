@@ -79,7 +79,7 @@ Comment[zh_TW]=A Simple and Fresh icon theme for Plasma Desktop adapted for KaOS
 
 DisplayDepth=32
 
-Inherits=hicolor
+Inherits=breeze-dark,hicolor
 
 Example=folder
 
