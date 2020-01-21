@@ -3000,75 +3000,75 @@
   <path
      id="menubaritem-focused-left"
      d="m 126.76923,992.2305 0,-18.4614 -5.76923,0 3.5e-4,18.4615 z"
-     style="opacity:0.1;fill:#cfd8dc;fill-opacity:1;fill-rule:evenodd;stroke:none" />
+     style="opacity:1;fill:#3498db;fill-opacity:1;fill-rule:evenodd;stroke:none" />
   <path
      id="menubaritem-focused-topleft"
      d="m 126.76917,967.9999 c -3.17301,-10e-5 -5.76916,2.5961 -5.76915,5.7691 l 5.76918,0 z"
-     style="opacity:0.1;fill:#cfd8dc;fill-opacity:1;fill-rule:evenodd;stroke:none" />
+     style="opacity:1;fill:#3498db;fill-opacity:1;fill-rule:evenodd;stroke:none" />
   <path
      id="menubaritem-focused"
      d="m 126.76923,973.7691 0,18.4615 18.46154,0 0,-18.4615 -18.46154,0 z"
-     style="opacity:0.1;fill:#cfd8dc;fill-opacity:1;fill-rule:evenodd;stroke:none" />
+     style="opacity:1;fill:#3498db;fill-opacity:1;fill-rule:evenodd;stroke:none" />
   <path
      id="menubaritem-focused-right"
      d="m 145.23077,992.2305 0,-18.4614 5.76923,0 -3.6e-4,18.4615 z"
-     style="opacity:0.1;fill:#cfd8dc;fill-opacity:1;fill-rule:evenodd;stroke:none" />
+     style="opacity:1;fill:#3498db;fill-opacity:1;fill-rule:evenodd;stroke:none" />
   <path
      id="menubaritem-focused-topright"
      d="m 145.23083,967.9999 c 3.17301,-10e-5 5.76916,2.5961 5.76915,5.7691 l -5.76918,0 z"
-     style="opacity:0.1;fill:#cfd8dc;fill-opacity:1;fill-rule:evenodd;stroke:none" />
+     style="opacity:1;fill:#3498db;fill-opacity:1;fill-rule:evenodd;stroke:none" />
   <path
      id="menubaritem-focused-top"
      d="m 126.76929,973.7691 18.46142,0 0,-5.7692 -18.46154,0 z"
-     style="opacity:0.1;fill:#cfd8dc;fill-opacity:1;fill-rule:evenodd;stroke:none" />
+     style="opacity:1;fill:#3498db;fill-opacity:1;fill-rule:evenodd;stroke:none" />
   <path
      id="menubaritem-focused-bottom"
      d="m 145.23065,992.2306 -18.46142,0 0,5.7693 18.46154,0 z"
-     style="opacity:0.1;fill:#cfd8dc;fill-opacity:1;fill-rule:evenodd;stroke:none" />
+     style="opacity:1;fill:#3498db;fill-opacity:1;fill-rule:evenodd;stroke:none" />
   <path
      id="menubaritem-focused-bottomleft"
      d="m 126.76923,997.9999 c -3.17305,0 -5.7692,-2.5962 -5.76918,-5.7692 l 5.76917,-10e-5 z"
-     style="opacity:0.1;fill:#cfd8dc;fill-opacity:1;fill-rule:evenodd;stroke:none" />
+     style="opacity:1;fill:#3498db;fill-opacity:1;fill-rule:evenodd;stroke:none" />
   <path
      id="menubaritem-focused-bottomright"
      d="m 145.23075,997.9999 c 3.17305,0 5.7692,-2.5962 5.76919,-5.7692 l -5.76917,-10e-5 z"
-     style="opacity:0.1;fill:#cfd8dc;fill-opacity:1;fill-rule:evenodd;stroke:none" />
+     style="opacity:1;fill:#3498db;fill-opacity:1;fill-rule:evenodd;stroke:none" />
   <path
      id="menubaritem-toggled-left"
      d="m 164.76923,992.2305 0,-18.4614 -5.76923,0 3.5e-4,18.4615 z"
-     style="opacity:0.1;fill:#cfd8dc;fill-opacity:1;fill-rule:evenodd;stroke:none" />
+     style="opacity:1;fill:#3498db;fill-opacity:1;fill-rule:evenodd;stroke:none" />
   <path
      id="menubaritem-toggled-topleft"
      d="m 164.76917,967.9999 c -3.17301,-10e-5 -5.76916,2.5961 -5.76915,5.7691 l 5.76918,0 z"
-     style="opacity:0.1;fill:#cfd8dc;fill-opacity:1;fill-rule:evenodd;stroke:none" />
+     style="opacity:1;fill:#3498db;fill-opacity:1;fill-rule:evenodd;stroke:none" />
   <path
      id="menubaritem-toggled"
      d="m 164.76923,973.7691 0,18.4615 18.46154,0 0,-18.4615 -18.46154,0 z"
-     style="opacity:0.1;fill:#cfd8dc;fill-opacity:1;fill-rule:evenodd;stroke:none" />
+     style="opacity:1;fill:#3498db;fill-opacity:1;fill-rule:evenodd;stroke:none" />
   <path
      id="menubaritem-toggled-right"
      d="m 183.23077,992.2305 0,-18.4614 5.76923,0 -3.6e-4,18.4615 z"
-     style="opacity:0.1;fill:#cfd8dc;fill-opacity:1;fill-rule:evenodd;stroke:none" />
+     style="opacity:1;fill:#3498db;fill-opacity:1;fill-rule:evenodd;stroke:none" />
   <path
      id="menubaritem-toggled-topright"
      d="m 183.23083,967.9999 c 3.17301,-10e-5 5.76916,2.5961 5.76915,5.7691 l -5.76918,0 z"
-     style="opacity:0.1;fill:#cfd8dc;fill-opacity:1;fill-rule:evenodd;stroke:none" />
+     style="opacity:1;fill:#3498db;fill-opacity:1;fill-rule:evenodd;stroke:none" />
   <path
      id="menubaritem-toggled-top"
      d="m 164.76929,973.7691 18.46142,0 0,-5.7692 -18.46154,0 z"
-     style="opacity:0.1;fill:#cfd8dc;fill-opacity:1;fill-rule:evenodd;stroke:none" />
+     style="opacity:1;fill:#3498db;fill-opacity:1;fill-rule:evenodd;stroke:none" />
   <path
      id="menubaritem-toggled-bottom"
      d="m 183.23065,992.2306 -18.46142,0 0,5.7693 18.46154,0 z"
-     style="opacity:0.1;fill:#cfd8dc;fill-opacity:1;fill-rule:evenodd;stroke:none" />
+     style="opacity:1;fill:#3498db;fill-opacity:1;fill-rule:evenodd;stroke:none" />
   <path
      id="menubaritem-toggled-bottomleft"
      d="m 164.76923,997.9999 c -3.17305,0 -5.7692,-2.5962 -5.76918,-5.7692 l 5.76917,-10e-5 z"
-     style="opacity:0.1;fill:#cfd8dc;fill-opacity:1;fill-rule:evenodd;stroke:none" />
+     style="opacity:1;fill:#3498db;fill-opacity:1;fill-rule:evenodd;stroke:none" />
   <path
      id="menubaritem-toggled-bottomright"
      d="m 183.23075,997.9999 c 3.17305,0 5.7692,-2.5962 5.76919,-5.7692 l -5.76917,-10e-5 z"
-     style="opacity:0.1;fill:#cfd8dc;fill-opacity:1;fill-rule:evenodd;stroke:none" />
+     style="opacity:1;fill:#3498db;fill-opacity:1;fill-rule:evenodd;stroke:none" />
   <path
      id="menubaritem-pressed-left"
      d="m 201.76923,992.2305 0,-18.4614 -5.76923,0 3.5e-4,18.4615 z"
