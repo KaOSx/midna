@@ -251,6 +251,8 @@ frame.expansion=0
 
 [ToolbarLineEdit]
 frame.element=lineedit
+interior.element=lineedit
+interior=true
 
 [DropDownButton]
 inherits=PanelButtonCommand
