@@ -73,7 +73,7 @@ shadowless_popup=false
 [GeneralColors]
 window.color=#f5f5f5
 base.color=#ffffff
-alt.base.color=#ffffff
+alt.base.color=#eaeef2
 button.color=#f5f5f5
 light.color=#ffffff
 mid.light.color=#f0f0f0
