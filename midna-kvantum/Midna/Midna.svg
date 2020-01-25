@@ -34,16 +34,16 @@
      guidetolerance="10"
      inkscape:pageopacity="0"
      inkscape:pageshadow="2"
-     inkscape:window-width="1920"
-     inkscape:window-height="1032"
+     inkscape:window-width="1775"
+     inkscape:window-height="1127"
      id="namedview1030"
      showgrid="false"
-     inkscape:zoom="3.776"
-     inkscape:cx="294.39205"
-     inkscape:cy="581.13284"
-     inkscape:window-x="0"
-     inkscape:window-y="24"
-     inkscape:window-maximized="1"
+     inkscape:zoom="1.32"
+     inkscape:cx="-31.060604"
+     inkscape:cy="703.80218"
+     inkscape:window-x="205"
+     inkscape:window-y="75"
+     inkscape:window-maximized="0"
      inkscape:current-layer="svg2" />
   <defs
      id="defs5">
@@ -2372,6 +2372,13 @@
      x="322.5"
      y="115"
      style="text-indent:0;fill:#fafbfc;stroke:none;stroke-width:1.15499997" />
+  <rect
+     id="lineedit-focused"
+     width="10"
+     height="10"
+     x="322.5"
+     y="96.2"
+     style="text-indent:0;fill:#ffffff;stroke:none;stroke-width:1.15499997" />
   <path
      id="combo-pressed-bottom"
      d="m 415.5,130.49994 32,0 0,-3 -32,0 z"
