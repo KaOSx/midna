@@ -91,7 +91,7 @@ Column {
             placeholderText: config.TranslatePasswordPlaceholder || textConstants.password
             horizontalAlignment: TextInput.AlignHCenter
             passwordCharacter: "•"
-            passwordMaskDelay: 1000
+            passwordMaskDelay: 200
             renderType: Text.QtRendering
             background: Rectangle {
                 color: "transparent"
@@ -281,7 +281,7 @@ Column {
 
             contentItem: Text {
                 text: parent.text
-                color: "#575F6C"
+                color: "#b0b0b0"
                 font.pointSize: root.font.pointSize
                 horizontalAlignment: Text.AlignHCenter
                 verticalAlignment: Text.AlignVCenter
@@ -299,7 +299,7 @@ Column {
                     when: !loginButton.enabled
                     PropertyChanges {
                         target: buttonBackground
-                        color: "#303030"
+                        color: "#8a8a8a"
                     }
                 },
                 State {
@@ -315,7 +315,7 @@ Column {
                     when: loginButton.hovered
                     PropertyChanges {
                         target: buttonBackground
-                        color: Qt.lighter(config.AccentColor, 1.2) || Qt.lighter("orange", 1.2)
+                        color: Qt.darker(config.AccentColor, 1.2) || Qt.darker("slategray", 1.2)
                     }
                 },
                 State {

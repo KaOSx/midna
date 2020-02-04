@@ -59,7 +59,7 @@ Pane{
             color: "transparent"
             borderColor: "transparent"
             focusColor: "transparent"
-            hoverColor: "#4a4a4a"
+            hoverColor: "#bcbcbc"
             
             arrowIcon: "icons/keyboard.svg"
             arrowColor: "transparent"
@@ -85,7 +85,7 @@ Pane{
 
                     text: modelItem ? modelItem.modelData.shortName : "zz"
                     font.pixelSize: 14
-                    color: "#dbe3f0"
+                    color: "#1F1F1F"
                 }
             }
         }

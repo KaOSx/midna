@@ -49,7 +49,7 @@ Item {
             horizontalAlignment: Text.AlignRight
             font.pointSize: root.font.pointSize * 0.8
             Image {
-                source: "icons/angle.png"
+                source: "icons/angle-down.png"
                 anchors.horizontalCenter: parent.left
                 anchors.horizontalCenterOffset: selectSession.height * 0.8
             }
