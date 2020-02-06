@@ -17,7 +17,7 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 *********************************************************************/
 
-import QtQuick 2.6
+import QtQuick 2.8
 import QtQuick.Controls 1.1
 import QtQuick.Layouts 1.1
 import QtGraphicalEffects 1.0
@@ -29,6 +29,12 @@ import org.kde.plasma.private.sessions 2.0
 import "../components"
 
 PlasmaCore.ColorScope {
+
+    id: lockScreenUi
+    // If we're using software rendering, draw outlines instead of shadows
+    // See https://bugs.kde.org/show_bug.cgi?id=398317
+    readonly property bool softwareRendering: GraphicsInfo.api === GraphicsInfo.Software
+    readonly property bool lightBackground: Math.max(PlasmaCore.ColorScope.backgroundColor.r, PlasmaCore.ColorScope.backgroundColor.g, PlasmaCore.ColorScope.backgroundColor.b) > 0.5
 
     colorGroup: PlasmaCore.Theme.ComplementaryColorGroup
 
@@ -51,9 +57,20 @@ PlasmaCore.ColorScope {
         }
     }
 
+    SessionManagement {
+        id: sessionManagement
+    }
+
+    Connections {
+        target: sessionManagement
+        onAboutToSuspend: {
+            mainBlock.mainPasswordBox.text = "";
+        }
+    }
+
     SessionsModel {
         id: sessionsModel
-        showNewSessionEntry: true
+        showNewSessionEntry: false
     }
 
     PlasmaCore.DataSource {
@@ -161,6 +178,25 @@ PlasmaCore.ColorScope {
             clock: clock
         }
 
+        DropShadow {
+            id: clockShadow
+            anchors.fill: clock
+            source: clock
+            visible: !softwareRendering
+            horizontalOffset: 1
+            verticalOffset: 1
+            radius: 6
+            samples: 14
+            spread: 0.3
+            color: lockScreenUi.lightBackground ? PlasmaCore.ColorScope.backgroundColor : "black" // black matches Breeze window decoration and desktopcontainment
+            Behavior on opacity {
+                OpacityAnimator {
+                    duration: 1000
+                    easing.type: Easing.InOutQuad
+                }
+            }
+        }
+
         Clock {
             id: clock
             property Item shadow: clockShadow
@@ -188,7 +224,7 @@ PlasmaCore.ColorScope {
                 left: parent.left
                 right: parent.right
             }
-            height: lockScreenRoot.height
+            height: lockScreenRoot.height + units.gridUnit * 3
             focus: true //StackView is an implicit focus scope, so we need to give this focus so the item inside will have it
 
             initialItem: MainBlock {
@@ -226,9 +262,23 @@ PlasmaCore.ColorScope {
                     ActionButton {
                         text: i18nd("plasma_lookandfeel_org.kde.lookandfeel", "Switch User")
                         iconSource: "system-switch-user"
-                        onClicked: mainStack.push(switchSessionPage)
-                        // the current session isn't listed in the model, hence a check for greater than zero, not one
-                        visible: (sessionsModel.count > 0 || sessionsModel.canStartNewSession) && sessionsModel.canSwitchUser
+                        onClicked: {
+                            // If there are no existing sessions to switch to, create a new one instead
+                            if (((sessionsModel.showNewSessionEntry && sessionsModel.count === 1) ||
+                               (!sessionsModel.showNewSessionEntry && sessionsModel.count === 0)) &&
+                               sessionsModel.canSwitchUser) {
+                                mainStack.pop({immediate:true})
+                                sessionsModel.startNewSession(true /* lock the screen too */)
+                                lockScreenRoot.state = ''
+                            } else {
+                                mainStack.push(switchSessionPage)
+                            }
+                        }
+                        visible: sessionsModel.canStartNewSession && sessionsModel.canSwitchUser
+                        //Button gets cut off on smaller displays without this.
+                        anchors{
+                            verticalCenter: parent.top
+                        }
                     }
                 ]
 
@@ -242,9 +292,17 @@ PlasmaCore.ColorScope {
 
             Component.onCompleted: {
                 if (defaultToSwitchUser) { //context property
-                    mainStack.push({
-                        item: switchSessionPage,
-                        immediate: true});
+                    // If we are in the only session, then going to the session switcher is
+                    // a pointless extra step; instead create a new session immediately
+                    if (((sessionsModel.showNewSessionEntry && sessionsModel.count === 1)  ||
+                       (!sessionsModel.showNewSessionEntry && sessionsModel.count === 0)) &&
+                       sessionsModel.canStartNewSession) {
+                        sessionsModel.startNewSession(true /* lock the screen too */)
+                    } else {
+                        mainStack.push({
+                            item: switchSessionPage,
+                            immediate: true});
+                    }
                 }
             }
         }
@@ -269,7 +327,7 @@ PlasmaCore.ColorScope {
                     state = "hidden";
                 }
             }
-            
+
             states: [
                 State {
                     name: "visible"
@@ -392,18 +450,40 @@ PlasmaCore.ColorScope {
                 Keys.onReturnPressed: initSwitchSession()
                 Keys.onEscapePressed: mainStack.pop()
 
-                PlasmaComponents.Button {
+                ColumnLayout {
                     Layout.fillWidth: true
-                    // the magic "-1" vtNumber indicates the "New Session" entry
-                    text: userListCurrentModelData.vtNumber === -1 ? i18nd("plasma_lookandfeel_org.kde.lookandfeel", "Start New Session") : i18nd("plasma_lookandfeel_org.kde.lookandfeel", "Switch Session")
-                    onClicked: initSwitchSession()
+                    spacing: units.largeSpacing
+
+                    PlasmaComponents.Button {
+                        Layout.fillWidth: true
+                        font.pointSize: theme.defaultFont.pointSize + 1
+                        text: i18nd("plasma_lookandfeel_org.kde.lookandfeel", "Switch to This Session")
+                        onClicked: initSwitchSession()
+                        visible: sessionsModel.count > 0
+                    }
+
+                    PlasmaComponents.Button {
+                        Layout.fillWidth: true
+                        font.pointSize: theme.defaultFont.pointSize + 1
+                        text: i18nd("plasma_lookandfeel_org.kde.lookandfeel", "Start New Session")
+                        onClicked: {
+                            mainStack.pop({immediate:true})
+                            sessionsModel.startNewSession(true /* lock the screen too */)
+                            lockScreenRoot.state = ''
+                        }
+                    }
                 }
+
 
                 actionItems: [
                     ActionButton {
                         iconSource: "go-previous"
                         text: i18nd("plasma_lookandfeel_org.kde.lookandfeel","Back")
                         onClicked: mainStack.pop()
+                        //Button gets cut off on smaller displays without this.
+                        anchors{
+                            verticalCenter: parent.top
+                        }
                     }
                 ]
             }
