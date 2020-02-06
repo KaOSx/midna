@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2017-2019 Anke Boersma <demm@kaosx.us>       *
+ *   Copyright (C) 2017-2020 Anke Boersma <demm@kaosx.us>       *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -19,100 +19,85 @@
 
 import QtQuick 2.7
 import QtGraphicalEffects 1.0
+import QtQuick.Controls 2.0 as Controls
+import QtQuick.Layouts 1.2
 
 Image {
     id: root
     source: "images/background.png"
 
     property int stage
+    
+        Rectangle {
+        id: ind
+        anchors.centerIn: root
+        anchors.verticalCenterOffset: 0.4 * parent.height
 
+        opacity: 0
 
-    Item {
-        clip: true
+        Controls.ProgressBar {
+            from: 0
+            to: 100
+            indeterminate: true
+            Layout.maximumWidth: 300
+            anchors.centerIn: parent
+        }
 
-        anchors.horizontalCenter: parent.horizontalCenter
-        anchors.bottom: parent.verticalCenter
-        anchors.bottomMargin: logo.size / 8
-        width: 300
-        height: 100
-
-        Image {
-            id: plasma
-            property real size: units.gridUnit * 2
-
-            anchors.horizontalCenter: parent.horizontalCenter
-            anchors.bottom: parent.bottom
-            anchors.bottomMargin: -20
-
-            source: "images/plasma.svgz"
-
-            sourceSize.width: 50
-            sourceSize.height: 50
-
-            states: [
-                State {
-                    name: "1"
-                    when: root.stage >= 1 && root.stage < 6
-                    PropertyChanges {
-                        target: plasma
-                        anchors.bottomMargin: 30
-                    }
-                },
-                State {
-                    name: "4"
-                    when: root.stage >= 6
-                    PropertyChanges {
-                        target: plasma
-                        anchors.bottomMargin: 120
-                    }
+        states: [
+            State {
+                name: "2"
+                when: root.stage >= 1
+                PropertyChanges {
+                    target: ind
+                    opacity: 1
                 }
-            ]
+            }
+        ]
 
-            transitions: Transition {
-                NumberAnimation {
-                    properties: "anchors.bottomMargin"
-                    easing.type: Easing.InOutQuad
-                    duration: 1000
-                }
+        transitions: Transition {
+            NumberAnimation {
+                properties: "opacity"
+                easing.type: Easing.InOutQuad
+                duration: 1000
             }
         }
     }
-
+    
     Item {
         id: logoBox
         clip: true
         width: 200
         height: 140
 
-        anchors.horizontalCenter: parent.horizontalCenter
-        anchors.top: parent.verticalCenter
-        anchors.topMargin: -15
+        anchors.right: parent.right
+        anchors.bottom: parent.bottom
+        anchors.bottomMargin: 1.5
 
         Image {
             id: logo
-            property real size: units.gridUnit * 8
+            property real size: 80
 
             anchors.horizontalCenter: parent.horizontalCenter
             anchors.top: parent.top
 
-            source: "images/kde.svgz"
+            source: "images/KaOS.svgz"
 
-            sourceSize.width: 100
-            sourceSize.height: 100
+            sourceSize.width: 80
+            sourceSize.height: 80
 
             states: [
                 State {
                     when: root.stage >= 1 && root.stage < 5
                     PropertyChanges {
                         target: logo
-                        anchors.topMargin: 15
+                        anchors.topMargin: 25
                     }
                 },
                 State {
                     when: root.stage >= 5
                     PropertyChanges {
                         target: logo
-                        anchors.topMargin: (logo.size + 200) * -1;
+                        anchors.topMargin: (logo.size + 200) * 1;
                     }
                 }
             ]
@@ -146,61 +131,22 @@ Image {
         }
     }
 
-
-    Rectangle {
-        id: glowingBar
-        anchors.centerIn: root
-
-        width: 300
-        height: 5
-
-        radius: 6
-        opacity: 0
-
-
-        gradient: Gradient {
-            GradientStop { position: 0.0; color: "#3498db" }
-            GradientStop { position: 1.0; color: "#124364" }
-        }
-
-        states: [
-            State {
-                name: "3"
-                when: root.stage >= 3
-                PropertyChanges {
-                    target: glowingBar
-                    opacity: 1
-                }
-            }
-        ]
-
-        transitions: Transition {
-            NumberAnimation {
-                properties: "opacity"
-                easing.type: Easing.InOutQuad
-                duration: 1000
-            }
-        }
-
-    }
-
     Item {
         id: messageBox
 
         width: 300;
         height: message.height
 
-        anchors.horizontalCenter: parent.horizontalCenter
-        anchors.bottom: glowingBar.top
+        anchors.right: parent.right
+        anchors.bottom: parent.bottom
 
         clip: true
 
         Text {
             id: message
             text: i18n("Plasma for KaOS")
-            color: "#3498db"
-            font.pointSize: 18
-            font.weight: Font.Light
+            color: "#1F1F1F"
+            font { family: "Raleway"; capitalization: Font.Capitalize; pointSize: 18}
 
             anchors.horizontalCenter: parent.horizontalCenter
             anchors.top: parent.top
@@ -209,10 +155,17 @@ Image {
             states: [
                 State {
                     name: "visible"
-                    when: root.stage >= 6
+                    when: root.stage >= 1 && root.stage < 5
                     PropertyChanges {
                         target: message
-                        anchors.topMargin: - 5
+                        anchors.topMargin: -5
+                    }
+                },
+                State {
+                    when: root.stage >= 5
+                    PropertyChanges {
+                        target: message
+                        anchors.topMargin: -200;
                     }
                 }
             ]
