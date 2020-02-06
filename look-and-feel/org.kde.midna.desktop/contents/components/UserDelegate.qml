@@ -19,8 +19,6 @@
  */
 
 import QtQuick 2.8
-import QtGraphicalEffects 1.0
-
 import org.kde.plasma.core 2.0 as PlasmaCore
 import org.kde.plasma.components 2.0 as PlasmaComponents
 
@@ -39,9 +37,11 @@ Item {
     property string avatarPath
     property string iconSource
     property bool constrainText: true
+    property alias nameFontSize: usernameDelegate.font.pointSize
+    property int fontSize: config.fontSize
     signal clicked()
 
-    property real faceSize: Math.min(width, height - usernameDelegate.height - units.largeSpacing)
+    property real faceSize: units.gridUnit * 7
 
     opacity: isCurrent ? 1.0 : 0.5
 
@@ -54,20 +54,29 @@ Item {
     // Draw a translucent background circle under the user picture
     Rectangle {
         anchors.centerIn: imageSource
-
-        width: imageSource.width + 2
+        width: imageSource.width - 2 // Subtract to prevent fringing
         height: width
         radius: width / 2
 
         color: PlasmaCore.ColorScope.backgroundColor
-        opacity: 0.9
+        opacity: 0.6
     }
 
     Item {
         id: imageSource
-        anchors.horizontalCenter: parent.horizontalCenter
-        width: faceSize
-        height: faceSize
+        anchors {
+            bottom: usernameDelegate.top
+            bottomMargin: units.largeSpacing
+            horizontalCenter: parent.horizontalCenter
+        }
+        Behavior on width { 
+            PropertyAnimation {
+                from: faceSize
+                duration: units.longDuration * 2;
+            }
+        }
+        width: isCurrent ? faceSize : faceSize - units.largeSpacing
+        height: width
 
         //Image takes priority, taking a full path to a file, if that doesn't exist we show an icon
         Image {
@@ -89,8 +98,11 @@ Item {
     }
 
     ShaderEffect {
-        anchors.top: parent.top
-        anchors.horizontalCenter: parent.horizontalCenter
+        anchors {
+            bottom: usernameDelegate.top
+            bottomMargin: units.largeSpacing
+            horizontalCenter: parent.horizontalCenter
+        }
 
         width: imageSource.width
         height: imageSource.height
@@ -101,12 +113,12 @@ Item {
             sourceItem: imageSource
             // software rendering is just a fallback so we can accept not having a rounded avatar here
             hideSource: wrapper.GraphicsInfo.api !== GraphicsInfo.Software
-            live: false
+            live: true // otherwise the user in focus will show a blurred avatar
         }
 
         property var colorBorder: PlasmaCore.ColorScope.textColor
 
-        //draw a circle with an antialised border
+        //draw a circle with an antialiased border
         //innerRadius = size of the inner circle with contents
         //outerRadius = size of the border
         //blend = area to blend between two colours
@@ -149,8 +161,7 @@ Item {
 
     PlasmaComponents.Label {
         id: usernameDelegate
-        font.pointSize: 12
-        font.family: "Raleway"
+        font.pointSize: Math.max(fontSize + 2,theme.defaultFont.pointSize + 2)
         anchors {
             bottom: parent.bottom
             horizontalCenter: parent.horizontalCenter
@@ -158,22 +169,12 @@ Item {
         height: implicitHeight // work around stupid bug in Plasma Components that sets the height
         width: constrainText ? parent.width : implicitWidth
         text: wrapper.name
-        style: softwareRendering ? Text.Outline : undefined
-        styleColor: softwareRendering ? ColorScope.backgroundColor : undefined
+        style: softwareRendering ? Text.Outline : Text.Normal
+        styleColor: softwareRendering ? PlasmaCore.ColorScope.backgroundColor : "transparent" //no outline, doesn't matter
         elide: Text.ElideRight
         horizontalAlignment: Text.AlignHCenter
         //make an indication that this has active focus, this only happens when reached with keyboard navigation
         font.underline: wrapper.activeFocus
-
-        layer.enabled: !softwareRendering
-        layer.effect: DropShadow {
-            horizontalOffset: 0
-            verticalOffset: 0
-            radius: 0
-            samples: 0
-            spread: 0
-            color: ColorScope.backgroundColor
-        }
     }
 
     MouseArea {

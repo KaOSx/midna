@@ -38,6 +38,8 @@ Item {
     property real factor: 0
     readonly property bool lightBackground: Math.max(PlasmaCore.ColorScope.backgroundColor.r, PlasmaCore.ColorScope.backgroundColor.g, PlasmaCore.ColorScope.backgroundColor.b) > 0.5
 
+    property bool alwaysShowClock: typeof config === "undefined" || config.alwaysShowClock === true
+
     Behavior on factor {
         NumberAnimation {
             target: wallpaperFader
@@ -49,7 +51,7 @@ Item {
     FastBlur {
         id: wallpaperBlur
         anchors.fill: parent
-        radius: 100 * wallpaperFader.factor
+        radius: 50 * wallpaperFader.factor
     }
     ShaderEffect {
         id: wallpaperShader
@@ -62,9 +64,9 @@ Item {
             textureMirroring: ShaderEffectSource.NoMirroring
         }
 
-        readonly property real contrast: 0.45 * wallpaperFader.factor + (1 - wallpaperFader.factor)
-        readonly property real saturation: 1.7 * wallpaperFader.factor + (1 - wallpaperFader.factor)
-        readonly property real intensity: (wallpaperFader.lightBackground ? 1.7 : 0.45) * wallpaperFader.factor + (1 - wallpaperFader.factor)
+        readonly property real contrast: 0.65 * wallpaperFader.factor + (1 - wallpaperFader.factor)
+        readonly property real saturation: 1.6 * wallpaperFader.factor + (1 - wallpaperFader.factor)
+        readonly property real intensity: (wallpaperFader.lightBackground ? 1.7 : 0.6) * wallpaperFader.factor + (1 - wallpaperFader.factor)
 
         readonly property real transl: (1.0 - contrast) / 2.0;
         readonly property real rval: (1.0 - saturation) * 0.2126;
@@ -119,6 +121,10 @@ Item {
                 target: clock.shadow
                 opacity: 0
             }
+            PropertyChanges {
+                target: clock
+                opacity: 1
+            }
         },
         State {
             name: "off"
@@ -136,7 +142,11 @@ Item {
             }
             PropertyChanges {
                 target: clock.shadow
-                opacity: 1
+                opacity: wallpaperFader.alwaysShowClock ? 1 : 0
+            }
+            PropertyChanges {
+                target: clock
+                opacity: wallpaperFader.alwaysShowClock ? 1 : 0
             }
         }
     ]
@@ -145,37 +155,21 @@ Item {
             from: "off"
             to: "on"
             //Note: can't use animators as they don't play well with parallelanimations
-            ParallelAnimation {
-                NumberAnimation {
-                    target: mainStack
-                    property: "opacity"
-                    duration: units.longDuration
-                    easing.type: Easing.InOutQuad
-                }
-                NumberAnimation {
-                    target: footer
-                    property: "opacity"
-                    duration: units.longDuration
-                    easing.type: Easing.InOutQuad
-                }
+            NumberAnimation {
+                targets: [mainStack, footer, clock]
+                property: "opacity"
+                duration: units.longDuration
+                easing.type: Easing.InOutQuad
             }
         },
         Transition {
             from: "on"
             to: "off"
-            ParallelAnimation {
-                NumberAnimation {
-                    target: mainStack
-                    property: "opacity"
-                    duration: 500
-                    easing.type: Easing.InOutQuad
-                }
-                NumberAnimation {
-                    target: footer
-                    property: "opacity"
-                    duration: 500
-                    easing.type: Easing.InOutQuad
-                }
+            NumberAnimation {
+                targets: [mainStack, footer, clock]
+                property: "opacity"
+                duration: 500
+                easing.type: Easing.InOutQuad
             }
         }
     ]
