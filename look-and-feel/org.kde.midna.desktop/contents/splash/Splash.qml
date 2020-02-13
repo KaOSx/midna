@@ -87,7 +87,7 @@ Image {
 
             states: [
                 State {
-                    when: root.stage >= 1 && root.stage < 5
+                    when: root.stage >= 1 && root.stage < 6
                     PropertyChanges {
                         target: logo
                         anchors.topMargin: 25
@@ -155,7 +155,7 @@ Image {
             states: [
                 State {
                     name: "visible"
-                    when: root.stage >= 1 && root.stage < 5
+                    when: root.stage >= 1 && root.stage < 6
                     PropertyChanges {
                         target: message
                         anchors.topMargin: -5
