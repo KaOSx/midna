@@ -19,7 +19,7 @@
 
 import QtQuick 2.8
 import org.kde.plasma.core 2.0 as PlasmaCore
-import org.kde.plasma.components 2.0 as PlasmaComponents
+import org.kde.plasma.components 3.0 as PlasmaComponents3
 
 Item {
     id: root
@@ -30,7 +30,7 @@ Item {
     property alias labelRendering: label.renderType
     property alias circleOpacity: iconCircle.opacity
     property alias circleVisiblity: iconCircle.visible
-    property int fontSize: config.fontSize
+    property int fontSize: PlasmaCore.Theme.defaultFont.pointSize + 1
     readonly property bool softwareRendering: GraphicsInfo.api === GraphicsInfo.Software
     signal clicked
 
@@ -44,7 +44,7 @@ Item {
     opacity: activeFocus || containsMouse ? 1 : 0.85
         Behavior on opacity {
             PropertyAnimation { // OpacityAnimator makes it turn black at random intervals
-                duration: units.longDuration * 2
+                duration: units.longDuration
                 easing.type: Easing.InOutQuad
             }
     }
@@ -59,7 +59,7 @@ Item {
         opacity: activeFocus || containsMouse ? (softwareRendering ? 0.8 : 0.15) : (softwareRendering ? 0.6 : 0)
         Behavior on opacity {
                 PropertyAnimation { // OpacityAnimator makes it turn black at random intervals
-                    duration: units.longDuration * 3
+                    duration: units.longDuration
                     easing.type: Easing.InOutQuad
                 }
         }
@@ -94,9 +94,9 @@ Item {
         active: mouseArea.containsMouse || root.activeFocus
     }
 
-    PlasmaComponents.Label {
+    PlasmaComponents3.Label {
         id: label
-        font.pointSize: Math.max(fontSize + 1,theme.defaultFont.pointSize + 1)
+        font.pointSize: root.fontSize
         anchors {
             top: icon.bottom
             topMargin: (softwareRendering ? 1.5 : 1) * units.smallSpacing

@@ -20,7 +20,7 @@
 
 import QtQuick 2.8
 import org.kde.plasma.core 2.0 as PlasmaCore
-import org.kde.plasma.components 2.0 as PlasmaComponents
+import org.kde.plasma.components 3.0 as PlasmaComponents3
 
 Item {
     id: wrapper
@@ -38,7 +38,7 @@ Item {
     property string iconSource
     property bool constrainText: true
     property alias nameFontSize: usernameDelegate.font.pointSize
-    property int fontSize: config.fontSize
+    property int fontSize: PlasmaCore.Theme.defaultFont.pointSize + 2
     signal clicked()
 
     property real faceSize: units.gridUnit * 7
@@ -72,7 +72,7 @@ Item {
         Behavior on width { 
             PropertyAnimation {
                 from: faceSize
-                duration: units.longDuration * 2;
+                duration: units.longDuration;
             }
         }
         width: isCurrent ? faceSize : faceSize - units.largeSpacing
@@ -159,14 +159,13 @@ Item {
         "
     }
 
-    PlasmaComponents.Label {
+    PlasmaComponents3.Label {
         id: usernameDelegate
-        font.pointSize: Math.max(fontSize + 2,theme.defaultFont.pointSize + 2)
+        font.pointSize: wrapper.fontSize
         anchors {
             bottom: parent.bottom
             horizontalCenter: parent.horizontalCenter
         }
-        height: implicitHeight // work around stupid bug in Plasma Components that sets the height
         width: constrainText ? parent.width : implicitWidth
         text: wrapper.name
         style: softwareRendering ? Text.Outline : Text.Normal

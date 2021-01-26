@@ -10,6 +10,9 @@ Theme=midna
 [plasmarc][Theme]
 name=midna
 
+[Wallpaper]
+Image=midna
+
 [kcminputrc][Mouse]
 cursorTheme=breeze_cursors
 

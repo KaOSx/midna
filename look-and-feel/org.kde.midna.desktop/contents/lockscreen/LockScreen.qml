@@ -33,6 +33,9 @@ Item {
 
     LayoutMirroring.enabled: Qt.application.layoutDirection === Qt.RightToLeft
     LayoutMirroring.childrenInherit: true
+    
+    implicitWidth: 800
+    implicitHeight: 600
 
     Loader {
         id: mainLoader
@@ -52,7 +55,7 @@ Item {
     Connections {
         id:loaderConnection
         target: org_kde_plasma_screenlocker_greeter_view
-        onFrameSwapped: {
+        function onFrameSwapped() {
             mainLoader.source = "LockScreenUi.qml";
             loaderConnection.target = null;
         }

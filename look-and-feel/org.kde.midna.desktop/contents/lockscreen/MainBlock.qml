@@ -23,7 +23,7 @@ import QtQuick.Layouts 1.1
 import QtQuick.Controls 1.1
 
 import org.kde.plasma.core 2.0 as PlasmaCore
-import org.kde.plasma.components 2.0 as PlasmaComponents
+import org.kde.plasma.components 3.0 as PlasmaComponents3
 
 import "../components"
 
@@ -54,7 +54,7 @@ SessionManagementScreen {
     RowLayout {
         Layout.fillWidth: true
 
-        PlasmaComponents.TextField {
+        PlasmaComponents3.TextField {
             id: passwordBox
             font.pointSize: theme.defaultFont.pointSize + 1
             Layout.fillWidth: true
@@ -65,6 +65,12 @@ SessionManagementScreen {
             inputMethodHints: Qt.ImhHiddenText | Qt.ImhSensitiveData | Qt.ImhNoAutoUppercase | Qt.ImhNoPredictiveText
             enabled: !authenticator.graceLocked
             revealPasswordButtonShown: true
+
+            // In Qt this is implicitly active based on focus rather than visibility
+            // in any other application having a focussed invisible object would be weird
+            // but here we are using to wake out of screensaver mode
+            // We need to explicitly disable cursor flashing to avoid unnecessary renders
+            cursorVisible: visible
 
             onAccepted: {
                 if (lockScreenUiVisible) {
@@ -87,23 +93,21 @@ SessionManagementScreen {
 
             Connections {
                 target: root
-                onClearPassword: {
+                function onClearPassword() {
                     passwordBox.forceActiveFocus()
-                    passwordBox.selectAll()
+                    passwordBox.text = "";
                 }
             }
         }
 
-        PlasmaComponents.Button {
+        PlasmaComponents3.Button {
             id: loginButton
             Accessible.name: i18nd("plasma_lookandfeel_org.kde.lookandfeel", "Unlock")
-            implicitHeight: passwordBox.height - units.smallSpacing * 0.5 // otherwise it comes out taller than the password field
+            Layout.preferredHeight: passwordBox.implicitHeight
+            Layout.preferredWidth: loginButton.Layout.preferredHeight
 
-            PlasmaCore.IconItem { // no iconSource because if you take away half a unit (implicitHeight), "go-next" gets cut off
-                    anchors.fill: parent
-                    anchors.margins: units.smallSpacing
-                    source: "go-next"
-                }
+            icon.name: "go-next"
+
             onClicked: startLogin()
         }
     }

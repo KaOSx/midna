@@ -23,7 +23,8 @@ import QtQuick.Layouts 1.1
 import QtGraphicalEffects 1.0
 
 import org.kde.plasma.core 2.0 as PlasmaCore
-import org.kde.plasma.components 2.0 as PlasmaComponents
+import org.kde.plasma.components 3.0 as PlasmaComponents3
+import org.kde.plasma.workspace.components 2.0 as PW
 
 import org.kde.plasma.private.sessions 2.0
 import "../components"
@@ -40,19 +41,19 @@ PlasmaCore.ColorScope {
 
     Connections {
         target: authenticator
-        onFailed: {
+        function onFailed() {
             root.notification = i18nd("plasma_lookandfeel_org.kde.lookandfeel","Unlocking failed");
         }
-        onGraceLockedChanged: {
+        function onGraceLockedChanged() {
             if (!authenticator.graceLocked) {
                 root.notification = "";
                 root.clearPassword();
             }
         }
-        onMessage: {
+        function onMessage(msg) {
             root.notification = msg;
         }
-        onError: {
+        function onError(err) {
             root.notification = err;
         }
     }
@@ -63,8 +64,8 @@ PlasmaCore.ColorScope {
 
     Connections {
         target: sessionManagement
-        onAboutToSuspend: {
-            mainBlock.mainPasswordBox.text = "";
+        function onAboutToSuspend() {
+            root.clearPassword();
         }
     }
 
@@ -121,7 +122,7 @@ PlasmaCore.ColorScope {
                 inputPanel.showHide();
             }
             if (!uiVisible) {
-                mainBlock.mainPasswordBox.text = "";
+                root.clearPassword();
             }
         }
         Keys.onPressed: {
@@ -227,6 +228,9 @@ PlasmaCore.ColorScope {
             height: lockScreenRoot.height + units.gridUnit * 3
             focus: true //StackView is an implicit focus scope, so we need to give this focus so the item inside will have it
 
+            // this isn't implicit, otherwise items still get processed for the scenegraph
+            visible: opacity > 0
+
             initialItem: MainBlock {
                 id: mainBlock
                 lockScreenUiVisible: lockScreenRoot.uiVisible
@@ -283,6 +287,7 @@ PlasmaCore.ColorScope {
                 ]
 
                 Loader {
+                    Layout.topMargin: PlasmaCore.Units.smallSpacing // some distance to the password field
                     Layout.fillWidth: true
                     Layout.preferredHeight: item ? item.implicitHeight : 0
                     active: config.showMediaControls
@@ -323,6 +328,9 @@ PlasmaCore.ColorScope {
             onKeyboardActiveChanged: {
                 if (keyboardActive) {
                     state = "visible";
+                    // Otherwise the password field loses focus and virtual keyboard
+                    // keystrokes get eaten
+                    mainBlock.mainPasswordBox.forceActiveFocus();
                 } else {
                     state = "hidden";
                 }
@@ -338,7 +346,6 @@ PlasmaCore.ColorScope {
                     PropertyChanges {
                         target: inputPanel
                         y: lockScreenRoot.height - inputPanel.height
-                        opacity: 1
                     }
                 },
                 State {
@@ -350,7 +357,6 @@ PlasmaCore.ColorScope {
                     PropertyChanges {
                         target: inputPanel
                         y: lockScreenRoot.height - lockScreenRoot.height/4
-                        opacity: 0
                     }
                 }
             ]
@@ -375,11 +381,6 @@ PlasmaCore.ColorScope {
                             NumberAnimation {
                                 target: inputPanel
                                 property: "y"
-                                duration: units.longDuration
-                                easing.type: Easing.OutQuad
-                            }
-                            OpacityAnimator {
-                                target: inputPanel
                                 duration: units.longDuration
                                 easing.type: Easing.OutQuad
                             }
@@ -454,7 +455,7 @@ PlasmaCore.ColorScope {
                     Layout.fillWidth: true
                     spacing: units.largeSpacing
 
-                    PlasmaComponents.Button {
+                    PlasmaComponents3.Button {
                         Layout.fillWidth: true
                         font.pointSize: theme.defaultFont.pointSize + 1
                         text: i18nd("plasma_lookandfeel_org.kde.lookandfeel", "Switch to This Session")
@@ -462,7 +463,7 @@ PlasmaCore.ColorScope {
                         visible: sessionsModel.count > 0
                     }
 
-                    PlasmaComponents.Button {
+                    PlasmaComponents3.Button {
                         Layout.fillWidth: true
                         font.pointSize: theme.defaultFont.pointSize + 1
                         text: i18nd("plasma_lookandfeel_org.kde.lookandfeel", "Start New Session")
@@ -508,15 +509,15 @@ PlasmaCore.ColorScope {
                 margins: units.smallSpacing
             }
 
-            PlasmaComponents.ToolButton {
+            PlasmaComponents3.ToolButton {
                 text: i18ndc("plasma_lookandfeel_org.kde.lookandfeel", "Button to show/hide virtual keyboard", "Virtual Keyboard")
-                iconName: inputPanel.keyboardActive ? "input-keyboard-virtual-on" : "input-keyboard-virtual-off"
+                icon.name: inputPanel.keyboardActive ? "input-keyboard-virtual-on" : "input-keyboard-virtual-off"
                 onClicked: inputPanel.showHide()
 
                 visible: inputPanel.status == Loader.Ready
             }
 
-            KeyboardLayoutButton {
+            PW.KeyboardLayoutButton {
             }
 
             Item {

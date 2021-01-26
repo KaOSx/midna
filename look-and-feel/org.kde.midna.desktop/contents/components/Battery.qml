@@ -20,11 +20,15 @@
 import QtQuick 2.2
 
 import org.kde.plasma.core 2.0 as PlasmaCore
-import org.kde.plasma.components 2.0 as PlasmaComponents
+import org.kde.plasma.components 3.0 as PlasmaComponents3
 import org.kde.plasma.workspace.components 2.0 as PW
 
 Row {
-    spacing: units.smallSpacing
+    id: row
+
+    property int fontSize: PlasmaCore.Theme.defaultFont.pointSize
+
+    spacing: PlasmaCore.Units.smallSpacing
     visible: pmSource.data["Battery"]["Has Cumulative"]
 
     PlasmaCore.DataSource {
@@ -43,9 +47,9 @@ Row {
         width: height
     }
 
-    PlasmaComponents.Label {
+    PlasmaComponents3.Label {
         id: batteryLabel
-        height: undefined
+        font.pointSize: row.fontSize
         text: i18nd("plasma_lookandfeel_org.kde.lookandfeel","%1%", battery.percent)
         Accessible.name: i18nd("plasma_lookandfeel_org.kde.lookandfeel","Battery at %1%", battery.percent)
     }
