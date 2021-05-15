@@ -19,6 +19,7 @@
  */
 
 import QtQuick 2.8
+import QtQuick.Window 2.15
 import org.kde.plasma.core 2.0 as PlasmaCore
 import org.kde.plasma.components 3.0 as PlasmaComponents3
 
@@ -41,13 +42,13 @@ Item {
     property int fontSize: PlasmaCore.Theme.defaultFont.pointSize + 2
     signal clicked()
 
-    property real faceSize: units.gridUnit * 7
+    property real faceSize: PlasmaCore.Units.gridUnit * 7
 
     opacity: isCurrent ? 1.0 : 0.5
 
     Behavior on opacity {
         OpacityAnimator {
-            duration: units.longDuration
+            duration: PlasmaCore.Units.longDuration
         }
     }
 
@@ -66,23 +67,23 @@ Item {
         id: imageSource
         anchors {
             bottom: usernameDelegate.top
-            bottomMargin: units.largeSpacing
+            bottomMargin: PlasmaCore.Units.largeSpacing
             horizontalCenter: parent.horizontalCenter
         }
         Behavior on width { 
             PropertyAnimation {
                 from: faceSize
-                duration: units.longDuration;
+                duration: PlasmaCore.Units.longDuration;
             }
         }
-        width: isCurrent ? faceSize : faceSize - units.largeSpacing
+        width: isCurrent ? faceSize : faceSize - PlasmaCore.Units.largeSpacing
         height: width
 
         //Image takes priority, taking a full path to a file, if that doesn't exist we show an icon
         Image {
             id: face
             source: wrapper.avatarPath
-            sourceSize: Qt.size(faceSize, faceSize)
+            sourceSize: Qt.size(faceSize * Screen.devicePixelRatio, faceSize * Screen.devicePixelRatio)
             fillMode: Image.PreserveAspectCrop
             anchors.fill: parent
         }
@@ -92,7 +93,7 @@ Item {
             source: iconSource
             visible: (face.status == Image.Error || face.status == Image.Null)
             anchors.fill: parent
-            anchors.margins: units.gridUnit * 0.5 // because mockup says so...
+            anchors.margins: PlasmaCore.Units.gridUnit * 0.5 // because mockup says so...
             colorGroup: PlasmaCore.ColorScope.colorGroup
         }
     }
@@ -100,7 +101,7 @@ Item {
     ShaderEffect {
         anchors {
             bottom: usernameDelegate.top
-            bottomMargin: units.largeSpacing
+            bottomMargin: PlasmaCore.Units.largeSpacing
             horizontalCenter: parent.horizontalCenter
         }
 

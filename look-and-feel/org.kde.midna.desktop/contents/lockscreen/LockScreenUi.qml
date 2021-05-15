@@ -139,7 +139,7 @@ PlasmaCore.ColorScope {
             }
         }
 
-        Component.onCompleted: PropertyAnimation { id: launchAnimation; target: lockScreenRoot; property: "opacity"; from: 0; to: 1; duration: 1000 }
+        Component.onCompleted: PropertyAnimation { id: launchAnimation; target: lockScreenRoot; property: "opacity"; from: 0; to: 1; duration: PlasmaCore.Units.veryLongDuration * 2 }
 
         states: [
             State {
@@ -158,8 +158,8 @@ PlasmaCore.ColorScope {
             from: ""
             to: "onOtherSession"
 
-            PropertyAnimation { id: stateChangeAnimation; properties: "y"; duration: 300; easing.type: Easing.InQuad}
-            PropertyAnimation { properties: "opacity"; duration: 300}
+            PropertyAnimation { id: stateChangeAnimation; properties: "y"; duration: PlasmaCore.Units.longDuration; easing.type: Easing.InQuad}
+            PropertyAnimation { properties: "opacity"; duration: PlasmaCore.Units.longDuration}
 
             onRunningChanged: {
                 // after the animation has finished switch session: since we only animate the transition TO state "onOtherSession"
@@ -189,10 +189,15 @@ PlasmaCore.ColorScope {
             radius: 6
             samples: 14
             spread: 0.3
-            color: lockScreenUi.lightBackground ? PlasmaCore.ColorScope.backgroundColor : "black" // black matches Breeze window decoration and desktopcontainment
+                                                  // Soften the color a bit so it doesn't look so stark against light backgrounds
+            color: lockScreenUi.lightBackground ? Qt.rgba(PlasmaCore.ColorScope.backgroundColor.r,
+                                                          PlasmaCore.ColorScope.backgroundColor.g,
+                                                          PlasmaCore.ColorScope.backgroundColor.b,
+                                                          0.6)
+                                                : "black" // black matches Breeze window decoration and desktopcontainment
             Behavior on opacity {
                 OpacityAnimator {
-                    duration: 1000
+                    duration: PlasmaCore.Units.veryLongDuration * 2
                     easing.type: Easing.InOutQuad
                 }
             }
@@ -225,7 +230,7 @@ PlasmaCore.ColorScope {
                 left: parent.left
                 right: parent.right
             }
-            height: lockScreenRoot.height + units.gridUnit * 3
+            height: lockScreenRoot.height + PlasmaCore.Units.gridUnit * 3
             focus: true //StackView is an implicit focus scope, so we need to give this focus so the item inside will have it
 
             // this isn't implicit, otherwise items still get processed for the scenegraph
@@ -323,14 +328,13 @@ PlasmaCore.ColorScope {
             function showHide() {
                 state = state == "hidden" ? "visible" : "hidden";
             }
-            Component.onCompleted: inputPanel.source = "../components/VirtualKeyboard.qml"
+            Component.onCompleted: {
+                inputPanel.source = Qt.platform.pluginName.includes("wayland") ? "../components/VirtualKeyboard_wayland.qml" : "../components/VirtualKeyboard.qml"
+            }
 
             onKeyboardActiveChanged: {
                 if (keyboardActive) {
                     state = "visible";
-                    // Otherwise the password field loses focus and virtual keyboard
-                    // keystrokes get eaten
-                    mainBlock.mainPasswordBox.forceActiveFocus();
                 } else {
                     state = "hidden";
                 }
@@ -375,13 +379,13 @@ PlasmaCore.ColorScope {
                             NumberAnimation {
                                 target: mainStack
                                 property: "y"
-                                duration: units.longDuration
+                                duration: PlasmaCore.Units.longDuration
                                 easing.type: Easing.InOutQuad
                             }
                             NumberAnimation {
                                 target: inputPanel
                                 property: "y"
-                                duration: units.longDuration
+                                duration: PlasmaCore.Units.longDuration
                                 easing.type: Easing.OutQuad
                             }
                         }
@@ -395,18 +399,18 @@ PlasmaCore.ColorScope {
                             NumberAnimation {
                                 target: mainStack
                                 property: "y"
-                                duration: units.longDuration
+                                duration: PlasmaCore.Units.longDuration
                                 easing.type: Easing.InOutQuad
                             }
                             NumberAnimation {
                                 target: inputPanel
                                 property: "y"
-                                duration: units.longDuration
+                                duration: PlasmaCore.Units.longDuration
                                 easing.type: Easing.InQuad
                             }
                             OpacityAnimator {
                                 target: inputPanel
-                                duration: units.longDuration
+                                duration: PlasmaCore.Units.longDuration
                                 easing.type: Easing.InQuad
                             }
                         }
@@ -453,11 +457,11 @@ PlasmaCore.ColorScope {
 
                 ColumnLayout {
                     Layout.fillWidth: true
-                    spacing: units.largeSpacing
+                    spacing: PlasmaCore.Units.largeSpacing
 
                     PlasmaComponents3.Button {
                         Layout.fillWidth: true
-                        font.pointSize: theme.defaultFont.pointSize + 1
+                        font.pointSize: PlasmaCore.Theme.defaultFont.pointSize + 1
                         text: i18nd("plasma_lookandfeel_org.kde.lookandfeel", "Switch to This Session")
                         onClicked: initSwitchSession()
                         visible: sessionsModel.count > 0
@@ -465,7 +469,7 @@ PlasmaCore.ColorScope {
 
                     PlasmaComponents3.Button {
                         Layout.fillWidth: true
-                        font.pointSize: theme.defaultFont.pointSize + 1
+                        font.pointSize: PlasmaCore.Theme.defaultFont.pointSize + 1
                         text: i18nd("plasma_lookandfeel_org.kde.lookandfeel", "Start New Session")
                         onClicked: {
                             mainStack.pop({immediate:true})
@@ -496,7 +500,7 @@ PlasmaCore.ColorScope {
             anchors {
                 horizontalCenter: parent.horizontalCenter
                 bottom: parent.bottom
-                bottomMargin: units.largeSpacing
+                bottomMargin: PlasmaCore.Units.largeSpacing
             }
         }
 
@@ -506,18 +510,37 @@ PlasmaCore.ColorScope {
                 bottom: parent.bottom
                 left: parent.left
                 right: parent.right
-                margins: units.smallSpacing
+                margins: PlasmaCore.Units.smallSpacing
             }
 
             PlasmaComponents3.ToolButton {
                 text: i18ndc("plasma_lookandfeel_org.kde.lookandfeel", "Button to show/hide virtual keyboard", "Virtual Keyboard")
                 icon.name: inputPanel.keyboardActive ? "input-keyboard-virtual-on" : "input-keyboard-virtual-off"
-                onClicked: inputPanel.showHide()
+                onClicked: {
+                    // Otherwise the password field loses focus and virtual keyboard
+                    // keystrokes get eaten
+                    mainBlock.mainPasswordBox.forceActiveFocus();
+                    inputPanel.showHide()
+                }
 
                 visible: inputPanel.status == Loader.Ready
             }
 
-            PW.KeyboardLayoutButton {
+            PlasmaComponents3.ToolButton {
+                Accessible.description: i18ndc("plasma_lookandfeel_org.kde.lookandfeel", "Button to change keyboard layout", "Switch layout")
+                icon.name: "input-keyboard"
+
+                PW.KeyboardLayoutSwitcher {
+                    id: keyboardLayoutSwitcher
+
+                    anchors.fill: parent
+                    acceptedButtons: Qt.NoButton
+                }
+
+                text: keyboardLayoutSwitcher.layoutNames.longName
+                onClicked: keyboardLayoutSwitcher.keyboardLayout.switchToNextLayout()
+
+                visible: keyboardLayoutSwitcher.hasMultipleKeyboardLayouts
             }
 
             Item {
