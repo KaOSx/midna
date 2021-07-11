@@ -1,182 +1,105 @@
-/***************************************************************************
- *   Copyright (C) 2017-2020 Anke Boersma <demm@kaosx.us>       *
- *                                                                         *
- *   This program is free software; you can redistribute it and/or modify  *
- *   it under the terms of the GNU General Public License as published by  *
- *   the Free Software Foundation; either version 2 of the License, or     *
- *   (at your option) any later version.                                   *
- *                                                                         *
- *   This program is distributed in the hope that it will be useful,       *
- *   but WITHOUT ANY WARRANTY; without even the implied warranty of        *
- *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the         *
- *   GNU General Public License for more details.                          *
- *                                                                         *
- *   You should have received a copy of the GNU General Public License     *
- *   along with this program; if not, write to the                         *
- *   Free Software Foundation, Inc.,                                       *
- *   51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.          *
- ***************************************************************************/
+/* === This file is part of Midna - <https://kaosx.us> ===
+ *
+ *   SPDX-FileCopyrightText: 2017-2020 Anke Boersma <demm@kaosx.us
+ *   SPDX-License-Identifier: GPL-3.0-or-later
+ *
+ *   Midna is Free Software: see the License-Identifier above.
+ *
+ */
 
-import QtQuick 2.7
-import QtGraphicalEffects 1.0
-import QtQuick.Controls 2.0 as Controls
-import QtQuick.Layouts 1.2
+import QtQuick 2.12
+import QtQuick.Controls 2.12
 
 Image {
     id: root
     source: "images/background.png"
 
     property int stage
-    
-        Rectangle {
-        id: ind
-        anchors.centerIn: root
-        anchors.verticalCenterOffset: 0.4 * parent.height
 
-        opacity: 0
-
-        Controls.ProgressBar {
-            from: 0
-            to: 100
-            indeterminate: true
-            Layout.maximumWidth: 300
-            anchors.centerIn: parent
-        }
-
-        states: [
-            State {
-                name: "2"
-                when: root.stage >= 1
-                PropertyChanges {
-                    target: ind
-                    opacity: 1
-                }
-            }
-        ]
-
-        transitions: Transition {
-            NumberAnimation {
-                properties: "opacity"
-                easing.type: Easing.InOutQuad
-                duration: 1000
-            }
+    onStageChanged: {
+        if (stage == 1) {
+            introAnimation.running = true
         }
     }
-    
+
     Item {
-        id: logoBox
-        clip: true
-        width: 200
-        height: 140
-
-        anchors.right: parent.right
-        anchors.bottom: parent.bottom
-        anchors.bottomMargin: 1.5
-
+        id: content
+        anchors.fill: parent
+        opacity: 0
+        TextMetrics {
+            id: units
+            text: "Plasma for KaOS"
+            property int gridUnit: boundingRect.height
+            property int largeSpacing: units.gridUnit
+            property int smallSpacing: Math.max(2, gridUnit/4)
+        }
+       
         Image {
             id: logo
-            property real size: 80
-
-            anchors.horizontalCenter: parent.horizontalCenter
-            anchors.top: parent.top
-
+            property real size: units.gridUnit * 12
+            anchors.centerIn: parent
             source: "images/KaOS.svgz"
+            sourceSize.width: 135
+            sourceSize.height: 135
 
-            sourceSize.width: 80
-            sourceSize.height: 80
+            ParallelAnimation {
+                running: true
 
-            states: [
-                State {
-                    when: root.stage >= 1 && root.stage < 6
-                    PropertyChanges {
-                        target: logo
-                        anchors.topMargin: 25
-                    }
-                },
-                State {
-                    when: root.stage >= 5
-                    PropertyChanges {
-                        target: logo
-                        anchors.topMargin: (logo.size + 200) * 1;
-                    }
+                ScaleAnimator {
+                    target: logo
+                    from: 0
+                    to: 1
+                    duration: 700
                 }
-            ]
 
-            transitions: Transition {
-                NumberAnimation {
-                    properties: "anchors.topMargin"
-                    easing.type: Easing.InOutQuad
-                    duration: 1000
+                SequentialAnimation {
+                    loops: Animation.Infinite
+
+                    OpacityAnimator {
+                        target: logo
+                        from: 0.75
+                        to: 1
+                        duration: 1200
+                    }
+                    OpacityAnimator {
+                        target: logo
+                        from: 1
+                        to: 0.75
+                        duration: 1200
+                    }
                 }
             }
         }
 
-        states: [
-            State {
-                name: "1"
-                when: root.stage >= 1
-                PropertyChanges {
-                    target: logoBox
-                    anchors.topMargin: 15
-                }
+        Image {
+            id: busyIndicator
+            source: "images/busy.svg"
+            anchors.centerIn: parent
+            sourceSize.height: 200
+            sourceSize.width: 200
+            RotationAnimator on rotation {
+                id: rotationAnimator
+                from: 0
+                to: 360
+                duration: 2000
+                loops: Animation.Infinite
             }
-        ]
-
-        transitions: Transition {
-            NumberAnimation {
-                properties: "anchors.topMargin"
-                easing.type: Easing.InOutQuad
-                duration: 1000
-            }
+        }
+        Label {
+            text: units.text
+            anchors.horizontalCenter: busyIndicator.horizontalCenter
+            anchors.top: busyIndicator.bottom
+            anchors.topMargin: 35
         }
     }
 
-    Item {
-        id: messageBox
-
-        width: 300;
-        height: message.height
-
-        anchors.right: parent.right
-        anchors.bottom: parent.bottom
-
-        clip: true
-
-        Text {
-            id: message
-            text: i18n("Plasma for KaOS")
-            color: "#1F1F1F"
-            font { family: "Raleway"; capitalization: Font.Capitalize; pointSize: 18}
-
-            anchors.horizontalCenter: parent.horizontalCenter
-            anchors.top: parent.top
-            anchors.topMargin: message.height
-
-            states: [
-                State {
-                    name: "visible"
-                    when: root.stage >= 1 && root.stage < 6
-                    PropertyChanges {
-                        target: message
-                        anchors.topMargin: -5
-                    }
-                },
-                State {
-                    when: root.stage >= 5
-                    PropertyChanges {
-                        target: message
-                        anchors.topMargin: -200;
-                    }
-                }
-            ]
-
-            transitions: Transition {
-                NumberAnimation {
-                    properties: "anchors.topMargin"
-                    easing.type: Easing.InOutQuad
-                    duration: 1000
-                }
-            }
-        }
+    OpacityAnimator {
+        id: introAnimation
+        running: false
+        target: content
+        from: 0
+        to: 1
+        duration: 1000
+        easing.type: Easing.InOutQuad
     }
 }
