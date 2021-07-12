@@ -23,7 +23,7 @@ import QtQuick.Layouts 1.1
 import QtQuick.Controls 1.1
 
 import org.kde.plasma.core 2.0 as PlasmaCore
-import org.kde.plasma.components 3.0 as PlasmaComponents3
+import org.kde.plasma.components 2.0 as PlasmaComponents
 
 Item {
     id: root
@@ -61,7 +61,7 @@ Item {
 
     property alias userList: userListView
 
-    property int fontSize: PlasmaCore.Theme.defaultFont.pointSize + 2
+    property int fontSize: 12
 
     default property alias _children: innerLayout.children
 
@@ -73,7 +73,6 @@ Item {
             left: parent.left
             right: parent.right
         }
-        fontSize: root.fontSize
     }
 
     //goal is to show the prompts, in ~16 grid units high, then the action buttons
@@ -82,24 +81,25 @@ Item {
     ColumnLayout {
         id: prompts
         anchors.top: parent.verticalCenter
-        anchors.topMargin: PlasmaCore.Units.gridUnit * 0.5
+        anchors.topMargin: units.gridUnit * 0.5
         anchors.left: parent.left
         anchors.right: parent.right
         anchors.bottom: parent.bottom
-        PlasmaComponents3.Label {
+        PlasmaComponents.Label {
             id: notificationsLabel
-            font.pointSize: root.fontSize
-            Layout.maximumWidth: PlasmaCore.Units.gridUnit * 16
+            font.pointSize: Math.max(fontSize + 1,theme.defaultFont.pointSize + 1)
+            Layout.maximumWidth: units.gridUnit * 16
             Layout.alignment: Qt.AlignHCenter
             Layout.fillWidth: true
             horizontalAlignment: Text.AlignHCenter
             wrapMode: Text.WordWrap
             font.italic: true
+            color: "#B7B7B7"
         }
         ColumnLayout {
             Layout.minimumHeight: implicitHeight
-            Layout.maximumHeight: PlasmaCore.Units.gridUnit * 10
-            Layout.maximumWidth: PlasmaCore.Units.gridUnit * 16
+            Layout.maximumHeight: units.gridUnit * 10
+            Layout.maximumWidth: units.gridUnit * 16
             Layout.alignment: Qt.AlignHCenter
             ColumnLayout {
                 id: innerLayout
@@ -112,7 +112,7 @@ Item {
         }
         Row { //deliberately not rowlayout as I'm not trying to resize child items
             id: actionItemsLayout
-            spacing: PlasmaCore.Units.largeSpacing / 2
+            spacing: units.largeSpacing / 2
             Layout.alignment: Qt.AlignHCenter
         }
         Item {

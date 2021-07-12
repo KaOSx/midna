@@ -23,6 +23,7 @@ import QtQuick.Layouts 1.1
 import QtGraphicalEffects 1.0
 
 import org.kde.plasma.core 2.0 as PlasmaCore
+import org.kde.plasma.components 2.0 as PlasmaComponents
 
 import org.kde.plasma.private.sessions 2.0
 import "../components"
@@ -32,18 +33,21 @@ Item {
     property Item clock
     property Item mainStack
     property Item footer
+    property Item formBg
+    property Item blurArea
+    property Item blur
     property alias source: wallpaperBlur.source
     state: lockScreenRoot.uiVisible ? "on" : "off"
     property real factor: 0
     readonly property bool lightBackground: Math.max(PlasmaCore.ColorScope.backgroundColor.r, PlasmaCore.ColorScope.backgroundColor.g, PlasmaCore.ColorScope.backgroundColor.b) > 0.5
 
-    property bool alwaysShowClock: typeof config === "undefined" || typeof config.alwaysShowClock === "undefined" || config.alwaysShowClock === true
+    property bool alwaysShowClock: typeof config === "undefined" || config.alwaysShowClock === true
 
     Behavior on factor {
         NumberAnimation {
             target: wallpaperFader
             property: "factor"
-            duration: PlasmaCore.Units.veryLongDuration * 2
+            duration: 1000
             easing.type: Easing.InOutQuad
         }
     }
@@ -114,7 +118,7 @@ Item {
             }
             PropertyChanges {
                 target: wallpaperFader
-                factor: 1
+                factor: 0
             }
             PropertyChanges {
                 target: clock.shadow
@@ -122,6 +126,20 @@ Item {
             }
             PropertyChanges {
                 target: clock
+                opacity: 1
+                anchors.horizontalCenter: formBg.horizontalCenter
+               // y: parent.height - height - 10
+            }
+            PropertyChanges {
+                target: formBg
+                opacity: 0.5
+            }
+            PropertyChanges {
+                target: blurArea
+                opacity: 1
+            }
+            PropertyChanges {
+                target: blur
                 opacity: 1
             }
         },
@@ -147,6 +165,18 @@ Item {
                 target: clock
                 opacity: wallpaperFader.alwaysShowClock ? 1 : 0
             }
+            PropertyChanges {
+                target: formBg
+                opacity: 0
+            }
+            PropertyChanges {
+                target: blurArea
+                opacity: 0
+            }
+            PropertyChanges {
+                target: blur
+                opacity: 0
+            }
         }
     ]
     transitions: [
@@ -157,7 +187,7 @@ Item {
             NumberAnimation {
                 targets: [mainStack, footer, clock]
                 property: "opacity"
-                duration: PlasmaCore.Units.veryLongDuration
+                duration: units.longDuration
                 easing.type: Easing.InOutQuad
             }
         },
@@ -167,7 +197,7 @@ Item {
             NumberAnimation {
                 targets: [mainStack, footer, clock]
                 property: "opacity"
-                duration: PlasmaCore.Units.veryLongDuration
+                duration: 500
                 easing.type: Easing.InOutQuad
             }
         }

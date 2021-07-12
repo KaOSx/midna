@@ -17,10 +17,10 @@
  *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-import QtQuick 2.2
-
-import QtQuick.Layouts 1.1
-import QtQuick.Controls 1.1
+import QtQuick 2.8
+import QtQuick.Layouts 1.2
+import QtQuick.Controls 2.4
+import QtQuick.Controls.Styles 1.4
 
 import org.kde.plasma.core 2.0 as PlasmaCore
 import org.kde.plasma.components 3.0 as PlasmaComponents3
@@ -100,13 +100,45 @@ SessionManagementScreen {
             }
         }
 
-        PlasmaComponents3.Button {
+        Button {
             id: loginButton
             Accessible.name: i18nd("plasma_lookandfeel_org.kde.lookandfeel", "Unlock")
-            Layout.preferredHeight: passwordBox.implicitHeight
-            Layout.preferredWidth: loginButton.Layout.preferredHeight
+            implicitHeight: passwordBox.height - units.smallSpacing * 0.5 // otherwise it comes out taller than the password field
+            text: ">"
+            Layout.leftMargin: 30
 
-            icon.name: "go-next"
+            contentItem: Text {
+                text: loginButton.text
+                font: loginButton.font
+                opacity: enabled ? 1.0 : 0.3
+                color: "#ffffff"
+                horizontalAlignment: Text.AlignHCenter
+                verticalAlignment: Text.AlignVCenter
+                elide: Text.ElideRight
+            }
+
+            background: Rectangle {
+                id: buttonBorder
+                width: 30
+                height: 40
+                //radius: width / 2
+                rotation: -90
+                anchors.centerIn: parent
+
+                gradient: Gradient {
+                    GradientStop { position: 0.0; color: "#75b9e7" }
+                    GradientStop { position: 1.0; color: "#3498db" }
+                }
+            }
+
+            Rectangle {
+                id: buttonBackground
+                height: 28
+                width: 38
+                //radius: height / 2
+                anchors.centerIn: buttonBorder
+                color: "#75b9e7"
+            }
 
             onClicked: startLogin()
         }

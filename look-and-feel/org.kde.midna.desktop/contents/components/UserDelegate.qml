@@ -19,9 +19,8 @@
  */
 
 import QtQuick 2.8
-import QtQuick.Window 2.15
 import org.kde.plasma.core 2.0 as PlasmaCore
-import org.kde.plasma.components 3.0 as PlasmaComponents3
+import org.kde.plasma.components 2.0 as PlasmaComponents
 
 Item {
     id: wrapper
@@ -39,51 +38,55 @@ Item {
     property string iconSource
     property bool constrainText: true
     property alias nameFontSize: usernameDelegate.font.pointSize
-    property int fontSize: PlasmaCore.Theme.defaultFont.pointSize + 2
+    property int fontSize: 12
     signal clicked()
 
-    property real faceSize: PlasmaCore.Units.gridUnit * 7
+    property real faceSize: units.gridUnit * 7
 
     opacity: isCurrent ? 1.0 : 0.5
 
     Behavior on opacity {
         OpacityAnimator {
-            duration: PlasmaCore.Units.longDuration
+            duration: units.longDuration
         }
     }
 
     // Draw a translucent background circle under the user picture
     Rectangle {
         anchors.centerIn: imageSource
-        width: imageSource.width - 2 // Subtract to prevent fringing
+        width: imageSource.width + 5 // Subtract to prevent fringing
         height: width
         radius: width / 2
 
-        color: PlasmaCore.ColorScope.backgroundColor
-        opacity: 0.6
+        gradient: Gradient {
+            GradientStop { position: 0.0; color: "#d9ecf8" }
+            GradientStop { position: 0.33; color: "#75b9e7" }
+            GradientStop { position: 1.0; color: "#d9ecf8" }
+        }
     }
+
 
     Item {
         id: imageSource
         anchors {
             bottom: usernameDelegate.top
-            bottomMargin: PlasmaCore.Units.largeSpacing
+            bottomMargin: units.largeSpacing
             horizontalCenter: parent.horizontalCenter
         }
         Behavior on width { 
             PropertyAnimation {
                 from: faceSize
-                duration: PlasmaCore.Units.longDuration;
+                duration: units.longDuration;
             }
         }
-        width: isCurrent ? faceSize : faceSize - PlasmaCore.Units.largeSpacing
+        width: isCurrent ? faceSize : faceSize - units.largeSpacing
         height: width
 
         //Image takes priority, taking a full path to a file, if that doesn't exist we show an icon
         Image {
             id: face
             source: wrapper.avatarPath
-            sourceSize: Qt.size(faceSize * Screen.devicePixelRatio, faceSize * Screen.devicePixelRatio)
+            sourceSize: Qt.size(faceSize, faceSize)
             fillMode: Image.PreserveAspectCrop
             anchors.fill: parent
         }
@@ -93,7 +96,7 @@ Item {
             source: iconSource
             visible: (face.status == Image.Error || face.status == Image.Null)
             anchors.fill: parent
-            anchors.margins: PlasmaCore.Units.gridUnit * 0.5 // because mockup says so...
+            anchors.margins: units.gridUnit * 0.5 // because mockup says so...
             colorGroup: PlasmaCore.ColorScope.colorGroup
         }
     }
@@ -101,7 +104,7 @@ Item {
     ShaderEffect {
         anchors {
             bottom: usernameDelegate.top
-            bottomMargin: PlasmaCore.Units.largeSpacing
+            bottomMargin: units.largeSpacing
             horizontalCenter: parent.horizontalCenter
         }
 
@@ -117,7 +120,7 @@ Item {
             live: true // otherwise the user in focus will show a blurred avatar
         }
 
-        property var colorBorder: PlasmaCore.ColorScope.textColor
+        property var colorBorder: "#00000000"
 
         //draw a circle with an antialiased border
         //innerRadius = size of the inner circle with contents
@@ -160,15 +163,17 @@ Item {
         "
     }
 
-    PlasmaComponents3.Label {
+    PlasmaComponents.Label {
         id: usernameDelegate
-        font.pointSize: wrapper.fontSize
+        font.pointSize: Math.max(fontSize + 2,theme.defaultFont.pointSize + 2)
         anchors {
             bottom: parent.bottom
             horizontalCenter: parent.horizontalCenter
         }
+        height: implicitHeight // work around stupid bug in Plasma Components that sets the height
         width: constrainText ? parent.width : implicitWidth
         text: wrapper.name
+        color: "#B7B7B7"
         style: softwareRendering ? Text.Outline : Text.Normal
         styleColor: softwareRendering ? PlasmaCore.ColorScope.backgroundColor : "transparent" //no outline, doesn't matter
         elide: Text.ElideRight

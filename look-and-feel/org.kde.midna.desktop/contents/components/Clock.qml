@@ -27,18 +27,18 @@ ColumnLayout {
 
     Label {
         text: Qt.formatTime(timeSource.data["Local"]["DateTime"])
-        color: ColorScope.textColor
+        color: "#B7B7B7" //ColorScope.textColor
         style: softwareRendering ? Text.Outline : Text.Normal
         styleColor: softwareRendering ? ColorScope.backgroundColor : "transparent" //no outline, doesn't matter
-        font.pointSize: 48
+        font.pointSize: 34
         Layout.alignment: Qt.AlignHCenter
     }
     Label {
         text: Qt.formatDate(timeSource.data["Local"]["DateTime"], Qt.DefaultLocaleLongDate)
-        color: ColorScope.textColor
+        color: "#989898" //ColorScope.textColor
         style: softwareRendering ? Text.Outline : Text.Normal
         styleColor: softwareRendering ? ColorScope.backgroundColor : "transparent" //no outline, doesn't matter
-        font.pointSize: 24
+        font.pointSize: 17
         Layout.alignment: Qt.AlignHCenter
     }
     DataSource {

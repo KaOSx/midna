@@ -177,13 +177,17 @@ PlasmaCore.ColorScope {
             mainStack: mainStack
             footer: footer
             clock: clock
+            formBg: formBg
+            blurArea: blurArea
+            blur: blur
+            z: -3
         }
 
         DropShadow {
             id: clockShadow
             anchors.fill: clock
             source: clock
-            visible: !softwareRendering
+            visible: false //!softwareRendering
             horizontalOffset: 1
             verticalOffset: 1
             radius: 6
@@ -226,11 +230,10 @@ PlasmaCore.ColorScope {
 
         StackView {
             id: mainStack
-            anchors {
-                left: parent.left
-                right: parent.right
-            }
+            anchors.right: parent.right
+
             height: lockScreenRoot.height + PlasmaCore.Units.gridUnit * 3
+            width: parent.width / 3
             focus: true //StackView is an implicit focus scope, so we need to give this focus so the item inside will have it
 
             // this isn't implicit, otherwise items still get processed for the scenegraph
@@ -350,6 +353,7 @@ PlasmaCore.ColorScope {
                     PropertyChanges {
                         target: inputPanel
                         y: lockScreenRoot.height - inputPanel.height
+                        opacity: 1
                     }
                 },
                 State {
@@ -361,6 +365,7 @@ PlasmaCore.ColorScope {
                     PropertyChanges {
                         target: inputPanel
                         y: lockScreenRoot.height - lockScreenRoot.height/4
+                        opacity: 0
                     }
                 }
             ]
@@ -386,6 +391,11 @@ PlasmaCore.ColorScope {
                                 target: inputPanel
                                 property: "y"
                                 duration: PlasmaCore.Units.longDuration
+                                easing.type: Easing.OutQuad
+                            }
+                            OpacityAnimator {
+                                target: inputPanel
+                                duration: units.longDuration
                                 easing.type: Easing.OutQuad
                             }
                         }
@@ -494,6 +504,39 @@ PlasmaCore.ColorScope {
             }
         }
 
+        Rectangle {
+            id: formBg
+            anchors.fill: mainStack
+            anchors.centerIn: mainStack
+            color: "#161925"
+            opacity: 0.4
+            z:-1
+        }
+
+        ShaderEffectSource {
+            id: blurArea
+            sourceItem: wallpaper
+            width: formBg.width
+            height: formBg.height
+            anchors.centerIn: formBg
+            sourceRect: Qt.rect(x,y,width,height)
+            visible: true
+            z:-2
+        }
+
+        GaussianBlur {
+            id: blur
+            height: formBg.height
+            width: formBg.width
+            source: blurArea
+            radius: 50
+            samples: 50 * 2 + 1
+            cached: true
+            anchors.centerIn: formBg
+            visible: true
+            z:-2
+        }
+
         Loader {
             active: root.viewVisible
             source: "LockOsd.qml"
@@ -506,8 +549,9 @@ PlasmaCore.ColorScope {
 
         RowLayout {
             id: footer
+            z: -2
             anchors {
-                bottom: parent.bottom
+                top: parent.top
                 left: parent.left
                 right: parent.right
                 margins: PlasmaCore.Units.smallSpacing
@@ -543,11 +587,11 @@ PlasmaCore.ColorScope {
                 visible: keyboardLayoutSwitcher.hasMultipleKeyboardLayouts
             }
 
+            Battery {}
+
             Item {
                 Layout.fillWidth: true
             }
-
-            Battery {}
         }
     }
 
