@@ -1,29 +1,19 @@
 /*
- *   Copyright 2014 David Edmundson <davidedmundson@kde.org>
- *
- *   This program is free software; you can redistribute it and/or modify
- *   it under the terms of the GNU Library General Public License as
- *   published by the Free Software Foundation; either version 2 or
- *   (at your option) any later version.
- *
- *   This program is distributed in the hope that it will be useful,
- *   but WITHOUT ANY WARRANTY; without even the implied warranty of
- *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *   GNU General Public License for more details
- *
- *   You should have received a copy of the GNU Library General Public
- *   License along with this program; if not, write to the
- *   Free Software Foundation, Inc.,
- *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
- */
- 
+    SPDX-FileCopyrightText: 2014 David Edmundson <davidedmundson@kde.org>
+
+    SPDX-License-Identifier: LGPL-2.0-or-later
+*/
+
 import QtQuick 2.2
+import org.kde.plasma.core 2.0 as PlasmaCore
 
 ListView {
     id: view
     readonly property string selectedUser: currentItem ? currentItem.userName : ""
-    readonly property int userItemWidth: units.gridUnit * 8
-    readonly property int userItemHeight: units.gridUnit * 8
+    readonly property int userItemWidth: PlasmaCore.Units.gridUnit * 8
+    readonly property int userItemHeight: PlasmaCore.Units.gridUnit * 8
+    readonly property bool constrainText: count > 1
+    property int fontSize: PlasmaCore.Theme.defaultFont.pointSize + 2
 
     implicitHeight: userItemHeight
 
@@ -41,9 +31,15 @@ ListView {
     preferredHighlightBegin: width/2 - userItemWidth/2
     preferredHighlightEnd: preferredHighlightBegin
 
+    // Disable flicking if we only have on user (like on the lockscreen)
+    interactive: count > 1
+
     delegate: UserDelegate {
         avatarPath: model.icon || ""
         iconSource: model.iconName || "user-identity"
+        fontSize: view.fontSize
+        vtNumber: model.vtNumber
+        needsPassword: model.needsPassword
 
         name: {
             var displayName = model.realName || model.name
@@ -77,7 +73,7 @@ ListView {
         height: userItemHeight
 
         //if we only have one delegate, we don't need to clip the text as it won't be overlapping with anything
-        constrainText: ListView.view.count > 1
+        constrainText: view.constrainText
 
         isCurrent: ListView.isCurrentItem
 

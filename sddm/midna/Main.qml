@@ -5,7 +5,7 @@ import QtQuick.Controls 1.1
 import QtGraphicalEffects 1.0
 
 import org.kde.plasma.core 2.0 as PlasmaCore
-import org.kde.plasma.components 2.0 as PlasmaComponents
+import org.kde.plasma.components 3.0 as PlasmaComponents3
 import org.kde.plasma.extras 2.0 as PlasmaExtras
 
 import "components"
@@ -193,14 +193,19 @@ PlasmaCore.ColorScope {
             onKeyboardActiveChanged: {
                 if (keyboardActive) {
                     state = "visible"
+                    // Otherwise the password field loses focus and virtual keyboard
+                    // keystrokes get eaten
+                    userListComponent.mainPasswordBox.forceActiveFocus();
+
                 } else {
                     state = "hidden";
                 }
             }
-            source: "components/VirtualKeyboard.qml"
+            source: Qt.platform.pluginName.includes("wayland") ? "components/VirtualKeyboard_wayland.qml" : "components/VirtualKeyboard.qml"
+            //anchors.horizontalCenter: parent.horizontalCenter;
             anchors {
-                left: parent.left
-                right: parent.right
+                //left: parent.left
+                //right: parent.right
             }
 
             function showHide() {
@@ -248,18 +253,18 @@ PlasmaCore.ColorScope {
                             NumberAnimation {
                                 target: mainStack
                                 property: "y"
-                                duration: units.longDuration
+                                duration: PlasmaCore.Units.longDuration
                                 easing.type: Easing.InOutQuad
                             }
                             NumberAnimation {
                                 target: inputPanel
                                 property: "y"
-                                duration: units.longDuration
+                                duration: PlasmaCore.Units.longDuration
                                 easing.type: Easing.OutQuad
                             }
                             OpacityAnimator {
                                 target: inputPanel
-                                duration: units.longDuration
+                                duration: PlasmaCore.Units.longDuration
                                 easing.type: Easing.OutQuad
                             }
                         }
@@ -273,18 +278,18 @@ PlasmaCore.ColorScope {
                             NumberAnimation {
                                 target: mainStack
                                 property: "y"
-                                duration: units.longDuration
+                                duration: PlasmaCore.Units.longDuration
                                 easing.type: Easing.InOutQuad
                             }
                             NumberAnimation {
                                 target: inputPanel
                                 property: "y"
-                                duration: units.longDuration
+                                duration: PlasmaCore.Units.longDuration
                                 easing.type: Easing.InQuad
                             }
                             OpacityAnimator {
                                 target: inputPanel
-                                duration: units.longDuration
+                                duration: PlasmaCore.Units.longDuration
                                 easing.type: Easing.InQuad
                             }
                         }
@@ -393,7 +398,7 @@ PlasmaCore.ColorScope {
             color :"#B7B7B7"
             anchors {
                 bottom: parent.bottom
-                bottomMargin: parent.height / 6
+                bottomMargin: parent.height / 15
                 horizontalCenter: formBg.horizontalCenter
             }
             width: footer.width
@@ -410,9 +415,9 @@ PlasmaCore.ColorScope {
                     }
                 }
 
-                PlasmaComponents.ToolButton {
-                    text: i18ndc("plasma_lookandfeel_org.kde.lookandfeel", "Button to show/hide virtual keyboard", "Virtual Keyboard")
-                    iconName: inputPanel.keyboardActive ? "input-keyboard-virtual-on" : "input-keyboard-virtual-off"
+                PlasmaComponents3.ToolButton {
+                    text: i18ndc("plasma_lookandfeel_org.kde.lookandfeel", "Button to show/hide virtual keyboard", "")
+                    icon.name: inputPanel.keyboardActive ? "input-keyboard-virtual-on" : "input-keyboard-virtual-off"
                     onClicked: inputPanel.showHide()
                     visible: inputPanel.status == Loader.Ready
                 }

@@ -13,7 +13,7 @@ TextField {
     font.family: config.font
     echoMode: TextInput.Password
     inputMethodHints: Qt.ImhHiddenText | Qt.ImhSensitiveData | Qt.ImhNoAutoUppercase | Qt.ImhNoPredictiveText
-    enabled: !authenticator.graceLocked
+    //enabled: !authenticator.graceLocked
     //revealPasswordButtonShown: true
     passwordMaskDelay: 300
     background: Rectangle {
