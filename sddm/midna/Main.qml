@@ -201,7 +201,7 @@ PlasmaCore.ColorScope {
                     state = "hidden";
                 }
             }
-            soure: "VirtualKeyboard.qml"
+            source: "components/VirtualKeyboard.qml"
             //anchors.horizontalCenter: parent.horizontalCenter;
             anchors {
                 //left: parent.left
