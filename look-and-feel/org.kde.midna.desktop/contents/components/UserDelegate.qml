@@ -1,24 +1,13 @@
 /*
- *   Copyright 2014 David Edmundson <davidedmundson@kde.org>
- *   Copyright 2014 Aleix Pol Gonzalez <aleixpol@blue-systems.com>
- *
- *   This program is free software; you can redistribute it and/or modify
- *   it under the terms of the GNU Library General Public License as
- *   published by the Free Software Foundation; either version 2 or
- *   (at your option) any later version.
- *
- *   This program is distributed in the hope that it will be useful,
- *   but WITHOUT ANY WARRANTY; without even the implied warranty of
- *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *   GNU General Public License for more details
- *
- *   You should have received a copy of the GNU Library General Public
- *   License along with this program; if not, write to the
- *   Free Software Foundation, Inc.,
- *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
- */
+    SPDX-FileCopyrightText: 2014 David Edmundson <davidedmundson@kde.org>
+    SPDX-FileCopyrightText: 2014 Aleix Pol Gonzalez <aleixpol@blue-systems.com>
 
-import QtQuick 2.8
+    SPDX-License-Identifier: LGPL-2.0-or-later
+*/
+
+import QtQuick 2.15
+import QtQuick.Window 2.15
+
 import org.kde.plasma.core 2.0 as PlasmaCore
 import org.kde.plasma.components 2.0 as PlasmaComponents
 
@@ -36,6 +25,8 @@ Item {
     property string userName
     property string avatarPath
     property string iconSource
+    property bool needsPassword
+    property var vtNumber
     property bool constrainText: true
     property alias nameFontSize: usernameDelegate.font.pointSize
     property int fontSize: 12
@@ -176,6 +167,8 @@ Item {
         color: "#B7B7B7"
         style: softwareRendering ? Text.Outline : Text.Normal
         styleColor: softwareRendering ? PlasmaCore.ColorScope.backgroundColor : "transparent" //no outline, doesn't matter
+        wrapMode: Text.WordWrap
+        maximumLineCount: wrapper.constrainText ? 3 : 1
         elide: Text.ElideRight
         horizontalAlignment: Text.AlignHCenter
         //make an indication that this has active focus, this only happens when reached with keyboard navigation
@@ -188,6 +181,8 @@ Item {
 
         onClicked: wrapper.clicked();
     }
+
+    Keys.onSpacePressed: wrapper.clicked()
 
     Accessible.name: name
     Accessible.role: Accessible.Button

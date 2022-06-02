@@ -1,21 +1,8 @@
-/********************************************************************
- This file is part of the KDE project.
+/*
+    SPDX-FileCopyrightText: 2016 Kai Uwe Broulik <kde@privat.broulik.de>
 
-Copyright (C) 2016 Kai Uwe Broulik <kde@privat.broulik.de>
-
-This program is free software; you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation; either version 2 of the License, or
-(at your option) any later version.
-
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License
-along with this program.  If not, see <http://www.gnu.org/licenses/>.
-*********************************************************************/
+    SPDX-License-Identifier: GPL-2.0-or-later
+*/
 
 import QtQuick 2.5
 import QtQuick.Layouts 1.1
@@ -52,20 +39,20 @@ Item {
             readonly property var currentMetadata: hasPlayer ? playerData.Metadata : ({})
 
             readonly property string track: {
-                var xesamTitle = currentMetadata["xesam:title"]
+                const xesamTitle = currentMetadata["xesam:title"]
                 if (xesamTitle) {
                     return xesamTitle
                 }
                 // if no track title is given, print out the file name
-                var xesamUrl = currentMetadata["xesam:url"] ? currentMetadata["xesam:url"].toString() : ""
+                const xesamUrl = currentMetadata["xesam:url"] ? currentMetadata["xesam:url"].toString() : ""
                 if (!xesamUrl) {
                     return ""
                 }
-                var lastSlashPos = xesamUrl.lastIndexOf('/')
+                const lastSlashPos = xesamUrl.lastIndexOf('/')
                 if (lastSlashPos < 0) {
                     return ""
                 }
-                var lastUrlPart = xesamUrl.substring(lastSlashPos + 1)
+                const lastUrlPart = xesamUrl.substring(lastSlashPos + 1)
                 return decodeURIComponent(lastUrlPart)
             }
             readonly property string artist: currentMetadata["xesam:artist"] || ""
@@ -75,8 +62,8 @@ Item {
             connectedSources: [source]
 
             function startOperation(op) {
-                var service = serviceForSource(source)
-                var operation = service.operationDescription(op)
+                const service = serviceForSource(source)
+                const operation = service.operationDescription(op)
                 return service.startOperationCall(operation)
             }
 
@@ -134,6 +121,7 @@ Item {
         }
 
         PlasmaComponents3.ToolButton {
+            focusPolicy: Qt.TabFocus
             enabled: mpris2Source.canGoBack
             Layout.preferredHeight: PlasmaCore.Units.gridUnit*2
             Layout.preferredWidth: Layout.preferredHeight
@@ -147,6 +135,7 @@ Item {
         }
 
         PlasmaComponents3.ToolButton {
+            focusPolicy: Qt.TabFocus
             Layout.fillHeight: true
             Layout.preferredWidth: height // make this button bigger
             icon.name: mpris2Source.playing ? "media-playback-pause" : "media-playback-start"
@@ -158,6 +147,7 @@ Item {
         }
 
         PlasmaComponents3.ToolButton {
+            focusPolicy: Qt.TabFocus
             enabled: mpris2Source.canGoNext
             Layout.preferredHeight: PlasmaCore.Units.gridUnit*2
             Layout.preferredWidth: Layout.preferredHeight
