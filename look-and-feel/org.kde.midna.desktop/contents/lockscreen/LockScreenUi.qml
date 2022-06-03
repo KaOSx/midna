@@ -343,6 +343,18 @@ PlasmaCore.ColorScope {
                             }
                         }
                         visible: sessionsModel.canStartNewSession && sessionsModel.canSwitchUser
+                    },
+                    ActionButton {
+                        text: i18ndc("plasma_lookandfeel_org.kde.lookandfeel", "Button to show/hide virtual keyboard", "Virtual Keyboard")
+                        iconSource: inputPanel.keyboardActive ? "input-keyboard-virtual-on" : "input-keyboard-virtual-off"
+                        onClicked: {
+                            // Otherwise the password field loses focus and virtual keyboard
+                            // keystrokes get eaten
+                            mainBlock.mainPasswordBox.forceActiveFocus();
+                            inputPanel.showHide()
+                        }
+
+                        visible: inputPanel.status == Loader.Ready
                     }
                 ]
 
@@ -378,14 +390,14 @@ PlasmaCore.ColorScope {
             state: "hidden"
             readonly property bool keyboardActive: item ? item.active : false
             anchors {
-                left: parent.left
+                //left: parent.left
                 right: parent.right
             }
             function showHide() {
                 state = state == "hidden" ? "visible" : "hidden";
             }
             Component.onCompleted: {
-                inputPanel.source = Qt.platform.pluginName.includes("wayland") ? "../components/VirtualKeyboard_wayland.qml" : "../components/VirtualKeyboard.qml"
+                inputPanel.source = "../components/VirtualKeyboard.qml"
             }
 
             onKeyboardActiveChanged: {
@@ -406,6 +418,7 @@ PlasmaCore.ColorScope {
                     PropertyChanges {
                         target: inputPanel
                         y: lockScreenRoot.height - inputPanel.height
+                        x: lockScreenRoot.width - inputPanel.width
                         opacity: 1
                     }
                 },
@@ -418,6 +431,7 @@ PlasmaCore.ColorScope {
                     PropertyChanges {
                         target: inputPanel
                         y: lockScreenRoot.height - lockScreenRoot.height/4
+                        x: lockScreenRoot.width - lockScreenRoot.width/4
                         opacity: 0
                     }
                 }
@@ -610,7 +624,7 @@ PlasmaCore.ColorScope {
                 margins: PlasmaCore.Units.smallSpacing
             }
 
-            PlasmaComponents3.ToolButton {
+            /*PlasmaComponents3.ToolButton {
                 focusPolicy: Qt.TabFocus
                 text: i18ndc("plasma_lookandfeel_org.kde.lookandfeel", "Button to show/hide virtual keyboard", "Virtual Keyboard")
                 icon.name: inputPanel.keyboardActive ? "input-keyboard-virtual-on" : "input-keyboard-virtual-off"
@@ -622,7 +636,7 @@ PlasmaCore.ColorScope {
                 }
 
                 visible: inputPanel.status == Loader.Ready
-            }
+            }*/
 
             PlasmaComponents3.ToolButton {
                 focusPolicy: Qt.TabFocus

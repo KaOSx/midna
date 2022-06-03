@@ -1,30 +1,19 @@
-/********************************************************************
- This file is part of the KDE project.
+/*
+    SPDX-FileCopyrightText: 2017 Martin Gräßlin <mgraesslin@kde.org>
 
-Copyright (C) 2017 Martin Gräßlin <mgraesslin@kde.org>
+    SPDX-License-Identifier: GPL-2.0-or-later
+*/
 
-This program is free software; you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation; either version 2 of the License, or
-(at your option) any later version.
+import QtQuick 2.15
+import QtQuick.VirtualKeyboard 2.4
 
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License
-along with this program.  If not, see <http://www.gnu.org/licenses/>.
-*********************************************************************/
-import QtQuick 2.5
-import QtQuick.VirtualKeyboard 2.1
 import org.kde.plasma.core 2.0 as PlasmaCore
 
 InputPanel {
     id: inputPanel
     property bool activated: false
     active: activated && Qt.inputMethod.visible
-    width: parent.width
+    width: parent.width / 3
 
     states: [
         State {
@@ -33,6 +22,7 @@ InputPanel {
             PropertyChanges {
                 target: inputPanel
                 y: inputPanel.parent.height - inputPanel.height
+                x: inputPanel.parent.width - inputPanel.width
                 opacity: 1
                 visible: true
             }
@@ -43,6 +33,7 @@ InputPanel {
             PropertyChanges {
                 target: inputPanel
                 y: inputPanel.parent.height
+                x: inputPanel.parent.width - inputPanel.width
                 opacity: 0
                 visible:false
             }
