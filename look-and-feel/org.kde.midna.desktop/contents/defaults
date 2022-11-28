@@ -22,5 +22,8 @@ LayoutName=org.kde.midna.desktop
 [kwinrc][DesktopSwitcher]
 LayoutName=org.kde.midna.desktop
 
-[kwinrc][WindowDecoration]
+[kwinrc][org.kde.kdecoration2]
 library=org.kde.breeze
+
+[KSplash]
+Theme=org.kde.midna

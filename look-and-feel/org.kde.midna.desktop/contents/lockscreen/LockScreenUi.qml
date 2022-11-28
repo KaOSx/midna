@@ -6,7 +6,7 @@
 
 import QtQml 2.15
 import QtQuick 2.8
-import QtQuick.Controls 1.1
+import QtQuick.Controls 2.15
 import QtQuick.Layouts 1.1
 import QtGraphicalEffects 1.0
 
@@ -38,6 +38,7 @@ PlasmaCore.ColorScope {
             graceLockTimer.restart();
             notificationRemoveTimer.restart();
             rejectPasswordAnimation.start();
+            lockScreenUi.hadPrompt = false;
         }
 
         function onSucceeded() {
@@ -65,17 +66,15 @@ PlasmaCore.ColorScope {
         }
 
         function onPrompt(msg) {
-            lockScreenUi.hadPrompt = true;
             root.notification = msg;
-            mainBlock.echoMode = TextInput.Normal
-            mainBlock.mainPasswordBox.text = "";
+            mainBlock.showPassword = true;
             mainBlock.mainPasswordBox.forceActiveFocus();
+            lockScreenUi.hadPrompt = true;
         }
         function onPromptForSecret(msg) {
-            lockScreenUi.hadPrompt = true;
-            mainBlock.echoMode = TextInput.Password
-            mainBlock.mainPasswordBox.text = "";
+            mainBlock.showPassword = false;
             mainBlock.mainPasswordBox.forceActiveFocus();
+            lockScreenUi.hadPrompt = true;
         }
     }
 
@@ -177,7 +176,10 @@ PlasmaCore.ColorScope {
         Timer {
             id: graceLockTimer
             interval: 3000
-            onTriggered: authenticator.tryUnlock();
+            onTriggered: {
+                root.clearPassword();
+                authenticator.tryUnlock();
+            }
         }
 
         Component.onCompleted: PropertyAnimation { id: launchAnimation; target: lockScreenRoot; property: "opacity"; from: 0; to: 1; duration: PlasmaCore.Units.veryLongDuration * 2 }
@@ -281,19 +283,16 @@ PlasmaCore.ColorScope {
                 id: mainBlock
                 lockScreenUiVisible: lockScreenRoot.uiVisible
 
-                // This is a focus scope and QQC1 StackView (unlike QQC2) does not set focus to the current item
-                focus: true
-
                 showUserList: userList.y + mainStack.y > 0
 
                 enabled: !graceLockTimer.running
 
-                Stack.onStatusChanged: {
+                StackView.onStatusChanged: {
                     // prepare for presenting again to the user
-                    if (Stack.status === Stack.Activating) {
-                        mainPasswordBox.remove(0, mainPasswordBox.length)
-                        mainPasswordBox.focus = true
-                        root.notification = ""
+                    if (StackView.status === StackView.Activating) {
+                        mainPasswordBox.clear();
+                        mainPasswordBox.focus = true;
+                        root.notification = "";
                     }
                 }
                 userListModel: users
@@ -502,8 +501,8 @@ PlasmaCore.ColorScope {
             SessionManagementScreen {
                 property var switchSession: finalSwitchSession
 
-                Stack.onStatusChanged: {
-                    if (Stack.status == Stack.Activating) {
+                StackView.onStatusChanged: {
+                    if (StackView.status == StackView.Activating) {
                         focus = true
                     }
                 }

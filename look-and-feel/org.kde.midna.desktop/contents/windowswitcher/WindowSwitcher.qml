@@ -1,28 +1,13 @@
-/********************************************************************
- KWin - the KDE window manager
- This file is part of the KDE project.
+/*
+    SPDX-FileCopyrightText: 2011 Martin Gräßlin <mgraesslin@kde.org>
+    SPDX-FileCopyrightText: 2013 Marco Martin <mart@kde.org>
+    SPDX-FileCopyrightText: 2016 Kai Uwe Broulik <kde@privat.broulik.de>
 
-Copyright (C) 2011 Martin Gräßlin <mgraesslin@kde.org>
-Copyright (C) 2013 Marco Martin <mart@kde.org>
-Copyright (C) 2016 Kai Uwe Broulik <kde@privat.broulik.de>
-
-This program is free software; you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation; either version 2 of the License, or
-(at your option) any later version.
-
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License
-along with this program.  If not, see <http://www.gnu.org/licenses/>.
-*********************************************************************/
+    SPDX-License-Identifier: GPL-2.0-or-later
+*/
 import QtQuick 2.0
 import QtQuick.Layouts 1.1
 import org.kde.plasma.core 2.0 as PlasmaCore
-import org.kde.plasma.components 2.0 as PlasmaComponents // for Highlight
 import org.kde.plasma.extras 2.0 as PlasmaExtras
 import org.kde.kwin 2.0 as KWin
 
@@ -55,8 +40,8 @@ KWin.Switcher {
             ListView {
                 id: thumbnailListView
                 model: tabBox.model
-                spacing: units.smallSpacing
-                highlightMoveDuration: 250
+                spacing: PlasmaCore.Units.smallSpacing
+                highlightMoveDuration: PlasmaCore.Units.longDuration
                 highlightResizeDuration: 0
 
                 Connections {
@@ -83,9 +68,9 @@ KWin.Switcher {
                         id: delegateColumn
                         anchors.horizontalCenter: parent.horizontalCenter
                         // anchors.centerIn causes layouting glitches
-                        y: units.smallSpacing
-                        width: parent.width - 2 * units.smallSpacing
-                        spacing: units.smallSpacing
+                        y: PlasmaCore.Units.smallSpacing
+                        width: parent.width - 2 * PlasmaCore.Units.smallSpacing
+                        spacing: PlasmaCore.Units.smallSpacing
 
                         focus: index == thumbnailListView.currentIndex
                         Accessible.name: model.caption
@@ -102,12 +87,12 @@ KWin.Switcher {
                         }
 
                         RowLayout {
-                            spacing: units.smallSpacing
+                            spacing: PlasmaCore.Units.smallSpacing
                             Layout.fillWidth: true
 
                             PlasmaCore.IconItem {
-                                Layout.preferredHeight: units.iconSizes.medium
-                                Layout.preferredWidth: units.iconSizes.medium
+                                Layout.preferredHeight: PlasmaCore.Units.iconSizes.medium
+                                Layout.preferredWidth: PlasmaCore.Units.iconSizes.medium
                                 source: model.icon
                                 usesPlasmaTheme: false
                             }
@@ -126,12 +111,12 @@ KWin.Switcher {
                     }
                 }
 
-                highlight: PlasmaComponents.Highlight {}
+                highlight: PlasmaExtras.Highlight {}
             }
 
             /*
             * Key navigation on outer item for two reasons:
-            * @li we have to emit the change signal
+            * @li we have to Q_EMIT the change signal
             * @li on multiple invocation it does not work on the list view. Focus seems to be lost.
             **/
             Keys.onPressed: {
