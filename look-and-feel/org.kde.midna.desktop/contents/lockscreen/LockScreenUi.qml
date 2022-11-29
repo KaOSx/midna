@@ -56,6 +56,7 @@ PlasmaCore.ColorScope {
                 root.notification += "\n"
             }
             root.notification += msg;
+            lockScreenUi.hadPrompt = true;
         }
 
         function onErrorMessage(msg) {
@@ -66,15 +67,17 @@ PlasmaCore.ColorScope {
         }
 
         function onPrompt(msg) {
-            root.notification = msg;
-            mainBlock.showPassword = true;
-            mainBlock.mainPasswordBox.forceActiveFocus();
             lockScreenUi.hadPrompt = true;
+            root.notification = msg;
+            mainBlock.echoMode = TextInput.Normal
+            mainBlock.mainPasswordBox.text = "";
+            mainBlock.mainPasswordBox.forceActiveFocus();
         }
         function onPromptForSecret(msg) {
-            mainBlock.showPassword = false;
-            mainBlock.mainPasswordBox.forceActiveFocus();
             lockScreenUi.hadPrompt = true;
+            mainBlock.echoMode = TextInput.Password
+            mainBlock.mainPasswordBox.text = "";
+            mainBlock.mainPasswordBox.forceActiveFocus();
         }
     }
 
