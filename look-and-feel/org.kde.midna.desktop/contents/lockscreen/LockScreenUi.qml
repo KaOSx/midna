@@ -381,7 +381,7 @@ PlasmaCore.ColorScope {
                 state = state == "hidden" ? "visible" : "hidden";
             }
             Component.onCompleted: {
-                inputPanel.source = "../components/VirtualKeyboard_wayland.qml" : "../components/VirtualKeyboard.qml"
+                inputPanel.source = "../components/VirtualKeyboard.qml"
             }
 
             onKeyboardActiveChanged: {
