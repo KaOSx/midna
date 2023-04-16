@@ -1,0 +1,14 @@
+[Wallpaper]
+defaultWallpaperTheme=midna
+defaultFileSuffix=.png
+defaultWidth=3600
+defaultHeight=2250
+
+[ContrastEffect]
+enabled=true
+contrast=0.2
+intensity=1.4
+saturation=10
+
+[AdaptiveTransparency]
+enabled=true

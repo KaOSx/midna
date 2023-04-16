@@ -1,0 +1,19 @@
+{
+    "KPlugin": {
+        "Authors": [
+            {
+                "Email": "demmm@kaosx.us",
+                "Name": "KaOS theme files"
+            }
+        ],
+        "Category": "",
+        "Description": "Midna for KaOS",
+        "EnabledByDefault": true,
+        "Id": "midna",
+        "License": "LGPL",
+        "Name": "Midna",
+        "Version": "6.0",
+        "Website": "https://kaosx.us"
+    },
+    "X-Plasma-API": "5.0"
+}
