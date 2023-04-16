@@ -20,6 +20,8 @@ ColumnLayout {
         style: softwareRendering ? Text.Outline : Text.Normal
         styleColor: softwareRendering ? PlasmaCore.ColorScope.backgroundColor : "transparent" //no outline, doesn't matter
         font.pointSize: 48
+        font.weight: Font.Medium
+        font.family: "Raleway"
         Layout.alignment: Qt.AlignHCenter
     }
     PlasmaComponents3.Label {
@@ -28,6 +30,8 @@ ColumnLayout {
         style: softwareRendering ? Text.Outline : Text.Normal
         styleColor: softwareRendering ? PlasmaCore.ColorScope.backgroundColor : "transparent" //no outline, doesn't matter
         font.pointSize: 24
+        font.weight: Font.Medium
+        font.family: "Raleway"
         Layout.alignment: Qt.AlignHCenter
     }
     P5Support.DataSource {
