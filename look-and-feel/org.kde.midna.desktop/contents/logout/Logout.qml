@@ -1,21 +1,8 @@
-/***************************************************************************
- *   Copyright (C) 2014 by Aleix Pol Gonzalez <aleixpol@blue-systems.com>  *
- *                                                                         *
- *   This program is free software; you can redistribute it and/or modify  *
- *   it under the terms of the GNU General Public License as published by  *
- *   the Free Software Foundation; either version 2 of the License, or     *
- *   (at your option) any later version.                                   *
- *                                                                         *
- *   This program is distributed in the hope that it will be useful,       *
- *   but WITHOUT ANY WARRANTY; without even the implied warranty of        *
- *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the         *
- *   GNU General Public License for more details.                          *
- *                                                                         *
- *   You should have received a copy of the GNU General Public License     *
- *   along with this program; if not, write to the                         *
- *   Free Software Foundation, Inc.,                                       *
- *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA .        *
- ***************************************************************************/
+/*
+    SPDX-FileCopyrightText: 2014 Aleix Pol Gonzalez <aleixpol@blue-systems.com>
+
+    SPDX-License-Identifier: GPL-2.0-or-later
+*/
 
 import QtQuick 2.2
 import QtQuick.Layouts 1.2
@@ -53,7 +40,7 @@ PlasmaCore.ColorScope {
     function hibernateRequested() {
         root.suspendRequested(4);
     }
- 
+
     property real timeout: 30
     property real remainingTime: root.timeout
     property var currentAction: {
@@ -109,7 +96,7 @@ PlasmaCore.ColorScope {
         id: backgroundRect
         anchors.fill: parent
         //use "black" because this is intended to look like a general darkening of the scene. a dark gray as normal background would just look too "washed out"
-        color: "#161925" //root.isLightColor(PlasmaCore.ColorScope.backgroundColor) ? PlasmaCore.ColorScope.backgroundColor : "black"
+        color: "#161925" // root.isLightColor(PlasmaCore.ColorScope.backgroundColor) ? PlasmaCore.ColorScope.backgroundColor : "black"
         opacity: 0.3
     }
     MouseArea {
@@ -117,8 +104,8 @@ PlasmaCore.ColorScope {
         onClicked: root.cancelRequested()
     }
     UserDelegate {
-        width: units.gridUnit * 7
-        height: width
+        width: PlasmaCore.Units.gridUnit * 8
+        height: PlasmaCore.Units.gridUnit * 9
         anchors {
             horizontalCenter: parent.horizontalCenter
             bottom: parent.verticalCenter
@@ -132,17 +119,17 @@ PlasmaCore.ColorScope {
     ColumnLayout {
         anchors {
             top: parent.verticalCenter
-            topMargin: units.gridUnit * 2
+            topMargin: PlasmaCore.Units.gridUnit * 2
             horizontalCenter: parent.horizontalCenter
         }
-        spacing: units.largeSpacing
+        spacing: PlasmaCore.Units.largeSpacing
 
-        height: Math.max(implicitHeight, units.gridUnit * 10)
-        width: Math.max(implicitWidth, units.gridUnit * 16)
+        height: Math.max(implicitHeight, PlasmaCore.Units.gridUnit * 10)
+        width: Math.max(implicitWidth, PlasmaCore.Units.gridUnit * 16)
 
         PlasmaComponents.Label {
-            font.pointSize: theme.defaultFont.pointSize + 1
-            Layout.maximumWidth: units.gridUnit * 16
+            font.pointSize: PlasmaCore.Theme.defaultFont.pointSize + 1
+            Layout.maximumWidth: PlasmaCore.Units.gridUnit * 16
             Layout.alignment: Qt.AlignHCenter
             Layout.fillWidth: true
             horizontalAlignment: Text.AlignHCenter
@@ -156,8 +143,8 @@ PlasmaCore.ColorScope {
         }
 
         PlasmaComponents.Label {
-            font.pointSize: theme.defaultFont.pointSize + 1
-            Layout.maximumWidth: units.gridUnit * 16
+            font.pointSize: PlasmaCore.Theme.defaultFont.pointSize + 1
+            Layout.maximumWidth: PlasmaCore.Units.gridUnit * 16
             Layout.alignment: Qt.AlignHCenter
             Layout.fillWidth: true
             horizontalAlignment: Text.AlignHCenter
@@ -168,7 +155,7 @@ PlasmaCore.ColorScope {
         }
 
         RowLayout {
-            spacing: units.largeSpacing * 2
+            spacing: PlasmaCore.Units.largeSpacing * 2
             Layout.alignment: Qt.AlignHCenter
             LogoutButton {
                 id: suspendButton
@@ -221,13 +208,13 @@ PlasmaCore.ColorScope {
         }
 
         PlasmaComponents.Label {
-            font.pointSize: theme.defaultFont.pointSize + 1
+            font.pointSize: PlasmaCore.Theme.defaultFont.pointSize + 1
             Layout.alignment: Qt.AlignHCenter
             //opacity, as visible would re-layout
             opacity: countDownTimer.running ? 1 : 0
             Behavior on opacity {
                 OpacityAnimator {
-                    duration: units.longDuration
+                    duration: PlasmaCore.Units.longDuration
                     easing.type: Easing.InOutQuad
                 }
             }
@@ -246,15 +233,15 @@ PlasmaCore.ColorScope {
         RowLayout {
             Layout.alignment: Qt.AlignHCenter
             PlasmaComponents.Button {
-                implicitWidth: units.gridUnit * 6
-                font.pointSize: theme.defaultFont.pointSize + 1
+                implicitWidth: PlasmaCore.Units.gridUnit * 6
+                font.pointSize: PlasmaCore.Theme.defaultFont.pointSize + 1
                 enabled: root.currentAction !== null
                 text: i18nd("plasma_lookandfeel_org.kde.lookandfeel", "OK")
                 onClicked: root.currentAction()
             }
             PlasmaComponents.Button {
-                implicitWidth: units.gridUnit * 6
-                font.pointSize: theme.defaultFont.pointSize + 1
+                implicitWidth: PlasmaCore.Units.gridUnit * 6
+                font.pointSize: PlasmaCore.Theme.defaultFont.pointSize + 1
                 text: i18nd("plasma_lookandfeel_org.kde.lookandfeel", "Cancel")
                 onClicked: root.cancelRequested()
             }

@@ -9,7 +9,7 @@ import QtQuick 2.15
 import QtQuick.Controls 2.15
 import QtQuick.Layouts 1.15
 import QtQuick.Window 2.15
-import QtGraphicalEffects 1.12
+import Qt5Compat.GraphicalEffects
 import org.kde.kirigami 2.18 as Kirigami
 
 /**
@@ -28,9 +28,9 @@ Item {
     property Window window
     implicitHeight: column.implicitHeight
     implicitWidth: column.implicitWidth
-    readonly property real minimumHeight: column.Layout.minimumHeight + mainItem.implicitHeight + footerButtonBox.implicitHeight
-    readonly property real minimumWidth: Math.min(Math.round(Screen.width / 3), column.Layout.minimumWidth + mainItem.implicitWidth + footerButtonBox.implicitWidth)
-    readonly property int flags: Qt.Dialog
+    readonly property real minimumHeight: column.Layout.minimumHeight + (mainItem ? mainItem.implicitHeight : 0) + footerButtonBox.implicitHeight + root.spacing * 2
+    readonly property real minimumWidth: Math.min(Math.round(Screen.width / 3), column.Layout.minimumWidth + (mainItem ? mainItem.implicitWidth : 0) + footerButtonBox.implicitWidth) + root.spacing * 2
+    readonly property int flags: Qt.Dialog | Qt.WindowCloseButtonHint | Qt.WindowTitleHint | Qt.WindowSystemMenuHint
     property alias standardButtons: footerButtonBox.standardButtons
     readonly property int spacing: Kirigami.Units.largeSpacing // standard KDE dialog margins
 
@@ -71,10 +71,10 @@ Item {
 
                 Kirigami.Heading {
                     id: titleHeading
-                    text: root.title
                     Layout.fillWidth: true
                     level: 2
                     wrapMode: Text.Wrap
+                    textFormat: Text.RichText
                     elide: Text.ElideRight
                 }
 
@@ -83,6 +83,7 @@ Item {
                     Layout.fillWidth: true
                     wrapMode: Text.Wrap
                     elide: Text.ElideRight
+                    textFormat: Text.RichText
                     visible: text.length > 0
                 }
             }

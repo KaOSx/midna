@@ -1,20 +1,9 @@
 /*
- * Copyright 2014 Martin Klapetek <mklapetek@kde.org>
- * Copyright 2019 Kai Uwe Broulik <kde@broulik.de>
- *
- * This program is free software; you can redistribute it and/or
- * modify it under the terms of the GNU General Public License as
- * published by the Free Software Foundation; either version 2 of
- * the License, or (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- */
+    SPDX-FileCopyrightText: 2014 Martin Klapetek <mklapetek@kde.org>
+    SPDX-FileCopyrightText: 2019 Kai Uwe Broulik <kde@broulik.de>
+
+    SPDX-License-Identifier: GPL-2.0-or-later
+*/
 
 import QtQuick 2.14
 import QtQuick.Layouts 1.1
@@ -37,15 +26,21 @@ RowLayout {
     // false for displaying the value as normal text
     property bool showingProgress: false
 
-    spacing: units.smallSpacing
+    spacing: PlasmaCore.Units.smallSpacing
 
-    width: Math.max(Math.min(Screen.desktopAvailableWidth / 2, implicitWidth), units.gridUnit * 15)
-    height: units.iconSizes.medium
+    Layout.preferredWidth: Math.max(Math.min(Screen.desktopAvailableWidth / 2, implicitWidth), PlasmaCore.Units.gridUnit * 15)
+    Layout.preferredHeight: PlasmaCore.Units.iconSizes.medium
+    Layout.minimumWidth: Layout.preferredWidth
+    Layout.minimumHeight: Layout.preferredHeight
+    Layout.maximumWidth: Layout.preferredWidth
+    Layout.maximumHeight: Layout.preferredHeight
+    width: Layout.preferredWidth
+    height: Layout.preferredHeight
 
     PlasmaCore.IconItem {
-        Layout.leftMargin: units.smallSpacing
-        Layout.preferredWidth: units.iconSizes.medium
-        Layout.preferredHeight: units.iconSizes.medium
+        Layout.leftMargin: PlasmaCore.Units.smallSpacing
+        Layout.preferredWidth: PlasmaCore.Units.iconSizes.medium
+        Layout.preferredHeight: PlasmaCore.Units.iconSizes.medium
         Layout.alignment: Qt.AlignVCenter
         source: icon
         visible: valid
@@ -56,8 +51,8 @@ RowLayout {
         Layout.fillWidth: true
         Layout.alignment: Qt.AlignVCenter
         // So it never exceeds the minimum popup size
-        Layout.preferredWidth: 1
-        Layout.rightMargin: units.smallSpacing
+        Layout.minimumWidth: 0
+        Layout.rightMargin: PlasmaCore.Units.smallSpacing
         visible: showingProgress
         from: 0
         to: osdMaxValue
@@ -68,7 +63,7 @@ RowLayout {
     // to the maximum width to avoid the progress bad resizing itself
     TextMetrics {
         id: widestLabelSize
-        text: i18n("100%")
+        text: i18nd("plasma_lookandfeel_org.kde.lookandfeel", "100%")
         font: percentageLabel.font
     }
 
@@ -77,12 +72,12 @@ RowLayout {
         id: percentageLabel
         Layout.fillHeight: true
         Layout.preferredWidth: widestLabelSize.width
-        Layout.rightMargin: units.smallSpacing
+        Layout.rightMargin: PlasmaCore.Units.smallSpacing
         Layout.alignment: Qt.AlignVCenter
         level: 3
         horizontalAlignment: Text.AlignHCenter
         verticalAlignment: Text.AlignVCenter
-        text: i18nc("Percentage value", "%1%", progressBar.value)
+        text: i18ndc("plasma_lookandfeel_org.kde.lookandfeel", "Percentage value", "%1%", progressBar.value)
         visible: showingProgress
         // Display a subtle visual indication that the volume might be
         // dangerously high
@@ -91,11 +86,11 @@ RowLayout {
         // and plasma-pa:VolumeSlider.qml
         color: {
             if (progressBar.value <= 100) {
-                return theme.textColor
+                return PlasmaCore.Theme.textColor
             } else if (progressBar.value > 100 && progressBar.value <= 125) {
-                return theme.neutralTextColor
+                return PlasmaCore.Theme.neutralTextColor
             } else {
-                return theme.negativeTextColor
+                return PlasmaCore.Theme.negativeTextColor
             }
         }
     }
@@ -104,7 +99,7 @@ RowLayout {
         id: label
         Layout.fillWidth: true
         Layout.fillHeight: true
-        Layout.rightMargin: units.smallSpacing
+        Layout.rightMargin: PlasmaCore.Units.smallSpacing
         Layout.alignment: Qt.AlignVCenter
         level: 3
         horizontalAlignment: Text.AlignHCenter
