@@ -18,8 +18,7 @@ Item {
     property alias labelRendering: label.renderType
     property alias circleOpacity: iconCircle.opacity
     property alias circleVisiblity: iconCircle.visible
-    property alias border_color: iconCircle.border.color
-    property int fontSize: 12
+    property int fontSize: PlasmaCore.Theme.defaultFont.pointSize + 1
     readonly property bool softwareRendering: GraphicsInfo.api === GraphicsInfo.Software
     signal clicked
 
@@ -31,28 +30,26 @@ Item {
     implicitHeight: iconSize + PlasmaCore.Units.smallSpacing + label.implicitHeight
 
     opacity: activeFocus || containsMouse ? 1 : 0.85
-        Behavior on opacity {
-            PropertyAnimation { // OpacityAnimator makes it turn black at random intervals
-                duration: PlasmaCore.Units.longDuration
-                easing.type: Easing.InOutQuad
-            }
+    Behavior on opacity {
+        PropertyAnimation { // OpacityAnimator makes it turn black at random intervals
+            duration: PlasmaCore.Units.longDuration
+            easing.type: Easing.InOutQuad
+        }
     }
 
     Rectangle {
         id: iconCircle
         anchors.centerIn: icon
-        width: iconSize + PlasmaCore.Units.largeSpacing
+        width: iconSize + PlasmaCore.Units.smallSpacing
         height: width
         radius: width / 2
-        color: "#08080C"
-        border.color: "#3498db"
-        border.width: 1
-        opacity: activeFocus || containsMouse ? (softwareRendering ? 0.8 : 0.15) : (softwareRendering ? 0.6 : 0)
+        color: softwareRendering ?  PlasmaCore.ColorScope.backgroundColor : PlasmaCore.ColorScope.textColor
+        opacity: root.activeFocus || containsMouse ? (softwareRendering ? 0.8 : 0.15) : (softwareRendering ? 0.6 : 0)
         Behavior on opacity {
-                PropertyAnimation { // OpacityAnimator makes it turn black at random intervals
-                    duration: PlasmaCore.Units.longDuration
-                    easing.type: Easing.InOutQuad
-                }
+            PropertyAnimation { // OpacityAnimator makes it turn black at random intervals
+                duration: PlasmaCore.Units.longDuration
+                easing.type: Easing.InOutQuad
+            }
         }
     }
 
@@ -65,10 +62,10 @@ Item {
         color: PlasmaCore.ColorScope.textColor
         opacity: 0.15
         Behavior on scale {
-                PropertyAnimation {
-                    duration: PlasmaCore.Units.shortDuration
-                    easing.type: Easing.InOutQuart
-                }
+            PropertyAnimation {
+                duration: PlasmaCore.Units.shortDuration
+                easing.type: Easing.InOutQuart
+            }
         }
     }
 
@@ -87,8 +84,7 @@ Item {
 
     PlasmaComponents3.Label {
         id: label
-        font.pointSize: Math.max(fontSize + 1,theme.defaultFont.pointSize + 1)
-        color: "#B7B7B7"
+        font.pointSize: root.fontSize
         anchors {
             top: icon.bottom
             topMargin: (softwareRendering ? 1.5 : 1) * PlasmaCore.Units.smallSpacing

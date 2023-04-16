@@ -6,20 +6,19 @@
 
 import QtQuick 2.2
 
-import QtQuick.Layouts 1.2
-import QtQuick.Controls 2.4
-import QtQuick.Controls.Styles 1.4
+import QtQuick.Layouts 1.1
 
 import org.kde.plasma.core 2.0 as PlasmaCore
 import org.kde.plasma.components 3.0 as PlasmaComponents3
+import org.kde.plasma.extras 2.0 as PlasmaExtras
 
 import "../components"
 
 SessionManagementScreen {
 
-    property Item mainPasswordBox: passwordBox
+    readonly property alias mainPasswordBox: passwordBox
     property bool lockScreenUiVisible: false
-    property alias echoMode: passwordBox.echoMode
+    property alias showPassword: passwordBox.showPassword
 
     //the y position that should be ensured visible when the on screen keyboard is visible
     property int visibleBoundary: mapFromItem(loginButton, 0, 0).y
@@ -54,17 +53,14 @@ SessionManagementScreen {
     RowLayout {
         Layout.fillWidth: true
 
-        PlasmaComponents3.TextField {
+        PlasmaExtras.PasswordField {
             id: passwordBox
             font.pointSize: PlasmaCore.Theme.defaultFont.pointSize + 1
             Layout.fillWidth: true
 
             placeholderText: i18nd("plasma_lookandfeel_org.kde.lookandfeel", "Password")
             focus: true
-            echoMode: TextInput.Password
-            inputMethodHints: Qt.ImhHiddenText | Qt.ImhSensitiveData | Qt.ImhNoAutoUppercase | Qt.ImhNoPredictiveText
             enabled: !authenticator.graceLocked
-            revealPasswordButtonShown: true
 
             // In Qt this is implicitly active based on focus rather than visibility
             // in any other application having a focussed invisible object would be weird
@@ -100,45 +96,13 @@ SessionManagementScreen {
             }
         }
 
-        Button {
+        PlasmaComponents3.Button {
             id: loginButton
             Accessible.name: i18nd("plasma_lookandfeel_org.kde.lookandfeel", "Unlock")
-            implicitHeight: passwordBox.height - units.smallSpacing * 0.5 // otherwise it comes out taller than the password field
-            text: ">"
-            Layout.leftMargin: 30
+            Layout.preferredHeight: passwordBox.implicitHeight
+            Layout.preferredWidth: loginButton.Layout.preferredHeight
 
-            contentItem: Text {
-                text: loginButton.text
-                font: loginButton.font
-                opacity: enabled ? 1.0 : 0.3
-                color: "#ffffff"
-                horizontalAlignment: Text.AlignHCenter
-                verticalAlignment: Text.AlignVCenter
-                elide: Text.ElideRight
-            }
-
-            background: Rectangle {
-                id: buttonBorder
-                width: 30
-                height: 40
-                //radius: width / 2
-                rotation: -90
-                anchors.centerIn: parent
-
-                gradient: Gradient {
-                    GradientStop { position: 0.0; color: "#75b9e7" }
-                    GradientStop { position: 1.0; color: "#3498db" }
-                }
-            }
-
-            Rectangle {
-                id: buttonBackground
-                height: 28
-                width: 38
-                //radius: height / 2
-                anchors.centerIn: buttonBorder
-                color: "#75b9e7"
-            }
+            icon.name: LayoutMirroring.enabled ? "go-previous" : "go-next"
 
             onClicked: startLogin()
             Keys.onEnterPressed: clicked()

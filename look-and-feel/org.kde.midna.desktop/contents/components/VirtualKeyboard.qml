@@ -13,7 +13,7 @@ InputPanel {
     id: inputPanel
     property bool activated: false
     active: activated && Qt.inputMethod.visible
-    width: parent.width / 3
+    width: parent.width
 
     states: [
         State {
@@ -22,7 +22,6 @@ InputPanel {
             PropertyChanges {
                 target: inputPanel
                 y: inputPanel.parent.height - inputPanel.height
-                x: inputPanel.parent.width - inputPanel.width
                 opacity: 1
                 visible: true
             }
@@ -33,7 +32,6 @@ InputPanel {
             PropertyChanges {
                 target: inputPanel
                 y: inputPanel.parent.height
-                x: inputPanel.parent.width - inputPanel.width
                 opacity: 0
                 visible:false
             }

@@ -8,11 +8,12 @@ import QtQml 2.15
 import QtQuick 2.8
 import QtQuick.Controls 2.15
 import QtQuick.Layouts 1.1
-import QtGraphicalEffects 1.0
+import Qt5Compat.GraphicalEffects
 
 import org.kde.plasma.core 2.0 as PlasmaCore
 import org.kde.plasma.components 3.0 as PlasmaComponents3
 import org.kde.plasma.workspace.components 2.0 as PW
+import org.kde.plasma.plasma5support 2.0 as P5Support
 
 import org.kde.plasma.private.sessions 2.0
 import "../components"
@@ -67,17 +68,15 @@ PlasmaCore.ColorScope {
         }
 
         function onPrompt(msg) {
-            lockScreenUi.hadPrompt = true;
             root.notification = msg;
-            mainBlock.echoMode = TextInput.Normal
-            mainBlock.mainPasswordBox.text = "";
+            mainBlock.showPassword = true;
             mainBlock.mainPasswordBox.forceActiveFocus();
+            lockScreenUi.hadPrompt = true;
         }
         function onPromptForSecret(msg) {
-            lockScreenUi.hadPrompt = true;
-            mainBlock.echoMode = TextInput.Password
-            mainBlock.mainPasswordBox.text = "";
+            mainBlock.showPassword = false;
             mainBlock.mainPasswordBox.forceActiveFocus();
+            lockScreenUi.hadPrompt = true;
         }
     }
 
@@ -97,7 +96,7 @@ PlasmaCore.ColorScope {
         showNewSessionEntry: false
     }
 
-    PlasmaCore.DataSource {
+    P5Support.DataSource {
         id: keystateSource
         engine: "keystate"
         connectedSources: "Caps Lock"
@@ -150,11 +149,13 @@ PlasmaCore.ColorScope {
             }
         }
         Keys.onEscapePressed: {
-            uiVisible = !uiVisible;
-            if (inputPanel.keyboardActive) {
-                inputPanel.showHide();
-            }
-            if (!uiVisible) {
+            // If the escape key is pressed, kscreenlocker will turn off the screen.
+            // We do not want to show the password prompt in this case.
+            if (uiVisible) {
+                uiVisible = false;
+                if (inputPanel.keyboardActive) {
+                    inputPanel.showHide();
+                }
                 root.clearPassword();
             }
         }
@@ -223,10 +224,6 @@ PlasmaCore.ColorScope {
             mainStack: mainStack
             footer: footer
             clock: clock
-            formBg: formBg
-            blurArea: blurArea
-            blur: blur
-            z: -3
         }
 
         DropShadow {
@@ -234,8 +231,6 @@ PlasmaCore.ColorScope {
             anchors.fill: clock
             source: clock
             visible: false //!softwareRendering
-            horizontalOffset: 1
-            verticalOffset: 1
             radius: 6
             samples: 14
             spread: 0.3
@@ -272,11 +267,10 @@ PlasmaCore.ColorScope {
         StackView {
             id: mainStack
             anchors {
-                //left: parent.left
+                left: parent.left
                 right: parent.right
             }
             height: lockScreenRoot.height + PlasmaCore.Units.gridUnit * 3
-            width: parent.width / 3
             focus: true //StackView is an implicit focus scope, so we need to give this focus so the item inside will have it
 
             // this isn't implicit, otherwise items still get processed for the scenegraph
@@ -345,18 +339,6 @@ PlasmaCore.ColorScope {
                             }
                         }
                         visible: sessionsModel.canStartNewSession && sessionsModel.canSwitchUser
-                    },
-                    ActionButton {
-                        text: i18ndc("plasma_lookandfeel_org.kde.lookandfeel", "Button to show/hide virtual keyboard", "Virtual Keyboard")
-                        iconSource: inputPanel.keyboardActive ? "input-keyboard-virtual-on" : "input-keyboard-virtual-off"
-                        onClicked: {
-                            // Otherwise the password field loses focus and virtual keyboard
-                            // keystrokes get eaten
-                            mainBlock.mainPasswordBox.forceActiveFocus();
-                            inputPanel.showHide()
-                        }
-
-                        visible: inputPanel.status == Loader.Ready
                     }
                 ]
 
@@ -392,14 +374,14 @@ PlasmaCore.ColorScope {
             state: "hidden"
             readonly property bool keyboardActive: item ? item.active : false
             anchors {
-                //left: parent.left
+                left: parent.left
                 right: parent.right
             }
             function showHide() {
                 state = state == "hidden" ? "visible" : "hidden";
             }
             Component.onCompleted: {
-                inputPanel.source = "../components/VirtualKeyboard.qml"
+                inputPanel.source = "../components/VirtualKeyboard_wayland.qml" : "../components/VirtualKeyboard.qml"
             }
 
             onKeyboardActiveChanged: {
@@ -420,8 +402,6 @@ PlasmaCore.ColorScope {
                     PropertyChanges {
                         target: inputPanel
                         y: lockScreenRoot.height - inputPanel.height
-                        x: lockScreenRoot.width - inputPanel.width
-                        opacity: 1
                     }
                 },
                 State {
@@ -433,8 +413,6 @@ PlasmaCore.ColorScope {
                     PropertyChanges {
                         target: inputPanel
                         y: lockScreenRoot.height - lockScreenRoot.height/4
-                        x: lockScreenRoot.width - lockScreenRoot.width/4
-                        opacity: 0
                     }
                 }
             ]
@@ -574,39 +552,6 @@ PlasmaCore.ColorScope {
             }
         }
 
-                Rectangle {
-            id: formBg
-            anchors.fill: mainStack
-            anchors.centerIn: mainStack
-            color: "#161925"
-            opacity: 0.4
-            z:-1
-        }
-
-        ShaderEffectSource {
-            id: blurArea
-            sourceItem: wallpaper
-            width: formBg.width
-            height: formBg.height
-            anchors.centerIn: formBg
-            sourceRect: Qt.rect(x,y,width,height)
-            visible: true
-            z:-2
-        }
-
-        GaussianBlur {
-            id: blur
-            height: formBg.height
-            width: formBg.width
-            source: blurArea
-            radius: 50
-            samples: 50 * 2 + 1
-            cached: true
-            anchors.centerIn: formBg
-            visible: true
-            z:-2
-        }
-
         Loader {
             active: root.viewVisible
             source: "LockOsd.qml"
@@ -626,7 +571,7 @@ PlasmaCore.ColorScope {
                 margins: PlasmaCore.Units.smallSpacing
             }
 
-            /*PlasmaComponents3.ToolButton {
+            PlasmaComponents3.ToolButton {
                 focusPolicy: Qt.TabFocus
                 text: i18ndc("plasma_lookandfeel_org.kde.lookandfeel", "Button to show/hide virtual keyboard", "Virtual Keyboard")
                 icon.name: inputPanel.keyboardActive ? "input-keyboard-virtual-on" : "input-keyboard-virtual-off"
@@ -638,7 +583,7 @@ PlasmaCore.ColorScope {
                 }
 
                 visible: inputPanel.status == Loader.Ready
-            }*/
+            }
 
             PlasmaComponents3.ToolButton {
                 focusPolicy: Qt.TabFocus

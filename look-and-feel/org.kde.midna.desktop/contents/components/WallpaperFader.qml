@@ -1,29 +1,14 @@
-/********************************************************************
- This file is part of the KDE project.
+/*
+    SPDX-FileCopyrightText: 2014 Aleix Pol Gonzalez <aleixpol@blue-systems.com>
 
-Copyright (C) 2014 Aleix Pol Gonzalez <aleixpol@blue-systems.com>
+    SPDX-License-Identifier: GPL-2.0-or-later
+*/
 
-This program is free software; you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation; either version 2 of the License, or
-(at your option) any later version.
-
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License
-along with this program.  If not, see <http://www.gnu.org/licenses/>.
-*********************************************************************/
-
-import QtQuick 2.6
-import QtQuick.Controls 1.1
-import QtQuick.Layouts 1.1
-import QtGraphicalEffects 1.0
+import QtQuick 2.15
+import QtQuick.Layouts 1.15
+import Qt5Compat.GraphicalEffects
 
 import org.kde.plasma.core 2.0 as PlasmaCore
-import org.kde.plasma.components 2.0 as PlasmaComponents
 
 import org.kde.plasma.private.sessions 2.0
 import "../components"
@@ -33,21 +18,18 @@ Item {
     property Item clock
     property Item mainStack
     property Item footer
-    property Item formBg
-    property Item blurArea
-    property Item blur
     property alias source: wallpaperBlur.source
     state: lockScreenRoot.uiVisible ? "on" : "off"
     property real factor: 0
-    readonly property bool lightBackground: Math.max(PlasmaCore.ColorScope.backgroundColor.r, PlasmaCore.ColorScope.backgroundColor.g, PlasmaCore.ColorScope.backgroundColor.b) > 0.5
+    readonly property bool lightColorScheme: Math.max(PlasmaCore.ColorScope.backgroundColor.r, PlasmaCore.ColorScope.backgroundColor.g, PlasmaCore.ColorScope.backgroundColor.b) > 0.5
 
-    property bool alwaysShowClock: typeof config === "undefined" || config.alwaysShowClock === true
+    property bool alwaysShowClock: typeof config === "undefined" || typeof config.alwaysShowClock === "undefined" || config.alwaysShowClock === true
 
     Behavior on factor {
         NumberAnimation {
             target: wallpaperFader
             property: "factor"
-            duration: 1000
+            duration: PlasmaCore.Units.veryLongDuration * 2
             easing.type: Easing.InOutQuad
         }
     }
@@ -69,7 +51,7 @@ Item {
 
         readonly property real contrast: 0.65 * wallpaperFader.factor + (1 - wallpaperFader.factor)
         readonly property real saturation: 1.6 * wallpaperFader.factor + (1 - wallpaperFader.factor)
-        readonly property real intensity: (wallpaperFader.lightBackground ? 1.7 : 0.6) * wallpaperFader.factor + (1 - wallpaperFader.factor)
+        readonly property real intensity: (wallpaperFader.lightColorScheme ? 1.7 : 0.6) * wallpaperFader.factor + (1 - wallpaperFader.factor)
 
         readonly property real transl: (1.0 - contrast) / 2.0;
         readonly property real rval: (1.0 - saturation) * 0.2126;
@@ -90,9 +72,8 @@ Item {
                     0,         0,         intensity, 0,
                     0,         0,         0,         1
                 ));
-    
 
-        fragmentShader: "
+        fragmentShader: `
             uniform mediump mat4 colorMatrix;
             uniform mediump sampler2D source;
             varying mediump vec2 qt_TexCoord0;
@@ -102,7 +83,8 @@ Item {
             {
                 mediump vec4 tex = texture2D(source, qt_TexCoord0);
                 gl_FragColor = tex * colorMatrix * qt_Opacity;
-            }"
+            }
+        `
     }
 
     states: [
@@ -118,7 +100,7 @@ Item {
             }
             PropertyChanges {
                 target: wallpaperFader
-                factor: 0
+                factor: .3
             }
             PropertyChanges {
                 target: clock.shadow
@@ -126,20 +108,6 @@ Item {
             }
             PropertyChanges {
                 target: clock
-                opacity: 1
-                anchors.horizontalCenter: formBg.horizontalCenter
-               // y: parent.height - height - 10
-            }
-            PropertyChanges {
-                target: formBg
-                opacity: 0.5
-            }
-            PropertyChanges {
-                target: blurArea
-                opacity: 1
-            }
-            PropertyChanges {
-                target: blur
                 opacity: 1
             }
         },
@@ -165,18 +133,6 @@ Item {
                 target: clock
                 opacity: wallpaperFader.alwaysShowClock ? 1 : 0
             }
-            PropertyChanges {
-                target: formBg
-                opacity: 0
-            }
-            PropertyChanges {
-                target: blurArea
-                opacity: 0
-            }
-            PropertyChanges {
-                target: blur
-                opacity: 0
-            }
         }
     ]
     transitions: [
@@ -187,7 +143,7 @@ Item {
             NumberAnimation {
                 targets: [mainStack, footer, clock]
                 property: "opacity"
-                duration: units.longDuration
+                duration: PlasmaCore.Units.veryLongDuration
                 easing.type: Easing.InOutQuad
             }
         },
@@ -197,7 +153,7 @@ Item {
             NumberAnimation {
                 targets: [mainStack, footer, clock]
                 property: "opacity"
-                duration: 500
+                duration: PlasmaCore.Units.veryLongDuration
                 easing.type: Easing.InOutQuad
             }
         }

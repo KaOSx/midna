@@ -6,10 +6,12 @@
 
 import QtQuick 2.5
 import QtQuick.Layouts 1.1
+import QtQuick.Window 2.15
 
 import org.kde.plasma.core 2.0 as PlasmaCore
 import org.kde.plasma.components 3.0 as PlasmaComponents3
 import org.kde.plasma.extras 2.0 as PlasmaExtras
+import org.kde.plasma.plasma5support 2.0 as P5Support
 
 Item {
     visible: mpris2Source.hasPlayer
@@ -23,14 +25,14 @@ Item {
 
         enabled: mpris2Source.canControl
 
-        PlasmaCore.DataSource {
+        P5Support.DataSource {
             id: mpris2Source
 
             readonly property string source: "@multiplex"
             readonly property var playerData: data[source]
 
             readonly property bool hasPlayer: sources.length > 1 && !!playerData
-            readonly property string identity: hasPlayer ? playerData.Identity : ""
+            readonly property string identity: hasPlayer && playerData.Identity || ""
             readonly property bool playing: hasPlayer && playerData.PlaybackStatus === "Playing"
             readonly property bool canControl: hasPlayer && playerData.CanControl
             readonly property bool canGoBack: hasPlayer && playerData.CanGoPrevious
@@ -55,7 +57,8 @@ Item {
                 const lastUrlPart = xesamUrl.substring(lastSlashPos + 1)
                 return decodeURIComponent(lastUrlPart)
             }
-            readonly property string artist: currentMetadata["xesam:artist"] || ""
+            readonly property var artists: currentMetadata["xesam:artist"] || [] // stringlist
+            readonly property var albumArtists: currentMetadata["xesam:albumArtist"] || [] // stringlist
             readonly property string albumArt: currentMetadata["mpris:artUrl"] || ""
 
             engine: "mpris2"
@@ -85,7 +88,7 @@ Item {
             asynchronous: true
             fillMode: Image.PreserveAspectFit
             source: mpris2Source.albumArt
-            sourceSize.height: height
+            sourceSize.height: height * Screen.devicePixelRatio
             visible: status === Image.Loading || status === Image.Ready
         }
 
@@ -117,7 +120,7 @@ Item {
                 wrapMode: Text.NoWrap
                 elide: Text.ElideRight
                 // if no artist is given, show player name instead
-                text: mpris2Source.artist || mpris2Source.identity || ""
+                text: mpris2Source.artists.length > 0 ? mpris2Source.artists.join(", ") : (mpris2Source.albumArtists.length > 0 ? mpris2Source.albumArtists.join(", ") : mpris2Source.identity)
                 textFormat: Text.PlainText
                 font.pointSize: PlasmaCore.Theme.smallestFont.pointSize + 1
                 maximumLineCount: 1
