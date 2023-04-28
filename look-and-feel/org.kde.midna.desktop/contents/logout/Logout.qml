@@ -89,20 +89,27 @@ PlasmaCore.ColorScope {
     }
 
     function isLightColor(color) {
-        return Math.max(color.r, color.g, color.b) > 0.5
+        return Math.max(color.r, color.g, color.b) > 0.9
     }
 
     Rectangle {
         id: backgroundRect
         anchors.fill: parent
         //use "black" because this is intended to look like a general darkening of the scene. a dark gray as normal background would just look too "washed out"
-        color: "#161925" // root.isLightColor(PlasmaCore.ColorScope.backgroundColor) ? PlasmaCore.ColorScope.backgroundColor : "black"
-        opacity: 0.3
+        color: "#777" // root.isLightColor(PlasmaCore.ColorScope.backgroundColor) ? PlasmaCore.ColorScope.backgroundColor : "black"
+        opacity: 0.1
     }
     MouseArea {
         anchors.fill: parent
         onClicked: root.cancelRequested()
     }
+    Image {
+        id: rectangle
+        anchors.centerIn: parent
+        width: Math.max(640, mainColumn.implicitWidth + 50)
+        height: Math.max(640, mainColumn.implicitHeight + 50)
+
+        source: "../components/artwork/rectangle.png"
     UserDelegate {
         width: PlasmaCore.Units.gridUnit * 8
         height: PlasmaCore.Units.gridUnit * 9
@@ -123,6 +130,7 @@ PlasmaCore.ColorScope {
             horizontalCenter: parent.horizontalCenter
         }
         spacing: PlasmaCore.Units.largeSpacing
+        id: mainColumn
 
         height: Math.max(implicitHeight, PlasmaCore.Units.gridUnit * 10)
         width: Math.max(implicitWidth, PlasmaCore.Units.gridUnit * 16)
@@ -155,7 +163,7 @@ PlasmaCore.ColorScope {
         }
 
         RowLayout {
-            spacing: PlasmaCore.Units.largeSpacing * 2
+            spacing: PlasmaCore.Units.largeSpacing // * 2
             Layout.alignment: Qt.AlignHCenter
             LogoutButton {
                 id: suspendButton
@@ -212,6 +220,7 @@ PlasmaCore.ColorScope {
             Layout.alignment: Qt.AlignHCenter
             //opacity, as visible would re-layout
             opacity: countDownTimer.running ? 1 : 0
+            color: "white"
             Behavior on opacity {
                 OpacityAnimator {
                     duration: PlasmaCore.Units.longDuration
@@ -246,5 +255,6 @@ PlasmaCore.ColorScope {
                 onClicked: root.cancelRequested()
             }
         }
+    }
     }
 }

@@ -44,21 +44,53 @@ Rectangle {
         color: "transparent"
         //visible: primaryScreen
 
+        Component {
+            id: userDelegate
+
+            PictureBox {
+                anchors.verticalCenter: parent.verticalCenter
+                name: (model.realName === "") ? model.name : model.realName
+                icon: model.icon
+                showPassword: model.needsPassword
+
+                focus: (listView.currentIndex === index) ? true : false
+                state: (listView.currentIndex === index) ? "active" : ""
+
+                onLogin: sddm.login(model.name, password, sessionIndex);
+
+                MouseArea {
+                    anchors.fill: parent
+                    onClicked: {
+                        listView.currentIndex = index;
+                        listView.focus = true;
+                    }
+                }
+            }
+        }
+        
         Clock {
             id: clock
-            anchors.margins: 5
-            anchors.top: parent.top
-            anchors.horizontalCenter: parent.horizontalCenter
+            anchors.margins: 50
+            anchors.bottom: parent.bottom
+            //anchors.horizontalCenter: parent.horizontalCenter
+            anchors.right: parent.right
 
             color: "white"
             timeFont.family: "Raleway"
         }
+        
+        //Rectangle {
+        //    width: parent.width / 2; height: parent.height
+        //    //color: "#22000000"
+        //    clip: true
+
+        //}
 
         Image {
             id: rectangle
             anchors.centerIn: parent
-            width: Math.max(320, mainColumn.implicitWidth + 50)
-            height: Math.max(320, mainColumn.implicitHeight + 50)
+            width: Math.max(640, mainColumn.implicitWidth + 50)
+            height: Math.max(500, mainColumn.implicitHeight + 50)
 
             source: "assets/rectangle.png"
 
@@ -80,6 +112,79 @@ Rectangle {
                 }
 
                 Column {
+                    width: parent.width
+                    Item {
+                        id: usersContainer
+                        width: 600
+                        height: 240
+                        //anchors.verticalCenter: parent.verticalCenter
+                        anchors.horizontalCenter: parent.horizontalCenter
+
+                        ImageButton {
+                            id: prevUser
+                            anchors.left: parent.left
+                            anchors.verticalCenter: parent.verticalCenter
+                            anchors.margins: 10
+                            source: "icons/angle-down.png"
+                            rotation : 90
+                            onClicked: listView.decrementCurrentIndex()
+
+                            KeyNavigation.backtab: btnShutdown; KeyNavigation.tab: listView
+                        }
+
+                        ListView {
+                            id: listView
+                            height: parent.height
+                            anchors.left: prevUser.right; anchors.right: nextUser.left
+                            anchors.verticalCenter: parent.verticalCenter
+                            anchors.margins: 10
+
+                            clip: true
+                            focus: true
+
+                            spacing: 5
+
+                            model: userModel
+                            delegate: userDelegate
+                            orientation: ListView.Horizontal
+                            highlightRangeMode: ListView.StrictlyEnforceRange
+
+                            //centre align selected item (which implicitly centre aligns the rest
+                            preferredHighlightBegin: width/2 - 150/2
+                            preferredHighlightEnd: preferredHighlightBegin
+
+                            currentIndex: userModel.lastIndex
+
+                            KeyNavigation.backtab: prevUser; KeyNavigation.tab: nextUser
+                        }
+
+                        ImageButton {
+                            id: nextUser
+                            anchors.right: parent.right
+                            anchors.verticalCenter: parent.verticalCenter
+                            anchors.margins: 10
+                            source: "icons/angle-down.png"
+                            rotation : 270
+                            onClicked: listView.incrementCurrentIndex()
+                            KeyNavigation.backtab: listView; KeyNavigation.tab: session
+                        }
+                    }
+                }
+                Column {
+                    width: parent.width
+                    Text {
+                        id: txtMessage
+                        //anchors.top: usersContainer.bottom;
+                        //anchors.margins: 1
+                        anchors.horizontalCenter: parent.horizontalCenter
+                        color: "black"
+                        text: textConstants.promptSelectUser
+                        wrapMode: Text.WordWrap
+                        //width:parent.width - 60
+                        font.pixelSize: 12
+                    }
+                }
+                /*Column {
                     width: parent.width
                     spacing: 4
                     Text {
@@ -132,7 +237,7 @@ Rectangle {
                             }
                         }
                     }
-                }
+                }*/
 
                 Row {
                     spacing: 4
@@ -195,7 +300,7 @@ Rectangle {
                     }
                 }
 
-                Column {
+                /*Column {
                     width: parent.width
                     Text {
                         id: errorMessage
@@ -203,7 +308,7 @@ Rectangle {
                         text: textConstants.prompt
                         font.pixelSize: 10
                     }
-                }
+                }*/
 
                 Row {
                     spacing: 4
@@ -215,6 +320,7 @@ Rectangle {
                         id: loginButton
                         text: textConstants.login
                         width: parent.btnWidth
+                        color: "#4D4D4D"
 
                         onClicked: sddm.login(name.text, password.text, sessionIndex)
 
@@ -225,6 +331,7 @@ Rectangle {
                         id: shutdownButton
                         text: textConstants.shutdown
                         width: parent.btnWidth
+                        color: "#4D4D4D"
 
                         onClicked: sddm.powerOff()
 
@@ -235,6 +342,7 @@ Rectangle {
                         id: rebootButton
                         text: textConstants.reboot
                         width: parent.btnWidth
+                        color: "#4D4D4D"
 
                         onClicked: sddm.reboot()
 

@@ -2,7 +2,7 @@
     "KPlugin": {
         "Authors": [
             {
-                "Email": "demmm@kaosx.us",
+                "Email": "demm@kaosx.us",
                 "Name": "KaOS theme files"
             }
         ],
@@ -12,7 +12,7 @@
         "Id": "midna",
         "License": "LGPL",
         "Name": "Midna",
-        "Version": "6.0",
+        "Version": "7.0",
         "Website": "https://kaosx.us"
     },
     "X-Plasma-API": "5.0"

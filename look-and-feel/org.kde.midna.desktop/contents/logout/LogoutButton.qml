@@ -24,7 +24,7 @@ ActionButton {
     font.pointSize: PlasmaCore.Theme.defaultFont.pointSize + 1
 
     circleVisiblity: activeFocus || containsMouse
-    circleOpacity: 0.15 // Selected option's circle is instantly visible
+    circleOpacity: 0.9 // Selected option's circle is instantly visible
     opacity: activeFocus || containsMouse ? 1 : 0.5
     Behavior on opacity {
         PropertyAnimation { // OpacityAnimator makes it turn black at random intervals

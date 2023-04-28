@@ -46,10 +46,10 @@ Item {
         anchors.centerIn: imageSource
         width: imageSource.width - 2 // Subtract to prevent fringing
         height: width
-        radius: width / 2
+        //radius: width / 2
 
         color: PlasmaCore.ColorScope.backgroundColor
-        opacity: 0.6
+        opacity: 0.8
     }
 
     Item {
@@ -110,7 +110,7 @@ Item {
 
         //if copying into another project don't forget to connect themeChanged to update()
         //but in SDDM that's a bit pointless
-        fragmentShader: `
+        /*fragmentShader: `
             varying highp vec2 qt_TexCoord0;
             uniform highp float qt_Opacity;
             uniform lowp sampler2D source;
@@ -140,7 +140,7 @@ Item {
 
                 gl_FragColor = gl_FragColor * qt_Opacity;
             }
-        `
+        `*/
     }
 
     PlasmaComponents3.Label {

@@ -103,7 +103,7 @@ FocusScope {
             horizontalAlignment: Text.AlignHCenter
             wrapMode: Text.WordWrap
             font.italic: true
-            color: "#B7B7B7"
+            color: "#FFFFFF"
         }
         ColumnLayout {
             Layout.minimumHeight: implicitHeight

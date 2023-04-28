@@ -91,6 +91,7 @@ Item {
             left: parent.left
             right: parent.right
         }
+        color: "white"
         style: softwareRendering ? Text.Outline : Text.Normal
         styleColor: softwareRendering ? PlasmaCore.ColorScope.backgroundColor : "transparent" //no outline, doesn't matter
         horizontalAlignment: Text.AlignHCenter
