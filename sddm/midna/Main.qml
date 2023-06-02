@@ -71,9 +71,9 @@ Rectangle {
         Clock {
             id: clock
             anchors.margins: 50
-            anchors.bottom: parent.bottom
+            anchors.top: parent.top
             //anchors.horizontalCenter: parent.horizontalCenter
-            anchors.right: parent.right
+            anchors.left: parent.left
 
             color: "white"
             timeFont.family: "Raleway"
