@@ -126,6 +126,7 @@ PlasmaCore.ColorScope {
         width: parent.width
         height: parent.height
         hoverEnabled: true
+        cursorShape: uiVisible ? Qt.ArrowCursor : Qt.BlankCursor
         drag.filterChildren: true
         onPressed: uiVisible = true;
         onPositionChanged: uiVisible = true;
@@ -168,6 +169,7 @@ PlasmaCore.ColorScope {
             interval: 10000
             onTriggered: {
                 if (!lockScreenRoot.blockUI) {
+                    mainBlock.mainPasswordBox.showPassword = false;
                     lockScreenRoot.uiVisible = false;
                 }
             }

@@ -1,6 +1,6 @@
-project(MidnaTheme)
+cmake_minimum_required(VERSION 3.16.0 FATAL_ERROR)
 
-cmake_minimum_required(VERSION 3.0.0 FATAL_ERROR)
+project(MidnaTheme)
 
 # Macro to print feature summary
 include(FeatureSummary)
@@ -42,7 +42,7 @@ add_custom_target(dist COMMAND ${CMAKE_MAKE_PROGRAM} package_source)
 set(QT_MIN_VERSION "6.4.0")
 set(KF6_MIN_VERSION "5.240.0")
 
-# Find KF5
+# Find KF6
 find_package(KF6 ${KF6_MIN_VERSION} REQUIRED COMPONENTS Plasma)
 
 # Subdirectories
