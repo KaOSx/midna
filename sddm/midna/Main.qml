@@ -17,8 +17,6 @@ Rectangle {
         target: sddm
 
         onLoginSucceeded: {
-            errorMessage.color = "steelblue"
-            errorMessage.text = textConstants.loginSucceeded
         }
 
         onLoginFailed: {
@@ -129,7 +127,7 @@ Rectangle {
                             rotation : 90
                             onClicked: listView.decrementCurrentIndex()
 
-                            KeyNavigation.backtab: btnShutdown; KeyNavigation.tab: listView
+                            KeyNavigation.backtab: rebootButton; KeyNavigation.tab: listView
                         }
 
                         ListView {
@@ -264,12 +262,12 @@ Rectangle {
                             width: parent.width; height: 30
                             font.pixelSize: 14
 
-                            arrowIcon: "icons/angle-down.png"
+                            arrowIcon: "/usr/share/sddm/themes/midna/icons/angle-down.png"
 
                             model: sessionModel
                             index: sessionModel.lastIndex
 
-                            KeyNavigation.backtab: password; KeyNavigation.tab: layoutBox
+                            KeyNavigation.backtab: listView; KeyNavigation.tab: layoutBox
                         }
                     }
 
@@ -293,7 +291,7 @@ Rectangle {
                             width: parent.width; height: 30
                             font.pixelSize: 14
 
-                            arrowIcon: "icons/angle-down.png"
+                            arrowIcon: "/usr/share/sddm/themes/midna/icons/angle-down.png"
 
                             KeyNavigation.backtab: session; KeyNavigation.tab: loginButton
                         }
@@ -322,7 +320,7 @@ Rectangle {
                         width: parent.btnWidth
                         color: "#4D4D4D"
 
-                        onClicked: sddm.login(name.text, password.text, sessionIndex)
+                        onClicked: sddm.login(userDelegate.name, userDelegate.password, sessionIndex)
 
                         KeyNavigation.backtab: layoutBox; KeyNavigation.tab: shutdownButton
                     }
@@ -346,17 +344,17 @@ Rectangle {
 
                         onClicked: sddm.reboot()
 
-                        KeyNavigation.backtab: shutdownButton; KeyNavigation.tab: name
+                        KeyNavigation.backtab: shutdownButton; KeyNavigation.tab: prevUser
                     }
                 }
             }
         }
     }
 
-    Component.onCompleted: {
+    /*Component.onCompleted: {
         if (name.text == "")
             name.focus = true
         else
             password.focus = true
-    }
+    }*/
 }
