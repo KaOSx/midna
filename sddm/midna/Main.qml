@@ -20,9 +20,12 @@ Rectangle {
         }
 
         onLoginFailed: {
-            password.text = ""
-            errorMessage.color = "red"
-            errorMessage.text = textConstants.loginFailed
+            txtMessage.text = textConstants.loginFailed
+            listView.currentItem.password = ""
+        }
+
+        onInformationMessage: {
+            txtMessage.text = message
         }
     }
 
@@ -311,10 +314,10 @@ Rectangle {
                 Row {
                     spacing: 4
                     anchors.horizontalCenter: parent.horizontalCenter
-                    property int btnWidth: Math.max(loginButton.implicitWidth,
+                    property int btnWidth: Math.max(
                                                     shutdownButton.implicitWidth,
-                                                    rebootButton.implicitWidth, 80) + 8
-                    Button {
+                                                    rebootButton.implicitWidth, 120) + 8
+                    /*Button {
                         id: loginButton
                         text: textConstants.login
                         width: parent.btnWidth
@@ -323,7 +326,7 @@ Rectangle {
                         onClicked: sddm.login(userDelegate.name, userDelegate.password, sessionIndex)
 
                         KeyNavigation.backtab: layoutBox; KeyNavigation.tab: shutdownButton
-                    }
+                    }*/
 
                     Button {
                         id: shutdownButton
