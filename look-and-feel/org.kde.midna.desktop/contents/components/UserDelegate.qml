@@ -8,7 +8,6 @@
 import QtQuick 2.15
 import QtQuick.Window 2.15
 
-import org.kde.plasma.core 2.0 as PlasmaCore
 import org.kde.plasma.components 3.0 as PlasmaComponents3
 import org.kde.kirigami 2.20 as Kirigami
 
@@ -76,12 +75,11 @@ Item {
             anchors.fill: parent
         }
 
-        PlasmaCore.IconItem {
+        Kirigami.Icon {
             id: faceIcon
             source: iconSource
             visible: (face.status == Image.Error || face.status == Image.Null)
             anchors.fill: parent
-            colorGroup: Kirigami.ColorScope.colorGroup
         }
     }
 
