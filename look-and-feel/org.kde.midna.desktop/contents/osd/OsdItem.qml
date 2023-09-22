@@ -9,6 +9,7 @@ import QtQuick 2.14
 import QtQuick.Layouts 1.1
 import org.kde.plasma.core 2.0 as PlasmaCore
 import org.kde.plasma.components 3.0 as PlasmaComponents3
+import org.kde.kirigami 2.20 as Kirigami
 import org.kde.plasma.extras 2.0 as PlasmaExtra
 import QtQuick.Window 2.2
 
@@ -26,10 +27,10 @@ RowLayout {
     // false for displaying the value as normal text
     property bool showingProgress: false
 
-    spacing: PlasmaCore.Units.smallSpacing
+    spacing: Kirigami.Units.smallSpacing
 
-    Layout.preferredWidth: Math.max(Math.min(Screen.desktopAvailableWidth / 2, implicitWidth), PlasmaCore.Units.gridUnit * 15)
-    Layout.preferredHeight: PlasmaCore.Units.iconSizes.medium
+    Layout.preferredWidth: Math.max(Math.min(Screen.desktopAvailableWidth / 2, implicitWidth), Kirigami.Units.gridUnit * 15)
+    Layout.preferredHeight: Kirigami.Units.iconSizes.medium
     Layout.minimumWidth: Layout.preferredWidth
     Layout.minimumHeight: Layout.preferredHeight
     Layout.maximumWidth: Layout.preferredWidth
@@ -37,10 +38,10 @@ RowLayout {
     width: Layout.preferredWidth
     height: Layout.preferredHeight
 
-    PlasmaCore.IconItem {
-        Layout.leftMargin: PlasmaCore.Units.smallSpacing
-        Layout.preferredWidth: PlasmaCore.Units.iconSizes.medium
-        Layout.preferredHeight: PlasmaCore.Units.iconSizes.medium
+    Kirigami.IconItem {
+        Layout.leftMargin: Kirigami.Units.smallSpacing
+        Layout.preferredWidth: Kirigami.Units.iconSizes.medium
+        Layout.preferredHeight: Kirigami.Units.iconSizes.medium
         Layout.alignment: Qt.AlignVCenter
         source: icon
         visible: valid
@@ -52,7 +53,7 @@ RowLayout {
         Layout.alignment: Qt.AlignVCenter
         // So it never exceeds the minimum popup size
         Layout.minimumWidth: 0
-        Layout.rightMargin: PlasmaCore.Units.smallSpacing
+        Layout.rightMargin: Kirigami.Units.smallSpacing
         visible: showingProgress
         from: 0
         to: osdMaxValue
@@ -72,7 +73,7 @@ RowLayout {
         id: percentageLabel
         Layout.fillHeight: true
         Layout.preferredWidth: widestLabelSize.width
-        Layout.rightMargin: PlasmaCore.Units.smallSpacing
+        Layout.rightMargin: Kirigami.Units.smallSpacing
         Layout.alignment: Qt.AlignVCenter
         level: 3
         horizontalAlignment: Text.AlignHCenter
@@ -86,11 +87,11 @@ RowLayout {
         // and plasma-pa:VolumeSlider.qml
         color: {
             if (progressBar.value <= 100) {
-                return PlasmaCore.Theme.textColor
+                return Kirigami.Theme.textColor
             } else if (progressBar.value > 100 && progressBar.value <= 125) {
-                return PlasmaCore.Theme.neutralTextColor
+                return Kirigami.Theme.neutralTextColor
             } else {
-                return PlasmaCore.Theme.negativeTextColor
+                return Kirigami.Theme.negativeTextColor
             }
         }
     }
@@ -99,7 +100,7 @@ RowLayout {
         id: label
         Layout.fillWidth: true
         Layout.fillHeight: true
-        Layout.rightMargin: PlasmaCore.Units.smallSpacing
+        Layout.rightMargin: Kirigami.Units.smallSpacing
         Layout.alignment: Qt.AlignVCenter
         level: 3
         horizontalAlignment: Text.AlignHCenter
