@@ -18,9 +18,8 @@ Item {
     property Item mainStack
     property Item footer
     property alias source: wallpaperBlur.source
-    state: lockScreenRoot.uiVisible ? "on" : "off"
     property real factor: 0
-    readonly property bool lightColorScheme: Math.max(Kirigami.ColorScope.backgroundColor.r, Kirigami.ColorScope.backgroundColor.g, Kirigami.ColorScope.backgroundColor.b) > 0.5
+    readonly property bool lightColorScheme: Math.max(Kirigami.Theme.backgroundColor.r, Kirigami.Theme.backgroundColor.g, Kirigami.Theme.backgroundColor.b) > 0.5
 
     property bool alwaysShowClock: typeof config === "undefined" || typeof config.alwaysShowClock === "undefined" || config.alwaysShowClock === true
 
@@ -72,18 +71,7 @@ Item {
                     0,         0,         0,         1
                 ));
 
-        fragmentShader: `
-            uniform mediump mat4 colorMatrix;
-            uniform mediump sampler2D source;
-            varying mediump vec2 qt_TexCoord0;
-            uniform lowp float qt_Opacity;
-
-            void main(void)
-            {
-                mediump vec4 tex = texture2D(source, qt_TexCoord0);
-                gl_FragColor = tex * colorMatrix * qt_Opacity;
-            }
-        `
+        fragmentShader: "WallpaperFader.frag.qsb"
     }
 
     states: [

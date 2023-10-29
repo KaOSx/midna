@@ -14,6 +14,7 @@ import org.kde.plasma.components 3.0 as PlasmaComponents3
 import org.kde.plasma.workspace.components 2.0 as PW
 import org.kde.plasma.plasma5support 2.0 as P5Support
 import org.kde.kirigami 2.20 as Kirigami
+import org.kde.kscreenlocker 1.0 as ScreenLocker
 
 import org.kde.plasma.private.sessions 2.0
 import "../components"
@@ -25,18 +26,47 @@ Item {
     // If we're using software rendering, draw outlines instead of shadows
     // See https://bugs.kde.org/show_bug.cgi?id=398317
     readonly property bool softwareRendering: GraphicsInfo.api === GraphicsInfo.Software
-    property bool hadPrompt: false;
+    property bool hadPrompt: false
+
+    function tryToSwitchUser(canStartSession) {
+        if (!defaultToSwitchUser) { // context property
+            return
+        }
+        // If we are in the only session, then going to the session switcher is
+        // a pointless extra step; instead create a new session immediately
+        if (canStartSession &&
+            ((sessionsModel.showNewSessionEntry && sessionsModel.count === 1)  ||
+            (!sessionsModel.showNewSessionEntry && sessionsModel.count === 0)) &&
+            sessionsModel.canStartNewSession) {
+            sessionsModel.startNewSession(true /* lock the screen too */)
+        } else {
+            mainStack.push(switchSessionPage, {immediate: true})
+        }
+    }
+
+    Component.onCompleted: Qt.callLater(tryToSwitchUser, true)
+
+    function handleMessage(msg) {
+        if (!root.notification) {
+            root.notification += msg;
+        } else if (root.notification.includes(msg)) {
+            root.notificationRepeated();
+        } else {
+            root.notification += "\n" + msg
+        }
+    }
 
     Kirigami.Theme.inherit: false
     Kirigami.Theme.colorSet: Kirigami.Theme.Complementary
 
     Connections {
         target: authenticator
-        function onFailed() {
-            if (root.notification) {
-                root.notification += "\n"
+        function onFailed(kind) {
+            if (kind != 0) { // if this is coming from the noninteractive authenticators
+                return;
             }
-            root.notification += i18nd("plasma_lookandfeel_org.kde.lookandfeel","Unlocking failed");
+            const msg = i18nd("plasma_lookandfeel_org.kde.lookandfeel", "Unlocking failed");
+            lockScreenUi.handleMessage(msg);
             graceLockTimer.restart();
             notificationRemoveTimer.restart();
             rejectPasswordAnimation.start();
@@ -47,34 +77,28 @@ Item {
             if (lockScreenUi.hadPrompt) {
                 Qt.quit();
             } else {
-                mainStack.push(Qt.resolvedUrl("NoPasswordUnlock.qml"),
-                               {"userListModel": users});
+                mainStack.replace(null, Qt.resolvedUrl("NoPasswordUnlock.qml"), {"userListModel": users}, StackView.Immediate)
                 mainStack.forceActiveFocus();
             }
         }
 
-        function onInfoMessage(msg) {
-            if (root.notification) {
-                root.notification += "\n"
-            }
-            root.notification += msg;
+        function onInfoMessageChanged() {
+            lockScreenUi.handleMessage(authenticator.InfoMessage);
             lockScreenUi.hadPrompt = true;
         }
 
-        function onErrorMessage(msg) {
-            if (root.notification) {
-                root.notification += "\n"
-            }
-            root.notification += msg;
+        function onErrorMessageChanged() {
+            lockScreenUi.handleMessage(authenticator.errorMessage);
         }
 
-        function onPrompt(msg) {
-            root.notification = msg;
+        function onPromptChanged() {
+            root.notification = Qt.binding(() => authenticator.prompt);
             mainBlock.showPassword = true;
             mainBlock.mainPasswordBox.forceActiveFocus();
             lockScreenUi.hadPrompt = true;
         }
-        function onPromptForSecret(msg) {
+        function onPromptForSecretChanged() {
+            root.notification = Qt.binding(() => authenticator.promptForSecret);
             mainBlock.showPassword = false;
             mainBlock.mainPasswordBox.forceActiveFocus();
             lockScreenUi.hadPrompt = true;
@@ -118,8 +142,6 @@ Item {
     MouseArea {
         id: lockScreenRoot
 
-        property bool calledUnlock: false
-        property bool uiVisible: false
         property bool blockUI: mainStack.depth > 1 || mainBlock.mainPasswordBox.text.length > 0 || inputPanel.keyboardActive
 
         x: parent.x
@@ -127,25 +149,14 @@ Item {
         width: parent.width
         height: parent.height
         hoverEnabled: true
-        cursorShape: uiVisible ? Qt.ArrowCursor : Qt.BlankCursor
+        cursorShape: authenticator.state == ScreenLocker.Authenticators.Authenticating ? Qt.ArrowCursor : Qt.BlankCursor
         drag.filterChildren: true
-        onPressed: uiVisible = true;
-        onPositionChanged: uiVisible = true;
-        onUiVisibleChanged: {
-            if (blockUI) {
-                fadeoutTimer.running = false;
-            } else if (uiVisible) {
-                fadeoutTimer.restart();
-            }
-            if (!calledUnlock) {
-                calledUnlock = true
-                authenticator.tryUnlock();
-            }
-        }
+        onPressed: authenticator.startAuthenticating()
+        onPositionChanged: authenticator.startAuthenticating()
         onBlockUIChanged: {
             if (blockUI) {
                 fadeoutTimer.running = false;
-                uiVisible = true;
+                authenticator.startAuthenticating();
             } else {
                 fadeoutTimer.restart();
             }
@@ -153,16 +164,16 @@ Item {
         Keys.onEscapePressed: {
             // If the escape key is pressed, kscreenlocker will turn off the screen.
             // We do not want to show the password prompt in this case.
-            if (uiVisible) {
-                uiVisible = false;
+            if (authenticator.state == ScreenLocker.Authenticators.Authenticating) {
+                authenticator.stopAuthenticating();
                 if (inputPanel.keyboardActive) {
                     inputPanel.showHide();
                 }
                 root.clearPassword();
             }
         }
-        Keys.onPressed: {
-            uiVisible = true;
+        Keys.onPressed: event => {
+            authenticator.startAuthenticating();
             event.accepted = false;
         }
         Timer {
@@ -171,7 +182,7 @@ Item {
             onTriggered: {
                 if (!lockScreenRoot.blockUI) {
                     mainBlock.mainPasswordBox.showPassword = false;
-                    lockScreenRoot.uiVisible = false;
+                    authenticator.stopAuthenticating();
                 }
             }
         }
@@ -222,7 +233,7 @@ Item {
 
         WallpaperFader {
             anchors.fill: parent
-            state: lockScreenRoot.uiVisible ? "on" : "off"
+            state: authenticator.state == ScreenLocker.Authenticators.Authenticating ? "on" : "off"
             source: wallpaper
             mainStack: mainStack
             footer: footer
@@ -284,7 +295,7 @@ Item {
 
             initialItem: MainBlock {
                 id: mainBlock
-                lockScreenUiVisible: lockScreenRoot.uiVisible
+                lockScreenUiVisible: authenticator.state == ScreenLocker.Authenticators.Authenticating
 
                 showUserList: userList.y + mainStack.y > 0
 
@@ -312,7 +323,7 @@ Item {
                     return parts.join(" • ");
                 }
 
-                onPasswordResult: {
+                onPasswordResult: password => {
                     authenticator.respond(password)
                 }
 
@@ -354,23 +365,6 @@ Item {
                     Layout.preferredHeight: item ? item.implicitHeight : 0
                     active: config.showMediaControls
                     source: "MediaControls.qml"
-                }
-            }
-
-            Component.onCompleted: {
-                if (defaultToSwitchUser) { //context property
-                    // If we are in the only session, then going to the session switcher is
-                    // a pointless extra step; instead create a new session immediately
-                    if (((sessionsModel.showNewSessionEntry && sessionsModel.count === 1)  ||
-                       (!sessionsModel.showNewSessionEntry && sessionsModel.count === 0)) &&
-                       sessionsModel.canStartNewSession) {
-                        sessionsModel.startNewSession(true /* lock the screen too */)
-                    } else {
-                        mainStack.push({
-                            item: switchSessionPage,
-                            immediate: true,
-                        });
-                    }
                 }
             }
         }
@@ -564,10 +558,16 @@ Item {
             anchors {
                 horizontalCenter: parent.horizontalCenter
                 bottom: parent.bottom
-                bottomMargin: Kirigami.Units.largeSpacing
+                bottomMargin: Kirigami.Units.gridUnit
             }
         }
 
+        // Note: Containment masks stretch clickable area of their buttons to
+        // the screen edges, essentially making them adhere to Fitts's law.
+        // Due to virtual keyboard button having an icon, buttons may have
+        // different heights, so fillHeight is required.
+        //
+        // Note for contributors: Keep this in sync with SDDM Main.qml footer.
         RowLayout {
             id: footer
             anchors {
@@ -576,8 +576,11 @@ Item {
                 right: parent.right
                 margins: Kirigami.Units.smallSpacing
             }
+            spacing: Kirigami.Units.smallSpacing
 
             PlasmaComponents3.ToolButton {
+                id: virtualKeyboardButton
+
                 focusPolicy: Qt.TabFocus
                 text: i18ndc("plasma_lookandfeel_org.kde.lookandfeel", "Button to show/hide virtual keyboard", "Virtual Keyboard")
                 icon.name: inputPanel.keyboardActive ? "input-keyboard-virtual-on" : "input-keyboard-virtual-off"
@@ -589,9 +592,19 @@ Item {
                 }
 
                 visible: inputPanel.status == Loader.Ready
+
+                Layout.fillHeight: true
+                containmentMask: Item {
+                    parent: virtualKeyboardButton
+                    anchors.fill: parent
+                    anchors.leftMargin: -footer.anchors.margins
+                    anchors.bottomMargin: -footer.anchors.margins
+                }
             }
 
             PlasmaComponents3.ToolButton {
+                id: keyboardButton
+
                 focusPolicy: Qt.TabFocus
                 Accessible.description: i18ndc("plasma_lookandfeel_org.kde.lookandfeel", "Button to change keyboard layout", "Switch layout")
                 icon.name: "input-keyboard"
@@ -607,6 +620,14 @@ Item {
                 onClicked: keyboardLayoutSwitcher.keyboardLayout.switchToNextLayout()
 
                 visible: keyboardLayoutSwitcher.hasMultipleKeyboardLayouts
+
+                Layout.fillHeight: true
+                containmentMask: Item {
+                    parent: keyboardButton
+                    anchors.fill: parent
+                    anchors.leftMargin: virtualKeyboardButton.visible ? 0 : -footer.anchors.margins
+                    anchors.bottomMargin: -footer.anchors.margins
+                }
             }
 
             Item {

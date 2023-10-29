@@ -26,7 +26,7 @@ Item {
 
     property int iconSize: Kirigami.Units.gridUnit * 3
 
-    implicitWidth: Math.max(iconSize + Kirigami.Units.largeSpacing * 2, label.contentWidth)
+    implicitWidth: Math.max(iconSize + Kirigami.Units.gridUnit * 2, label.contentWidth)
     implicitHeight: iconSize + Kirigami.Units.smallSpacing + label.implicitHeight
 
     opacity: activeFocus || containsMouse ? 1 : 0.85
@@ -43,7 +43,7 @@ Item {
         width: iconSize + Kirigami.Units.smallSpacing
         height: width
         radius: width / 2
-        color: softwareRendering ?  Kirigami.ColorScope.backgroundColor : Kirigami.ColorScope.textColor
+        color: softwareRendering ?  Kirigami.Theme.backgroundColor : Kirigami.Theme.textColor
         opacity: root.activeFocus || containsMouse ? (softwareRendering ? 0.8 : 0.15) : (softwareRendering ? 0.6 : 0)
         Behavior on opacity {
             PropertyAnimation { // OpacityAnimator makes it turn black at random intervals
@@ -59,7 +59,7 @@ Item {
         height: width
         radius: width / 2
         scale: mouseArea.containsPress ? 1 : 0
-        color: Kirigami.ColorScope.textColor
+        color: Kirigami.Theme.textColor
         opacity: 0.15
         Behavior on scale {
             PropertyAnimation {
@@ -75,6 +75,7 @@ Item {
             top: parent.top
             horizontalCenter: parent.horizontalCenter
         }
+        isMask: true
         width: iconSize
         height: iconSize
 

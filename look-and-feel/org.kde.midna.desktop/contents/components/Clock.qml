@@ -18,17 +18,17 @@ ColumnLayout {
         text: Qt.formatTime(timeSource.data["Local"]["DateTime"])
         color: "#B7B7B7"
         style: softwareRendering ? Text.Outline : Text.Normal
-        styleColor: softwareRendering ? Kirigami.ColorScope.backgroundColor : "transparent" //no outline, doesn't matter
+        styleColor: softwareRendering ? Kirigami.Theme.backgroundColor : "transparent" //no outline, doesn't matter
         font.pointSize: 48
         font.weight: Font.Medium
         font.family: "Raleway"
         Layout.alignment: Qt.AlignHCenter
     }
     PlasmaComponents3.Label {
-        text: Qt.formatDate(timeSource.data["Local"]["DateTime"], Qt.DefaultLocaleLongDate)
+        text: Qt.formatDate(timeSource.data["Local"]["DateTime"], Locale.LongFormat)
         color: "#989898"
         style: softwareRendering ? Text.Outline : Text.Normal
-        styleColor: softwareRendering ? Kirigami.ColorScope.backgroundColor : "transparent" //no outline, doesn't matter
+        styleColor: softwareRendering ? Kirigami.Theme.backgroundColor : "transparent" //no outline, doesn't matter
         font.pointSize: 24
         font.weight: Font.Medium
         font.family: "Raleway"

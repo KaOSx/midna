@@ -4,13 +4,10 @@
     SPDX-License-Identifier: GPL-2.0-or-later
 */
 
-import QtQuick 2.0
-import QtQuick.Window 2.2
-import org.kde.plasma.core 2.0 as PlasmaCore
-import org.kde.plasma.extras 2.0 as PlasmaExtra
+import QtQuick
+import org.kde.plasma.core as PlasmaCore
 
 PlasmaCore.Dialog {
-    id: root
     location: PlasmaCore.Types.Floating
     type: PlasmaCore.Dialog.OnScreenDisplay
     outputOnly: true

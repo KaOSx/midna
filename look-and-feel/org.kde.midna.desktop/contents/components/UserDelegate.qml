@@ -46,10 +46,10 @@ Item {
         anchors.centerIn: imageSource
         width: imageSource.width - 2 // Subtract to prevent fringing
         height: width
-        //radius: width / 2
+        radius: width / 2
 
-        color: Kirigami.ColorScope.backgroundColor
-        opacity: 0.8
+        color: Kirigami.Theme.backgroundColor
+        opacity: 0.6
     }
 
     Item {
@@ -63,7 +63,7 @@ Item {
                 duration: Kirigami.Units.longDuration;
             }
         }
-        width: isCurrent ? faceSize : faceSize - Kirigami.Units.largeSpacing
+        width: isCurrent ? faceSize : faceSize - Kirigami.Units.gridUnit
         height: width
 
         //Image takes priority, taking a full path to a file, if that doesn't exist we show an icon
@@ -78,7 +78,7 @@ Item {
         Kirigami.Icon {
             id: faceIcon
             source: iconSource
-            visible: (face.status == Image.Error || face.status == Image.Null)
+            visible: face.status === Image.Error || face.status === Image.Null
             anchors.fill: parent
         }
     }
@@ -99,47 +99,9 @@ Item {
             live: true // otherwise the user in focus will show a blurred avatar
         }
 
-        readonly property color colorBorder: Kirigami.ColorScope.textColor
+        readonly property color colorBorder: Kirigami.Theme.textColor
 
-        //draw a circle with an antialiased border
-        //innerRadius = size of the inner circle with contents
-        //outerRadius = size of the border
-        //blend = area to blend between two colours
-        //all sizes are normalised so 0.5 == half the width of the texture
-
-        //if copying into another project don't forget to connect themeChanged to update()
-        //but in SDDM that's a bit pointless
-        /*fragmentShader: `
-            varying highp vec2 qt_TexCoord0;
-            uniform highp float qt_Opacity;
-            uniform lowp sampler2D source;
-            uniform lowp vec4 colorBorder;
-
-            const highp float blend = 0.01;
-            const highp float innerRadius = 0.47;
-            const highp float outerRadius = 0.49;
-            const lowp vec4 colorEmpty = vec4(0.0, 0.0, 0.0, 0.0);
-
-            void main() {
-                lowp vec4 colorSource = texture2D(source, qt_TexCoord0.st);
-
-                highp vec2 m = qt_TexCoord0 - vec2(0.5, 0.5);
-                highp float dist = sqrt(m.x * m.x + m.y * m.y);
-
-                if (dist < innerRadius)
-                    gl_FragColor = colorSource;
-                else if (dist < innerRadius + blend)
-                    gl_FragColor = mix(colorSource, colorBorder, ((dist - innerRadius) / blend));
-                else if (dist < outerRadius)
-                    gl_FragColor = colorBorder;
-                else if (dist < outerRadius + blend)
-                    gl_FragColor = mix(colorBorder, colorEmpty, ((dist - outerRadius) / blend));
-                else
-                    gl_FragColor = colorEmpty;
-
-                gl_FragColor = gl_FragColor * qt_Opacity;
-            }
-        `*/
+        fragmentShader: "UserDelegate.frag.qsb"
     }
 
     PlasmaComponents3.Label {
@@ -152,10 +114,10 @@ Item {
         // Make it bigger than other fonts to match the scale of the avatar better
         font.pointSize: wrapper.fontSize + 4
 
-        width: constrainText ? parent.width : implicitWidth
+        width: constrainText ? parent.width : undefined
         text: wrapper.name
         style: softwareRendering ? Text.Outline : Text.Normal
-        styleColor: softwareRendering ? Kirigami.ColorScope.backgroundColor : "transparent" //no outline, doesn't matter
+        styleColor: softwareRendering ? Kirigami.Theme.backgroundColor : "transparent" //no outline, doesn't matter
         wrapMode: Text.WordWrap
         maximumLineCount: wrapper.constrainText ? 3 : 1
         elide: Text.ElideRight
