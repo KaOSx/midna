@@ -40,10 +40,10 @@ add_custom_target(dist COMMAND ${CMAKE_MAKE_PROGRAM} package_source)
 
 # Minimum version requirements
 set(QT_MIN_VERSION "6.4.0")
-set(KF6_MIN_VERSION "5.240.0")
+set(PROJECT_VERSION "5.91.90")
 
 # Find KF6
-find_package(KF6 ${KF6_MIN_VERSION} REQUIRED COMPONENTS Plasma)
+find_package(Plasma ${PROJECT_VERSION} REQUIRED)
 
 # Subdirectories
 add_subdirectory(aurorae)
