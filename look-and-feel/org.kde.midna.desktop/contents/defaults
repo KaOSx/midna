@@ -16,12 +16,6 @@ Image=midna
 [kcminputrc][Mouse]
 cursorTheme=breeze_cursors
 
-[kwinrc][WindowSwitcher]
-LayoutName=org.kde.midna.desktop
-
-[kwinrc][DesktopSwitcher]
-LayoutName=org.kde.midna.desktop
-
 [kwinrc][org.kde.kdecoration2]
 library=org.kde.breeze
 
