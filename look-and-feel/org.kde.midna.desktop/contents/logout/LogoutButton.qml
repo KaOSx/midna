@@ -1,46 +1,43 @@
-/***************************************************************************
- *   Copyright (C) 2016 Marco Martin <mart@kde.org>                        *
- *                                                                         *
- *   This program is free software; you can redistribute it and/or modify  *
- *   it under the terms of the GNU General Public License as published by  *
- *   the Free Software Foundation; either version 2 of the License, or     *
- *   (at your option) any later version.                                   *
- *                                                                         *
- *   This program is distributed in the hope that it will be useful,       *
- *   but WITHOUT ANY WARRANTY; without even the implied warranty of        *
- *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the         *
- *   GNU General Public License for more details.                          *
- *                                                                         *
- *   You should have received a copy of the GNU General Public License     *
- *   along with this program; if not, write to the                         *
- *   Free Software Foundation, Inc.,                                       *
- *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA .        *
- ***************************************************************************/
+/*
+    SPDX-FileCopyrightText: 2016 Marco Martin <mart@kde.org>
+
+    SPDX-License-Identifier: GPL-2.0-or-later
+*/
 
 import QtQuick 2.2
 import QtQuick.Layouts 1.2
 
-import org.kde.plasma.core 2.0 as PlasmaCore
+import org.kde.kirigami 2.20 as Kirigami
 
 import "../components"
 import "timer.js" as AutoTriggerTimer
 
 ActionButton {
     property var action
-    onClicked: action()
+
     Layout.alignment: Qt.AlignTop
-    iconSize: units.iconSizes.huge
-    circleVisiblity: activeFocus || containsMouse
-    circleOpacity: 0.15 // Selected option's circle is instantly visible
-    opacity: activeFocus || containsMouse ? 1 : 0.5
+
+    iconSize: Kirigami.Units.iconSizes.huge
+
     labelRendering: Text.QtRendering // Remove once we've solved Qt bug: https://bugreports.qt.io/browse/QTBUG-70138 (KDE bug: https://bugs.kde.org/show_bug.cgi?id=401644)
     font.underline: false
-    font.pointSize: theme.defaultFont.pointSize + 1
+    font.pointSize: Kirigami.Theme.defaultFont.pointSize + 1
+
+    circleVisiblity: activeFocus || containsMouse
+    circleOpacity: 0.9 // Selected option's circle is instantly visible
+    opacity: activeFocus || containsMouse ? 1 : 0.5
     Behavior on opacity {
-        OpacityAnimator {
-            duration: units.longDuration
+        PropertyAnimation { // OpacityAnimator makes it turn black at random intervals
+            duration: Kirigami.Units.longDuration
             easing.type: Easing.InOutQuad
         }
     }
-    Keys.onPressed: AutoTriggerTimer.cancelAutoTrigger();
+
+    Keys.onPressed: {
+        AutoTriggerTimer.cancelAutoTrigger();
+    }
+
+    onClicked: {
+        action()
+    }
 }

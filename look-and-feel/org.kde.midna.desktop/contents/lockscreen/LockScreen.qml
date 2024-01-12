@@ -5,7 +5,6 @@
 */
 
 import QtQuick 2.5
-import org.kde.plasma.core 2.0 as PlasmaCore
 import org.kde.plasma.private.sessions 2.0
 import "../components"
 
@@ -14,6 +13,7 @@ Item {
     property bool debug: false
     property string notification
     signal clearPassword()
+    signal notificationRepeated()
 
     // These are magical properties that kscreenlocker looks for
     property bool viewVisible: false

@@ -1,38 +1,26 @@
-/***************************************************************************
- *   Copyright (C) 2014 by Aleix Pol Gonzalez <aleixpol@blue-systems.com>  *
- *                                                                         *
- *   This program is free software; you can redistribute it and/or modify  *
- *   it under the terms of the GNU General Public License as published by  *
- *   the Free Software Foundation; either version 2 of the License, or     *
- *   (at your option) any later version.                                   *
- *                                                                         *
- *   This program is distributed in the hope that it will be useful,       *
- *   but WITHOUT ANY WARRANTY; without even the implied warranty of        *
- *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the         *
- *   GNU General Public License for more details.                          *
- *                                                                         *
- *   You should have received a copy of the GNU General Public License     *
- *   along with this program; if not, write to the                         *
- *   Free Software Foundation, Inc.,                                       *
- *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA .        *
- ***************************************************************************/
+/*
+    SPDX-FileCopyrightText: 2014 Aleix Pol Gonzalez <aleixpol@blue-systems.com>
+
+    SPDX-License-Identifier: GPL-2.0-or-later
+*/
 
 import QtQuick 2.2
 import QtQuick.Layouts 1.2
 import QtQuick.Controls 2.12 as QQC2
 
-import org.kde.plasma.core 2.0 as PlasmaCore
 import org.kde.plasma.components 3.0 as PlasmaComponents
-import org.kde.kcoreaddons 1.0 as KCoreAddons
+import org.kde.coreaddons 1.0 as KCoreAddons
+import org.kde.kirigami 2.20 as Kirigami
 
 import "../components"
 import "timer.js" as AutoTriggerTimer
 
 import org.kde.plasma.private.sessions 2.0
 
-PlasmaCore.ColorScope {
+Item {
     id: root
-    colorGroup: PlasmaCore.Theme.ComplementaryColorGroup
+    Kirigami.Theme.inherit: false
+    Kirigami.Theme.colorSet: Kirigami.Theme.Complementary
     height: screenGeometry.height
     width: screenGeometry.width
 
@@ -53,7 +41,7 @@ PlasmaCore.ColorScope {
     function hibernateRequested() {
         root.suspendRequested(4);
     }
- 
+
     property real timeout: 30
     property real remainingTime: root.timeout
     property var currentAction: {
@@ -102,23 +90,30 @@ PlasmaCore.ColorScope {
     }
 
     function isLightColor(color) {
-        return Math.max(color.r, color.g, color.b) > 0.5
+        return Math.max(color.r, color.g, color.b) > 0.9
     }
 
     Rectangle {
         id: backgroundRect
         anchors.fill: parent
         //use "black" because this is intended to look like a general darkening of the scene. a dark gray as normal background would just look too "washed out"
-        color: "#161925" //root.isLightColor(PlasmaCore.ColorScope.backgroundColor) ? PlasmaCore.ColorScope.backgroundColor : "black"
-        opacity: 0.3
+        color: "#777" // root.isLightColor(Kirigami.Theme.backgroundColor) ? Kirigami.Theme.backgroundColor : "black"
+        opacity: 0.1
     }
     MouseArea {
         anchors.fill: parent
         onClicked: root.cancelRequested()
     }
+    Image {
+        id: rectangle
+        anchors.centerIn: parent
+        width: Math.max(640, mainColumn.implicitWidth + 50)
+        height: Math.max(640, mainColumn.implicitHeight + 50)
+
+        source: "../components/artwork/rectangle.png"
     UserDelegate {
-        width: units.gridUnit * 7
-        height: width
+        width: Kirigami.Units.gridUnit * 8
+        height: Kirigami.Units.gridUnit * 9
         anchors {
             horizontalCenter: parent.horizontalCenter
             bottom: parent.verticalCenter
@@ -132,17 +127,18 @@ PlasmaCore.ColorScope {
     ColumnLayout {
         anchors {
             top: parent.verticalCenter
-            topMargin: units.gridUnit * 2
+            topMargin: Kirigami.Units.gridUnit * 2
             horizontalCenter: parent.horizontalCenter
         }
-        spacing: units.largeSpacing
+        spacing: Kirigami.Units.largeSpacing
+        id: mainColumn
 
-        height: Math.max(implicitHeight, units.gridUnit * 10)
-        width: Math.max(implicitWidth, units.gridUnit * 16)
+        height: Math.max(implicitHeight, Kirigami.Units.gridUnit * 10)
+        width: Math.max(implicitWidth, Kirigami.Units.gridUnit * 16)
 
         PlasmaComponents.Label {
-            font.pointSize: theme.defaultFont.pointSize + 1
-            Layout.maximumWidth: units.gridUnit * 16
+            font.pointSize: Kirigami.Theme.defaultFont.pointSize + 1
+            Layout.maximumWidth: Math.max(Kirigami.Units.gridUnit * 16, logoutButtonsRow.implicitWidth)
             Layout.alignment: Qt.AlignHCenter
             Layout.fillWidth: true
             horizontalAlignment: Text.AlignHCenter
@@ -156,8 +152,8 @@ PlasmaCore.ColorScope {
         }
 
         PlasmaComponents.Label {
-            font.pointSize: theme.defaultFont.pointSize + 1
-            Layout.maximumWidth: units.gridUnit * 16
+            font.pointSize: Kirigami.Theme.defaultFont.pointSize + 1
+            Layout.maximumWidth: Math.max(Kirigami.Units.gridUnit * 16, logoutButtonsRow.implicitWidth)
             Layout.alignment: Qt.AlignHCenter
             Layout.fillWidth: true
             horizontalAlignment: Text.AlignHCenter
@@ -168,7 +164,8 @@ PlasmaCore.ColorScope {
         }
 
         RowLayout {
-            spacing: units.largeSpacing * 2
+            id: logoutButtonsRow
+            spacing: Kirigami.Units.largeSpacing // * 2
             Layout.alignment: Qt.AlignHCenter
             LogoutButton {
                 id: suspendButton
@@ -221,13 +218,14 @@ PlasmaCore.ColorScope {
         }
 
         PlasmaComponents.Label {
-            font.pointSize: theme.defaultFont.pointSize + 1
+            font.pointSize: Kirigami.Theme.defaultFont.pointSize + 1
             Layout.alignment: Qt.AlignHCenter
             //opacity, as visible would re-layout
             opacity: countDownTimer.running ? 1 : 0
+            color: "white"
             Behavior on opacity {
                 OpacityAnimator {
-                    duration: units.longDuration
+                    duration: Kirigami.Units.longDuration
                     easing.type: Easing.InOutQuad
                 }
             }
@@ -246,18 +244,19 @@ PlasmaCore.ColorScope {
         RowLayout {
             Layout.alignment: Qt.AlignHCenter
             PlasmaComponents.Button {
-                implicitWidth: units.gridUnit * 6
-                font.pointSize: theme.defaultFont.pointSize + 1
+                implicitWidth: Kirigami.Units.gridUnit * 6
+                font.pointSize: Kirigami.Theme.defaultFont.pointSize + 1
                 enabled: root.currentAction !== null
                 text: i18nd("plasma_lookandfeel_org.kde.lookandfeel", "OK")
                 onClicked: root.currentAction()
             }
             PlasmaComponents.Button {
-                implicitWidth: units.gridUnit * 6
-                font.pointSize: theme.defaultFont.pointSize + 1
+                implicitWidth: Kirigami.Units.gridUnit * 6
+                font.pointSize: Kirigami.Theme.defaultFont.pointSize + 1
                 text: i18nd("plasma_lookandfeel_org.kde.lookandfeel", "Cancel")
                 onClicked: root.cancelRequested()
             }
         }
+    }
     }
 }

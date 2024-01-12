@@ -6,24 +6,27 @@
 
 import QtQuick 2.2
 
-import QtQuick.Layouts 1.2
-import QtQuick.Controls 2.4
-import QtQuick.Controls.Styles 1.4
+import QtQuick.Layouts 1.1
+import QtQuick.Controls 2.12 as QQC2
 
-import org.kde.plasma.core 2.0 as PlasmaCore
 import org.kde.plasma.components 3.0 as PlasmaComponents3
+import org.kde.plasma.extras 2.0 as PlasmaExtras
+import org.kde.kirigami 2.20 as Kirigami
+import org.kde.kscreenlocker 1.0 as ScreenLocker
 
 import "../components"
+import "../components/animation"
 
 SessionManagementScreen {
+    id: sessionManager
 
-    property Item mainPasswordBox: passwordBox
+    readonly property alias mainPasswordBox: passwordBox
     property bool lockScreenUiVisible: false
-    property alias echoMode: passwordBox.echoMode
+    property alias showPassword: passwordBox.showPassword
 
     //the y position that should be ensured visible when the on screen keyboard is visible
     property int visibleBoundary: mapFromItem(loginButton, 0, 0).y
-    onHeightChanged: visibleBoundary = mapFromItem(loginButton, 0, 0).y + loginButton.height + PlasmaCore.Units.smallSpacing
+    onHeightChanged: visibleBoundary = mapFromItem(loginButton, 0, 0).y + loginButton.height + Kirigami.Units.smallSpacing
     /*
      * Login has been requested with the following username and password
      * If username field is visible, it will be taken from that, otherwise from the "name" property of the currentIndex
@@ -54,17 +57,14 @@ SessionManagementScreen {
     RowLayout {
         Layout.fillWidth: true
 
-        PlasmaComponents3.TextField {
+        PlasmaExtras.PasswordField {
             id: passwordBox
-            font.pointSize: PlasmaCore.Theme.defaultFont.pointSize + 1
+            font.pointSize: Kirigami.Theme.defaultFont.pointSize + 1
             Layout.fillWidth: true
 
             placeholderText: i18nd("plasma_lookandfeel_org.kde.lookandfeel", "Password")
             focus: true
-            echoMode: TextInput.Password
-            inputMethodHints: Qt.ImhHiddenText | Qt.ImhSensitiveData | Qt.ImhNoAutoUppercase | Qt.ImhNoPredictiveText
             enabled: !authenticator.graceLocked
-            revealPasswordButtonShown: true
 
             // In Qt this is implicitly active based on focus rather than visibility
             // in any other application having a focussed invisible object would be weird
@@ -80,7 +80,7 @@ SessionManagementScreen {
 
             //if empty and left or right is pressed change selection in user switch
             //this cannot be in keys.onLeftPressed as then it doesn't reach the password box
-            Keys.onPressed: {
+            Keys.onPressed: event => {
                 if (event.key == Qt.Key_Left && !text) {
                     userList.decrementCurrentIndex();
                     event.accepted = true
@@ -97,52 +97,66 @@ SessionManagementScreen {
                     passwordBox.forceActiveFocus()
                     passwordBox.text = "";
                 }
+                function onNotificationRepeated() {
+                    sessionManager.playHighlightAnimation();
+                }
             }
         }
 
-        Button {
+        PlasmaComponents3.Button {
             id: loginButton
             Accessible.name: i18nd("plasma_lookandfeel_org.kde.lookandfeel", "Unlock")
-            implicitHeight: passwordBox.height - units.smallSpacing * 0.5 // otherwise it comes out taller than the password field
-            text: ">"
-            Layout.leftMargin: 30
+            Layout.preferredHeight: passwordBox.implicitHeight
+            Layout.preferredWidth: loginButton.Layout.preferredHeight
 
-            contentItem: Text {
-                text: loginButton.text
-                font: loginButton.font
-                opacity: enabled ? 1.0 : 0.3
-                color: "#ffffff"
-                horizontalAlignment: Text.AlignHCenter
-                verticalAlignment: Text.AlignVCenter
-                elide: Text.ElideRight
-            }
-
-            background: Rectangle {
-                id: buttonBorder
-                width: 30
-                height: 40
-                //radius: width / 2
-                rotation: -90
-                anchors.centerIn: parent
-
-                gradient: Gradient {
-                    GradientStop { position: 0.0; color: "#75b9e7" }
-                    GradientStop { position: 1.0; color: "#3498db" }
-                }
-            }
-
-            Rectangle {
-                id: buttonBackground
-                height: 28
-                width: 38
-                //radius: height / 2
-                anchors.centerIn: buttonBorder
-                color: "#75b9e7"
-            }
+            icon.name: LayoutMirroring.enabled ? "go-previous" : "go-next"
 
             onClicked: startLogin()
             Keys.onEnterPressed: clicked()
             Keys.onReturnPressed: clicked()
         }
+    }
+
+    component FailableLabel : PlasmaComponents3.Label {
+        id: _failableLabel
+        required property int kind
+        required property string label
+
+        visible: authenticator.authenticatorTypes & kind
+        text: label
+        horizontalAlignment: Text.AlignHCenter
+        Layout.fillWidth: true
+
+        RejectPasswordAnimation {
+            id: _rejectAnimation
+            target: _failableLabel
+            onFinished: _timer.restart()
+        }
+
+        Connections {
+            target: authenticator
+            function onNoninteractiveError(kind, authenticator) {
+                if (kind & _failableLabel.kind) {
+                    _failableLabel.text = Qt.binding(() => authenticator.errorMessage)
+                    _rejectAnimation.start()
+                }
+            }
+        }
+        Timer {
+            id: _timer
+            interval: Kirigami.Units.humanMoment
+            onTriggered: {
+                _failableLabel.text = Qt.binding(() => _failableLabel.label)
+            }
+        }
+    }
+
+    FailableLabel {
+        kind: ScreenLocker.Authenticator.Fingerprint
+        label: i18nd("plasma_lookandfeel_org.kde.lookandfeel", "(or scan your fingerprint on the reader)")
+    }
+    FailableLabel {
+        kind: ScreenLocker.Authenticator.Smartcard
+        label: i18nd("plasma_lookandfeel_org.kde.lookandfeel", "(or scan your smartcard)")
     }
 }

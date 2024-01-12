@@ -1,47 +1,40 @@
 /*
- *   Copyright 2016 David Edmundson <davidedmundson@kde.org>
- *
- *   This program is free software; you can redistribute it and/or modify
- *   it under the terms of the GNU Library General Public License as
- *   published by the Free Software Foundation; either version 2 or
- *   (at your option) any later version.
- *
- *   This program is distributed in the hope that it will be useful,
- *   but WITHOUT ANY WARRANTY; without even the implied warranty of
- *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *   GNU General Public License for more details
- *
- *   You should have received a copy of the GNU Library General Public
- *   License along with this program; if not, write to the
- *   Free Software Foundation, Inc.,
- *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
- */
+    SPDX-FileCopyrightText: 2016 David Edmundson <davidedmundson@kde.org>
 
-import QtQuick 2.8
-import QtQuick.Layouts 1.1
-import QtQuick.Controls 2.5
-import org.kde.plasma.core 2.0
+    SPDX-License-Identifier: LGPL-2.0-or-later
+*/
+
+import QtQuick 2.15
+import QtQuick.Layouts 1.15
+
+import org.kde.plasma.components 3.0 as PlasmaComponents3
+import org.kde.plasma.plasma5support 2.0 as P5Support
+import org.kde.kirigami 2.20 as Kirigami
 
 ColumnLayout {
     readonly property bool softwareRendering: GraphicsInfo.api === GraphicsInfo.Software
 
-    Label {
+    PlasmaComponents3.Label {
         text: Qt.formatTime(timeSource.data["Local"]["DateTime"])
-        color: "#B7B7B7" //ColorScope.textColor
+        color: "#B7B7B7"
         style: softwareRendering ? Text.Outline : Text.Normal
-        styleColor: softwareRendering ? ColorScope.backgroundColor : "transparent" //no outline, doesn't matter
-        font.pointSize: 34
+        styleColor: softwareRendering ? Kirigami.Theme.backgroundColor : "transparent" //no outline, doesn't matter
+        font.pointSize: 48
+        font.weight: Font.Medium
+        font.family: "Raleway"
         Layout.alignment: Qt.AlignHCenter
     }
-    Label {
-        text: Qt.formatDate(timeSource.data["Local"]["DateTime"], Qt.DefaultLocaleLongDate)
-        color: "#989898" //ColorScope.textColor
+    PlasmaComponents3.Label {
+        text: Qt.formatDate(timeSource.data["Local"]["DateTime"], Locale.LongFormat)
+        color: "#989898"
         style: softwareRendering ? Text.Outline : Text.Normal
-        styleColor: softwareRendering ? ColorScope.backgroundColor : "transparent" //no outline, doesn't matter
-        font.pointSize: 17
+        styleColor: softwareRendering ? Kirigami.Theme.backgroundColor : "transparent" //no outline, doesn't matter
+        font.pointSize: 24
+        font.weight: Font.Medium
+        font.family: "Raleway"
         Layout.alignment: Qt.AlignHCenter
     }
-    DataSource {
+    P5Support.DataSource {
         id: timeSource
         engine: "time"
         connectedSources: ["Local"]

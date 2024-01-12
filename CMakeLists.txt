@@ -1,6 +1,6 @@
-project(MidnaTheme)
+cmake_minimum_required(VERSION 3.16.0 FATAL_ERROR)
 
-cmake_minimum_required(VERSION 3.0.0 FATAL_ERROR)
+project(MidnaTheme)
 
 # Macro to print feature summary
 include(FeatureSummary)
@@ -13,7 +13,7 @@ find_package(ECM 1.5.0 REQUIRED NO_MODULE)
 set(CMAKE_MODULE_PATH ${ECM_MODULE_PATH} ${ECM_KDE_MODULE_DIR})
 
 # Set version
-set(THEME_VERSION_MAJOR 2)
+set(THEME_VERSION_MAJOR 7)
 set(THEME_VERSION_MINOR 0)
 set(THEME_VERSION_PATCH 0)
 set(THEME_VERSION_STRING "${THEME_VERSION_MAJOR}.${THEME_VERSION_MINOR}.${THEME_VERSION_PATCH}")
@@ -39,11 +39,11 @@ include(CPack)
 add_custom_target(dist COMMAND ${CMAKE_MAKE_PROGRAM} package_source)
 
 # Minimum version requirements
-set(QT_MIN_VERSION "5.4.0")
-set(KF5_MIN_VERSION "5.5.0")
+set(QT_MIN_VERSION "6.4.0")
+set(PROJECT_VERSION "5.90.0")
 
-# Find KF5
-find_package(KF5 ${KF5_MIN_VERSION} REQUIRED COMPONENTS Plasma)
+# Find KF6
+find_package(Plasma ${PROJECT_VERSION} REQUIRED)
 
 # Subdirectories
 add_subdirectory(aurorae)

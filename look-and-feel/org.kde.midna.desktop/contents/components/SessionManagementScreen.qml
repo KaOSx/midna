@@ -8,8 +8,8 @@ import QtQuick 2.15
 
 import QtQuick.Layouts 1.15
 
-import org.kde.plasma.core 2.0 as PlasmaCore
 import org.kde.plasma.components 3.0 as PlasmaComponents3
+import org.kde.kirigami 2.20 as Kirigami
 
 FocusScope {
     id: root
@@ -58,11 +58,15 @@ FocusScope {
 
     property alias userList: userListView
 
-    property int fontSize: PlasmaCore.Theme.defaultFont.pointSize + 2
+    property int fontSize: Kirigami.Theme.defaultFont.pointSize + 2
 
     default property alias _children: innerLayout.children
 
     signal userSelected()
+
+    function playHighlightAnimation() {
+        bounceAnimation.start();
+    }
 
     // FIXME: move this component into a layout, rather than abusing
     // anchors and implicitly relying on other components' built-in
@@ -75,7 +79,7 @@ FocusScope {
             // We only need an extra bottom margin when text is constrained,
             // since only in this case can the username label be a multi-line
             // string that would otherwise overflow.
-            bottomMargin: constrainText ? PlasmaCore.Units.gridUnit * 3 : 0
+            bottomMargin: constrainText ? Kirigami.Units.gridUnit * 3 : 0
             left: parent.left
             right: parent.right
         }
@@ -90,25 +94,45 @@ FocusScope {
     ColumnLayout {
         id: prompts
         anchors.top: parent.verticalCenter
-        anchors.topMargin: PlasmaCore.Units.gridUnit * 0.5
+        anchors.topMargin: Kirigami.Units.gridUnit * 0.5
         anchors.left: parent.left
         anchors.right: parent.right
         anchors.bottom: parent.bottom
         PlasmaComponents3.Label {
             id: notificationsLabel
             font.pointSize: root.fontSize
-            Layout.maximumWidth: PlasmaCore.Units.gridUnit * 16
+            Layout.maximumWidth: Kirigami.Units.gridUnit * 16
             Layout.alignment: Qt.AlignHCenter
             Layout.fillWidth: true
             horizontalAlignment: Text.AlignHCenter
             wrapMode: Text.WordWrap
             font.italic: true
-            color: "#B7B7B7"
+
+            SequentialAnimation {
+                id: bounceAnimation
+                loops: 1
+                PropertyAnimation {
+                    target: notificationsLabel
+                    properties: "scale"
+                    from: 1.0
+                    to: 1.1
+                    duration: Kirigami.Units.longDuration
+                    easing.type: Easing.OutQuad
+                }
+                PropertyAnimation {
+                    target: notificationsLabel
+                    properties: "scale"
+                    from: 1.1
+                    to: 1.0
+                    duration: Kirigami.Units.longDuration
+                    easing.type: Easing.InQuad
+                }
+            }
         }
         ColumnLayout {
             Layout.minimumHeight: implicitHeight
-            Layout.maximumHeight: PlasmaCore.Units.gridUnit * 10
-            Layout.maximumWidth: PlasmaCore.Units.gridUnit * 16
+            Layout.maximumHeight: Kirigami.Units.gridUnit * 10
+            Layout.maximumWidth: Kirigami.Units.gridUnit * 16
             Layout.alignment: Qt.AlignHCenter
             ColumnLayout {
                 id: innerLayout
@@ -126,7 +150,7 @@ FocusScope {
             Row { //deliberately not rowlayout as I'm not trying to resize child items
                 id: actionItemsLayout
                 anchors.verticalCenter: parent.top
-                spacing: PlasmaCore.Units.largeSpacing / 2
+                spacing: Kirigami.Units.largeSpacing
             }
         }
         Item {
