@@ -51,7 +51,7 @@ find_package(KF6 ${KF6_MIN_VERSION} REQUIRED COMPONENTS
         I18n
         IconThemes
         Kirigami
-        WindowSystem))
+        WindowSystem)
 
 # Subdirectories
 add_subdirectory(aurorae)

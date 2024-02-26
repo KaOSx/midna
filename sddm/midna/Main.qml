@@ -247,7 +247,7 @@ Rectangle {
 
                     Column {
                         z: 100
-                        width: parent.width * 1.3
+                        width: parent.width * 2
                         spacing : 4
                         anchors.bottom: parent.bottom
 
@@ -274,7 +274,7 @@ Rectangle {
                         }
                     }
 
-                    Column {
+                    /*Column {
                         z: 101
                         width: parent.width * 0.7
                         spacing : 4
@@ -298,7 +298,7 @@ Rectangle {
 
                             KeyNavigation.backtab: session; KeyNavigation.tab: loginButton
                         }
-                    }
+                    }*/
                 }
 
                 /*Column {
@@ -316,7 +316,7 @@ Rectangle {
                     anchors.horizontalCenter: parent.horizontalCenter
                     property int btnWidth: Math.max(loginButton.implicitWidth,
                                                     shutdownButton.implicitWidth,
-                                                    rebootButton.implicitWidth, 100) + 8
+                                                    rebootButton.implicitWidth, 80) + 8
                     Button {
                         id: loginButton
                         text: textConstants.login
