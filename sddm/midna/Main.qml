@@ -16,15 +16,15 @@ Rectangle {
     Connections {
         target: sddm
 
-        onLoginSucceeded: {
+        function onLoginSucceeded() {
         }
 
-        onLoginFailed: {
+        function onLoginFailed() {
             txtMessage.text = textConstants.loginFailed
             listView.currentItem.password = ""
         }
 
-        onInformationMessage: {
+        function onInformationMessage() {
             txtMessage.text = message
         }
     }
@@ -314,10 +314,10 @@ Rectangle {
                 Row {
                     spacing: 4
                     anchors.horizontalCenter: parent.horizontalCenter
-                    property int btnWidth: Math.max(
+                    property int btnWidth: Math.max(loginButton.implicitWidth,
                                                     shutdownButton.implicitWidth,
-                                                    rebootButton.implicitWidth, 120) + 8
-                    /*Button {
+                                                    rebootButton.implicitWidth, 100) + 8
+                    Button {
                         id: loginButton
                         text: textConstants.login
                         width: parent.btnWidth
@@ -326,7 +326,7 @@ Rectangle {
                         onClicked: sddm.login(userDelegate.name, userDelegate.password, sessionIndex)
 
                         KeyNavigation.backtab: layoutBox; KeyNavigation.tab: shutdownButton
-                    }*/
+                    }
 
                     Button {
                         id: shutdownButton
