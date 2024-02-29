@@ -31,11 +31,12 @@ Rectangle {
 
     Background {
         anchors.fill: parent
-        source: config.background
+        source:  Qt.resolvedUrl(config.background)
         fillMode: Image.PreserveAspectCrop
         onStatusChanged: {
-            if (status == Image.Error && source != config.defaultBackground) {
-                source = config.defaultBackground
+            var defaultBackground = Qt.resolvedUrl(config.defaultBackground)
+            if (status == Image.Error && source != defaultBackground) {
+                source = defaultBackground
             }
         }
     }
@@ -93,7 +94,7 @@ Rectangle {
             width: Math.max(640, mainColumn.implicitWidth + 50)
             height: Math.max(500, mainColumn.implicitHeight + 50)
 
-            source: "assets/rectangle.png"
+            source: Qt.resolvedUrl("assets/rectangle.png")
 
             Column {
                 id: mainColumn
@@ -126,7 +127,7 @@ Rectangle {
                             anchors.left: parent.left
                             anchors.verticalCenter: parent.verticalCenter
                             anchors.margins: 10
-                            source: "icons/angle-down.png"
+                            source: Qt.resolvedUrl("icons/angle-down.png")
                             rotation : 90
                             onClicked: listView.decrementCurrentIndex()
 
@@ -164,7 +165,7 @@ Rectangle {
                             anchors.right: parent.right
                             anchors.verticalCenter: parent.verticalCenter
                             anchors.margins: 10
-                            source: "icons/angle-down.png"
+                            source: Qt.resolvedUrl("icons/angle-down.png")
                             rotation : 270
                             onClicked: listView.incrementCurrentIndex()
                             KeyNavigation.backtab: listView; KeyNavigation.tab: session
@@ -182,7 +183,7 @@ Rectangle {
                         text: textConstants.promptSelectUser
                         wrapMode: Text.WordWrap
                         //width:parent.width - 60
-                        font.pixelSize: 12
+                        font.pixelSize: 18
                     }
                 }
                 /*Column {
@@ -265,7 +266,7 @@ Rectangle {
                             width: parent.width; height: 30
                             font.pixelSize: 14
 
-                            arrowIcon: "/usr/share/sddm/themes/midna/icons/angle-down.png"
+                            arrowIcon: Qt.resolvedUrl("icons/angle-down.png")
 
                             model: sessionModel
                             index: sessionModel.lastIndex
@@ -274,11 +275,13 @@ Rectangle {
                         }
                     }
 
-                    /*Column {
+                    Column {
                         z: 101
                         width: parent.width * 0.7
                         spacing : 4
                         anchors.bottom: parent.bottom
+
+                        visible: keyboard.enabled && keyboard.layouts.length > 0
 
                         Text {
                             id: lblLayout
@@ -294,11 +297,11 @@ Rectangle {
                             width: parent.width; height: 30
                             font.pixelSize: 14
 
-                            arrowIcon: "/usr/share/sddm/themes/midna/icons/angle-down.png"
+                            arrowIcon: Qt.resolvedUrl("icons/angle-down.png")
 
                             KeyNavigation.backtab: session; KeyNavigation.tab: loginButton
                         }
-                    }*/
+                    }
                 }
 
                 /*Column {
@@ -314,10 +317,10 @@ Rectangle {
                 Row {
                     spacing: 4
                     anchors.horizontalCenter: parent.horizontalCenter
-                    property int btnWidth: Math.max(loginButton.implicitWidth,
+                    property int btnWidth: Math.max(
                                                     shutdownButton.implicitWidth,
-                                                    rebootButton.implicitWidth, 80) + 8
-                    Button {
+                                                    rebootButton.implicitWidth, 100) + 8
+                    /*Button {
                         id: loginButton
                         text: textConstants.login
                         width: parent.btnWidth
@@ -326,7 +329,7 @@ Rectangle {
                         onClicked: sddm.login(userDelegate.name, userDelegate.password, sessionIndex)
 
                         KeyNavigation.backtab: layoutBox; KeyNavigation.tab: shutdownButton
-                    }
+                    }*/
 
                     Button {
                         id: shutdownButton
