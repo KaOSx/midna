@@ -1,2 +1,2 @@
-install(DIRECTORY midna midna-dark DESTINATION ${CMAKE_INSTALL_PREFIX}/share/sddm/themes)
+install(DIRECTORY midna DESTINATION ${CMAKE_INSTALL_PREFIX}/share/sddm/themes)
 
